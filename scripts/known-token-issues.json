@@ -1,0 +1,28 @@
+{
+  "tokenConflicts": {
+    "--toggle_title_icon_h": {
+      "reason": "Объявлен как высота 32px и затем как URL-переменная иконки; требуется отдельное согласованное исправление в общих токенах."
+    }
+  },
+  "undefinedTokens": {
+    "--icon_rating_star_lg": {
+      "reason": "Используется размером рейтинга lg; соответствующий токен и ID спрайта пока отсутствуют."
+    },
+    "--icon_site_checkbox": {
+      "reason": "Используется checkbox lg; соответствующий токен и ID спрайта пока отсутствуют."
+    },
+    "--icon_site_checkbox_small": {
+      "reason": "Используется checkbox sm/md; соответствующий токен и ID спрайта пока отсутствуют."
+    }
+  },
+  "undefinedClasses": {
+    "ds-footer__column": {
+      "reason": "Есть в шаблонах и проектах, но у Footer пока нет отдельного CSS-правила для этого контракта."
+    }
+  },
+  "dynamicTokenPrefixes": [
+    "--gr_",
+    "--h_",
+    "--p_"
+  ]
+}

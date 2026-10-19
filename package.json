@@ -10,11 +10,12 @@
     "dev": "sass --watch --style=expanded --source-map design-system/scss:dist/css",
     "project:styles": "node scripts/project-styles.mjs",
     "test:project-styles": "node scripts/tests/project-styles.test.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:tokens": "node scripts/check-tokens.mjs",
     "visual:qa": "playwright test --config=playwright.visual-qa.config.mjs",
     "visual:qa:baseline": "playwright test --config=playwright.visual-qa.config.mjs --update-snapshots"
   },
   "devDependencies": {
-    "playwright": "1.64.1",
     "playwright": "1.64.1",
     "sass": "1.105.1"
   }

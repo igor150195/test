@@ -8,6 +8,12 @@
 
 Требуются Node.js и npm. Единственная dev dependency — Dart Sass (`sass`), зафиксированный в `package.json` и `package-lock.json`.
 
+Для локальной визуальной проверки также используется `playwright@1.64.1`.
+В проверенной среде ему соответствует установленный browser revision
+`chromium-1248` в стандартном каталоге Playwright. Это revision пакета
+Playwright, а не обещание наличия браузера в каждой среде: его присутствие
+нужно проверять перед запуском visual QA через `npx playwright install --list`.
+
 ```sh
 npm ci
 ```
@@ -38,6 +44,8 @@ npm run dev
 npm run project:styles -- init <slug>
 npm run project:styles -- build <slug>
 npm run test:project-styles
+npm run check:docs
+npm run check:tokens
 ```
 
 - `build`/`build:sass` компилирует все entrypoint-файлы из `design-system/scss/` в `dist/css/` с source maps.
