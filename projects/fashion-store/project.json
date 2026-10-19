@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/project.schema.json",
+  "schema_version": 1,
+  "slug": "fashion-store",
+  "type": "ecommerce-fashion",
+  "mode": "reference",
+  "platform": "static-html",
+  "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "pages": [
+    { "id": "home", "source": "index.html", "output": "index.html", "route": "/" }
+  ],
+  "files": [
+    { "path": "index.html", "owner": "generated" },
+    { "path": "css/custom.css", "owner": "generated" }
+  ],
+  "external_dependencies": [
+    { "kind": "reference", "url": "https://clothing-shop.oml.ru/", "required": false },
+    { "kind": "image", "url": "https://clothing-shop.oml.ru/", "required": true }
+  ]
+}

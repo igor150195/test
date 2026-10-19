@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/project.schema.json",
+  "schema_version": 1,
+  "slug": "test-site",
+  "type": "travel-employer-promo",
+  "mode": "reference",
+  "platform": "static-html",
+  "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "pages": [
+    { "id": "home", "source": "index.html", "output": "index.html", "route": "/" }
+  ],
+  "files": [
+    { "path": "index.html", "owner": "generated" },
+    { "path": "css/custom.css", "owner": "generated" },
+    { "path": "styles/custom.scss", "owner": "owner" },
+    { "path": "css/custom-overrides.css", "owner": "generated" }
+  ],
+  "external_dependencies": [
+    { "kind": "reference", "url": "https://hr.tutu.ru/", "required": false },
+    { "kind": "image", "url": "https://hr.tutu.ru/", "required": true },
+    { "kind": "link", "url": "https://www.youtube.com/", "required": false },
+    { "kind": "link", "url": "https://habr.com/", "required": false }
+  ]
+}
