@@ -1,0 +1,1868 @@
+:root {
+    /*----------Настройки сайта----------*/
+    --site_width: 1680px;
+	--transition: all .2s;
+	/*----------Настройки сайта----------*/
+	
+	
+	/*----------Отступы блоков----------*/
+	--section_pd_desktop: 40px;
+	--section_pd_laptop:  40px;
+	--section_pd_tablet:  24px;
+	--section_pd_mobile:  16px;
+	/*----------Отступы блоков----------*/
+    
+    
+    /*----------Закругления----------*/
+    --base_radius:     8px;
+    --box_radius:      12px;
+    --btn_radius:      6px;
+    --checkbox_radius: 4px;
+    --form_radius:     6px;
+    --iconbtn_radius:  6px;
+    --medium_radius:   6px;
+    --small_radius:    3px;
+    --wrap_radius:     20px;
+    --round_radius:    100px;
+    /*----------Закругления----------*/
+    
+    
+    /*----------Таблицы----------*/
+    --tablePadding: .5em;
+    --tableBorder: #afafaf;
+    --tableThBackground: #FF604E;
+    --tableThColor: #ffffff;
+    /*----------Таблицы----------*/
+    
+    
+    /*----------Текст----------*/
+    --font_accent:  var(--font2);
+    --font_content: var(--font1);
+    
+    --fw_accent_r:   400;
+    --fw_accent_md:  500;
+    --fw_accent_sb:  600;
+    --fw_accent_b:   700;
+    
+    --fw_content_r:  400;
+    --fw_content_md: 500;
+    --fw_content_sb: 600;
+    --fw_content_b:  700;
+    
+    --fw1_100: 100;
+    --fw1_200: 200;
+    --fw1_300: 300;
+    --fw1_400: 400;
+    --fw1_500: 500;
+    --fw1_600: 600;
+    --fw1_700: 700;
+    --fw1_800: 800;
+    --fw1_900: 900;
+
+    --fw2_100: 100;
+    --fw2_200: 200;
+    --fw2_300: 300;
+    --fw2_400: 400;
+    --fw2_500: 500;
+    --fw2_600: 600;
+    --fw2_700: 700;
+    --fw2_800: 800;
+    --fw2_900: 900;
+    
+    --fz_xxl: 22px;
+    --fz_xl:  20px;
+    --fz_lg:  18px;
+    --fz_mlg: 17px;
+    --fz_md:  16px;
+    --fz_msm: 15px;
+    --fz_sm:  14px;
+    --fz_xs:  12px;
+    --fz_xxs: 9px;
+    
+    --heading_fz_1:  54px;
+    --heading_fz_2:  48px;
+    --heading_fz_3:  44px;
+    --heading_fz_4:  40px;
+    --heading_fz_5:  36px;
+    --heading_fz_6:  32px;
+    --heading_fz_7:  28px;
+    --heading_fz_8:  24px;
+    --heading_fz_9:  22px;
+    --heading_fz_10: 20px;
+    --heading_fz_11: 18px;
+    --heading_fz_12: 16px;
+    /*----------Текст----------*/
+    
+    
+    
+    /*----------Тултип----------*/
+    --tooltip_pd: 6px 8px;
+    --tooltip_fz: var(--fz_sm);
+    --tooltip_lh: 1.1;
+    --tooltip_r:  var(--medium_radius);
+    /*----------Тултип----------*/
+    
+    
+    
+    /*----------Заголовки----------*/
+    --h_0_desktop: var(--fw_accent_b) var(--heading_fz_1)/1.1 var(--font_accent); 
+    --h_0_laptop: var(--fw_accent_b) var(--heading_fz_2)/1.1 var(--font_accent); 
+    --h_0_tablet : var(--fw_accent_b) var(--heading_fz_3)/1 var(--font_accent); 
+    --h_0_mobile: var(--fw_accent_b) var(--heading_fz_6)/1 var(--font_accent); 
+
+    --h_1_desktop: var(--fw_accent_b) var(--heading_fz_4)/1.18 var(--font_accent);
+    --h_1_laptop: var(--fw_accent_b) var(--heading_fz_4)/1.18 var(--font_accent);
+    --h_1_tablet: var(--fw_accent_b) var(--heading_fz_5)/1.18 var(--font_accent);
+    --h_1_mobile: var(--fw_accent_b) var(--heading_fz_7)/1.18 var(--font_accent);
+
+    --h_2_desktop: var(--fw_accent_b) var(--heading_fz_5)/1.2 var(--font_accent);
+    --h_2_laptop: var(--fw_accent_b) var(--heading_fz_5)/1.2 var(--font_accent);
+    --h_2_tablet: var(--fw_accent_b) var(--heading_fz_6)/1.2 var(--font_accent);
+    --h_2_mobile: var(--fw_accent_b) var(--heading_fz_8)/1.2 var(--font_accent);
+
+    --h_3_desktop: var(--fw_accent_b) var(--heading_fz_6)/1.2 var(--font_accent);
+    --h_3_laptop: var(--fw_accent_b) var(--heading_fz_6)/1.2 var(--font_accent);
+    --h_3_tablet: var(--fw_accent_b) var(--heading_fz_7)/1.2 var(--font_accent);
+    --h_3_mobile: var(--fw_accent_b) var(--heading_fz_9)/1.2 var(--font_accent);
+
+    --h_4_desktop: var(--fw_accent_b) var(--heading_fz_8)/1 var(--font_accent);
+    --h_4_laptop: var(--fw_accent_b) var(--heading_fz_8)/1 var(--font_accent);
+    --h_4_tablet: var(--fw_accent_b) var(--heading_fz_8)/1 var(--font_accent);
+    --h_4_mobile: var(--fw_accent_b) var(--heading_fz_10)/1 var(--font_accent);
+
+    --h_5_desktop: var(--fw_accent_b) var(--heading_fz_9)/1 var(--font_accent);
+    --h_5_laptop: var(--fw_accent_b) var(--heading_fz_10)/1 var(--font_accent);
+    --h_5_tablet: var(--fw_accent_b) var(--heading_fz_11)/1 var(--font_accent);
+    --h_5_mobile: var(--fw_accent_b) var(--heading_fz_11)/1 var(--font_accent);
+
+    --h_6_desktop: var(--fw_accent_b) var(--heading_fz_11)/1 var(--font_accent);
+    --h_6_laptop: var(--fw_accent_b) var(--heading_fz_11)/1 var(--font_accent);
+    --h_6_tablet: var(--fw_accent_b) var(--heading_fz_11)/1 var(--font_accent);
+    --h_6_mobile: var(--fw_accent_b) var(--heading_fz_12)/1 var(--font_accent);
+    /*----------Заголовки----------*/
+    
+    
+    /*----------Параграфы----------*/
+    --p_xl_desktop: var(--fw_content_r) var(--fz_xl)/1.7 var(--font_content); 
+    --p_xl_laptop: var(--fw_content_r) var(--fz_xl)/1.7 var(--font_content); 
+    --p_xl_tablet : var(--fw_content_r) var(--fz_lg)/1.7 var(--font_content); 
+    --p_xl_mobile: var(--fw_content_r) var(--fz_md)/1.56 var(--font_content); 
+
+    --p_lg_desktop: var(--fw_content_r) var(--fz_lg)/1.7 var(--font_content);
+    --p_lg_laptop: var(--fw_content_r) var(--fz_lg)/1.7 var(--font_content);
+    --p_lg_tablet: var(--fw_content_r) var(--fz_mlg)/1.7 var(--font_content);
+    --p_lg_mobile: var(--fw_content_r) var(--fz_md)/1.56 var(--font_content);
+
+    --p_md_desktop: var(--fw_content_r) var(--fz_md)/1.6 var(--font_content);
+    --p_md_laptop: var(--fw_content_r) var(--fz_md)/1.6 var(--font_content);
+    --p_md_tablet: var(--fw_content_r) var(--fz_md)/1.6 var(--font_content);
+    --p_md_mobile: var(--fw_content_r) var(--fz_md)/1.56 var(--font_content);
+
+    --p_sm_desktop: var(--fw_content_r) var(--fz_msm)/1.32 var(--font_content);
+    --p_sm_laptop: var(--fw_content_r) var(--fz_msm)/1.32 var(--font_content);
+    --p_sm_tablet: var(--fw_content_r) var(--fz_msm)/1.32 var(--font_content);
+    --p_sm_mobile: var(--fw_content_r) var(--fz_msm)/1.32 var(--font_content);
+    /*----------Параграфы----------*/
+    
+    
+    /* Иконки */
+    --sm_icon_w: 20px;
+    --sm_icon_h: 20px;
+	
+    --md_icon_h: 30px;
+    --md_icon_w: 30px;
+
+    --lg_icon_w: 30px;
+    --lg_icon_h: 30px;
+    /* Иконки */
+    
+    
+    /* Счётчик */
+   --counter_color: 	var(--on_bg_main_accent);
+   --counter_bg: 		var(--accent);
+   --counter_bd: 		none; 
+   --counter_shadow: 	none;
+    
+    --sm_counter_h: 	16px;
+    --sm_counter_mw: 	16px;
+    --sm_counter_p: 	0 2px;
+    --sm_counter_r: 	var(--round_radius);
+    --sm_counter_text: 	var(--fw_content_r) var(--fz_xxs)/1.2 var(--font_content);
+    
+    --md_counter_h: 	20px;
+    --md_counter_mw: 	20px;
+    --md_counter_p: 	0 2px;
+    --md_counter_r: 	var(--round_radius);
+    --md_counter_text: 	var(--fw_content_r) var(--fz_xs)/1.2 var(--font_content);
+    
+    --lg_counter_h: 	24px;
+    --lg_counter_mw: 	24px;
+    --lg_counter_p: 	0 2px;
+    --lg_counter_r: 	var(--round_radius);
+    --lg_counter_text: 	var(--fw_content_r) var(--fz_sm)/1.2 var(--font_content);
+    /* Счётчик */
+    
+    
+    /* Попапы */
+    --popup_bg:        		var(--bg_main);
+	--popup_overlay:   		rgba(0,0,0, .35);
+	--popup_r:         		var(--box_radius);
+	
+	--popup_title_color:  	var(--on_bg_main_accent);
+
+	--sm_popup_title: 		var(--fw_accent_b) var(--heading_fz_9)/1.2 var(--font_accent);
+	--sm_popup_title_m: 	0 0 24px;
+	
+	--md_popup_title: 		var(--fw_accent_b) var(--heading_fz_7)/1.2 var(--font_accent);
+	--md_popup_title_m: 	0 0 28px;
+	
+	--lg_popup_title: 		var(--fw_accent_b) var(--heading_fz_6)/1.2 var(--font_accent);
+	--lg_popup_title_m: 	0 0 32px;
+	
+	
+	/*На всю ширину*/
+	--xl_popup_pd_desktop:  80px 56px; 
+	--xl_popup_pd_laptop:   80px 56px; 
+	--xl_popup_pd_tablet:   36px;	    
+	--xl_popup_pd_mobile:   20px 16px;  
+	/*На всю ширину*/
+	
+	--lg_popup_mxw_desktop: 1100px;
+	--lg_popup_mxw_laptop:  880px;
+	--lg_popup_mxw_tablet: 	600px;
+
+	--lg_popup_pd_desktop:  56px;
+	--lg_popup_pd_laptop:   36px;
+	--lg_popup_pd_tablet:   36px;
+	--lg_popup_pd_mobile:   20px 16px;
+
+	
+	--md_popup_mxw_desktop: 600px;
+	--md_popup_mxw_laptop: 	480px;
+	--md_popup_mxw_tablet: 	480px;
+
+	--md_popup_pd_desktop:  56px;
+	--md_popup_pd_laptop:   36px;
+	--md_popup_pd_tablet:   36px;
+	--md_popup_pd_mobile:   20px 16px;
+	
+	
+	--sm_popup_mxw_desktop: 400px;
+	--sm_popup_mxw_laptop: 	360px;
+	--sm_popup_mxw_tablet: 	360px;
+
+	--sm_popup_pd_desktop:  36px;
+	--sm_popup_pd_laptop:   28px;
+	--sm_popup_pd_tablet:   24px;
+	--sm_popup_pd_mobile:   20px 16px;
+		
+	
+	--popup_mxw_lg:    900px;
+	--popup_mxw_md:    600px;
+	--popup_mxw_sm:    440px;
+	
+	--popup_pd_xxl:    80px;
+	--popup_pd_xl:     56px;
+	--popup_pd_lg:     48px;
+	--popup_pd_mlg:    36px;
+	--popup_pd_md:     28px;
+	--popup_pd_msm:    24px;
+	--popup_pd_sm:     20px;
+	--popup_pd_xs:     16px;
+    /* Попапы */
+    
+    
+    /* Карточка 1 */
+    --gr_card_type_1_r: var(--base_radius);
+	--gr_card_type_1_bg: var(--bg_main);
+	--gr_card_type_1_bd: none;
+	--gr_card_type_1_shadow: inset 0 0 0 1px var(--bd_bg_main_2);
+	/* Карточка 1 */
+
+	/* Карточка 2 */
+	--gr_card_type_2_r: var(--base_radius);
+	--gr_card_type_2_bg: var(--bg_main);
+	--gr_card_type_2_bd: none;
+	--gr_card_type_2_shadow: inset 0 0 0 1px var(--bd_bg_main_2);
+	
+	--gr_card_type_2_bg_h: var(--bg_main);
+	--gr_card_type_2_bd_h: none;
+	--gr_card_type_2_shadow_h: inset 0 0 0 1px var(--sale);
+    /* Карточка 2 */
+    
+    
+    /* Заголовок поля. Элементы формы */
+    --sm_field_title_pd: 0 0 4px;
+    --sm_field_title_m: 0;
+    --sm_field_title_fz: var(--fz_sm);
+    --sm_field_title_lh: 1.2;
+    
+    --md_field_title_pd: 0 0 4px;
+    --md_field_title_m: 0;
+    --md_field_title_fz: var(--fz_md);
+    --md_field_title_lh: 1.2;
+    
+    --lg_field_title_pd: 0 0 4px;
+    --lg_field_title_m: 0;
+    --lg_field_title_fz: var(--fz_lg);
+    --lg_field_title_lh: 1.2;
+    /* Заголовок поля. Элементы формы */
+    
+    
+    /* Инпуты. Элементы формы */
+    --gr_form_error_bg:     var(--bg_main);
+	--gr_form_error_color:  var(--on_bg_main_8);
+	--gr_form_error_bd:     1px solid var(--error);
+	--gr_form_error_shadow: none;
+    /* Инпуты. Элементы формы */
+    
+    
+    /*Максимальная ширина элементов в форм для страниц: регистрации, авторизации, воссатновления пароля*/
+    --gr_form_mxw: 400px;
+    /*Максимальная ширина элементов в форм для страниц: регистрации, авторизации, воссатновления пароля*/
+    
+    /*Фильтр и поиск. Заголовок*/
+    --sm_toggle_title: var(--fw_content_sb) var(--fz_sm)/1.1 var(--font_content);
+	--md_toggle_title: var(--fw_content_sb) var(--fz_md)/1.1 var(--font_content);
+	--lg_toggle_title: var(--fw_content_sb) var(--fz_lg)/1.1 var(--font_content);
+	
+	--toggle_title_icon_h: 32px;
+	--toggle_title_icon_w: 32px;
+	--toggle_title_icon_r: var(--iconbtn_radius);
+	
+	
+	--toggle_title_color: var(--on_bg_main_8);
+	--toggle_title_icon: var(--icon_arrow_bot_md);
+	--toggle_title_icon_color: var(--icon_bg_main_6);
+	--toggle_title_icon_bg: var(--primary_1);
+	--toggle_title_icon_bd: none;
+	--toggle_title_icon_shadow: none;
+	
+	--toggle_title_color_h: var(--on_bg_main_8);
+	--toggle_title_icon_h: var(--icon_arrow_bot_md);
+	--toggle_title_icon_color_h: var(--icon_bg_main_6);
+	--toggle_title_icon_bg_h: var(--primary_2);
+	--toggle_title_icon_bd_h: none;
+	--toggle_title_icon_shadow_h: none;
+	
+	--toggle_title_color_a: var(--on_bg_main_8);
+	--toggle_title_icon_a: var(--icon_arrow_bot_md);
+	--toggle_title_icon_color_a: var(--icon_bg_main_6);
+	--toggle_title_icon_bg_a: var(--primary_3);
+	--toggle_title_icon_bd_a: none;
+	--toggle_title_icon_shadow_a: none;
+    /*Фильтр и поиск. Заголовок*/
+    
+    /* Инпуты. Элементы формы */
+    --sm_input_h:  40px;
+	--sm_input_lh: 1.2;
+	--sm_input_fz: var(--fz_msm);
+	--sm_input_r:  var(--form_radius);
+	--sm_input_pd: 11px 14px;
+	--sm_input_icon_pd: 11px 14px 11px 34px;
+	--sm_input_icon_left: 8px;
+	
+	--md_input_h:  50px;
+	--md_input_lh: 1.2;
+	--md_input_fz: var(--fz_md);
+	--md_input_r:  var(--form_radius);
+	--md_input_pd: 15.5px 16px;
+	--md_input_icon_pd: 15.5px 16px 15.5px 48px;
+	--md_input_icon_left: 10px;
+	
+	--lg_input_h:  60px;
+	--lg_input_lh: 1.2;
+	--lg_input_fz: var(--fz_md);
+	--lg_input_r:  var(--form_radius);
+	--lg_input_pd: 19px 20px;
+	--lg_input_icon_pd: 19px 20px 19px 52px;
+	--lg_input_icon_left: 10px;
+	
+	
+	--gr_input_bg: var(--bg_main_surface);
+	--gr_input_color: var(--on_bg_main_8);
+	--gr_input_bd: 1px solid var(--bd_bg_main_3);
+	--gr_input_shadow: none;
+	--gr_input_icon: var(--icon_bg_main_8);
+	
+	--gr_input_bg_h: var(--bg_main_surface);
+	--gr_input_color_h: var(--on_bg_main_8);
+	--gr_input_bd_h: 1px solid var(--primary);
+	--gr_input_shadow_h: none;
+	--gr_input_icon_h: var(--icon_bg_main_8);
+	
+	--gr_input_bg_f: var(--bg_main);
+	--gr_input_color_f: var(--on_bg_main_8);
+	--gr_input_bd_f: 1px solid var(--primary);
+	--gr_input_shadow_f: 0 0 0 3px var(--primary_4);
+	--gr_input_icon_f: var(--icon_bg_main_8);
+	
+	--gr_input_placeholder_color: var(--on_bg_main_5);
+    /* Инпуты. Элементы формы */
+    
+    
+    /* Текстовая область. Элементы формы */
+    --sm_textarea_mh: 100px;
+	--sm_textarea_lh: 1.2;
+	--sm_textarea_fz: var(--fz_msm);
+	--sm_textarea_pd: 11px 14px;
+	--sm_textarea_icon_pd: 11px 14px 11px 34px;
+	--sm_textarea_r:  var(--form_radius);
+	
+	--md_textarea_mh: 120px;
+	--md_textarea_lh: 1.2;
+	--md_textarea_fz: var(--fz_md);
+	--md_textarea_pd: 15.5px 16px;
+	--md_textarea_icon_pd: 15.5px 16px 15.5px 48px;
+	--md_textarea_r:  var(--form_radius);
+	
+	--lg_textarea_mh:  120px;
+	--lg_textarea_lh: 1.2;
+	--lg_textarea_fz: var(--fz_md);
+	--lg_textarea_pd: 19px 20px;
+	--lg_textarea_icon_pd: 19px 20px 19px 52px;
+	--lg_textarea_r:  var(--form_radius);
+	
+	
+	--gr_textarea_bg: var(--bg_main_surface);
+	--gr_textarea_color: var(--on_bg_main_8);
+	--gr_textarea_bd: 1px solid var(--bd_bg_main_3);
+	--gr_textarea_shadow: none;
+	
+	--gr_textarea_bg_h: var(--bg_main_surface);
+	--gr_textarea_color_h: var(--on_bg_main_8);
+	--gr_textarea_bd_h: 1px solid var(--primary);
+	--gr_textarea_shadow_h: none;
+	
+	--gr_textarea_bg_f: var(--bg_main);
+	--gr_textarea_color_f: var(--on_bg_main_8);
+	--gr_textarea_bd_f: 1px solid var(--primary);
+	--gr_textarea_shadow_f: 0 0 0 3px var(--primary_4);
+	
+	--gr_textarea_placeholder_color: var(--on_bg_main_5);
+    /* Текстовая область. Элементы формы */
+  	
+  	
+  	/* Селекты. Элементы формы */
+    --sm_select_h:  40px;
+	--sm_select_lh: 1.2;
+	--sm_select_fz: var(--fz_msm);
+	--sm_select_pd: 10.5px 48px 10.5px 14px;
+	--sm_select_r:  var(--form_radius);
+	--sm_select_icon: var(--icon_arrow_bot_sm);
+  	--sm_select_icon_w: 20px;
+  	--sm_select_icon_h: 20px;
+  	--sm_select_icon_right: 10px;
+	
+	
+	--md_select_h:  50px;
+	--md_select_lh: 1.2;
+	--md_select_fz: var(--fz_md);
+	--md_select_pd: 15.5px 48px 15.5px 16px;
+	--md_select_r:  var(--form_radius);
+	--md_select_icon: var(--icon_arrow_bot_sm);
+  	--md_select_icon_w: 20px;
+  	--md_select_icon_h: 20px;
+  	--md_select_icon_right: 10px;
+  	
+	
+	--lg_select_h:  60px;
+	--lg_select_lh: 1.2;
+	--lg_select_fz: var(--fz_md);
+	--lg_select_pd: 20.5px 48px 20.5px 20px;
+	--lg_select_r:  var(--form_radius);
+	--lg_select_icon: var(--icon_arrow_bot_sm);
+  	--lg_select_icon_w: 20px;
+  	--lg_select_icon_h: 20px;
+  	--lg_select_icon_right: 10px;
+	
+	
+	--gr_select_icon_bg: var(--icon_bg_main_6);
+	
+	--gr_select_bg: var(--bg_main_surface);
+	--gr_select_color: var(--on_bg_main_8);
+	--gr_select_bd: 1px solid var(--bd_bg_main_3);
+	--gr_select_shadow: none;
+	
+	--gr_select_bg_h: var(--bg_main_surface);
+	--gr_select_color_h: var(--on_bg_main_8);
+	--gr_select_bd_h: 1px solid var(--primary);
+	--gr_select_shadow_h: none;
+	
+	--gr_select_bg_f: var(--bg_main_surface);
+	--gr_select_color_f: var(--on_bg_main_8);
+	--gr_select_bd_f: 1px solid var(--primary);
+	--gr_select_shadow_f: 0 0 0 3px var(--primary_4);
+    /* Селекты. Элементы формы */
+    
+    
+    /* Тэг. Элементы формы */
+    --sm_tag_mnh: 28px;
+	--sm_tag_fz: var(--fz_sm);
+	--sm_tag_lh: 1.2;
+	--sm_tag_r: var(--checkbox_radius);
+	--sm_tag_gap: 2px;
+	--sm_tag_pd: 4px 2px 4px 8px;
+
+	--md_tag_mnh: 38px;
+	--md_tag_fz: var(--fz_md);
+	--md_tag_lh: 1.2;
+	--md_tag_r: var(--checkbox_radius);
+	--md_tag_gap: 2px;
+	--md_tag_pd: 9px 4px 9px 8px;
+
+	--lg_tag_mnh: 44px;
+	--lg_tag_fz: var(--fz_mlg);
+	--lg_tag_lh: 1.2;
+	--lg_tag_r: var(--checkbox_radius);
+	--lg_tag_gap: 2px;
+	--lg_tag_pd: 12px 8px 12px 14px;
+    
+    
+    --gr_tag_bg: none;
+	--gr_tag_bg_h: none;
+	--gr_tag_bg_a: none;
+
+	--gr_tag_color: var(--on_bg_main_8);
+	--gr_tag_color_h: var(--on_bg_main_8);
+	--gr_tag_color_a: var(--on_bg_main_8);
+
+	--gr_tag_bd: none;
+	--gr_tag_bd_h: none;
+	--gr_tag_bd_a: none;
+
+	--gr_tag_shadow: inset 0 0 0 1px var(--bd_bg_main_3);
+	--gr_tag_shadow_h: inset 0 0 0 1px var(--bd_bg_main_3);
+	--gr_tag_shadow_a: inset 0 0 0 1px var(--bd_bg_main_3);
+
+	--gr_tag_icon_bg: var(--icon_bg_main_6);
+	--gr_tag_icon_bg_h: var(--icon_bg_main_6);
+	--gr_tag_icon_bg_a: var(--icon_bg_main_6);
+	
+	--gr_tag_overlay: none;
+	--gr_tag_overlay_a: none;
+    /* Тэг. Элементы формы */
+    
+    
+    /* Мультиселекты. Элементы формы */
+    --sm_multiselect_mnh: 40px;
+    --sm_multiselect_gap: 4px;
+	--sm_multiselect_pd: 5px;
+	--sm_multiselect_r: var(--form_radius);
+
+    --md_multiselect_mnh: 50px;
+	--md_multiselect_gap: 2px;
+	--md_multiselect_pd: 5px;
+	--md_multiselect_r: var(--form_radius);
+
+    --lg_multiselect_mnh: 60px; 
+    --lg_multiselect_gap: 2px;
+    --lg_multiselect_pd: 5px;
+    --lg_multiselect_r: var(--form_radius);
+
+    
+    --gr_multiselect_bg: var(--bg_main_surface);
+	--gr_multiselect_bg_h: var(--bg_main_surface);
+	--gr_multiselect_bg_f: var(--bg_main);
+
+	--gr_multiselect_color: var(--on_bg_main_8);
+	--gr_multiselect_color_h: var(--on_bg_main_8);
+	--gr_multiselect_color_f: var(--on_bg_main_8);
+
+	--gr_multiselect_bd: 1px solid var(--bd_bg_main_3);
+	--gr_multiselect_bd_h: 1px solid var(--primary);
+	--gr_multiselect_bd_f: 1px solid var(--primary);
+
+	--gr_multiselect_shadow: none;
+	--gr_multiselect_shadow_h: none;
+	--gr_multiselect_shadow_f: 0 0 0 3px var(--primary_4);
+	
+	
+		/*Мультиселекты. Элементы формы. Попап*/
+		--sm_multiselect_popup_mxh: 200px;
+	    --sm_multiselect_popup_r: var(--form_radius);
+		--sm_multiselect_popup_m: 8px 0 0;
+		--sm_multiselect_popup_pd: 10px 5px 10px 10px;
+
+	    --md_multiselect_popup_mxh: 200px;
+		--md_multiselect_popup_r: var(--form_radius);
+		--md_multiselect_popup_m: 8px 0 0;
+		--md_multiselect_popup_pd: 10px 5px 10px 10px;
+
+	    --lg_multiselect_popup_mxh: 200px;
+	    --lg_multiselect_popup_r: var(--form_radius);
+	    --lg_multiselect_popup_m: 8px 0 0;
+	    --lg_multiselect_popup_pd: 13px 5px 13px 14px;
+    	/*Мультиселекты. Элементы формы. Попап*/
+    	
+    	/*Мультиселекты. Элементы формы. Открытый вариант*/
+    	--sm_opened_multiselect_m: 0 0 10px;
+	    --sm_opened_multiselect_mxh: 200px;
+		--sm_opened_multiselect_items_p: 4px 0 4px 4px;
+		--sm_opened_multiselect_items_m: -4px 0 -4px -4px;
+
+	    --md_opened_multiselect_m: 0 0 10px;
+		--md_opened_multiselect_mxh: 200px;
+		--md_opened_multiselect_items_p: 4px 0 4px 4px;
+		--md_opened_multiselect_items_m: -4px 0 -4px -4px;
+
+	    --lg_opened_multiselect_m: 0 0 10px;
+	    --lg_opened_multiselect_mxh: 200px;
+		--lg_opened_multiselect_items_p: 4px 0 4px 4px;
+	    --lg_opened_multiselect_items_m: -4px 0 -4px -4px;
+    	/*Мультиселекты. Элементы формы. Открытый вариант*/
+
+    	/*Мультиселекты. Элементы формы. Поиск*/
+    	--sm_multiselect_search_fz: var(--fz_sm);
+		--sm_multiselect_search_lh: 1.1;
+		--sm_multiselect_search_pd: 0 0 0 5px;
+		--sm_multiselect_search_w: 25px;
+		--sm_multiselect_search_h: var(--sm_tag_mnh);
+
+	    --md_multiselect_search_fz: var(--fz_md);
+		--md_multiselect_search_lh: 1.2;
+		--md_multiselect_search_pd: 0 0 0 5px;
+		--md_multiselect_search_w: 25px;
+		--md_multiselect_search_h: var(--md_tag_mnh);
+
+	    --lg_multiselect_search_fz: var(--fz_md);
+	    --lg_multiselect_search_lh: 1.2;
+	    --lg_multiselect_search_pd: 0 0 0 5px;
+	    --lg_multiselect_search_w: 25px;
+	    --lg_multiselect_search_h: var(--lg_tag_mnh);
+    	/*Мультиселекты. Элементы формы. Поиск*/
+    /* Мультиселекты. Элементы формы */
+  	
+    
+	/* Чекбоксы. Элементы формы */
+	--sm_checkbox_gap: 10px;
+	--sm_checkbox_fz: var(--fz_msm);
+	--sm_checkbox_lh: 1.2;
+	--sm_checkbox_r: var(--form_radius);
+	--sm_checkbox_w: 20px;
+	--sm_checkbox_h: 20px;
+	--sm_checkbox_mnh: 20px;
+	--sm_checkbox_m: 8px;
+	--sm_checkbox_before_l: -28px; /* sm_checkbox_w + sm_checkbox_m*/
+	--sm_checkbox_after_l: -28px; /* sm_checkbox_w + sm_checkbox_m*/
+	--sm_checkbox_icon: var(--icon_site_checkbox_small);
+	--sm_checkbox_icon_w: 20px;
+	--sm_checkbox_icon_h: 20px;
+	
+	
+	--md_checkbox_gap: 10px;
+	--md_checkbox_fz: var(--fz_md);
+	--md_checkbox_lh: 1.2;
+	--md_checkbox_r: var(--form_radius);
+	--md_checkbox_w: 24px;
+	--md_checkbox_h: 24px;
+	--md_checkbox_mnh: 24px;
+	--md_checkbox_m: 8px;
+	--md_checkbox_before_l: -32px; /* md_checkbox_w + md_checkbox_m*/
+	--md_checkbox_after_l: -32px; /* md_checkbox_w + md_checkbox_m*/
+	--md_checkbox_icon_w: 20px;
+	--md_checkbox_icon_h: 20px;
+	--md_checkbox_icon: var(--icon_site_checkbox_small);
+	
+
+	--lg_checkbox_gap: 15px;
+	--lg_checkbox_fz: var(--fz_xl);
+	--lg_checkbox_lh: 1.2;
+	--lg_checkbox_r: var(--form_radius);
+	--lg_checkbox_w: 32px;
+	--lg_checkbox_h: 32px;
+	--lg_checkbox_mnh: 32px;
+	--lg_checkbox_m: 16px;
+	--lg_checkbox_before_l: -48px; /* lg_checkbox_w + lg_checkbox_m*/
+	--lg_checkbox_after_l: -48px; /* lg_checkbox_w + lg_checkbox_m*/
+	--lg_checkbox_icon_w: 30px;
+	--lg_checkbox_icon_h: 30px;
+	--lg_checkbox_icon: var(--icon_site_checkbox);
+	
+
+	--gr_checkbox_icon_bg: var(--icon_primary);
+	
+	--gr_checkbox_color: var(--on_bg_main_8);
+	--gr_checkbox_color_h: var(--on_bg_main_8);
+	--gr_checkbox_color_f: var(--on_bg_main_8);
+	--gr_checkbox_color_ch: var(--on_bg_main_8);
+	--gr_checkbox_color_ch_f: var(--on_bg_main_8);
+
+	--gr_checkbox_bg: var(--bg_main_surface);
+	--gr_checkbox_bg_h: var(--bg_main_surface);
+	--gr_checkbox_bg_f: var(--bg_main_surface);
+	--gr_checkbox_bg_ch: var(--primary);
+	--gr_checkbox_bg_ch_f: var(--primary);
+
+	--gr_checkbox_shadow: none;
+	--gr_checkbox_shadow_h: none;
+	--gr_checkbox_shadow_f: 0 0 0 3px var(--primary_4);
+	--gr_checkbox_shadow_ch: none;
+	--gr_checkbox_shadow_ch_f: 0 0 0 3px var(--primary_4);
+
+	--gr_checkbox_bd: 1px solid var(--bd_bg_main_3);
+	--gr_checkbox_bd_h: 1px solid var(--primary);
+	--gr_checkbox_bd_f: 1px solid var(--primary);
+	--gr_checkbox_bd_ch: 1px solid var(--primary);
+	--gr_checkbox_bd_ch_f: 1px solid var(--primary);
+	/* Чекбоксы. Элементы формы */
+	
+	
+	/* Радио. Элементы формы */
+	--sm_radio_gap: 8px;
+	--sm_radio_fz: var(--fz_msm);
+	--sm_radio_lh: 1.2;
+	--sm_radio_r: 50%;
+	--sm_radio_w: 20px;
+	--sm_radio_h: 20px;
+	--sm_radio_mh: 20px;
+	--sm_radio_mw: calc(100% - 20px - 8px); /* 100% - sm_radio_w - sm_radio_m*/
+	--sm_radio_m: 0 8px 0 0;
+	--sm_radio_before_l: -28px; /* sm_radio_w + sm_radio_m*/
+
+	--sm_radio_shadow: none;
+	--sm_radio_shadow_h: none;
+	--sm_radio_shadow_f: 0 0 0 3px var(--primary_4);
+	--sm_radio_shadow_ch: none;
+	--sm_radio_shadow_ch_f: 0 0 0 3px var(--primary_4);
+	--sm_radio_bd: 1px solid var(--bd_bg_main_3);
+	--sm_radio_bd_h: 1px solid var(--primary);
+	--sm_radio_bd_f: 1px solid var(--primary);
+	--sm_radio_bd_ch: 6px solid var(--primary);
+	--sm_radio_bd_ch_f: 6px solid var(--primary);
+	
+	
+	
+	--md_radio_gap: 12px;
+	--md_radio_fz: var(--fz_md);
+	--md_radio_lh: 1.2;
+	--md_radio_r: 50%;
+	--md_radio_w: 24px;
+	--md_radio_h: 24px;
+	--md_radio_mh: 24px;
+	--md_radio_mw: calc(100% - 24px - 8px); /* 100% - md_radio_w - md_radio_m*/
+	--md_radio_m: 0 8px 0 0;
+	--md_radio_before_l: -32px; /* md_radio_w + md_radio_m*/
+	
+	--md_radio_shadow: none;
+	--md_radio_shadow_h: none;
+	--md_radio_shadow_f: 0 0 0 3px var(--primary_4);
+	--md_radio_shadow_ch: none;
+	--md_radio_shadow_ch_f: 0 0 0 3px var(--primary_4);
+	--md_radio_bd: 1px solid var(--bd_bg_main_3);
+	--md_radio_bd_h: 1px solid var(--primary);
+	--md_radio_bd_f: 1px solid var(--primary);
+	--md_radio_bd_ch: 6px solid var(--primary);
+	--md_radio_bd_ch_f: 6px solid var(--primary);
+	
+
+	
+	--lg_radio_gap: 15px;
+	--lg_radio_fz: var(--fz_xl);
+	--lg_radio_lh: 1.2;
+	--lg_radio_r: 50%;
+	--lg_radio_w: 32px;
+	--lg_radio_h: 32px;
+	--lg_radio_mh: 32px;
+	--lg_radio_mw: calc(100% - 32px - 16px); /* 100% - lg_radio_w - lg_radio_m*/
+	--lg_radio_m: 0 16px 0 0;
+	--lg_radio_before_l: -48px; /* lg_radio_w + lg_radio_m*/
+	
+	--lg_radio_shadow: none;
+	--lg_radio_shadow_h: none;
+	--lg_radio_shadow_f: 0 0 0 4px var(--primary_4);
+	--lg_radio_shadow_ch: none;
+	--lg_radio_shadow_ch_f: 0 0 0 4px var(--primary_4);
+	--lg_radio_bd: 1px solid var(--bd_bg_main_3);
+	--lg_radio_bd_h: 1px solid var(--primary);
+	--lg_radio_bd_f: 1px solid var(--primary);
+	--lg_radio_bd_ch: 10px solid var(--primary);
+	--lg_radio_bd_ch_f: 10px solid var(--primary);
+	
+
+	--gr_radio_color: var(--on_bg_main_8);
+	--gr_radio_color_h: var(--on_bg_main_8);
+	--gr_radio_color_f: var(--on_bg_main_8);
+	--gr_radio_color_ch: var(--on_bg_main_8);
+	--gr_radio_color_ch_f: var(--on_bg_main_8);
+
+	--gr_radio_bg: var(--bg_main_surface);
+	--gr_radio_bg_h: var(--bg_main_surface);
+	--gr_radio_bg_f: var(--bg_main_surface);
+	--gr_radio_bg_ch: var(--bg_main_surface);
+	--gr_radio_bg_ch_f: var(--bg_main_surface);
+
+	--gr_radio_shadow: none;
+	--gr_radio_shadow_h: none;
+	--gr_radio_shadow_f: 0 0 0 3px var(--primary_4);
+	--gr_radio_shadow_ch: none;
+	--gr_radio_shadow_ch_f: 0 0 0 3px var(--primary_4);
+
+	--gr_radio_bd: 1px solid var(--bd_bg_main_3);
+	--gr_radio_bd_h: 1px solid var(--primary);
+	--gr_radio_bd_f: 1px solid var(--primary);
+	--gr_radio_bd_ch: 6px solid var(--primary);
+	--gr_radio_bd_ch_f: 6px solid var(--primary);
+	/* Радио. Элементы формы */
+	
+	
+	/* Свитчер. Элементы формы */
+	--sm_switcher_gap: 8px;
+	--sm_switcher_w: 32px;
+	--sm_switcher_h: 20px;
+	--sm_switcher_r: 20px;
+	--sm_switcher_fz: var(--fz_msm);
+	--sm_switcher_lh: 1.2;
+	--sm_switcher_before_w: 12px;
+	--sm_switcher_before_h: 12px;
+	--sm_switcher_before_r: 50%;
+	--sm_switcher_before_top: 4px;
+	--sm_switcher_before_left: 4px;
+	--sm_switcher_before_translate_x: 12px;
+	
+	
+	--md_switcher_gap: 12px;
+	--md_switcher_w: 42px;
+	--md_switcher_h: 24px;
+	--md_switcher_r: 24px;
+	--md_switcher_fz: var(--fz_md);
+	--md_switcher_lh: 1.2;
+	--md_switcher_before_w: 16px;
+	--md_switcher_before_h: 16px;
+	--md_switcher_before_r: 50%;
+	--md_switcher_before_top: 4px;
+	--md_switcher_before_left: 4px;
+	--md_switcher_before_translate_x: 18px;
+	
+	
+	--lg_switcher_gap: 15px;
+	--lg_switcher_w: 50px;
+	--lg_switcher_h: 30px;
+	--lg_switcher_r: 30px;
+	--lg_switcher_fz: var(--fz_xl);
+	--lg_switcher_lh: 1.2;
+	--lg_switcher_before_w: 20px;
+	--lg_switcher_before_h: 20px;
+	--lg_switcher_before_r: 50%;
+	--lg_switcher_before_top: 5px;
+	--lg_switcher_before_left: 5px;
+	--lg_switcher_before_translate_x: 20px;
+	
+	
+	--gr_switcher_color: var(--on_bg_main_8);
+	--gr_switcher_color_h: var(--on_bg_main_8);
+	--gr_switcher_color_a: var(--on_bg_main_8);
+	
+	--gr_switcher_btn_bg: var(--bg_main);
+	--gr_switcher_btn_bg_h: var(--bg_main);
+	--gr_switcher_btn_bg_a: var(--primary);
+	
+	--gr_switcher_btn_shadow: 	inset 0 0 0 1px var(--bd_bg_main_3);
+	--gr_switcher_btn_shadow_h: inset 0 0 0 1px var(--primary);
+	--gr_switcher_btn_shadow_a: inset 0 0 0 1px var(--primary);
+
+	--gr_switcher_btn_bd: none;
+	--gr_switcher_btn_bd_h: none;
+	--gr_switcher_btn_bd_a: none;
+	
+	--gr_switcher_before_bg: var(--disable);
+	--gr_switcher_before_bg_h: var(--disable);
+	--gr_switcher_before_bg_a: var(--bg_main);
+	
+	--gr_switcher_before_shadow: none;
+	--gr_switcher_before_shadow_h: none;
+	--gr_switcher_before_shadow_a: none;
+
+	--gr_switcher_before_bd: none;
+	--gr_switcher_before_bd_h: none;
+	--gr_switcher_before_bd_a: none;
+	/* Свитчер. Элементы формы */
+    
+
+	/* Кнопка Primary */
+	--gr_primary_btn_bg: var(--primary);
+	--gr_primary_btn_bg_h: var(--primary);
+	--gr_primary_btn_bg_a: var(--primary);
+	--gr_primary_btn_bg_s: var(--primary);
+
+	--gr_primary_btn_color: var(--on_primary);
+	--gr_primary_btn_color_h: var(--on_primary);
+	--gr_primary_btn_color_a: var(--on_primary_8);
+	--gr_primary_btn_color_s: var(--on_primary_8);
+
+	--gr_primary_btn_bd: none;
+	--gr_primary_btn_bd_h: none;
+	--gr_primary_btn_bd_a: none;
+	--gr_primary_btn_bd_s: none;
+
+	--gr_primary_btn_shadow: none;
+	--gr_primary_btn_shadow_h: none;
+	--gr_primary_btn_shadow_a: none;	
+	--gr_primary_btn_shadow_s: none;	
+
+	--gr_primary_btn_icon_bg: var(--on_primary);
+	--gr_primary_btn_icon_bg_h: var(--on_primary);
+	--gr_primary_btn_icon_bg_a: var(--on_primary_8);
+	--gr_primary_btn_icon_bg_s: var(--on_primary_8);
+	
+	--gr_primary_btn_overlay: var(--white_1);
+	--gr_primary_btn_overlay_h: var(--white_1);
+	--gr_primary_btn_overlay_a: var(--black_05);
+	--gr_primary_btn_overlay_s: none;
+	/* Кнопка Primary */
+	
+	
+	/* Кнопка Secondary */
+	--gr_secondary_btn_bg: var(--primary_2);
+	--gr_secondary_btn_bg_h: var(--primary_3);
+	--gr_secondary_btn_bg_a: var(--primary_4);
+	--gr_secondary_btn_bg_s: var(--primary_4);
+
+	--gr_secondary_btn_color: var(--on_bg_main);
+	--gr_secondary_btn_color_h: var(--on_bg_main);
+	--gr_secondary_btn_color_a: var(--on_bg_main);
+	--gr_secondary_btn_color_s: var(--on_bg_main);
+
+	--gr_secondary_btn_bd: none;
+	--gr_secondary_btn_bd_h: none;
+	--gr_secondary_btn_bd_a: none;
+	--gr_secondary_btn_bd_s: none;
+
+	--gr_secondary_btn_shadow: none;
+	--gr_secondary_btn_shadow_h: none;
+	--gr_secondary_btn_shadow_a: none;
+	--gr_secondary_btn_shadow_s: none;
+
+	--gr_secondary_btn_icon_bg: var(--on_bg_main_6);
+	--gr_secondary_btn_icon_bg_h: var(--on_bg_main);
+	--gr_secondary_btn_icon_bg_a: var(--on_bg_main);
+	--gr_secondary_btn_icon_bg_s: var(--on_bg_main);
+	
+	--gr_secondary_btn_overlay: var(--white_1);
+	--gr_secondary_btn_overlay_h: var(--black_05);
+	--gr_secondary_btn_overlay_a: var(--black_05);
+	--gr_secondary_btn_overlay_s: var(--black_05);
+	/* Кнопка Secondary */
+	
+	
+	/* Кнопка Ghost */
+	--gr_ghost_btn_bg: none;
+	--gr_ghost_btn_bg_h: var(--primary_2);
+	--gr_ghost_btn_bg_a: var(--primary_2);
+	--gr_ghost_btn_bg_s: var(--primary_2);
+
+	--gr_ghost_btn_color: var(--on_bg_main);
+	--gr_ghost_btn_color_h: var(--on_bg_main);
+	--gr_ghost_btn_color_a: var(--on_bg_main_8);
+	--gr_ghost_btn_color_s: var(--on_bg_main_8);
+
+	--gr_ghost_btn_bd: none;
+	--gr_ghost_btn_bd_h: none;
+	--gr_ghost_btn_bd_a: none;
+	--gr_ghost_btn_bd_s: none;
+
+	--gr_ghost_btn_shadow: none;
+	--gr_ghost_btn_shadow_h: none;
+	--gr_ghost_btn_shadow_a: none;
+	--gr_ghost_btn_shadow_s: none;
+
+	--gr_ghost_btn_icon_bg: var(--on_bg_main_6);
+	--gr_ghost_btn_icon_bg_h: var(--on_bg_main_6);
+	--gr_ghost_btn_icon_bg_a: var(--on_bg_main_6);
+	--gr_ghost_btn_icon_bg_s: var(--on_bg_main_6);
+	
+	--gr_ghost_btn_overlay: none;
+	--gr_ghost_btn_overlay_h: none;
+	--gr_ghost_btn_overlay_a: none;
+	--gr_ghost_btn_overlay_s: none;
+	/* Кнопка Ghost */
+	
+	
+	/* Кнопка Accent */
+	--gr_accent_btn_bg: var(--accent);
+	--gr_accent_btn_bg_h: var(--accent);
+	--gr_accent_btn_bg_a: var(--accent);
+	--gr_accent_btn_bg_s: var(--accent);
+
+	--gr_accent_btn_color: var(--on_accent);
+	--gr_accent_btn_color_h: var(--on_accent);
+	--gr_accent_btn_color_a: var(--on_accent_8);
+	--gr_accent_btn_color_s: var(--on_accent_8);
+
+	--gr_accent_btn_bd: none;
+	--gr_accent_btn_bd_h: none;
+	--gr_accent_btn_bd_a: none;
+	--gr_accent_btn_bd_s: none;
+
+	--gr_accent_btn_shadow: none;
+	--gr_accent_btn_shadow_h: none;
+	--gr_accent_btn_shadow_a: none;
+	--gr_accent_btn_shadow_s: none;
+
+	--gr_accent_btn_icon_bg: var(--on_accent);
+	--gr_accent_btn_icon_bg_h: var(--on_accent);
+	--gr_accent_btn_icon_bg_a: var(--on_accent_8);
+	--gr_accent_btn_icon_bg_s: var(--on_accent_8);
+	
+	--gr_accent_btn_overlay: var(--white_1);
+	--gr_accent_btn_overlay_h: var(--black_05);
+	--gr_accent_btn_overlay_a: var(--black_05);
+	--gr_accent_btn_overlay_s: var(--black_05);
+	/* Кнопка Accent */
+	
+	
+	/* Кнопка White */
+	--gr_white_btn_bg: var(--white);
+	--gr_white_btn_bg_h: var(--primary);
+	--gr_white_btn_bg_a: var(--primary);
+	--gr_white_btn_bg_s: var(--primary);
+
+	--gr_white_btn_color: var(--black_8);
+	--gr_white_btn_color_h: var(--on_primary);
+	--gr_white_btn_color_a: var(--on_primary_8);
+	--gr_white_btn_color_s: var(--on_primary_8);
+
+	--gr_white_btn_bd: none;
+	--gr_white_btn_bd_h: none;
+	--gr_white_btn_bd_a: none;
+	--gr_white_btn_bd_s: none;
+
+	--gr_white_btn_shadow: none;
+	--gr_white_btn_shadow_h: none;
+	--gr_white_btn_shadow_a: none;
+	--gr_white_btn_shadow_s: none;
+
+	--gr_white_btn_icon_bg: var(--black_6);
+	--gr_white_btn_icon_bg_h: var(--on_primary);
+	--gr_white_btn_icon_bg_a: var(--on_primary_8);
+	--gr_white_btn_icon_bg_s: var(--on_primary_8);
+	
+	--gr_white_btn_overlay: var(--white_1);
+	--gr_white_btn_overlay_h: var(--black_05);
+	--gr_white_btn_overlay_a: var(--black_05);
+	--gr_white_btn_overlay_s: var(--black_05);
+	/* Кнопка White */
+	
+	
+	
+	/* Купить*/
+	--buy_btn_notavailable_bg: var(--disable);
+	--buy_btn_notavailable_bd: none;
+	--buy_btn_notavailable_shadow:  none;
+	--buy_btn_notavailable_color: var(--on_disable);
+	--buy_btn_notavailable_icon_color: var(--on_disable);
+	/* Купить*/
+	
+	
+	/* Текстовая кнопка */
+	--sm_text_btn_gap: 4px;
+	--sm_text_btn_fz: var(--fz_sm);
+	--sm_text_btn_lh: 1.2;
+	--sm_text_btn_icon_w: 20px;
+	--sm_text_btn_icon_h: 20px;
+
+	--md_text_btn_gap: 10px;
+	--md_text_btn_fz: var(--fz_md);
+	--md_text_btn_lh: 1.2;
+	--md_text_btn_icon_w: 30px;
+	--md_text_btn_icon_h: 30px;     
+
+	--lg_text_btn_gap: 10px;	
+	--lg_text_btn_fz: var(--fz_lg);	
+	--lg_text_btn_lh: 1.2;	
+	--lg_text_btn_icon_w: 40px;	
+	--lg_text_btn_icon_h: 40px;
+	
+	
+	--text_btn_color: var(--on_bg_main);
+	--text_btn_color_h: var(--primary);
+	--text_btn_color_a: var(--primary);
+
+	--text_btn_icon_color: var(--on_bg_main_6);
+	--text_btn_icon_color_h: var(--primary);
+	--text_btn_icon_color_a: var(--primary);
+	/* Текстовая кнопка */
+	
+	
+	/* Кнопка ссылка */
+	--sm_link_btn_gap: 4px;
+	--sm_link_btn_fz: var(--fz_sm);
+	--sm_link_btn_lh: 1.2;
+	--sm_link_btn_icon_w: 20px;
+	--sm_link_btn_icon_h: 20px;
+
+	--md_link_btn_gap: 10px;
+	--md_link_btn_fz: var(--fz_md);
+	--md_link_btn_lh: 1.2;
+	--md_link_btn_icon_w: 30px;
+	--md_link_btn_icon_h: 30px;     
+
+	--lg_link_btn_gap: 10px;	
+	--lg_link_btn_fz: var(--fz_lg);	
+	--lg_link_btn_lh: 1.2;	
+	--lg_link_btn_icon_w: 40px;	
+	--lg_link_btn_icon_h: 40px;
+	
+	
+	--link_btn_color: var(--on_bg_main);
+	--link_btn_color_h: var(--primary);
+	--link_btn_color_a: var(--primary);
+	--link_btn_color_s: var(--primary);
+
+	--link_btn_bd: 1px solid var(--bd_bg_main_4);
+	--link_btn_bd_h: 1px solid var(--primary_4);
+	--link_btn_bd_a: 1px solid var(--primary_4);
+	--link_btn_bd_s: 1px solid var(--primary_4);
+
+	--link_btn_dashed_bd: 1px dashed var(--bd_bg_main_4);
+	--link_btn_dashed_bd_h: 1px dashed var(--primary_4);
+	--link_btn_dashed_bd_a: 1px dashed var(--primary_4);
+	--link_btn_dashed_bd_s: 1px dashed var(--primary_4);
+
+	--link_btn_icon_color: var(--on_bg_main_6);
+	--link_btn_icon_color_h: var(--primary);
+	--link_btn_icon_color_a: var(--primary);
+	--link_btn_icon_color_s: var(--primary);
+	/* Кнопка ссылка */
+	
+	
+	/* Кнопка с текстом */
+	--sm_btn_mnh: 40px;
+	--sm_btn_fz: var(--fz_md);
+	--sm_btn_lh: 1.2;
+	--sm_btn_r: var(--btn_radius);
+	--sm_btn_gap: 6px;
+	--sm_btn_pd: 10px 16px;
+
+	--md_btn_mnh: 50px;
+	--md_btn_fz: var(--fz_md);
+	--md_btn_lh: 1.2;
+	--md_btn_r: var(--btn_radius);
+	--md_btn_gap: 10px;
+	--md_btn_pd: 10px 24px;
+
+	--lg_btn_mnh: 60px;
+	--lg_btn_fz: var(--fz_lg);
+	--lg_btn_lh: 1.2;
+	--lg_btn_r: var(--btn_radius);
+	--lg_btn_gap: 14px;
+	--lg_btn_pd: 15px 32px;
+	/* Кнопка с текстом */
+	
+	
+	/* Иконочная кнопка */
+	--sm_icon_btn_r: var(--iconbtn_radius);
+	--sm_icon_btn_w: 32px;
+	--sm_icon_btn_h: 32px;
+
+	--md_icon_btn_r: var(--iconbtn_radius);
+	--md_icon_btn_w: 50px;
+	--md_icon_btn_h: 50px;
+
+	--lg_icon_btn_r: var(--iconbtn_radius);
+	--lg_icon_btn_w: 56px;
+	--lg_icon_btn_h: 56px;
+	/* Иконочная кнопка */
+	
+	
+	/* Иконочная кнопка Ghost */
+	--gr_ghost_icon_btn_bg: none;
+	--gr_ghost_icon_btn_bg_h: none;
+	--gr_ghost_icon_btn_bg_a: none;
+	--gr_ghost_icon_btn_bg_s: none;
+
+	--gr_ghost_icon_btn_bd: none;
+	--gr_ghost_icon_btn_bd_h: none;
+	--gr_ghost_icon_btn_bd_a: none;
+	--gr_ghost_icon_btn_bd_s: none;
+
+	--gr_ghost_icon_btn_shadow: none;
+	--gr_ghost_icon_btn_shadow_h: none;
+	--gr_ghost_icon_btn_shadow_a: none;
+	--gr_ghost_icon_btn_shadow_s: none;
+
+	--gr_ghost_icon_btn_icon_bg: var(--icon_bg_main_6);
+	--gr_ghost_icon_btn_icon_bg_h: var(--icon_bg_main);
+	--gr_ghost_icon_btn_icon_bg_a: var(--icon_bg_main_6);
+	--gr_ghost_icon_btn_icon_bg_s: var(--primary);
+	
+	--gr_ghost_icon_btn_overlay: none;
+	--gr_ghost_icon_btn_overlay_h: none;
+	--gr_ghost_icon_btn_overlay_a: none;
+	--gr_ghost_icon_btn_overlay_s: none;
+	/* Иконочная кнопка Ghost */
+	
+	
+	/* Иконочная кнопка Secondary */
+	--gr_secondary_icon_btn_bg: var(--primary_1);
+	--gr_secondary_icon_btn_bg_h: var(--primary_2);
+	--gr_secondary_icon_btn_bg_a: var(--primary_3);
+	--gr_secondary_icon_btn_bg_s: var(--primary_3);
+
+	--gr_secondary_icon_btn_bd: none;
+	--gr_secondary_icon_btn_bd_h: none;
+	--gr_secondary_icon_btn_bd_a: none;
+	--gr_secondary_icon_btn_bd_s: none;
+
+	--gr_secondary_icon_btn_shadow: none;
+	--gr_secondary_icon_btn_shadow_h: none;
+	--gr_secondary_icon_btn_shadow_a: none;
+	--gr_secondary_icon_btn_shadow_s: none;
+
+	--gr_secondary_icon_btn_icon_bg: var(--icon_bg_main_6);
+	--gr_secondary_icon_btn_icon_bg_h: var(--icon_bg_main);
+	--gr_secondary_icon_btn_icon_bg_a: var(--icon_bg_main);
+	--gr_secondary_icon_btn_icon_bg_s: var(--icon_bg_main);
+	
+	--gr_secondary_icon_btn_overlay: none;
+	--gr_secondary_icon_btn_overlay_h: none;
+	--gr_secondary_icon_btn_overlay_a: none;
+	--gr_secondary_icon_btn_overlay_s: none;
+	/* Иконочная кнопка Secondary */
+	
+	
+	/* Иконочная кнопка Surface */
+	--gr_surface_icon_btn_bg: var(--bg_main);
+	--gr_surface_icon_btn_bg_h: var(--primary);
+	--gr_surface_icon_btn_bg_a: var(--primary);
+	--gr_surface_icon_btn_bg_s: var(--primary);
+
+	--gr_surface_icon_btn_bd: none;
+	--gr_surface_icon_btn_bd_h: none;
+	--gr_surface_icon_btn_bd_a: none;
+	--gr_surface_icon_btn_bd_s: none;
+
+	--gr_surface_icon_btn_shadow: none;
+	--gr_surface_icon_btn_shadow_h: none;
+	--gr_surface_icon_btn_shadow_a: none;
+	--gr_surface_icon_btn_shadow_s: none;
+
+	--gr_surface_icon_btn_icon_bg: var(--icon_bg_main_6);
+	--gr_surface_icon_btn_icon_bg_h: var(--icon_primary);
+	--gr_surface_icon_btn_icon_bg_a: var(--icon_primary);
+	--gr_surface_icon_btn_icon_bg_s: var(--icon_primary);
+	
+	--gr_surface_icon_btn_overlay: var(--white_1);
+	--gr_surface_icon_btn_overlay_h: none;
+	--gr_surface_icon_btn_overlay_a: none;
+	--gr_surface_icon_btn_overlay_s: none;
+	/* Иконочная кнопка Surface */
+	
+	
+	/* Иконочная кнопка Surface-color */
+	--gr_surface_color_icon_btn_bg: var(--bg_main);
+	--gr_surface_color_icon_btn_bg_h: var(--primary);
+	--gr_surface_color_icon_btn_bg_a: var(--primary);
+	--gr_surface_color_icon_btn_bg_s: var(--primary);
+
+	--gr_surface_color_icon_btn_bd: none;
+	--gr_surface_color_icon_btn_bd_h: none;
+	--gr_surface_color_icon_btn_bd_a: none;
+	--gr_surface_color_icon_btn_bd_s: none;
+
+	--gr_surface_color_icon_btn_shadow: none;
+	--gr_surface_color_icon_btn_shadow_h: none;
+	--gr_surface_color_icon_btn_shadow_a: none;
+	--gr_surface_color_icon_btn_shadow_s: none;
+
+	--gr_surface_color_icon_btn_icon_bg: var(--primary);
+	--gr_surface_color_icon_btn_icon_bg_h: var(--icon_primary);
+	--gr_surface_color_icon_btn_icon_bg_a: var(--icon_primary);
+	--gr_surface_color_icon_btn_icon_bg_s: var(--icon_primary);
+	
+	--gr_surface_color_icon_btn_overlay: var(--white_1);
+	--gr_surface_color_icon_btn_overlay_h: none;
+	--gr_surface_color_icon_btn_overlay_a: none;
+	--gr_surface_color_icon_btn_overlay_s: none;
+	/* Иконочная кнопка Surface-color */
+	
+	
+	/* Пагинация */
+	--gr_pagelist_color: var(--on_bg_main_6);
+	--gr_pagelist_color_h: var(--link_color);
+	
+	--gr_pagelist_dots: var(--on_bg_main_6);
+	
+	--gr_pagelist_active_bg: var(--primary_2);
+	--gr_pagelist_active_color: var(--on_bg_main);
+	--gr_pagelist_active_bd: none;
+	--gr_pagelist_active_shadow: none;
+	/* Пагинация */
+	
+	
+	/* Название товара */
+	--product_name_color: var(--on_bg_main);
+	
+	--sm_product_name_fz: var(--fz_sm);
+	--sm_product_name_lh: 1.1;
+
+	--md_product_name_fz: var(--fz_md);
+	--md_product_name_lh: 1.1;
+
+	--lg_product_name_fz: var(--fz_lg);
+	--lg_product_name_lh: 1.1;
+
+	--xl_product_name_fz: var(--fz_xl);
+	--xl_product_name_lh: 1.06;
+	/* Название товара */
+	
+	
+	/* Производитель */
+	--vendor_name_color: var(--link_color);
+	
+	--sm_vendor_name_fz: var(--fz_xs);
+	--sm_vendor_name_lh: 1.05;
+
+	--md_vendor_name_fz: var(--fz_sm);
+	--md_vendor_name_lh: 1.1;
+
+	--lg_vendor_name_fz: var(--fz_md);
+	--lg_vendor_name_lh: 1.1;
+	/* Производитель */
+	
+	
+	/* Анонс */
+	--annonce_color: var(--on_bg_main_7);
+	
+	--sm_annonce_fz: var(--fz_xs);
+	--sm_annonce_lh: 1.05;
+
+	--md_annonce_fz: var(--fz_sm);
+	--md_annonce_lh: 1.1;
+
+	--lg_annonce_fz: var(--fz_md);
+	--lg_annonce_lh: 1.3;
+	/* Анонс */
+	
+	
+	/* Артикул */
+	--aritcle_color: var(--on_bg_main_4);
+	
+	--sm_article_fz: var(--fz_xxs);
+	--sm_article_lh: 1.05;
+
+	--lg_article_fz: var(--fz_sm);
+	--lg_article_lh: 1.1;
+	
+	--md_article_lh: 1.05;
+	--md_article_fz: var(--fz_xs);
+	/* Артикул */
+	
+	
+	
+	/* Цена */
+	--price_color: var(--on_bg_main_8);
+	--price_currency_color: var(--on_bg_main_8);
+	
+	--price_sale_color: var(--sale);
+	--price_onrequest_color: var(--on_bg_main_8);
+
+	--old_price_line: var(--on_bg_main);
+	--old_price_color: var(--on_bg_main_5);
+	--old_price_currency_color: var(--on_bg_main_5);
+	
+	--price_popup_bg: var(--white);
+	--price_popup_shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+	
+	--sm_current_price_fz: var(--heading_fz_12);
+	--sm_current_price_lh: 1.1;
+
+	--md_current_price_fz: var(--heading_fz_11);
+	--md_current_price_lh: 1.1;
+
+	--lg_current_price_fz: var(--heading_fz_10);
+	--lg_current_price_lh: 1.1;
+
+	--xl_current_price_fz: var(--heading_fz_7);
+	--xl_current_price_lh: 1;
+	/* Цена */
+	
+	/* Цена. Валюта */
+	--sm_price_currency_fz: var(--fz_sm);
+	--sm_price_currency_lh: 1.1;
+
+	--md_price_currency_fz: var(--fz_md);
+	--md_price_currency_lh: 1.1;
+
+	--lg_price_currency_fz: var(--fz_lg);
+	--lg_price_currency_lh: 1.1;
+
+	--xl_price_currency_fz: var(--fz_xl);
+	--xl_price_currency_lh: 1;
+	/* Цена. Валюта */
+	
+	/* Цена по запросу */
+	--sm_price_onrequest_fz: var(--fz_sm);
+	--sm_price_onrequest_lh: 1.1;
+
+	--md_price_onrequest_fz: var(--fz_md);
+	--md_price_onrequest_lh: 1.1;
+
+	--lg_price_onrequest_fz: var(--fz_md);
+	--lg_price_onrequest_lh: 1.1;
+
+	--xl_price_onrequest_fz: var(--fz_xl);
+	--xl_price_onrequest_lh: 1;
+	/* Цена по запросу */
+	
+	/* Цена. Попап */
+	--sm_price_popup_fz: var(--fz_sm);
+	--sm_price_popup_lh: 1.2;
+	--sm_price_popup_w: 220px;
+	--sm_price_popup_gap: 6px;
+	--sm_price_popup_pd: 8px 10px;
+	--sm_price_popup_r: var(--medium_radius);
+
+	--md_price_popup_fz: var(--fz_sm);
+	--md_price_popup_lh: 1.2;
+	--md_price_popup_w: 260px;
+	--md_price_popup_gap: 6px;
+	--md_price_popup_pd: 8px 10px;
+	--md_price_popup_r: var(--medium_radius);
+
+	--lg_price_popup_fz: var(--fz_msm);
+	--lg_price_popup_lh: 1.2;
+	--lg_price_popup_w: 284px;
+	--lg_price_popup_gap: 4px;
+	--lg_price_popup_pd: 12px 14px;
+	--lg_price_popup_r: var(--medium_radius);
+	/* Цена. Попап */
+	
+	/* Старая цена */
+	--sm_old_price_fz: var(--fz_sm);
+	--sm_old_price_lh: 1.1;
+
+	--md_old_price_fz: var(--fz_msm);
+	--md_old_price_lh: 1.1;
+
+	--lg_old_price_fz: var(--fz_md);
+	--lg_old_price_lh: 1.1;
+
+	--xl_old_price_fz: var(--fz_xl);
+	--xl_old_price_lh: 1;
+	/* Старая цена */
+	
+	/* Старая цена. Валюта */
+	--sm_old_price_currency_fz: var(--fz_sm);
+	--sm_old_price_currency_lh: 1.1;
+
+	--md_old_price_currency_fz: var(--fz_sm);
+	--md_old_price_currency_lh: 1.1;
+
+	--lg_old_price_currency_fz: var(--fz_sm);
+	--lg_old_price_currency_lh: 1.1;
+
+	--xl_old_price_currency_fz: var(--fz_md);
+	--xl_old_price_currency_lh: 1;
+	/* Старая цена. Валюта */
+	
+	
+	/* Рейтинг */
+	--rating_disabled: var(--disable);
+	--rating_active: var(--attention);
+	
+	--sm_rating_icon: var(--icon_rating_star_sm);
+	--sm_rating_w: 50px;
+	--sm_rating_h: 8px;
+	--sm_rating_m: 0 0 0 -1px;
+	--sm_rating_icon_w: 10px;
+	--sm_rating_icon_h: 8px;
+
+	--md_rating_icon: var(--icon_rating_star_md);
+	--md_rating_w: 70px;
+	--md_rating_h: 12px;
+	--md_rating_m: 0 0 0 -1px;
+	--md_rating_icon_w: 14px;
+	--md_rating_icon_h: 12px;
+
+	--lg_rating_icon: var(--icon_rating_star_lg);
+	--lg_rating_w: 90px;
+	--lg_rating_h: 16px;
+	--lg_rating_m: 0 0 0 -1px;
+	--lg_rating_icon_w: 18px;
+	--lg_rating_icon_h: 16px;
+	
+	/* Кол-во */
+	--amount_min_color: var(--on_bg_main_5);
+	--amount_total_color: var(--success);
+	
+	--amount_btn_bg: var(--primary_1);
+	--amount_btn_bg_h: var(--primary);
+	--amount_btn_bg_a: var(--primary);
+
+	--amount_btn_icon_bg: var(--icon_bg_main_6);
+	--amount_btn_icon_bg_h: var(--icon_primary);
+	--amount_btn_icon_bg_a: var(--icon_primary);
+	--amount_btn_icon_bg_d: var(--icon_bg_main_3);
+
+	--sm_amount_btn_r: var(--iconbtn_radius);
+	--sm_amount_btn_w: 32px;
+	--sm_amount_btn_h: 32px;
+	--sm_amount_input_w: 40px;
+	--sm_amount_input_h: 32px;
+	--sm_amount_input_fz: var(--fz_md);
+	--sm_amount_input_lh: 32px;
+	--sm_amount_btn_icon_w: 20px;
+	--sm_amount_btn_icon_h: 20px;
+
+	--md_amount_btn_r: var(--iconbtn_radius);
+	--md_amount_btn_w: 40px;
+	--md_amount_btn_h: 40px;
+	--md_amount_input_w: 48px;
+	--md_amount_input_h: 40px;
+	--md_amount_input_fz: var(--fz_lg);
+	--md_amount_input_lh: 40px;
+	--md_amount_btn_icon_w: 30px;
+	--md_amount_btn_icon_h: 30px;
+
+	--lg_amount_btn_r: var(--iconbtn_radius);
+	--lg_amount_btn_w: 48px;
+	--lg_amount_btn_h: 48px;
+	--lg_amount_input_w: 48px;
+	--lg_amount_input_h: 48px;
+	--lg_amount_input_fz: var(--fz_lg);
+	--lg_amount_input_lh: 48px;
+	--lg_amount_btn_icon_w: 30px;
+	--lg_amount_btn_icon_h: 30px;
+	/* Кол-во */
+	
+	
+	/* Кол-во. Минимальное */
+	--sm_amount_min_fz: var(--fz_xs);
+	--sm_amount_min_lh: 1.05;
+
+	--md_amount_min_fz: var(--fz_xs);
+	--md_amount_min_lh: 1.05;
+
+	--lg_amount_min_fz: var(--fz_sm);
+	--lg_amount_min_lh: 1.1;
+	/* Кол-во. Минимальное */
+	
+	/* Кол-во. В наличии */
+	--sm_amount_total_fz: var(--fz_xs);
+	--sm_amount_total_lh: 1.05;
+
+	--md_amount_total_fz: var(--fz_xs);
+	--md_amount_total_lh: 1.05;
+
+	--lg_amount_total_fz: var(--fz_sm);
+	--lg_amount_total_lh: 1.1;
+	/* Кол-во. В наличии */
+	
+	
+	
+	/* Параметры */
+	--options_title_color: var(--on_bg_main_5);
+	--options_body_color: var(--on_bg_main_7);
+	
+	--sm_options_title_fz: var(--fz_xs);
+	--sm_options_title_lh: 1.05;
+	--sm_options_body_fz: var(--fz_xs);
+	--sm_options_body_lh: 1.05;
+
+	--md_options_title_fz: var(--fz_sm);
+	--md_options_title_lh: 1.1;
+	--md_options_body_fz: var(--fz_sm);
+	--md_options_body_lh: 1.1;
+
+	--lg_options_title_fz: var(--fz_md);
+	--lg_options_title_lh: 1.2;
+	--lg_options_body_fz: var(--fz_md);
+	--lg_options_body_lh: 1.2;
+	/* Параметры */
+	
+	
+	/* Параметры. Картинка */
+	--sm_option_image_gap: 4px;
+	--sm_option_image_w: 44px;
+	--sm_option_image_h: 44px;
+	--sm_option_image_r: var(--small_radius);
+
+	--md_option_image_gap: 4px 10px;
+	--md_option_image_w: 60px;
+	--md_option_image_h: 60px;
+	--md_option_image_r: var(--small_radius);
+
+	--lg_option_image_gap: 4px 10px;
+	--lg_option_image_w: 72px;
+	--lg_option_image_h: 72px;
+	--lg_option_image_r: var(--small_radius);
+	/* Параметры. Картинка */
+	
+	
+	/* Параметры. Цвет */
+	--option_color_item_overlay_bg: var(--bd_bg_main_2);
+	--option_color_item_overlay_bg_empty: var(--white_4);
+	--option_color_item_empty: url(../empty_color.svg);
+
+	--option_color_item_color: var(--on_bg_main_8);
+	--option_color_item_color_h: var(--on_bg_main_8);
+	--option_color_item_color_a: var(--on_bg_main_8);
+
+	--option_color_bd: none;
+	--option_color_shadow: inset 0 0 0 1px var(--black_05);
+
+	--option_color_bd_h: none;
+	--option_color_shadow_h: inset 0 0 0 2px var(--bg_main), 0 0 0 2px var(--primary_8);
+
+	--option_color_bd_a: none;
+	--option_color_shadow_a: inset 0 0 0 2px var(--bg_main), 0 0 0 2px var(--primary_8);
+
+	
+	--sm_option_color_gap: 8px 5px;
+	--sm_option_color_item_gap: 8px;
+	--sm_option_color_w: 24px;
+	--sm_option_color_h: 24px;
+	--sm_option_color_r: var(--small_radius);
+	--sm_option_color_item_gap: 8px;
+	--sm_option_color_item_fz: var(--fz_msm);
+	--sm_option_color_item_lh: 1.2;
+	
+
+	--md_option_color_gap: 10px 8px;
+	--md_option_color_w: 28px;
+	--md_option_color_h: 28px;
+	--md_option_color_r: var(--small_radius);
+	--md_option_color_item_gap: 12px;
+	--md_option_color_item_fz: var(--fz_md);
+	--md_option_color_item_lh: 1.2;
+	
+
+	--lg_option_color_gap: 10px 10px;
+	--lg_option_color_item_gap: 12px;
+	--lg_option_color_w: 28px;
+	--lg_option_color_h: 28px;
+	--lg_option_color_r: var(--small_radius);
+	--lg_option_color_item_gap: 12px;
+	--lg_option_color_item_fz: var(--fz_md);
+	--lg_option_color_item_lh: 1.2;
+	/* Параметры. Цвет */
+	
+	
+	
+	/* Подарки */
+	--gifts_item_color: var(--on_sale);
+	--gifts_item_bg: var(--sale);
+	
+	--gifts_icon_bg: var(--on_sale);
+	
+	--gifts_popup_bg: var(--white);
+	--gifts_popup_shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+	--gifts_popup_title: var(--on_bg_main_8);
+	--gifts_popup_text: var(--on_bg_main_8);
+	
+	
+	--sm_gifts_gap: 4px;
+	--sm_gifts_item_gap: 7px;
+	--sm_gifts_item_pd: 2.5px 4px;
+	--sm_gifts_item_r: 0;
+	--sm_gifts_item_title_fz: var(--fz_xxs);
+	--sm_gifts_item_title_lh: 1;
+
+	--md_gifts_gap: 6px;
+	--md_gifts_item_gap: 10px;
+	--md_gifts_item_pd: 5.5px 4px;
+	--md_gifts_item_r: 0;
+	--md_gifts_item_title_fz: var(--fz_xs);
+	--md_gifts_item_title_lh: 1;
+
+	--lg_gifts_gap: 5px;
+	--lg_gifts_item_gap: 12px;
+	--lg_gifts_item_pd: 6px 8px;
+	--lg_gifts_item_r: 0;
+	--lg_gifts_item_title_fz: var(--fz_sm);
+	--lg_gifts_item_title_lh: 1;
+	/* Подарки */
+	
+	/* Подарки. Карточка */
+	--sm_product_gifts_gap: 4px;
+	--sm_product_gifts_body_gap: 8px;
+	--sm_product_gifts_title_fz: var(--fz_sm);
+	--sm_product_gifts_title_lh: 1.1;
+	--sm_product_gifts_text_fz: var(--fz_xs);
+	--sm_product_gifts_text_lh: 1.1;
+
+	--md_product_gifts_gap: 6px;
+	--md_product_gifts_body_gap: 8px;
+	--md_product_gifts_title_fz: var(--fz_md);
+	--md_product_gifts_title_lh: 1.1;
+	--md_product_gifts_text_fz: var(--fz_sm);
+	--md_product_gifts_text_lh: 1.1;
+
+	--lg_product_gifts_gap: 8px;
+	--lg_product_gifts_body_gap: 8px;
+	--lg_product_gifts_title_fz: var(--fz_lg);
+	--lg_product_gifts_title_lh: 1.1;
+	--lg_product_gifts_text_fz: var(--fz_msm);
+	--lg_product_gifts_text_lh: 1.1;
+	/* Подарки. Карточка */
+	
+	/*Подарки. Попап*/
+	--sm_gifts_popup_w: 220px;
+	--sm_gifts_popup_gap: 6px;
+	--sm_gifts_popup_pd: 8px 10px;
+	--sm_gifts_popup_r: var(--medium_radius);
+
+	--md_gifts_popup_w: 260px;
+	--md_gifts_popup_gap: 6px;
+	--md_gifts_popup_pd: 8px 10px;
+	--md_gifts_popup_r: var(--medium_radius);
+
+	--lg_gifts_popup_w: 284px;
+	--lg_gifts_popup_gap: 4px;
+	--lg_gifts_popup_pd: 12px 14px;
+	--lg_gifts_popup_r: var(--medium_radius);
+
+	
+	/*Подарки. Попап. Текст*/
+	--sm_gifts_popup_title_fz: var(--fz_msm);
+	--sm_gifts_popup_title_lh: 1.1;
+	--sm_gifts_popup_text_fz: var(--fz_sm);
+	--sm_gifts_popup_text_lh: 1.1;
+
+	--md_gifts_popup_title_fz: var(--fz_msm);
+	--md_gifts_popup_title_lh: 1.1;
+	--md_gifts_popup_text_fz: var(--fz_sm);
+	--md_gifts_popup_text_lh: 1.1;
+
+	--lg_gifts_popup_title_fz: var(--fz_md);
+	--lg_gifts_popup_title_lh: 1.1;
+	--lg_gifts_popup_text_fz: var(--fz_msm);
+	--lg_gifts_popup_text_lh: 1.1;
+	
+	
+	/* Флаги */
+	--flags_new_bg: var(--success);
+	--flags_new_color: var(--on_success);
+	
+	--flags_action_bg: var(--sale);
+	--flags_action_color: var(--on_sale);
+	
+	--flags_spec_bg: var(--primary);
+	--flags_spec_color: var(--on_primary);
+	
+	--xs_flags_fz: var(--fz_xxs);
+	--xs_flags_lh: 1;
+	--xs_flags_pd: 3px 4px 2px;
+	--xs_flags_r: 0;
+
+	--sm_flags_fz: var(--fz_xs);
+	--sm_flags_lh: 1;
+	--sm_flags_pd: 4px 4px 3px;
+	--sm_flags_r: 0;
+
+	--md_flags_fz: var(--fz_xs);
+	--md_flags_lh: 1;
+	--md_flags_pd: 6px 6px 5px;
+	--md_flags_r: 0;
+
+	--lg_flags_fz: var(--fz_sm);
+	--lg_flags_lh: 1;
+	--lg_flags_pd: 6px 8px;
+	--lg_flags_r: 0;
+
+	
+	/* Бонусы. Флаг */
+	--bonus_flag_bg: var(--attention_6);
+	--bonus_flag_color: var(--on_attention);
+	
+	--sm_bonus_flag_fz: var(--fz_xxs);
+	--sm_bonus_flag_lh: 1;
+	--sm_bonus_flag_pd: 4px 4px 3.5px;
+	--sm_bonus_flag_r: 0;
+
+	--md_bonus_flag_fz: var(--fz_xs);
+	--md_bonus_flag_lh: 1;
+	--md_bonus_flag_pd: 4px 6px 3.5px;
+	--md_bonus_flag_r: 0;
+
+	--lg_bonus_flag_fz: var(--fz_sm);
+	--lg_bonus_flag_lh: 1;
+	--lg_bonus_flag_pd: 6px 8px;
+	--lg_bonus_flag_r: 0;
+	/* Бонусы. Флаг */
+	
+	
+	/*Выбор цвета. Селект*/
+	--sm_color_select_h: 40px;
+	--sm_color_select_pd: 8px 28px 8px 8px;
+	--sm_color_select_r: var(--form_radius);
+
+	--md_color_select_h: 50px;
+	--md_color_select_pd: 11px 32px 11px 10px;
+	--md_color_select_r: var(--form_radius);
+
+	--lg_color_select_h: 60px;
+	--lg_color_select_pd: 16px 58px 16px 14px;
+	--lg_color_select_r: var(--form_radius);
+	
+		/*Стрелка*/
+		--gr_color_select_icon_bg: var(--icon_bg_main_6);
+		
+		--sm_color_select_icon: var(--icon_arrow_bot_sm);
+		--sm_color_select_icon_right: 10px;
+		--sm_color_select_icon_h: 20px;
+		--sm_color_select_icon_w: 20px;
+
+		--md_color_select_icon: var(--icon_arrow_bot_sm);
+		--md_color_select_icon_right: 10px;
+		--md_color_select_icon_h: 20px;
+		--md_color_select_icon_w: 20px;
+
+		--lg_color_select_icon: var(--icon_arrow_bot_sm);
+		--lg_color_select_icon_right: 10px;
+		--lg_color_select_icon_h: 20px;
+		--lg_color_select_icon_w: 20px;
+		/*Стрелка*/
+		
+		/*Пункт. Текст*/
+		--sm_color_select_item_g: 6px;
+		--sm_color_select_item_fz: var(--fz_md);
+		--sm_color_select_item_lh: 1.2;
+
+		--md_color_select_item_g: 10px;
+		--md_color_select_item_fz: var(--fz_md);
+		--md_color_select_item_lh: 1.2;
+
+		--lg_color_select_item_g: 10px;
+		--lg_color_select_item_fz: var(--fz_md);
+		--lg_color_select_item_lh: 1.2;
+		/*Пункт. Текст*/
+		
+		/*Пункт. Цвет*/
+		--sm_color_select_color_h: 24px;
+		--sm_color_select_color_w: 24px;
+		--sm_color_select_color_r: var(--small_radius);
+
+		--md_color_select_color_h: 28px;
+		--md_color_select_color_w: 28px;
+		--md_color_select_color_r: var(--small_radius);	
+
+		--lg_color_select_color_h: 28px;
+		--lg_color_select_color_w: 28px;
+		--lg_color_select_color_r: var(--small_radius);
+		/*Пункт. Цвет*/
+		
+		/*Попап*/
+		--sm_color_select_popup_m: 8px 0 0;
+		--sm_color_select_popup_pd: 4px 0;
+		--sm_color_select_popup_r: var(--form_radius);
+
+		--md_color_select_popup_m: 8px 0 0;
+		--md_color_select_popup_pd: 5px 0;
+		--md_color_select_popup_r: var(--form_radius);
+
+		--lg_color_select_popup_m: 8px 0 0;
+		--lg_color_select_popup_pd: 9px 0;
+		--lg_color_select_popup_r: var(--form_radius);
+		/*Попап*/
+		
+		/*Попап. Пункт*/
+		--sm_color_select_popup_item_pd: 4px 8px;
+
+		--md_color_select_popup_item_pd: 5px 10px;
+
+		--lg_color_select_popup_item_pd: 5px 14px;
+		/*Попап. Пункт*/
+	/*Выбор цвета. Селект*/
+}

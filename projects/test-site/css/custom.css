@@ -1,0 +1,175 @@
+.tutu-career {
+    --primary: #9a78f3;
+    --accent: #ff5a28;
+    --on_primary: #fff;
+    --bg_main: #f4f0ff;
+    --on_bg_main: #21143b;
+    --site_width: 1336px;
+    --tutu-card: #fff;
+    --tutu-radius: 1.6rem;
+    color: var(--on_bg_main);
+    background: var(--bg_main);
+    font-family: var(--font1);
+}
+
+.tutu-container { width: min(calc(100% - 2 * var(--ds-page-gutter)), var(--site_width)); margin-inline: auto; }
+.tutu-section { padding-block: var(--ds-section-space); }
+.tutu-section h2, .tutu-section h3, .tutu-hero h1 { margin: 0; color: inherit; font-weight: 900; letter-spacing: -.06em; line-height: .93; }
+
+.tutu-hero { padding: 2rem 0 2.4rem; background: var(--bg_main); }
+.tutu-logo { display: inline-block; margin: 0 0 1.15rem; color: var(--primary); font-size: 2.35rem; font-weight: 900; letter-spacing: -.12em; line-height: 1; text-decoration: none; }
+.tutu-hero__stage { position: relative; display: grid; min-height: 37rem; grid-template-columns: 1fr .95fr; align-items: center; overflow: hidden; padding: 4.6rem 5rem; border-radius: 3.4rem; color: var(--on_primary); background: var(--primary); }
+.tutu-hero__content { position: relative; z-index: 2; display: grid; gap: 1.4rem; max-width: 34rem; }
+.tutu-hero h1 { font-size: clamp(3.3rem, 4.2vw, 4.8rem); white-space: nowrap; }
+.tutu-hero__content p { max-width: 28rem; margin: 0; font-size: clamp(1.05rem, 1.45vw, 1.35rem); font-weight: 700; line-height: 1.32; }
+.tutu-hero__cta { justify-self: start; min-width: 14rem; }
+.tutu-hero__media { position: absolute; right: 8.5%; width: 36%; aspect-ratio: .96; border-radius: 42% 58% 46% 54%; object-fit: cover; }
+.tutu-sticker { position: absolute; z-index: 1; object-fit: contain; }
+.tutu-sticker--palm { top: 10%; right: 37%; width: 7.5rem; transform: rotate(-12deg); }
+.tutu-sticker--umbrella { right: 4%; bottom: 10%; width: 9.5rem; transform: rotate(14deg); }
+.tutu-hero__note { position: absolute; z-index: 2; bottom: 1.3rem; left: 5rem; max-width: 31rem; font-size: .68rem; opacity: .8; }
+
+.tutu-section--stats { padding-top: .3rem; padding-bottom: 2rem; }
+.tutu-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tutu-stats article { position: relative; min-height: 12rem; overflow: hidden; padding: 1.45rem; border-radius: var(--tutu-radius); background: var(--tutu-card); }
+.tutu-stats strong { display: block; color: var(--primary); font-size: clamp(2.4rem, 3.5vw, 4rem); font-weight: 900; letter-spacing: -.07em; line-height: .9; }
+.tutu-stats span { display: block; max-width: 12rem; margin-top: .55rem; font-size: .95rem; font-weight: 700; line-height: 1.2; }
+.tutu-stats img { position: absolute; right: .5rem; bottom: .35rem; width: 7rem; max-height: 4rem; object-fit: contain; object-position: right bottom; }
+
+.tutu-work { padding-top: 0; }
+.tutu-work__surface { position: relative; overflow: hidden; padding: 2.1rem 1.25rem 1.1rem; border-radius: var(--tutu-radius); background: var(--tutu-card); }
+.tutu-work__heading { position: relative; z-index: 1; display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding: 0 1rem; }
+.tutu-work__heading h2, .tutu-benefits h2, .tutu-values h2, .tutu-people h2, .tutu-jobs h2 { font-size: clamp(2rem, 3.2vw, 3.65rem); }
+.tutu-work__heading p { margin: 0 0 .2rem; font-size: .95rem; font-weight: 700; }
+.tutu-work__plane { position: absolute; top: 1.15rem; right: 1.6rem; width: min(31vw, 26rem); }
+.tutu-work__grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 1.15rem; }
+.tutu-work__grid article { min-height: 10rem; padding: 1.3rem; border-radius: 1.25rem; background: #f3f2f7; }
+.tutu-work__grid h3 { font-size: 1.25rem; }
+.tutu-work__grid p { max-width: 11rem; margin: 1rem 0 0; font-size: .88rem; font-weight: 600; line-height: 1.25; }
+
+.tutu-directions { padding-top: 2rem; }
+.tutu-directions__switcher { position: relative; }
+.tutu-directions__panels { min-height: 28rem; }
+.tutu-direction { display: none; grid-template-columns: 1fr .82fr; min-height: 27rem; overflow: hidden; border-radius: var(--tutu-radius); color: var(--on_primary); background: var(--primary); }
+.tutu-direction__copy { display: grid; align-content: center; justify-items: start; gap: .95rem; padding: 3rem 3.3rem; }
+.tutu-direction__copy > p { max-width: 27rem; margin: 0; font-size: .93rem; font-weight: 600; line-height: 1.32; }
+.tutu-direction__copy > p:first-child { font-size: .8rem; }
+.tutu-direction h3 { font-size: clamp(2rem, 3vw, 3.45rem); }
+.tutu-direction .ds-button { margin-top: .45rem; }
+.tutu-direction > img { width: 85%; align-self: center; justify-self: center; aspect-ratio: 1 / .9; border-radius: 46% 54% 42% 58%; object-fit: cover; }
+#direction-product:checked ~ .tutu-directions__panels .tutu-direction--product, #direction-it:checked ~ .tutu-directions__panels .tutu-direction--it, #direction-data:checked ~ .tutu-directions__panels .tutu-direction--data, #direction-design:checked ~ .tutu-directions__panels .tutu-direction--design { display: grid; }
+.tutu-direction-tabs { display: grid; grid-template-columns: repeat(4, 1fr); width: min(32rem, 100%); margin: 1.2rem auto 0; overflow: hidden; border-radius: .75rem; background: var(--tutu-card); }
+.tutu-direction-tabs label { padding: .55rem .75rem; border: 1px solid transparent; border-radius: .65rem; cursor: pointer; font-size: .75rem; font-weight: 700; text-align: center; }
+#direction-product:checked ~ .tutu-direction-tabs label[for="direction-product"], #direction-it:checked ~ .tutu-direction-tabs label[for="direction-it"], #direction-data:checked ~ .tutu-direction-tabs label[for="direction-data"], #direction-design:checked ~ .tutu-direction-tabs label[for="direction-design"] { border-color: var(--on_bg_main); }
+
+.tutu-benefits { padding-top: 3rem; }
+.tutu-benefits__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 1.8rem; }
+.tutu-benefits__grid article { position: relative; min-height: 12rem; overflow: hidden; padding: 1.3rem; border-radius: var(--tutu-radius); background: var(--tutu-card); }
+.tutu-benefits__grid h3, .tutu-values h3, .tutu-people h3, .tutu-jobs h3 { font-size: 1.25rem; }
+.tutu-benefits__grid p { max-width: 12rem; margin: .75rem 0 0; font-size: .88rem; font-weight: 600; line-height: 1.24; }
+.tutu-benefits__grid img { position: absolute; right: .8rem; bottom: .7rem; width: 4.7rem; max-height: 6.5rem; object-fit: contain; object-position: right bottom; }
+.tutu-benefits__grid article:nth-child(4) img, .tutu-benefits__grid article:nth-child(6) img { width: 8rem; max-height: 8rem; }
+.tutu-benefits__wide { grid-column: span 2; min-height: 9.5rem !important; }
+.tutu-benefits__wide p { max-width: 26rem; }
+
+.tutu-values { padding-top: 2rem; }
+.tutu-values__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.tutu-values__grid article { min-height: 13rem; padding: 1.35rem; border-radius: var(--tutu-radius); color: var(--on_primary); background: var(--primary); }
+.tutu-values__grid p { margin: .9rem 0 0; font-size: .84rem; font-weight: 600; line-height: 1.3; }
+
+.tutu-people { padding-top: 2.75rem; }
+.tutu-people__heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+.tutu-people__heading p { display: flex; gap: .65rem; margin: 0; }
+.tutu-people__heading a { padding: .35rem .65rem; border-radius: 1rem; background: var(--tutu-card); color: var(--on_bg_main); font-size: .7rem; font-weight: 700; text-decoration: none; }
+.tutu-people__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.tutu-people__grid article { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; min-height: 15rem; overflow: hidden; border-radius: var(--tutu-radius); color: var(--on_primary); background: var(--primary); }
+.tutu-people__grid article > div { position: relative; z-index: 1; padding: 1.35rem; }
+.tutu-people__grid span { display: inline-block; padding: .25rem .5rem; border-radius: .7rem; background: var(--tutu-card); color: var(--on_bg_main); font-size: .65rem; font-weight: 700; }
+.tutu-people__grid h3 { margin-top: 1.3rem; }
+.tutu-people__grid p { margin: .45rem 0; font-size: .79rem; line-height: 1.23; }
+.tutu-people__grid img { width: 100%; height: 100%; object-fit: cover; }
+
+.tutu-jobs { padding-top: 2.75rem; }
+.tutu-jobs__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin-top: 1.4rem; }
+.tutu-jobs__grid article { position: relative; display: flex; flex-direction: column; min-height: 14.5rem; padding: 1.25rem; border-radius: var(--tutu-radius); background: var(--tutu-card); }
+.tutu-jobs__grid h3 { font-size: 1rem; }
+.tutu-jobs__grid p { margin: .7rem 0; font-size: .77rem; font-weight: 600; line-height: 1.25; }
+.tutu-jobs__grid small { margin-top: auto; padding: .28rem .55rem; border-radius: 1rem; background: #f3f2f7; font-size: .65rem; font-weight: 700; }
+.tutu-jobs__grid a { position: absolute; right: 1rem; bottom: 1rem; display: grid; width: 1.4rem; height: 1.4rem; place-items: center; border-radius: 50%; color: var(--primary); background: #eee9ff; text-decoration: none; }
+.tutu-jobs__cta { margin-top: 1.25rem; }
+
+.tutu-footer { margin-top: 2rem; color: var(--on_bg_main); background: var(--tutu-card); }
+.tutu-footer .ds-footer__inner { max-width: var(--site_width); padding-block: 3rem 1.25rem; }
+.tutu-footer__logo img { width: 5.5rem; }
+.tutu-footer__content { display: grid; grid-template-columns: 1fr auto; gap: 2rem; margin-top: 1.7rem; }
+.tutu-footer .ds-footer__columns { grid-template-columns: repeat(3, minmax(7rem, 1fr)); gap: 1.5rem; }
+.tutu-footer .ds-footer__title { color: inherit; font-size: .73rem; }
+.tutu-footer .ds-footer__list { color: inherit; font-size: .68rem; line-height: 1.5; }
+.tutu-footer__apps { display: grid; grid-template-columns: repeat(2, 8.3rem); gap: .45rem; align-content: start; }
+.tutu-footer__apps img { width: 100%; }
+.tutu-footer .ds-footer__bottom { margin-top: 1.4rem; border-color: #ddd7eb; color: #665d75; font-size: .68rem; }
+
+@media (min-width: 640px) {
+    .tutu-work__heading p { position: absolute; top: 6.2rem; left: 1rem; margin: 0; }
+}
+
+@media (max-width: 899px) {
+    .tutu-hero { padding-top: 1rem; }
+    .tutu-logo { margin-left: .25rem; font-size: 2rem; }
+    .tutu-hero__stage { min-height: 42rem; grid-template-columns: 1fr; padding: 3rem 1.5rem 1.6rem; border-radius: 0; }
+    .tutu-hero__content { align-self: end; max-width: 100%; }
+    .tutu-hero h1 { font-size: clamp(2.7rem, 12vw, 4rem); }
+    .tutu-hero h1 { white-space: normal; }
+    .tutu-hero__media { top: 3rem; right: 10%; width: 70%; }
+    .tutu-sticker--palm { top: 3.5rem; right: 56%; width: 5.5rem; }
+    .tutu-sticker--umbrella { right: 7%; bottom: 43%; width: 6.5rem; }
+    .tutu-hero__note { position: static; margin-top: .5rem; }
+    .tutu-section { padding-block: var(--ds-space-16); }
+    .tutu-section--stats { padding-top: var(--ds-space-8); }
+    .tutu-stats article { min-height: 8.5rem; }
+    .tutu-work__plane { width: 16rem; opacity: .9; }
+    .tutu-direction { min-height: 25rem; }
+    .tutu-direction__copy { padding: 2rem; }
+    .tutu-benefits__grid, .tutu-values__grid { gap: .65rem; }
+    .tutu-jobs__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 639px) {
+    .tutu-container { width: min(calc(100% - 2rem), var(--site_width)); }
+    .tutu-hero .tutu-container { width: 100%; }
+    .tutu-hero__stage { min-height: 43rem; }
+    .tutu-hero__media { top: 3.3rem; right: 10%; width: 76%; height: 16rem; }
+    .tutu-hero__content { margin-top: 15rem; }
+    .tutu-hero__content p { font-size: 1rem; }
+    .tutu-hero__cta { width: 100%; }
+    .tutu-stats, .tutu-work__grid, .tutu-values__grid, .tutu-people__grid, .tutu-jobs__grid { grid-template-columns: 1fr; }
+    .tutu-stats article { min-height: 8rem; }
+    .tutu-work__surface { padding: 1.5rem 1rem 1rem; }
+    .tutu-work__heading { display: block; padding: 0; }
+    .tutu-work__heading h2 { max-width: 18rem; }
+    .tutu-work__heading p { margin-top: .65rem; }
+    .tutu-work__plane { top: 5rem; right: -1.8rem; width: 12rem; }
+    .tutu-work__grid { margin-top: 1.2rem; }
+    .tutu-work__grid article { min-height: 6rem; }
+    .tutu-work__grid p { margin-top: .45rem; }
+    .tutu-directions__panels { min-height: 38rem; }
+    .tutu-direction { grid-template-columns: 1fr; min-height: 37rem; }
+    .tutu-direction__copy { padding: 2rem 1.5rem 0; }
+    .tutu-direction__copy h3 { font-size: 2.5rem; }
+    .tutu-direction > img { width: 70%; height: 14rem; align-self: end; }
+    .tutu-direction-tabs { font-size: .65rem; }
+    .tutu-direction-tabs label { padding: .5rem .15rem; font-size: .62rem; }
+    .tutu-benefits__grid { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+    .tutu-benefits__grid article { min-height: 11rem; padding: 1rem; border-radius: 1.1rem; }
+    .tutu-benefits__grid h3 { font-size: 1rem; }
+    .tutu-benefits__grid p { font-size: .75rem; }
+    .tutu-benefits__wide { grid-column: span 2; }
+    .tutu-people__heading { display: block; }
+    .tutu-people__heading p { margin-top: .75rem; }
+    .tutu-people__grid article { min-height: 22rem; grid-template-columns: 1fr; }
+    .tutu-people__grid img { height: 10rem; order: -1; }
+    .tutu-jobs__grid article { min-height: 10rem; }
+    .tutu-footer__content { grid-template-columns: 1fr; }
+    .tutu-footer .ds-footer__columns { grid-template-columns: repeat(2, 1fr); }
+    .tutu-footer__apps { grid-template-columns: repeat(2, minmax(0, 8rem)); }
+}

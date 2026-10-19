@@ -1,0 +1,10 @@
+@mixin flags(
+	$size: null,
+){
+	@if $size {
+		font-size: var(--#{$size}_flags_fz);
+		line-height: var(--#{$size}_flags_lh);
+		padding: var(--#{$size}_flags_pd);
+		border-radius: var(--#{$size}_flags_r);
+	}
+}

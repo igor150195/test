@@ -1,0 +1,129 @@
+// Neutral text controls. They intentionally do not consume the legacy gr_*
+// visual-token namespace or require a wrapper structure.
+
+.ds-input,
+.ds-textarea,
+.ds-select {
+    width: 100%;
+    border: 1px solid var(--bd_bg_main_3);
+    border-radius: var(--form_radius);
+    color: var(--on_bg_main_8);
+    background-color: var(--bg_main_surface);
+    font-family: var(--font_content);
+    font-weight: var(--fw_content_r);
+    transition: var(--transition);
+
+    &::placeholder {
+        color: var(--on_bg_main_5);
+        opacity: 1;
+    }
+
+    &:hover:not(:disabled) {
+        border-color: var(--primary);
+    }
+
+    &:focus-visible {
+        border-color: var(--primary);
+        background-color: var(--bg_main);
+        box-shadow: 0 0 0 3px var(--focus_ring_color, var(--primary_4));
+    }
+
+    &:disabled {
+        color: var(--on_disable);
+        background-color: var(--disable);
+        border-color: transparent;
+        cursor: not-allowed;
+        opacity: 1;
+    }
+}
+
+input.ds-input[type="text"],
+input.ds-input[type="email"] {
+    height: var(--md_input_h);
+    padding: var(--md_input_pd);
+    border-radius: var(--md_input_r);
+    font-size: var(--md_input_fz);
+    line-height: var(--md_input_lh);
+}
+
+textarea.ds-textarea {
+    min-height: var(--md_textarea_mh);
+    padding: var(--md_textarea_pd);
+    border-radius: var(--md_textarea_r);
+    font-size: var(--md_textarea_fz);
+    line-height: var(--md_textarea_lh);
+    resize: vertical;
+}
+
+select.ds-select {
+    height: var(--md_select_h);
+    padding: var(--md_select_pd);
+    border-radius: var(--md_select_r);
+    font-size: var(--md_select_fz);
+    line-height: var(--md_select_lh);
+}
+
+.ds-input--sm,
+.ds-textarea--sm,
+.ds-select--sm {
+    font-size: var(--sm_input_fz);
+}
+
+input.ds-input--sm[type="text"],
+input.ds-input--sm[type="email"] {
+    height: var(--sm_input_h);
+    padding: var(--sm_input_pd);
+    border-radius: var(--sm_input_r);
+    line-height: var(--sm_input_lh);
+}
+
+textarea.ds-textarea--sm {
+    min-height: var(--sm_textarea_mh);
+    padding: var(--sm_textarea_pd);
+    border-radius: var(--sm_textarea_r);
+    line-height: var(--sm_textarea_lh);
+}
+
+select.ds-select--sm {
+    height: var(--sm_select_h);
+    padding: var(--sm_select_pd);
+    border-radius: var(--sm_select_r);
+    line-height: var(--sm_select_lh);
+}
+
+.ds-input--lg,
+.ds-textarea--lg,
+.ds-select--lg {
+    font-size: var(--lg_input_fz);
+}
+
+input.ds-input--lg[type="text"],
+input.ds-input--lg[type="email"] {
+    height: var(--lg_input_h);
+    padding: var(--lg_input_pd);
+    border-radius: var(--lg_input_r);
+    line-height: var(--lg_input_lh);
+}
+
+textarea.ds-textarea--lg {
+    min-height: var(--lg_textarea_mh);
+    padding: var(--lg_textarea_pd);
+    border-radius: var(--lg_textarea_r);
+    line-height: var(--lg_textarea_lh);
+}
+
+select.ds-select--lg {
+    height: var(--lg_select_h);
+    padding: var(--lg_select_pd);
+    border-radius: var(--lg_select_r);
+    line-height: var(--lg_select_lh);
+}
+
+.ds-input--error,
+.ds-textarea--error,
+.ds-select--error,
+.ds-input[aria-invalid="true"],
+.ds-textarea[aria-invalid="true"],
+.ds-select[aria-invalid="true"] {
+    border-color: var(--error);
+}

@@ -1,0 +1,366 @@
+[
+  {
+    "kind": "project",
+    "url": "http://127.0.0.1:4173/projects/test-site/",
+    "name": "desktop-1920x1080",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "status": 200,
+    "captures": {
+      "segments": 6,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 4661,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "kind": "project",
+    "url": "http://127.0.0.1:4173/projects/test-site/",
+    "name": "desktop-1440x900",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": 200,
+    "captures": {
+      "segments": 7,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 4569,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "kind": "project",
+    "url": "http://127.0.0.1:4173/projects/test-site/",
+    "name": "tablet-768x1024",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "status": 200,
+    "captures": {
+      "segments": 7,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 5048,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "kind": "project",
+    "url": "http://127.0.0.1:4173/projects/test-site/",
+    "name": "mobile-390x844",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "captures": {
+      "segments": 12,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 7479,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "kind": "reference",
+    "url": "https://hr.tutu.ru/",
+    "name": "desktop-1920x1080",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "status": 200,
+    "captures": {
+      "segments": 7,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 5390,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()",
+        "r",
+        "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://fonts.googleapis.com/css?family=&display=swap",
+          "error": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/ccm/collect?rcb=11&frm=0&apvc=1&ae=g&auid=765861544.1792143859&dt=%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B9%20%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D1%8B&en=page_view&dl=https%3A%2F%2Fhr.tutu.ru%2F&scrsrc=www.googletagmanager.com&rnd=304958691.1792143859&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He6ae1v6884462za200zd6884462xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120385422~120469145~120469153~121246026~121246034&tft=1792143859277&tfd=1463&fmt=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=2vTZqSJazkdqLxGCn-x17",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=2vTZqSJazkdqLxGCn-x17",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mdd.yandex.net/",
+          "error": "net::ERR_CERT_AUTHORITY_INVALID"
+        },
+        {
+          "url": "https://hdrc.yandex.net/",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": [
+        {
+          "url": "https://api.mindbox.ru/v1.1/customer/track-visit?version=1.0.811&transport=XmlHttpRequest",
+          "status": 401
+        }
+      ]
+    }
+  },
+  {
+    "kind": "reference",
+    "url": "https://hr.tutu.ru/",
+    "name": "desktop-1440x900",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": 200,
+    "captures": {
+      "segments": 8,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 5324,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()",
+        "r",
+        "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://fonts.googleapis.com/css?family=&display=swap",
+          "error": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://www.google.com/ccm/collect?rcb=16&frm=0&apvc=1&ae=g&auid=614997502.1792143880&dt=%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B9%20%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D1%8B&en=page_view&dl=https%3A%2F%2Fhr.tutu.ru%2F&scrsrc=www.googletagmanager.com&rnd=1932140805.1792143880&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He6ae1v6884462za200zd6884462xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938466~115938469~118897920~118897930~120385423~120469145~120469153~121246026~121246034&tft=1792143879946&tfd=1874&fmt=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=ZjR__ithGgRSz-RlgQYNT",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=ZjR__ithGgRSz-RlgQYNT",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mdd.yandex.net/",
+          "error": "net::ERR_CERT_AUTHORITY_INVALID"
+        },
+        {
+          "url": "https://hdrc.yandex.net/",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": [
+        {
+          "url": "https://api.mindbox.ru/v1.1/customer/track-visit?version=1.0.811&transport=XmlHttpRequest",
+          "status": 401
+        }
+      ]
+    }
+  },
+  {
+    "kind": "reference",
+    "url": "https://hr.tutu.ru/",
+    "name": "tablet-768x1024",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "status": 200,
+    "captures": {
+      "segments": 7,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 5361,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()",
+        "r",
+        "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://fonts.googleapis.com/css?family=&display=swap",
+          "error": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/ccm/collect?rcb=4&frm=0&apvc=1&ae=g&auid=493787320.1792143902&dt=%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B9%20%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D1%8B&en=page_view&dl=https%3A%2F%2Fhr.tutu.ru%2F&scrsrc=www.googletagmanager.com&rnd=904442641.1792143902&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He6ae1h1v6884462za200zd6884462xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938468~118897920~118897930~120385422~120469145~120469153~121246026~121246034&tft=1792143901943&tfd=1635&fmt=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=ReKEncXBgbRmnQrHBG-NE",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=ReKEncXBgbRmnQrHBG-NE",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mdd.yandex.net/",
+          "error": "net::ERR_CERT_AUTHORITY_INVALID"
+        },
+        {
+          "url": "https://hdrc.yandex.net/",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": [
+        {
+          "url": "https://api.mindbox.ru/v1.1/customer/track-visit?version=1.0.811&transport=XmlHttpRequest",
+          "status": 401
+        }
+      ]
+    }
+  },
+  {
+    "kind": "reference",
+    "url": "https://hr.tutu.ru/",
+    "name": "mobile-390x844",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "captures": {
+      "segments": 13,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "height": 8012,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "broken": [],
+      "horizontalOverflow": false,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 ()",
+        "r",
+        "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+      ],
+      "failedRequests": [
+        {
+          "url": "https://fonts.googleapis.com/css?family=&display=swap",
+          "error": "net::ERR_BLOCKED_BY_ORB"
+        },
+        {
+          "url": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://www.google.com/ccm/collect?rcb=17&frm=0&apvc=1&ae=g&auid=1612354018.1792143922&dt=%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B9%20%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D1%8B&en=page_view&dl=https%3A%2F%2Fhr.tutu.ru%2F&scrsrc=www.googletagmanager.com&rnd=1388309993.1792143922&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He6af0h2v6884462za200zd6884462xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~117776796~118897920~118897930~120385423~120469145~120469153~121246026~121246034&tft=1792143921843&tfd=1468&fmt=8",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=yWwIGS6c-nO2Vyi__1nNi",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://privacy-cs.mail.ru/fp/?id=yWwIGS6c-nO2Vyi__1nNi",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://mdd.yandex.net/",
+          "error": "net::ERR_CERT_AUTHORITY_INVALID"
+        },
+        {
+          "url": "https://hdrc.yandex.net/",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": [
+        {
+          "url": "https://api.mindbox.ru/v1.1/customer/track-visit?version=1.0.811&transport=XmlHttpRequest",
+          "status": 401
+        }
+      ]
+    }
+  }
+]

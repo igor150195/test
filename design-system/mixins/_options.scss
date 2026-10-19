@@ -1,0 +1,19 @@
+@mixin options (
+	$size: null,
+	$title: null,
+	$body: null,
+) {
+	@if $title {
+		@if $size {
+			font-size: var(--#{$size}_options_title_fz);
+			line-height: var(--#{$size}_options_title_lh);
+		}
+	}
+
+	@if $body {
+		@if $size {
+			font-size: var(--#{$size}_options_body_fz);
+			line-height: var(--#{$size}_options_body_lh);
+		}
+	}
+}

@@ -1,0 +1,14 @@
+version: 1
+entries:
+  - id: KBP-0001
+    title: Full-site screenshot matrix with overlapping segments
+    category: quality-workflow
+    tags: [visual-qa, responsive, full-page, regression]
+    status: candidate
+    path: patterns/kbp-0001-full-site-capture-matrix.md
+  - id: KBP-0002
+    title: Product-card composition using neutral commerce contracts
+    category: component-composition
+    tags: [commerce, product-card, price, rating, badge, responsive]
+    status: verified
+    path: patterns/kbp-0002-product-card-composition.md

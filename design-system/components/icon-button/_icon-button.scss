@@ -1,0 +1,77 @@
+// Neutral icon-only button. It composes with .ds-icon but does not depend on
+// legacy icon/button mixins or `gr-*` visual variants.
+
+.ds-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--md_icon_btn_w);
+    height: var(--md_icon_btn_h);
+    min-width: var(--md_icon_btn_w);
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--md_icon_btn_r);
+    color: var(--on_bg_main);
+    background-color: var(--primary_1);
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:focus-visible {
+        box-shadow: 0 0 0 3px var(--focus_ring_color, var(--primary_4));
+    }
+
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+        color: var(--on_bg_main);
+        background-color: var(--primary_2);
+    }
+
+    &:active:not(:disabled):not([aria-disabled="true"]) {
+        color: var(--on_bg_main_8);
+        background-color: var(--primary_3);
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        color: var(--on_disable);
+        background-color: var(--disable);
+        border-color: transparent;
+        cursor: not-allowed;
+        opacity: 1;
+    }
+
+    &--sm {
+        width: var(--sm_icon_btn_w);
+        height: var(--sm_icon_btn_h);
+        min-width: var(--sm_icon_btn_w);
+        border-radius: var(--sm_icon_btn_r);
+
+        > .ds-icon {
+            width: var(--sm_icon_w);
+            height: var(--sm_icon_h);
+        }
+    }
+
+    &--md {
+        width: var(--md_icon_btn_w);
+        height: var(--md_icon_btn_h);
+        min-width: var(--md_icon_btn_w);
+        border-radius: var(--md_icon_btn_r);
+
+        > .ds-icon {
+            width: var(--md_icon_w);
+            height: var(--md_icon_h);
+        }
+    }
+
+    &--lg {
+        width: var(--lg_icon_btn_w);
+        height: var(--lg_icon_btn_h);
+        min-width: var(--lg_icon_btn_w);
+        border-radius: var(--lg_icon_btn_r);
+
+        > .ds-icon {
+            width: var(--lg_icon_w);
+            height: var(--lg_icon_h);
+        }
+    }
+}

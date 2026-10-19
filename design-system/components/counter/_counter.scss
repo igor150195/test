@@ -1,0 +1,42 @@
+// Neutral display-only counter. It does not provide product quantity controls
+// and is independent from the legacy amount/counter mixins.
+
+.ds-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--md_counter_mw);
+    height: var(--md_counter_h);
+    padding: var(--md_counter_p);
+    border: var(--counter_bd);
+    border-radius: var(--md_counter_r);
+    color: var(--counter_color);
+    background-color: var(--counter_bg);
+    box-shadow: var(--counter_shadow);
+    font: var(--md_counter_text);
+    font-variant-numeric: tabular-nums;
+}
+
+.ds-counter--sm {
+    min-width: var(--sm_counter_mw);
+    height: var(--sm_counter_h);
+    padding: var(--sm_counter_p);
+    border-radius: var(--sm_counter_r);
+    font: var(--sm_counter_text);
+}
+
+.ds-counter--md {
+    min-width: var(--md_counter_mw);
+    height: var(--md_counter_h);
+    padding: var(--md_counter_p);
+    border-radius: var(--md_counter_r);
+    font: var(--md_counter_text);
+}
+
+.ds-counter--lg {
+    min-width: var(--lg_counter_mw);
+    height: var(--lg_counter_h);
+    padding: var(--lg_counter_p);
+    border-radius: var(--lg_counter_r);
+    font: var(--lg_counter_text);
+}

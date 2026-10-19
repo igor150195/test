@@ -1,0 +1,6 @@
+// Block entrypoint. The directory-based Sass build emits this as
+// dist/css/blocks.css. Load core.css and components.css before this stylesheet.
+
+@import "../blocks/product-card/product-card";
+@import "../blocks/header/header";
+@import "../blocks/footer/footer";

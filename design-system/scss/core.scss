@@ -1,0 +1,17 @@
+// Core syntax entrypoint. It includes the runtime token layer and source files
+// currently documented as Core candidates.
+
+@import "tokens";
+
+@import "../core/base";
+@import "../core/a11y";
+@import "../core/typography";
+
+@import "../mixins/counter";
+@import "../mixins/flags";
+@import "../mixins/heading_type";
+@import "../mixins/icon";
+@import "../mixins/options";
+@import "../mixins/popup_title";
+@import "../mixins/text_type";
+@import "../mixins/toggle_title";

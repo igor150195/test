@@ -1,0 +1,66 @@
+// Neutral site header. It composes public .ds-input and .ds-icon-button APIs
+// without platform or legacy header selectors.
+
+.ds-header {
+    border-bottom: 1px solid var(--bd_bg_main_2);
+    background-color: var(--bg_main);
+}
+
+.ds-header__inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--section_pd_mobile);
+    width: min(100%, var(--site_width));
+    margin: 0 auto;
+    padding: var(--section_pd_mobile) var(--section_pd_desktop);
+}
+
+.ds-header__logo {
+    color: var(--on_bg_main);
+    font-family: var(--font_accent);
+    font-size: var(--heading_fz_9);
+    font-weight: var(--fw_accent_b);
+    line-height: 1;
+    text-decoration: none;
+}
+
+.ds-header__search {
+    min-width: 0;
+}
+
+.ds-header__search .ds-input {
+    min-width: 0;
+}
+
+.ds-header__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+@media all and (max-width: 1580px) {
+    .ds-header__inner {
+        padding-inline: var(--section_pd_laptop);
+    }
+}
+
+@media all and (max-width: 1260px) {
+    .ds-header__inner {
+        padding-inline: var(--section_pd_tablet);
+    }
+}
+
+@media all and (max-width: 767px) {
+    .ds-header__inner {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding-inline: var(--section_pd_mobile);
+    }
+
+    .ds-header__search {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+}

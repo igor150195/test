@@ -1,0 +1,58 @@
+[
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "consoleErrors": [],
+    "failedRequests": [],
+    "brokenImages": [],
+    "horizontalOverflow": {
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "overflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "consoleErrors": [],
+    "failedRequests": [],
+    "brokenImages": [],
+    "horizontalOverflow": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "consoleErrors": [],
+    "failedRequests": [],
+    "brokenImages": [],
+    "horizontalOverflow": {
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "consoleErrors": [],
+    "failedRequests": [],
+    "brokenImages": [],
+    "horizontalOverflow": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflow": false
+    }
+  }
+]

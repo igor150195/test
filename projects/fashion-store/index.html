@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LUMIÈRE — интернет-магазин женской одежды.">
+    <title>LUMIÈRE — женская одежда</title>
+    <link rel="stylesheet" href="../../dist/css/tokens.css">
+    <link rel="stylesheet" href="../../dist/css/core.css">
+    <link rel="stylesheet" href="../../dist/css/components.css">
+    <link rel="stylesheet" href="../../dist/css/blocks.css">
+    <link rel="stylesheet" href="./css/custom.css">
+</head>
+<body class="fashion-store">
+    <div class="fashion-utility">
+        <div class="fashion-container fashion-utility__inner">
+            <a href="#brands">Бренды</a>
+            <div class="fashion-utility__actions">
+                <a class="ds-icon-button ds-icon-button--sm" href="#search" aria-label="Поиск"><span class="ds-icon" style="--ds-icon: var(--icon_search_sm)" aria-hidden="true"></span></a>
+                <a class="ds-icon-button ds-icon-button--sm" href="#account" aria-label="Профиль"><span class="ds-icon" style="--ds-icon: var(--icon_user_sm)" aria-hidden="true"></span></a>
+                <a class="fashion-cart-link" href="#cart"><span class="ds-icon" style="--ds-icon: var(--icon_bag_cart_sm)" aria-hidden="true"></span>Корзина <span class="visually-hidden">пуста</span></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="ds-header fashion-header">
+        <div class="ds-header__inner fashion-header__inner">
+            <a class="ds-header__logo fashion-logo" href="#top" aria-label="LUMIÈRE: на главную"><span class="fashion-logo__mark" aria-hidden="true">L</span><span><strong>LUMIÈRE</strong><small>женская одежда</small></span></a>
+            <nav class="fashion-nav" aria-label="Основная навигация"><a href="#top">Главная</a><a href="#story">О нас</a><a href="#new">Акции</a><a href="#footer">Оплата</a><a href="#footer">Доставка</a><a href="#footer">Контакты</a></nav>
+            <div class="fashion-contact"><span>Москва</span><a href="tel:+70000000000">+7 (000) 000-00-00</a></div>
+            <form class="ds-header__search fashion-search" id="search" role="search"><label class="visually-hidden" for="fashion-search">Поиск по каталогу</label><input class="ds-input" id="fashion-search" type="search" placeholder="Поиск"><button class="ds-icon-button ds-icon-button--sm" type="submit" aria-label="Найти"><span class="ds-icon" style="--ds-icon: var(--icon_search_sm)" aria-hidden="true"></span></button></form>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="fashion-hero fashion-container" aria-labelledby="hero-title">
+            <img src="https://clothing-shop.oml.ru/thumb/2/uRT7gOmbBIZtK2YHrMVgLA/1920r800/d/tpl25_slider_picc7.webp" alt="Модные новинки: две модели в белой одежде">
+            <div class="fashion-hero__content"><p>Скидка от коллекции RAYE</p><h1 id="hero-title">Модные новинки</h1><a class="ds-button ds-button--primary" href="#new">Заказать сейчас</a></div>
+        </section>
+
+        <section class="fashion-brands fashion-container" id="brands" aria-label="Бренды"><span>Maison Lune</span><span>RAYE</span><span>Boutique</span><span>La Vallée</span><span>Couture</span><span>Féminine</span></section>
+
+        <nav class="fashion-categories fashion-container" aria-label="Категории"><a href="#catalog">Одежда</a><a href="#catalog">Нижнее бельё</a><a href="#catalog">Аксессуары</a><a href="#catalog">Верхняя одежда</a><a href="#catalog">Обувь</a></nav>
+
+        <section class="fashion-category-grid fashion-container" id="catalog" aria-label="Каталог категорий">
+            <a class="fashion-category fashion-category--tall" href="#new"><img src="https://clothing-shop.oml.ru/thumb/2/4_VXn7Ckkl35iycw9Ep20A/900r900/d/tpl25_categori10-min.jpg" alt="Одежда"><span>Одежда <small>61 модель</small></span></a>
+            <a class="fashion-category" href="#new"><img src="https://clothing-shop.oml.ru/thumb/2/6D90mu3OOvtfgbfAQG8WSQ/900r900/d/tpl25_categori7-min.jpg" alt="Нижнее бельё"><span>Нижнее бельё <small>18 моделей</small></span></a>
+            <a class="fashion-category" href="#new"><img src="https://clothing-shop.oml.ru/thumb/2/U-M372ZzUhQELc5v7566rw/900r900/d/tpl25_categori6.jpg" alt="Аксессуары"><span>Аксессуары <small>9 моделей</small></span></a>
+            <a class="fashion-category fashion-category--wide" href="#new"><img src="https://clothing-shop.oml.ru/thumb/2/9ZUCavVQOANnKxR0bWG-Vg/900r900/d/tpl25_categori5.jpg" alt="Верхняя одежда"><span>Верхняя одежда <small>36 моделей</small></span></a>
+        </section>
+
+        <section class="fashion-products fashion-container" id="new" aria-labelledby="new-title">
+            <div class="fashion-section-heading"><p>Новая коллекция</p><h2 id="new-title">Выбор сезона</h2><a href="#catalog">Смотреть все <span aria-hidden="true">→</span></a></div>
+            <div class="ds-product-card__grid fashion-products__grid">
+                <article class="ds-product-card fashion-product"><div class="ds-product-card__media"><img class="ds-product-card__image" src="https://clothing-shop.oml.ru/thumb/2/CHA1TK98kJtfKYBurGqLyw/600r600/d/tpl25_good16.png" alt="Комбинезон с поясом"><div class="ds-product-card__flags"><span class="ds-flag ds-flag--new">Новинка</span></div><button class="ds-icon-button ds-icon-button--sm ds-product-card__favorite" type="button" aria-label="Добавить комбинезон в избранное"><span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span></button></div><div class="ds-product-card__body"><h3 class="ds-product-card__title">Комбинезон с поясом</h3><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг 4,8 из 5"><span class="ds-rating__stars"><span class="ds-rating__fill" style="width:96%"></span></span></span><div class="ds-price"><data class="ds-price__current" value="12490">12 490 ₽</data></div><button class="ds-button ds-button--primary" type="button">В корзину</button></div></article>
+                <article class="ds-product-card fashion-product"><div class="ds-product-card__media"><img class="ds-product-card__image" src="https://clothing-shop.oml.ru/thumb/2/uRagZBPADtjtt2CvfYIsDg/600r600/d/tpl25_good17.png" alt="Блузка SNOW 351"><div class="ds-product-card__flags"><span class="ds-flag ds-flag--sale">−20%</span></div></div><div class="ds-product-card__body"><h3 class="ds-product-card__title">Блузка SNOW ’351</h3><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг 4,7 из 5"><span class="ds-rating__stars"><span class="ds-rating__fill" style="width:94%"></span></span></span><div class="ds-price"><data class="ds-price__current" value="6390">6 390 ₽</data><del class="ds-price__old">7 990 ₽</del></div><button class="ds-button ds-button--primary" type="button">В корзину</button></div></article>
+                <article class="ds-product-card fashion-product"><div class="ds-product-card__media"><img class="ds-product-card__image" src="https://clothing-shop.oml.ru/thumb/2/0BHy0rS9VDLrnoHOagTnKA/600r600/d/tpl25_good19.png" alt="Юбка C-96336"><button class="ds-icon-button ds-icon-button--sm ds-product-card__favorite" type="button" aria-label="Добавить юбку в избранное"><span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span></button></div><div class="ds-product-card__body"><h3 class="ds-product-card__title">Юбка C-96336</h3><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг 4,9 из 5"><span class="ds-rating__stars"><span class="ds-rating__fill" style="width:98%"></span></span></span><div class="ds-price"><data class="ds-price__current" value="7290">7 290 ₽</data></div><button class="ds-button ds-button--primary" type="button">В корзину</button></div></article>
+                <article class="ds-product-card fashion-product"><div class="ds-product-card__media"><img class="ds-product-card__image" src="https://clothing-shop.oml.ru/thumb/2/fig9jTUMaeocNlc1jpWpFw/600r600/d/tpl25_good2.png" alt="Платье из вискозы"><div class="ds-product-card__flags"><span class="ds-flag ds-flag--special">Хит</span></div></div><div class="ds-product-card__body"><h3 class="ds-product-card__title">Платье из вискозы</h3><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг 4,6 из 5"><span class="ds-rating__stars"><span class="ds-rating__fill" style="width:92%"></span></span></span><div class="ds-price"><data class="ds-price__current" value="10990">10 990 ₽</data></div><button class="ds-button ds-button--primary" type="button">В корзину</button></div></article>
+            </div>
+        </section>
+
+        <section class="fashion-story" id="story"><div class="fashion-container fashion-story__inner"><div><p>Для женщины, которой идёт быть собой</p><h2>Одежда как продолжение вашего характера</h2><a class="ds-button ds-button--white" href="#catalog">О коллекции</a></div><img src="https://clothing-shop.oml.ru/thumb/2/us0ATT0iTXomXRhetesnsw/600r/d/tpl25_slider_picc64.jpg" alt="Модель в платье из новой коллекции"></div></section>
+    </main>
+
+    <footer class="ds-footer fashion-footer" id="footer"><div class="ds-footer__inner"><nav class="ds-footer__columns" aria-label="Навигация в подвале"><section class="ds-footer__column"><h2 class="ds-footer__title">Каталог</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="#catalog">Одежда</a></li><li><a class="ds-footer__link" href="#catalog">Верхняя одежда</a></li><li><a class="ds-footer__link" href="#catalog">Аксессуары</a></li></ul></section><section class="ds-footer__column"><h2 class="ds-footer__title">Покупателям</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="#footer">Доставка и оплата</a></li><li><a class="ds-footer__link" href="#footer">Обмен и возврат</a></li><li><a class="ds-footer__link" href="#footer">Размерная сетка</a></li></ul></section><section class="ds-footer__column"><h2 class="ds-footer__title">Контакты</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="tel:+70000000000">+7 (000) 000-00-00</a></li><li><a class="ds-footer__link" href="mailto:hello@lumiere.example">hello@lumiere.example</a></li><li>Москва, ул. Ленинская, 0</li></ul></section></nav><div class="ds-footer__bottom"><small class="ds-footer__copyright">© 2026 LUMIÈRE. Все права защищены.</small><small class="fashion-footer__legal">Информация на странице носит демонстрационный характер.</small></div></div></footer>
+</body>
+</html>

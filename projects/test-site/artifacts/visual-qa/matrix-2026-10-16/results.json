@@ -1,0 +1,132 @@
+[
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "httpStatus": 200,
+    "captures": {
+      "firstScreen": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\desktop-1920x1080\\first-screen.png",
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\desktop-1920x1080\\full-page.png",
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\desktop-1920x1080",
+      "segments": 8,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "pageHeight": 5732,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+        "readyState": 4,
+        "paused": false
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "httpStatus": 200,
+    "captures": {
+      "firstScreen": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\desktop-1440x900\\first-screen.png",
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\desktop-1440x900\\full-page.png",
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\desktop-1440x900",
+      "segments": 8,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "pageHeight": 5386,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+        "readyState": 4,
+        "paused": false
+      },
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "httpStatus": 200,
+    "captures": {
+      "firstScreen": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\tablet-768x1024\\first-screen.png",
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\tablet-768x1024\\full-page.png",
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\tablet-768x1024",
+      "segments": 9,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "pageHeight": 6310,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "",
+        "readyState": 0,
+        "paused": true
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    }
+  },
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "httpStatus": 200,
+    "captures": {
+      "firstScreen": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\mobile-390x844\\first-screen.png",
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\mobile-390x844\\full-page.png",
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\matrix-2026-10-16\\mobile-390x844",
+      "segments": 11,
+      "overlapPercent": 25
+    },
+    "technical": {
+      "pageHeight": 6917,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "",
+        "readyState": 0,
+        "paused": true
+      },
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    }
+  }
+]

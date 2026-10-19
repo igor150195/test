@@ -1,0 +1,21 @@
+{
+  "name": "codex-design-system",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:sass",
+    "build:sass": "sass --style=expanded --source-map design-system/scss:dist/css",
+    "build:sass:core": "sass --style=expanded --source-map design-system/scss/core.scss dist/css/core.css",
+    "build:sass:legacy": "sass --style=expanded --source-map design-system/scss/legacy-platform.scss dist/css/legacy-platform.css",
+    "check:sass": "sass --style=expanded --no-source-map design-system/scss/check.scss dist/check/check.css",
+    "dev": "sass --watch --style=expanded --source-map design-system/scss:dist/css",
+    "project:styles": "node scripts/project-styles.mjs",
+    "test:project-styles": "node scripts/tests/project-styles.test.mjs",
+    "visual:qa": "playwright test --config=playwright.visual-qa.config.mjs",
+    "visual:qa:baseline": "playwright test --config=playwright.visual-qa.config.mjs --update-snapshots"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1",
+    "playwright": "1.64.1",
+    "sass": "1.105.1"
+  }
+}

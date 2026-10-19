@@ -1,0 +1,32 @@
+{
+  "project": "fashion-store",
+  "target": {
+    "name": "mobile-390x844",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "fullPage": false
+  },
+  "checkedAt": "2026-10-15T11:47:31.208Z",
+  "screenshotPath": "G:\\codex\\test\\projects\\fashion-store\\artifacts\\visual-qa\\latest\\mobile-390x844.png",
+  "technical": {
+    "title": "LUMIÈRE — женская одежда",
+    "documentWidth": 390,
+    "viewportWidth": 390,
+    "horizontalOverflow": false,
+    "brokenImages": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "badResponses": []
+  },
+  "visualReference": {
+    "status": "capture-only",
+    "url": "https://clothing-shop.oml.ru/",
+    "note": "Reference capture is saved for human same-region review; the initial pipeline does not claim automated pixel fidelity."
+  },
+  "regression": {
+    "status": "pass",
+    "baseline": "baseline/mobile-390x844.png"
+  }
+}

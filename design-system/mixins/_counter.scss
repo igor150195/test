@@ -1,0 +1,24 @@
+@mixin counter (
+	$size: null,
+	$defaults: null,
+) {
+	@if $defaults {
+		display: inline-flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	@if $size {
+    	font: var(--#{$size}_counter_text);
+    	padding: var(--#{$size}_counter_p);
+    	height: var(--#{$size}_counter_h);
+    	min-width: var(--#{$size}_counter_mw);
+    	border-radius: var(--#{$size}_counter_r);
+    	
+    	color: var(--counter_color);
+    	border: var(--counter_bd);
+    	background: var(--counter_bg);
+    	box-shadow: var(--counter_shadow);
+    }
+}

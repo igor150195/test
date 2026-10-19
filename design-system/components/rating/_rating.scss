@@ -1,0 +1,82 @@
+// Neutral read-only rating. It uses the existing star mask tokens directly;
+// the legacy rating mixin and its .tpl-rating contract are not involved.
+
+.ds-rating {
+    --ds-rating-icon: var(--md_rating_icon);
+    --ds-rating-width: var(--md_rating_w);
+    --ds-rating-height: var(--md_rating_h);
+    --ds-rating-star-width: var(--md_rating_icon_w);
+    --ds-rating-star-height: var(--md_rating_icon_h);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    color: var(--on_bg_main_7);
+    font-family: var(--font_content);
+    font-size: var(--fz_sm);
+    line-height: 1.2;
+}
+
+.ds-rating__stars {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+    width: var(--ds-rating-width);
+    height: var(--ds-rating-height);
+    overflow: hidden;
+    background-color: var(--rating_disabled);
+    -webkit-mask-image: var(--ds-rating-icon);
+    mask-image: var(--ds-rating-icon);
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+    -webkit-mask-size: var(--ds-rating-star-width) var(--ds-rating-star-height);
+    mask-size: var(--ds-rating-star-width) var(--ds-rating-star-height);
+}
+
+.ds-rating__fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ds-rating__fill::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--ds-rating-width);
+    height: var(--ds-rating-height);
+    background-color: var(--rating_active);
+    content: "";
+    -webkit-mask-image: var(--ds-rating-icon);
+    mask-image: var(--ds-rating-icon);
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+    -webkit-mask-size: var(--ds-rating-star-width) var(--ds-rating-star-height);
+    mask-size: var(--ds-rating-star-width) var(--ds-rating-star-height);
+}
+
+.ds-rating--sm {
+    --ds-rating-icon: var(--sm_rating_icon);
+    --ds-rating-width: var(--sm_rating_w);
+    --ds-rating-height: var(--sm_rating_h);
+    --ds-rating-star-width: var(--sm_rating_icon_w);
+    --ds-rating-star-height: var(--sm_rating_icon_h);
+}
+
+.ds-rating--md {
+    --ds-rating-icon: var(--md_rating_icon);
+    --ds-rating-width: var(--md_rating_w);
+    --ds-rating-height: var(--md_rating_h);
+    --ds-rating-star-width: var(--md_rating_icon_w);
+    --ds-rating-star-height: var(--md_rating_icon_h);
+}
+
+.ds-rating__value {
+    font-variant-numeric: tabular-nums;
+}

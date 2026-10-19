@@ -1,0 +1,11 @@
+// Legacy adapter for `gr-*`, `.js-selected`, `.tpl-rating` and the documented
+// legacy DOM structures. These source mixins are mixed with neutral behaviour,
+// so this module groups their availability without rewriting their public APIs.
+
+@import "../../mixins/amount";
+@import "../../mixins/button";
+@import "../../mixins/form_elements";
+@import "../../mixins/gifts";
+@import "../../mixins/icon_button";
+@import "../../mixins/rating";
+@import "../../mixins/shop";

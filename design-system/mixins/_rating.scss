@@ -1,0 +1,55 @@
+@mixin rating(
+	$size: null,
+) {
+	@if $size {
+		position: relative;
+		width: var(--#{$size}_rating_w);
+		height: var(--#{$size}_rating_h);
+
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			content: "";
+			background: var(--rating_disabled);
+			-webkit-mask-image: var(--#{$size}_rating_icon);
+			mask-image: var(--#{$size}_rating_icon);
+			-webkit-mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+			mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+
+			-webkit-mask-repeat: repeat-x;
+			mask-repeat: repeat-x;
+
+			-webkit-mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+			mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+		}
+		
+		.tpl-rating {
+			position: relative;
+			overflow: hidden;
+			height: var(--#{$size}_rating_h);
+
+			&:before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				content: "";
+				background: var(--rating_active);
+				-webkit-mask-image: var(--#{$size}_rating_icon);
+				mask-image: var(--#{$size}_rating_icon);
+				-webkit-mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+				mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+	
+				-webkit-mask-repeat: repeat-x;
+				mask-repeat: repeat-x;
+	
+				-webkit-mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+				mask-size: var(--#{$size}_rating_icon_w) var(--#{$size}_rating_icon_h);
+			}
+		}
+	}
+}

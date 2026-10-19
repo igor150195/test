@@ -1,0 +1,5 @@
+// Remodal adapter. `_popup.scss` depends on icon, icon_button and popup_title;
+// core.scss provides icon and popup_title, while legacy is imported first for
+// icon_button.
+
+@import "../../mixins/popup";

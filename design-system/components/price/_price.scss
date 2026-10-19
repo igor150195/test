@@ -1,0 +1,65 @@
+// Neutral price component. It deliberately does not target legacy .price-*
+// selectors or the Shop2 discount-description contract.
+
+.ds-price {
+    --ds-price-current-fz: var(--md_current_price_fz);
+    --ds-price-current-lh: var(--md_current_price_lh);
+    --ds-price-old-fz: var(--md_old_price_fz);
+    --ds-price-old-lh: var(--md_old_price_lh);
+
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25em 0.5em;
+    font-family: var(--font_content);
+}
+
+.ds-price__current {
+    color: var(--price_color);
+    font-size: var(--ds-price-current-fz);
+    font-weight: var(--fw_content_sb);
+    line-height: var(--ds-price-current-lh);
+}
+
+.ds-price__old {
+    color: var(--old_price_color);
+    font-size: var(--ds-price-old-fz);
+    line-height: var(--ds-price-old-lh);
+    text-decoration-line: line-through;
+    text-decoration-color: var(--old_price_line);
+}
+
+.ds-price__discount {
+    color: var(--price_sale_color);
+    font-size: var(--fz_sm);
+    font-weight: var(--fw_content_sb);
+    line-height: 1.1;
+}
+
+.ds-price--sm {
+    --ds-price-current-fz: var(--sm_current_price_fz);
+    --ds-price-current-lh: var(--sm_current_price_lh);
+    --ds-price-old-fz: var(--sm_old_price_fz);
+    --ds-price-old-lh: var(--sm_old_price_lh);
+}
+
+.ds-price--md {
+    --ds-price-current-fz: var(--md_current_price_fz);
+    --ds-price-current-lh: var(--md_current_price_lh);
+    --ds-price-old-fz: var(--md_old_price_fz);
+    --ds-price-old-lh: var(--md_old_price_lh);
+}
+
+.ds-price--lg {
+    --ds-price-current-fz: var(--lg_current_price_fz);
+    --ds-price-current-lh: var(--lg_current_price_lh);
+    --ds-price-old-fz: var(--lg_old_price_fz);
+    --ds-price-old-lh: var(--lg_old_price_lh);
+}
+
+.ds-price--xl {
+    --ds-price-current-fz: var(--xl_current_price_fz);
+    --ds-price-current-lh: var(--xl_current_price_lh);
+    --ds-price-old-fz: var(--xl_old_price_fz);
+    --ds-price-old-lh: var(--xl_old_price_lh);
+}

@@ -1,0 +1,84 @@
+// Neutral status badges and product flags. These classes use only documented
+// tokens and have no dependency on legacy flags mixins or platform markup.
+
+.ds-badge,
+.ds-flag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--md_flags_pd);
+    border-radius: var(--md_flags_r);
+    color: var(--on_primary);
+    background-color: var(--primary);
+    font-family: var(--font_content);
+    font-size: var(--md_flags_fz);
+    font-weight: var(--fw_content_sb);
+    line-height: var(--md_flags_lh);
+}
+
+.ds-badge--success {
+    color: var(--on_success);
+    background-color: var(--success);
+}
+
+.ds-badge--attention {
+    color: var(--on_attention);
+    background-color: var(--attention);
+}
+
+.ds-badge--error {
+    color: var(--on_error);
+    background-color: var(--error);
+}
+
+.ds-badge--sale {
+    color: var(--on_sale);
+    background-color: var(--sale);
+}
+
+.ds-flag--new {
+    color: var(--flags_new_color);
+    background-color: var(--flags_new_bg);
+}
+
+.ds-flag--sale {
+    color: var(--flags_action_color);
+    background-color: var(--flags_action_bg);
+}
+
+.ds-flag--special {
+    color: var(--flags_spec_color);
+    background-color: var(--flags_spec_bg);
+}
+
+.ds-badge--xs,
+.ds-flag--xs {
+    padding: var(--xs_flags_pd);
+    border-radius: var(--xs_flags_r);
+    font-size: var(--xs_flags_fz);
+    line-height: var(--xs_flags_lh);
+}
+
+.ds-badge--sm,
+.ds-flag--sm {
+    padding: var(--sm_flags_pd);
+    border-radius: var(--sm_flags_r);
+    font-size: var(--sm_flags_fz);
+    line-height: var(--sm_flags_lh);
+}
+
+.ds-badge--md,
+.ds-flag--md {
+    padding: var(--md_flags_pd);
+    border-radius: var(--md_flags_r);
+    font-size: var(--md_flags_fz);
+    line-height: var(--md_flags_lh);
+}
+
+.ds-badge--lg,
+.ds-flag--lg {
+    padding: var(--lg_flags_pd);
+    border-radius: var(--lg_flags_r);
+    font-size: var(--lg_flags_fz);
+    line-height: var(--lg_flags_lh);
+}

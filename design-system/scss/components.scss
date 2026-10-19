@@ -1,0 +1,12 @@
+// Component entrypoint. The directory-based Sass build emits this as
+// dist/css/components.css; load core.css before this stylesheet.
+
+@import "../components/button/button";
+@import "../components/icon/icon";
+@import "../components/icon-button/icon-button";
+@import "../components/form/input";
+@import "../components/form/checkbox-radio";
+@import "../components/rating/rating";
+@import "../components/price/price";
+@import "../components/counter/counter";
+@import "../components/badge/badge";

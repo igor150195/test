@@ -1,0 +1,5 @@
+// Shop2 adapter. The `price` mixin also has platform-neutral selectors, but
+// its `.shop2-product-discount-desc` contract prevents it from belonging to
+// Core without changing the existing mixin source.
+
+@import "../../mixins/price";

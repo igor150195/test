@@ -1,0 +1,19 @@
+@mixin text_type(
+	$type: null,
+){
+	@if $type {
+		font: var(--p_#{$type}_desktop);
+
+		@media all and (max-width: 1580px) {
+		    font: var(--p_#{$type}_laptop);
+		}
+		
+		@media all and (max-width: 1260px) {
+		    font: var(--p_#{$type}_tablet);
+		}
+		
+		@media all and (max-width: 767px) {
+		    font: var(--p_#{$type}_mobile);
+		}
+	}
+}

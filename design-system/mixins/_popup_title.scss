@@ -1,0 +1,12 @@
+@mixin popup_title(
+	$size: null,
+	$defaults: null,
+){
+	@if $defaults {
+		color: var(--popup_title_color);
+	}
+	
+	@if $size {
+		font: var(--#{$size}_popup_title);
+	}
+}

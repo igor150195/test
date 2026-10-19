@@ -1,0 +1,131 @@
+@mixin icon_button(
+	$size: null,
+	$type: null,
+	$defaults: null,
+) {
+	@if $defaults {
+		position: relative;
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		
+		font-size: 0;
+		padding: 0;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		background-clip: border-box;
+		transition: var(--transition);
+		
+		&:before {
+			position: absolute;
+			content: '';
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: -1;
+			opacity: 0;
+			visibility: hidden;
+			transition: var(--transition);
+			pointer-events: none;
+			border-radius: inherit;
+		}
+		
+		&:hover {
+			&:before {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	
+		&:active {
+			&:before {
+	            opacity: 1;
+				visibility: visible;
+			}
+		}
+	
+		&:active {
+			transition: all .05s linear;
+	
+			&:before {
+				transition: all .05s linear;
+			}
+		}
+		
+		&.js-selected {
+	    	&:before {
+	            opacity: 1;
+				visibility: visible;
+			}
+	    }
+	}
+	
+	@if $size {
+    	width: var(--#{$size}_icon_btn_w);
+		height: var(--#{$size}_icon_btn_h);
+		min-height: var(--#{$size}_icon_btn_h);
+		border-radius: var(--#{$size}_icon_btn_r);
+    }
+	
+	@if $type {
+		background: var(--gr_#{$type}_icon_btn_bg);
+	    border: var(--gr_#{$type}_icon_btn_bd);
+	    box-shadow: var(--gr_#{$type}_icon_btn_shadow);
+	    
+	    &:before {
+	    	background: var(--gr_#{$type}_icon_btn_overlay);
+	    }
+	    
+	    .gr-mask-icon {
+	    	background: var(--gr_#{$type}_icon_btn_icon_bg);
+	    }
+	    
+	    &:hover {
+		    background: var(--gr_#{$type}_icon_btn_bg_h);
+		    border: var(--gr_#{$type}_icon_btn_bd_h);
+		    box-shadow: var(--gr_#{$type}_icon_btn_shadow_h);
+		    
+		    .gr-mask-icon {
+		    	background: var(--gr_#{$type}_icon_btn_icon_bg_h);
+		    }
+		    
+		    &:before {
+		    	background: var(--gr_#{$type}_icon_btn_overlay_h);
+		    }
+	    }
+	    
+	    &:active {
+		    background: var(--gr_#{$type}_icon_btn_bg_a);
+		    border: var(--gr_#{$type}_icon_btn_bd_a);
+		    box-shadow: var(--gr_#{$type}_icon_btn_shadow_a);
+		    
+		    .gr-mask-icon {
+		    	background: var(--gr_#{$type}_icon_btn_icon_bg_a);
+		    }
+	    	
+	    	&:before {
+		    	background: var(--gr_#{$type}_icon_btn_overlay_a);
+		    }
+	    }
+	    
+	    &.js-selected {
+	    	background: var(--gr_#{$type}_icon_btn_bg_s);
+		    border: var(--gr_#{$type}_icon_btn_bd_s);
+		    box-shadow: var(--gr_#{$type}_icon_btn_shadow_s);
+		    
+		    .gr-mask-icon {
+		    	background: var(--gr_#{$type}_icon_btn_icon_bg_s);
+		    }
+	    	
+	    	&:before {
+		    	background: var(--gr_#{$type}_icon_btn_overlay_s);
+		    }
+	    }
+	}
+}

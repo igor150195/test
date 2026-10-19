@@ -1,0 +1,100 @@
+// Neutral product-card composition. It consumes public .ds-* component APIs
+// and does not depend on Shop2, gr-* classes, or legacy product-card mixins.
+
+.ds-product-card {
+    display: grid;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--bd_bg_main_2);
+    border-radius: var(--base_radius);
+    background-color: var(--bg_main);
+    box-shadow: var(--shadow_sm);
+    transition: var(--transition);
+
+    &:hover {
+        box-shadow: var(--shadow_md);
+    }
+}
+
+.ds-product-card__media {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background-color: var(--bg_main_surface);
+}
+
+.ds-product-card__image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.ds-product-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ds-product-card__flags {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    pointer-events: none;
+}
+
+.ds-product-card__favorite {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.ds-product-card__body {
+    display: grid;
+    align-content: start;
+    gap: var(--ds-content-gap);
+    padding: var(--ds-content-gap);
+}
+
+.ds-product-card__title {
+    margin: 0;
+    color: var(--product_name_color);
+    font-family: var(--font_content);
+    font-size: var(--md_product_name_fz);
+    font-weight: var(--fw_content_sb);
+    line-height: var(--md_product_name_lh);
+}
+
+.ds-product-card__title-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ds-product-card__title-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.ds-product-card__meta,
+.ds-product-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ds-product-card__add {
+    flex: 1 1 auto;
+}
+
+.ds-product-card__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+    gap: var(--ds-grid-gap);
+    width: min(100%, var(--ds-container-max));
+}

@@ -1,0 +1,9 @@
+// Standalone entrypoint for legacy and platform-dependent mixin contracts.
+// Core supplies icon and popup_title; the adapter order keeps popup's
+// icon_button dependency available before the Remodal adapter is imported.
+
+@import "core";
+
+@import "../adapters/legacy/index";
+@import "../adapters/shop2/index";
+@import "../adapters/remodal/index";

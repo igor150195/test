@@ -1,0 +1,106 @@
+// Neutral component API. It deliberately does not use the legacy `gr-*`
+// button tokens or the legacy button mixin.
+
+.ds-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--md_btn_mnh);
+    padding: var(--md_btn_pd);
+    gap: var(--md_btn_gap);
+    border: 1px solid transparent;
+    border-radius: var(--md_btn_r);
+    font-family: var(--font_content);
+    font-size: var(--md_btn_fz);
+    font-weight: var(--fw_content_sb);
+    line-height: var(--md_btn_lh);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:focus-visible {
+        box-shadow: 0 0 0 3px var(--focus_ring_color, var(--primary_4));
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+        color: var(--on_disable);
+        background-color: var(--disable);
+        border-color: transparent;
+        cursor: not-allowed;
+        opacity: 1;
+    }
+
+    &--primary {
+        color: var(--on_primary);
+        background-color: var(--primary);
+
+        &:hover:not(:disabled):not([aria-disabled="true"]) {
+            background-color: var(--primary_surface);
+        }
+
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            color: var(--on_primary_8);
+            background-color: var(--primary_surface);
+        }
+    }
+
+    &--secondary {
+        color: var(--on_bg_main);
+        background-color: var(--primary_2);
+
+        &:hover:not(:disabled):not([aria-disabled="true"]) {
+            background-color: var(--primary_3);
+        }
+
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            background-color: var(--primary_4);
+        }
+    }
+
+    &--ghost {
+        color: var(--on_bg_main);
+        background-color: transparent;
+
+        &:hover:not(:disabled):not([aria-disabled="true"]) {
+            background-color: var(--primary_2);
+        }
+
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            color: var(--on_bg_main_8);
+            background-color: var(--primary_3);
+        }
+    }
+
+    &--accent {
+        color: var(--on_accent);
+        background-color: var(--accent);
+
+        &:hover:not(:disabled):not([aria-disabled="true"]),
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            background-color: var(--accent_surface);
+        }
+
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            color: var(--on_accent_8);
+        }
+    }
+
+    &--white {
+        color: var(--on_bg_main);
+        background-color: var(--white);
+        border-color: var(--bd_bg_main_2);
+
+        &:hover:not(:disabled):not([aria-disabled="true"]),
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            color: var(--on_primary);
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        &:active:not(:disabled):not([aria-disabled="true"]) {
+            color: var(--on_primary_8);
+        }
+    }
+}

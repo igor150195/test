@@ -1,0 +1,26 @@
+@mixin icon(
+	$size: null,
+	$defaults: null,
+) {
+	@if $defaults {
+		font-size: 0;
+		flex: 0 0 auto;
+		display: inline-flex;
+	    align-items: center;
+	    justify-content: center;
+	    
+		-webkit-mask-position: 50% 50%;
+		mask-position: 50% 50%;
+		
+		-webkit-mask-repeat: no-repeat no-repeat;
+		mask-repeat: no-repeat no-repeat;
+		transition: var(--transition);
+	}
+	
+	@if $size {
+		width: var(--#{$size}_icon_w);
+		height: var(--#{$size}_icon_h);
+		-webkit-mask-size: var(--#{$size}_icon_w) var(--#{$size}_icon_h);
+		mask-size: var(--#{$size}_icon_h) var(--#{$size}_icon_h);
+	}
+}

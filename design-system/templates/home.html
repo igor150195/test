@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Эталонный шаблон главной страницы на основе нейтральной дизайн-системы.">
+    <title>Brand — эталонная главная</title>
+    <link rel="stylesheet" href="../../dist/css/tokens.css">
+    <link rel="stylesheet" href="../../dist/css/core.css">
+    <link rel="stylesheet" href="../../dist/css/components.css">
+    <link rel="stylesheet" href="../../dist/css/blocks.css">
+    <style>
+        .home-main {
+            width: min(100%, var(--site_width));
+            margin: 0 auto;
+            padding: var(--section_pd_desktop);
+        }
+
+        .home-hero {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: center;
+            gap: clamp(24px, 6vw, 80px);
+            padding: clamp(32px, 7vw, 96px);
+            border-radius: var(--box_radius);
+            color: var(--on_primary);
+            background: var(--primary);
+        }
+
+        .home-hero__eyebrow {
+            margin-bottom: 0.5rem;
+            color: var(--on_primary_7);
+            font: var(--p_sm_desktop);
+        }
+
+        .home-hero__title {
+            margin: 0;
+            font: var(--h_1_desktop);
+        }
+
+        .home-hero__text {
+            max-width: 48ch;
+            margin-top: 1rem;
+            color: var(--on_primary_8);
+            font: var(--p_lg_desktop);
+        }
+
+        .home-hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: var(--section_pd_mobile);
+        }
+
+        .home-hero__art {
+            width: 100%;
+            min-height: 280px;
+            border-radius: var(--medium_radius);
+            background:
+                radial-gradient(circle at 35% 30%, var(--accent) 0 14%, transparent 15%),
+                radial-gradient(circle at 70% 65%, var(--primary_7) 0 17%, transparent 18%),
+                var(--primary_1);
+        }
+
+        .home-section {
+            padding-top: var(--section_pd_desktop);
+        }
+
+        .home-section__heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: var(--section_pd_mobile);
+        }
+
+        .home-section__title {
+            margin: 0;
+            font: var(--h_2_desktop);
+        }
+
+        .home-section__link {
+            color: var(--link_color);
+        }
+
+        @media all and (max-width: 767px) {
+            .home-main {
+                padding: var(--section_pd_mobile);
+            }
+
+            .home-hero {
+                grid-template-columns: 1fr;
+                padding: var(--section_pd_mobile);
+            }
+
+            .home-hero__title {
+                font: var(--h_2_mobile);
+            }
+
+            .home-section {
+                padding-top: var(--section_pd_mobile);
+            }
+
+            .home-section__title {
+                font: var(--h_3_mobile);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="ds-header">
+        <div class="ds-header__inner">
+            <a class="ds-header__logo" href="/" aria-label="Brand: на главную">Brand</a>
+
+            <form class="ds-header__search" action="/search/" method="get" role="search">
+                <label class="visually-hidden" for="site-search">Поиск по каталогу</label>
+                <input class="ds-input" id="site-search" name="q" type="text" placeholder="Поиск товаров">
+            </form>
+
+            <nav class="ds-header__actions" aria-label="Пользовательские действия">
+                <a class="ds-icon-button ds-icon-button--sm" href="/account/" aria-label="Личный кабинет">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_user_sm)" aria-hidden="true"></span>
+                </a>
+                <a class="ds-icon-button ds-icon-button--sm" href="/cart/" aria-label="Корзина: 2 товара">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_cart_sm)" aria-hidden="true"></span>
+                    <span class="visually-hidden">2 товара</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="home-main">
+        <section class="home-hero" aria-labelledby="hero-title">
+            <div>
+                <p class="home-hero__eyebrow">Новая коллекция</p>
+                <h1 class="home-hero__title" id="hero-title">Продуманные вещи на каждый день</h1>
+                <p class="home-hero__text">Эталонная секция баннера: текст, понятное действие и декоративная графика без зависимости от платформы.</p>
+                <div class="home-hero__actions">
+                    <a class="ds-button ds-button--white" href="/catalog/">Перейти в каталог</a>
+                    <a class="ds-button ds-button--ghost" href="#featured">Смотреть новинки</a>
+                </div>
+            </div>
+            <div class="home-hero__art" role="img" aria-label="Декоративная композиция в фирменных цветах"></div>
+        </section>
+
+        <section class="home-section" id="featured" aria-labelledby="featured-title">
+            <div class="home-section__heading">
+                <h2 class="home-section__title" id="featured-title">Популярные товары</h2>
+                <a class="home-section__link" href="/catalog/">Весь каталог</a>
+            </div>
+
+            <div class="ds-product-card__grid">
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media">
+                        <a class="ds-product-card__image-link" href="/products/product-one/">
+                            <img class="ds-product-card__image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%237042F4'/%3E%3Ccircle cx='200' cy='200' r='110' fill='%23A1F2A0'/%3E%3C/svg%3E" alt="Рюкзак для города">
+                        </a>
+                        <div class="ds-product-card__flags" aria-label="Метки товара">
+                            <span class="ds-flag ds-flag--new">Новинка</span>
+                        </div>
+                        <button class="ds-icon-button ds-icon-button--sm ds-product-card__favorite" type="button" aria-label="Добавить Рюкзак для города в избранное">
+                            <span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="/products/product-one/">Рюкзак для города</a></h3>
+                        <div class="ds-product-card__meta">
+                            <span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг: 4,8 из 5">
+                                <span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 96%"></span></span>
+                            </span>
+                        </div>
+                        <div class="ds-price">
+                            <data class="ds-price__current" value="4990">4&nbsp;990&nbsp;₽</data>
+                        </div>
+                        <div class="ds-product-card__actions">
+                            <button class="ds-button ds-button--primary ds-product-card__add" type="button">В корзину</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media">
+                        <a class="ds-product-card__image-link" href="/products/product-two/">
+                            <img class="ds-product-card__image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23FFC530'/%3E%3Cpath d='M100 300 200 90l100 210z' fill='%237042F4'/%3E%3C/svg%3E" alt="Термокружка">
+                        </a>
+                        <div class="ds-product-card__flags" aria-label="Метки товара">
+                            <span class="ds-flag ds-flag--sale">−20%</span>
+                        </div>
+                    </div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="/products/product-two/">Термокружка</a></h3>
+                        <div class="ds-product-card__meta">
+                            <span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг: 4,5 из 5">
+                                <span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 90%"></span></span>
+                            </span>
+                        </div>
+                        <div class="ds-price">
+                            <data class="ds-price__current" value="1590">1&nbsp;590&nbsp;₽</data>
+                            <del class="ds-price__old"><data value="1990">1&nbsp;990&nbsp;₽</data></del>
+                            <span class="ds-price__discount">−20%</span>
+                        </div>
+                        <div class="ds-product-card__actions">
+                            <button class="ds-button ds-button--primary ds-product-card__add" type="button">В корзину</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media">
+                        <a class="ds-product-card__image-link" href="/products/product-three/">
+                            <img class="ds-product-card__image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23A1F2A0'/%3E%3Crect x='110' y='110' width='180' height='180' rx='40' fill='%237042F4'/%3E%3C/svg%3E" alt="Органайзер">
+                        </a>
+                    </div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="/products/product-three/">Органайзер</a></h3>
+                        <div class="ds-product-card__meta"><span class="ds-badge ds-badge--success">В наличии</span></div>
+                        <div class="ds-price"><data class="ds-price__current" value="890">890&nbsp;₽</data></div>
+                        <div class="ds-product-card__actions">
+                            <button class="ds-button ds-button--secondary ds-product-card__add" type="button">В корзину</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="ds-footer">
+        <div class="ds-footer__inner">
+            <nav class="ds-footer__columns" aria-label="Навигация в подвале">
+                <section class="ds-footer__column" aria-labelledby="footer-catalog">
+                    <h2 class="ds-footer__title" id="footer-catalog">Каталог</h2>
+                    <ul class="ds-footer__list">
+                        <li><a class="ds-footer__link" href="/catalog/">Все товары</a></li>
+                        <li><a class="ds-footer__link" href="/catalog/new/">Новинки</a></li>
+                    </ul>
+                </section>
+                <section class="ds-footer__column" aria-labelledby="footer-help">
+                    <h2 class="ds-footer__title" id="footer-help">Помощь</h2>
+                    <ul class="ds-footer__list">
+                        <li><a class="ds-footer__link" href="/delivery/">Доставка</a></li>
+                        <li><a class="ds-footer__link" href="/contacts/">Контакты</a></li>
+                    </ul>
+                </section>
+            </nav>
+            <div class="ds-footer__bottom">
+                <small class="ds-footer__copyright">© 2026 Brand</small>
+                <nav class="ds-footer__socials" aria-label="Социальные сети">
+                    <a class="ds-icon-button ds-icon-button--sm" href="https://example.com" aria-label="Поделиться">
+                        <span class="ds-icon" style="--ds-icon: var(--icon_share_sm)" aria-hidden="true"></span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+@mixin amount(
+	$size: null,
+) {
+    @if $size {
+        .product-amount__min {
+            font-size: var(--#{$size}_amount_min_fz);
+            line-height: var(--#{$size}_amount_min_lh);
+        }
+
+        .product-amount__total {
+            font-size: var(--#{$size}_amount_total_fz);
+			line-height: var(--#{$size}_amount_total_lh);
+        }
+
+        input {
+            width: var(--#{$size}_amount_input_w);
+			height: var(--#{$size}_amount_input_h);
+			font-size: var(--#{$size}_amount_input_fz);
+			line-height: var(--#{$size}_amount_input_lh);
+        }
+
+        button {
+            width: var(--#{$size}_amount_btn_w);
+			height: var(--#{$size}_amount_btn_h);
+			border-radius: var(--#{$size}_amount_btn_r);
+        }
+    }
+}

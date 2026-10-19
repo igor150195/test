@@ -1,0 +1,40 @@
+:root {
+    /* Neutral spacing primitives for new .ds-* components and blocks.
+       Existing legacy/component tokens remain unchanged. */
+    --ds-space-0: 0;
+    --ds-space-1: 4px;
+    --ds-space-2: 8px;
+    --ds-space-3: 12px;
+    --ds-space-4: var(--section_pd_mobile);
+    --ds-space-5: 20px;
+    --ds-space-6: var(--section_pd_tablet);
+    --ds-space-8: 32px;
+    --ds-space-10: var(--section_pd_desktop);
+    --ds-space-12: 48px;
+    --ds-space-16: 64px;
+    --ds-space-20: 80px;
+    --ds-space-24: 96px;
+
+    /* Layout aliases for new neutral page compositions. */
+    --ds-container-max: var(--site_width);
+    --ds-page-gutter: var(--ds-space-10);
+    --ds-grid-gap: var(--ds-space-6);
+    --ds-content-gap: var(--ds-space-4);
+    --ds-section-space: var(--section_pd_desktop);
+}
+
+@media all and (max-width: 1260px) {
+    :root {
+        --ds-page-gutter: var(--ds-space-6);
+        --ds-section-space: var(--section_pd_tablet);
+    }
+}
+
+@media all and (max-width: 767px) {
+    :root {
+        --ds-page-gutter: var(--ds-space-4);
+        --ds-grid-gap: var(--ds-space-4);
+        --ds-content-gap: var(--ds-space-3);
+        --ds-section-space: var(--section_pd_mobile);
+    }
+}

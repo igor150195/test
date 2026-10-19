@@ -1,0 +1,98 @@
+// Neutral site footer with column navigation and optional social links.
+
+.ds-footer {
+    color: var(--on_primary);
+    background-color: var(--on_bg_main_accent);
+}
+
+.ds-footer__inner {
+    display: grid;
+    gap: var(--section_pd_desktop);
+    width: min(100%, var(--site_width));
+    margin: 0 auto;
+    padding: var(--section_pd_desktop);
+}
+
+.ds-footer__columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: var(--section_pd_mobile);
+}
+
+.ds-footer__title {
+    margin: 0 0 0.5rem;
+    color: inherit;
+    font: var(--fw_content_sb) var(--fz_md)/1.2 var(--font_content);
+}
+
+.ds-footer__list {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.ds-footer__link {
+    color: var(--on_primary_8);
+    text-decoration: none;
+}
+
+.ds-footer__link:hover {
+    color: var(--on_primary);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.ds-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--section_pd_mobile);
+    padding-top: var(--section_pd_mobile);
+    border-top: 1px solid var(--on_primary_2);
+}
+
+.ds-footer__copyright {
+    color: var(--on_primary_8);
+    font-size: var(--fz_sm);
+    line-height: 1.2;
+}
+
+.ds-footer__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ds-footer__socials .ds-icon-button {
+    color: var(--on_primary);
+    background-color: var(--on_primary_1);
+}
+
+.ds-footer__socials .ds-icon-button:hover:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--on_primary);
+    background-color: var(--on_primary_2);
+}
+
+@media all and (max-width: 1580px) {
+    .ds-footer__inner {
+        gap: var(--section_pd_laptop);
+        padding: var(--section_pd_laptop);
+    }
+}
+
+@media all and (max-width: 1260px) {
+    .ds-footer__inner {
+        gap: var(--section_pd_tablet);
+        padding: var(--section_pd_tablet);
+    }
+}
+
+@media all and (max-width: 767px) {
+    .ds-footer__inner {
+        gap: var(--section_pd_mobile);
+        padding: var(--section_pd_mobile);
+    }
+}

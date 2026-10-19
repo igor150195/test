@@ -1,0 +1,7 @@
+@mixin toggle_title(
+	$size: null,
+){
+	@if $size {
+		font: var(--#{$size}_toggle_title);
+	}
+}

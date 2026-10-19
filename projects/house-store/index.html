@@ -1,0 +1,235 @@
+<!doctype html>
+<html class="house-store" lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="House — минималистичный магазин одежды.">
+    <title>House — everyday uniform</title>
+    <link rel="stylesheet" href="../../dist/css/tokens.css">
+    <link rel="stylesheet" href="../../dist/css/core.css">
+    <link rel="stylesheet" href="../../dist/css/components.css">
+    <link rel="stylesheet" href="../../dist/css/blocks.css">
+    <link rel="stylesheet" href="./css/custom.css">
+</head>
+<body class="house-store__body">
+    <header class="ds-header house-header">
+        <div class="ds-header__inner house-header__inner">
+            <a class="ds-header__logo house-header__logo" href="#top" aria-label="House: на главную">HOUSE</a>
+            <form class="ds-header__search house-header__search" action="/search/" method="get" role="search">
+                <label class="visually-hidden" for="house-search">Поиск по коллекции</label>
+                <input class="ds-input house-header__input" id="house-search" name="q" type="text" placeholder="Search">
+            </form>
+            <nav class="ds-header__actions house-header__actions" aria-label="Пользовательские действия">
+                <a class="ds-icon-button ds-icon-button--sm house-header__icon" href="#catalog" aria-label="Избранное">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span>
+                </a>
+                <a class="ds-icon-button ds-icon-button--sm house-header__icon" href="#catalog" aria-label="Корзина: 2 товара">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_cart_sm)" aria-hidden="true"></span>
+                    <span class="visually-hidden">2 товара</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="house-hero" aria-labelledby="house-hero-title">
+            <div class="house-hero__texture" aria-hidden="true"></div>
+            <div class="house-hero__content">
+                <p class="house-hero__kicker">HOUSE / 01—26</p>
+                <h1 class="house-hero__title" id="house-hero-title">A quiet<br>statement<br>of everyday.</h1>
+                <p class="house-hero__description">Мягкие формы, честные ткани и вещи, которые остаются с вами дольше одного сезона.</p>
+                <a class="ds-button ds-button--white house-hero__button" href="#catalog">Explore collection <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="house-hero__wordmark" aria-hidden="true">H</div>
+            <div class="house-hero__rule" aria-hidden="true"><span>FORM</span><span>TEXTURE</span><span>QUIET</span><span>UTILITY</span></div>
+        </section>
+
+        <section class="house-statement" id="solutions" aria-labelledby="statement-title">
+            <div class="house-statement__head">
+                <p class="house-section-label">01 / WHY HOUSE</p>
+                <h2 id="statement-title">Clothes for a life<br>that is already full.</h2>
+            </div>
+            <div class="house-statement__body">
+                <div class="house-statement__image" role="img" aria-label="Абстрактная композиция из ткани и солнечного света"></div>
+                <div class="house-statement__copy">
+                    <p>Мы делаем меньше вещей, но уделяем им больше внимания: посадке, составу и тому, как ткань живёт вместе с вами.</p>
+                    <a class="house-text-link" href="#catalog">Discover the edit <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="house-edits" id="edits" aria-labelledby="edits-title">
+            <div class="house-edits__heading"><p class="house-section-label">02 / THE EDITS</p><h2 id="edits-title">Choose a mood,<br>not a trend.</h2></div>
+            <div class="house-edits__grid">
+                <a class="house-edit-card house-edit-card--dark" href="#catalog"><span class="house-edit-card__number">(01)</span><span class="house-edit-card__title">Soft structure</span><span class="house-edit-card__text">Трикотаж и мягкие слои</span><span class="house-edit-card__arrow" aria-hidden="true">↗</span></a>
+                <a class="house-edit-card house-edit-card--sand" href="#catalog"><span class="house-edit-card__number">(02)</span><span class="house-edit-card__title">Daily uniform</span><span class="house-edit-card__text">Основа на каждый день</span><span class="house-edit-card__arrow" aria-hidden="true">↗</span></a>
+                <a class="house-edit-card house-edit-card--stone" href="#catalog"><span class="house-edit-card__number">(03)</span><span class="house-edit-card__title">Long line</span><span class="house-edit-card__text">Форма, которая держит время</span><span class="house-edit-card__arrow" aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+
+        <section class="house-catalog" id="catalog" aria-labelledby="catalog-title">
+            <div class="house-catalog__intro">
+                <p class="house-catalog__eyebrow">CURRENT EDIT</p>
+                <h2 class="house-catalog__title" id="catalog-title">Wardrobe, reduced<br>to what matters.</h2>
+            </div>
+
+            <div class="house-catalog__layout">
+                <aside class="house-filter" aria-labelledby="filter-title">
+                    <div class="house-filter__heading">
+                        <h3 id="filter-title">Filter</h3>
+                        <span>08 items</span>
+                    </div>
+                    <form action="#catalog" method="get">
+                        <fieldset class="house-filter__group">
+                            <legend>Category</legend>
+                            <label class="ds-checkbox house-filter__checkbox">
+                                <input class="ds-checkbox__input" name="category" type="checkbox" value="outerwear">
+                                <span class="ds-checkbox__control" aria-hidden="true"></span>
+                                <span class="ds-checkbox__label">Outerwear</span>
+                            </label>
+                            <label class="ds-checkbox house-filter__checkbox">
+                                <input class="ds-checkbox__input" name="category" type="checkbox" value="knitwear" checked>
+                                <span class="ds-checkbox__control" aria-hidden="true"></span>
+                                <span class="ds-checkbox__label">Knitwear</span>
+                            </label>
+                            <label class="ds-checkbox house-filter__checkbox">
+                                <input class="ds-checkbox__input" name="category" type="checkbox" value="essentials">
+                                <span class="ds-checkbox__control" aria-hidden="true"></span>
+                                <span class="ds-checkbox__label">Essentials</span>
+                            </label>
+                        </fieldset>
+                        <fieldset class="house-filter__group">
+                            <legend>Size</legend>
+                            <div class="house-filter__sizes">
+                                <label class="ds-checkbox house-filter__checkbox"><input class="ds-checkbox__input" name="size" type="checkbox" value="xs"><span class="ds-checkbox__control" aria-hidden="true"></span><span class="ds-checkbox__label">XS</span></label>
+                                <label class="ds-checkbox house-filter__checkbox"><input class="ds-checkbox__input" name="size" type="checkbox" value="s"><span class="ds-checkbox__control" aria-hidden="true"></span><span class="ds-checkbox__label">S</span></label>
+                                <label class="ds-checkbox house-filter__checkbox"><input class="ds-checkbox__input" name="size" type="checkbox" value="m"><span class="ds-checkbox__control" aria-hidden="true"></span><span class="ds-checkbox__label">M</span></label>
+                                <label class="ds-checkbox house-filter__checkbox"><input class="ds-checkbox__input" name="size" type="checkbox" value="l"><span class="ds-checkbox__control" aria-hidden="true"></span><span class="ds-checkbox__label">L</span></label>
+                            </div>
+                        </fieldset>
+                        <button class="ds-button ds-button--ghost house-filter__reset" type="reset">Reset filters</button>
+                    </form>
+                </aside>
+
+                <div class="house-products">
+                    <div class="house-products__meta"><span>Selected pieces</span><span>Sort: featured</span></div>
+                    <div class="ds-product-card__grid house-products__grid">
+                        <article class="ds-product-card house-product-card">
+                            <div class="ds-product-card__media">
+                                <a class="ds-product-card__image-link" href="#catalog">
+                                    <img class="ds-product-card__image" src="./images/field-jacket.png" alt="Куртка Field в графитовом цвете">
+                                </a>
+                                <div class="ds-product-card__flags" aria-label="Метка товара"><span class="ds-flag ds-flag--new">New</span></div>
+                                <button class="ds-icon-button ds-icon-button--sm ds-product-card__favorite house-product-card__favorite" type="button" aria-label="Добавить Field jacket в избранное"><span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span></button>
+                            </div>
+                            <div class="ds-product-card__body">
+                                <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#catalog">Field jacket / graphite</a></h3>
+                                <div class="ds-product-card__meta"><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг: 4,9 из 5"><span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 98%"></span></span></span></div>
+                                <div class="ds-price"><data class="ds-price__current" value="18900">18&nbsp;900&nbsp;₽</data></div>
+                                <div class="ds-product-card__actions"><button class="ds-button ds-button--primary ds-product-card__add house-product-card__button" type="button">Add to bag</button></div>
+                            </div>
+                        </article>
+
+                        <article class="ds-product-card house-product-card">
+                            <div class="ds-product-card__media">
+                                <a class="ds-product-card__image-link" href="#catalog"><img class="ds-product-card__image" src="./images/soft-wool.png" alt="Джемпер Soft wool молочного цвета"></a>
+                                <div class="ds-product-card__flags" aria-label="Метка товара"><span class="ds-flag ds-flag--sale">−20%</span></div>
+                            </div>
+                            <div class="ds-product-card__body">
+                                <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#catalog">Soft wool / ecru</a></h3>
+                                <div class="ds-product-card__meta"><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг: 4,7 из 5"><span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 94%"></span></span></span></div>
+                                <div class="ds-price"><data class="ds-price__current" value="10320">10&nbsp;320&nbsp;₽</data><del class="ds-price__old"><data value="12900">12&nbsp;900&nbsp;₽</data></del><span class="ds-price__discount">−20%</span></div>
+                                <div class="ds-product-card__actions"><button class="ds-button ds-button--primary ds-product-card__add house-product-card__button" type="button">Add to bag</button></div>
+                            </div>
+                        </article>
+
+                        <article class="ds-product-card house-product-card">
+                            <div class="ds-product-card__media">
+                                <a class="ds-product-card__image-link" href="#catalog"><img class="ds-product-card__image" src="./images/wide-leg.png" alt="Брюки Wide leg чёрного цвета"></a>
+                                <button class="ds-icon-button ds-icon-button--sm ds-product-card__favorite house-product-card__favorite" type="button" aria-label="Добавить Wide leg trousers в избранное"><span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span></button>
+                            </div>
+                            <div class="ds-product-card__body">
+                                <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#catalog">Wide leg / ink</a></h3>
+                                <div class="ds-product-card__meta"><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг: 4,8 из 5"><span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 96%"></span></span></span></div>
+                                <div class="ds-price"><data class="ds-price__current" value="11900">11&nbsp;900&nbsp;₽</data></div>
+                                <div class="ds-product-card__actions"><button class="ds-button ds-button--primary ds-product-card__add house-product-card__button" type="button">Add to bag</button></div>
+                            </div>
+                        </article>
+
+                        <article class="ds-product-card house-product-card">
+                            <div class="ds-product-card__media">
+                                <a class="ds-product-card__image-link" href="#catalog"><img class="ds-product-card__image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 720'%3E%3Crect width='600' height='720' fill='%23CBC3B4'/%3E%3Cpath d='M225 125h150l55 128-66 44v305H236V297l-66-44z' fill='%237D7063'/%3E%3Cpath d='M300 125v477' stroke='%23CBC3B4' stroke-width='8'/%3E%3C/svg%3E" alt="Пальто Long line песочного цвета"></a>
+                                <div class="ds-product-card__flags" aria-label="Метка товара"><span class="ds-flag ds-flag--special">Limited</span></div>
+                            </div>
+                            <div class="ds-product-card__body">
+                                <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#catalog">Long line / stone</a></h3>
+                                <div class="ds-product-card__meta"><span class="ds-rating ds-rating--sm" role="img" aria-label="Рейтинг: 4,9 из 5"><span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 98%"></span></span></span></div>
+                                <div class="ds-price"><data class="ds-price__current" value="24900">24&nbsp;900&nbsp;₽</data></div>
+                                <div class="ds-product-card__actions"><button class="ds-button ds-button--primary ds-product-card__add house-product-card__button" type="button">Add to bag</button></div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="house-principles" id="process" aria-labelledby="principles-title">
+            <div class="house-principles__intro"><p class="house-section-label">03 / OUR METHOD</p><h2 id="principles-title">Designed to<br>become yours.</h2></div>
+            <ol class="house-principles__list">
+                <li><span>(01)</span><div><h3>Natural movement</h3><p>Свободная конструкция и детали, которые не мешают жить в собственном ритме.</p></div></li>
+                <li><span>(02)</span><div><h3>Honest material</h3><p>Мы выбираем ткани, которые красиво стареют и сохраняют характер после многих стирок.</p></div></li>
+                <li><span>(03)</span><div><h3>Lasting colour</h3><p>Сдержанная палитра позволяет вещам сочетаться друг с другом год за годом.</p></div></li>
+                <li><span>(04)</span><div><h3>Considered pace</h3><p>Небольшие тиражи вместо бесконечного обновления гардероба.</p></div></li>
+            </ol>
+        </section>
+
+        <section class="house-lookbook" id="work" aria-labelledby="lookbook-title">
+            <div class="house-lookbook__heading"><p class="house-section-label">04 / LATEST LOOKS</p><h2 id="lookbook-title">Worn in the real<br>hours of the day.</h2></div>
+            <div class="house-lookbook__gallery">
+                <figure class="house-lookbook__image house-lookbook__image--one"><figcaption>Morning, Madrid / 08:42</figcaption></figure>
+                <figure class="house-lookbook__image house-lookbook__image--two"><figcaption>Late light, Lisbon / 18:10</figcaption></figure>
+            </div>
+            <div class="house-services" id="services">
+                <h3>What we make</h3>
+                <ul><li>Outer layers</li><li>Knitwear</li><li>Essential shirts</li><li>Relaxed tailoring</li><li>Small leather goods</li><li>Seasonal objects</li></ul>
+                <a class="house-text-link" href="#catalog">See all garments <span aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+
+        <section class="house-testimonials" aria-labelledby="testimonials-title">
+            <div class="house-testimonials__heading"><p class="house-section-label">05 / WORN &amp; SAID</p><h2 id="testimonials-title">A good piece<br>becomes a habit.</h2></div>
+            <div class="house-testimonials__track">
+                <figure class="house-quote"><blockquote>“I reach for the same jacket every morning. It somehow makes the whole day feel less complicated.”</blockquote><figcaption>— Elena, Barcelona</figcaption></figure>
+                <figure class="house-quote"><blockquote>“The trousers have that rare balance: relaxed enough for a train, precise enough for a meeting.”</blockquote><figcaption>— Tomas, Copenhagen</figcaption></figure>
+                <figure class="house-quote"><blockquote>“Nothing asks for attention, yet every piece gets noticed. That is exactly the point.”</blockquote><figcaption>— Alice, London</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="house-faq" id="faq" aria-labelledby="faq-title">
+            <div class="house-faq__heading"><p class="house-section-label">06 / FAQ</p><h2 id="faq-title">Useful things<br>to know.</h2><a class="house-text-link" href="mailto:hello@example.com">Ask us anything <span aria-hidden="true">↗</span></a></div>
+            <div class="house-faq__items">
+                <details><summary>How do I choose my size?<span aria-hidden="true">+</span></summary><p>На каждой карточке есть измерения изделия. Если сомневаетесь между размерами, выбирайте посадку, в которой вам комфортнее двигаться.</p></details>
+                <details><summary>Where do you deliver?<span aria-hidden="true">+</span></summary><p>Мы отправляем заказы по России и в большинство стран Европы. Точная стоимость отображается перед оплатой.</p></details>
+                <details><summary>Can I return an item?<span aria-hidden="true">+</span></summary><p>Да, у вас есть 14 дней с момента получения. Изделие должно сохранить первоначальное состояние и бирки.</p></details>
+                <details><summary>How should I care for the pieces?<span aria-hidden="true">+</span></summary><p>Инструкции по уходу указаны на внутренней этикетке и в карточке каждого изделия.</p></details>
+            </div>
+        </section>
+
+        <section class="house-cta" aria-labelledby="cta-title">
+            <div><p class="house-section-label">HOUSE / ALWAYS</p><h2 id="cta-title">Keep the things<br>that keep you.</h2></div>
+            <a class="ds-button ds-button--white house-cta__button" href="#catalog">Shop the collection <span aria-hidden="true">↗</span></a>
+        </section>
+    </main>
+
+    <footer class="ds-footer house-footer">
+        <div class="ds-footer__inner house-footer__inner">
+            <div class="house-footer__lead">Made for the<br>in-between.</div>
+            <nav class="ds-footer__columns house-footer__columns" aria-label="Навигация в подвале">
+                <section class="ds-footer__column" aria-labelledby="house-footer-shop"><h2 class="ds-footer__title" id="house-footer-shop">Shop</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="#catalog">New arrivals</a></li><li><a class="ds-footer__link" href="#catalog">All garments</a></li></ul></section>
+                <section class="ds-footer__column" aria-labelledby="house-footer-info"><h2 class="ds-footer__title" id="house-footer-info">Information</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="#top">About House</a></li><li><a class="ds-footer__link" href="#top">Delivery &amp; returns</a></li></ul></section>
+            </nav>
+            <div class="ds-footer__bottom house-footer__bottom"><small class="ds-footer__copyright">© 2026 HOUSE. Quietly considered.</small><a class="ds-footer__link" href="mailto:hello@example.com">hello@example.com</a></div>
+        </div>
+    </footer>
+</body>
+</html>

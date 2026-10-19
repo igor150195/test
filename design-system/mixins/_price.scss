@@ -1,0 +1,42 @@
+@mixin price(
+	$size: null,
+){
+	@if $size {
+		.price-old {
+			&__value {
+				font-size: var(--#{$size}_old_price_fz);
+				line-height: var(--#{$size}_old_price_lh);
+			}
+
+			&__currency {
+				font-size: var(--#{$size}_old_price_currency_fz);
+				line-height: var(--#{$size}_old_price_currency_lh);
+			}
+		}
+
+		.price-current {
+			&.price-current--onrequest {
+				font-size: var(--#{$size}_price_onrequest_fz);
+				line-height: var(--#{$size}_price_onrequest_lh);
+			}
+
+			&__value {
+				font-size: var(--#{$size}_current_price_fz);
+				line-height: var(--#{$size}_current_price_lh);
+			}
+
+			&__currency {
+				font-size: var(--#{$size}_price_currency_fz);
+				line-height: var(--#{$size}_price_currency_lh);
+			}
+		}
+
+		.shop2-product-discount-desc {
+			padding: var(--#{$size}_price_popup_pd);
+			width: var(--#{$size}_price_popup_w);
+			border-radius: var(--#{$size}_price_popup_r);
+			font-size: var(--#{$size}_price_popup_fz);
+	    	line-height: var(--#{$size}_price_popup_lh);
+		}
+	}
+}

@@ -1,0 +1,48 @@
+// Compilation smoke test for all 39 existing mixins.
+// Selectors in this file are test fixtures, not component APIs.
+
+@import "legacy-platform";
+
+.__sass-check-amount { @include amount($size: "sm"); }
+.__sass-check-button { @include button($size: "sm", $type: "primary", $defaults: true); }
+.__sass-check-counter { @include counter($size: "sm", $defaults: true); }
+.__sass-check-flags { @include flags($size: "sm"); }
+
+.__sass-check-field-title { @include field_title($size: "sm"); }
+.__sass-check-input { @include input($defaults: true, $size: "sm", $icon: true); }
+.__sass-check-textarea { @include textarea($defaults: true, $size: "sm", $icon: true); }
+.__sass-check-switcher { @include switcher($size: "sm"); }
+.__sass-check-select { @include select($defaults: true, $size: "sm"); }
+.__sass-check-multiselect { @include multiselect($size: "sm"); }
+.__sass-check-opened-multiselect { @include opened_multiselect($size: "sm"); }
+.__sass-check-tag { @include tag($size: "sm", $defaults: true); }
+.__sass-check-checkbox { @include checkbox($size: "sm"); }
+.__sass-check-radio { @include radio($size: "sm"); }
+
+.__sass-check-gifts { @include gifts($size: "sm"); }
+.__sass-check-product-gifts { @include product_gifts($size: "sm"); }
+.__sass-check-heading { @include heading_type($type: 1); }
+.__sass-check-icon-button { @include icon_button($size: "sm", $type: "ghost", $defaults: true); }
+.__sass-check-icon { @include icon($size: "sm", $defaults: true); }
+.__sass-check-options { @include options($size: "sm", $title: true, $body: true); }
+.__sass-check-popup-title { @include popup_title($size: "sm", $defaults: true); }
+.__sass-check-popup { @include popup($size: "sm", $defaults: true); }
+.__sass-check-price { @include price($size: "sm"); }
+.__sass-check-rating { @include rating($size: "sm"); }
+
+.__sass-check-grid { @include grid_columns($defaults: true, $gap: 1rem, $columns: 3); }
+.__sass-check-card { @include card_type($type: 1, $hover: true); }
+.__sass-check-product-name { @include product_name($size: "sm"); }
+.__sass-check-vendor-name { @include vendor_name($size: "sm"); }
+.__sass-check-annonce { @include annonce($size: "sm"); }
+.__sass-check-article { @include article($size: "sm"); }
+.__sass-check-bonus-flag { @include bonus_flag($size: "sm"); }
+.__sass-check-option-image { @include option_image($size: "sm"); }
+.__sass-check-option-image-2 { @include option_image2($size: "sm"); }
+.__sass-check-option-color { @include option_color($size: "sm", $wrap: true, $item: true); }
+.__sass-check-option-color-2 { @include option_color2($size: "sm"); }
+.__sass-check-color-select { @include color_select($size: "sm"); }
+.__sass-check-link-button { @include link_button($size: "sm", $defaults: true, $dashed: true, $text: ".__sass-check-link-text"); }
+
+.__sass-check-text { @include text_type($type: "md"); }
+.__sass-check-toggle-title { @include toggle_title($size: "sm"); }

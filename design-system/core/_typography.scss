@@ -1,0 +1,137 @@
+html {
+    font-family: var(--font1);
+    text-size-adjust: 100%;
+}
+
+body {
+    font: var(--p_md_desktop);
+    color: var(--on_bg_main);
+    background-color: var(--bg_main);
+}
+
+h1 {
+    font: var(--h_1_desktop);
+}
+
+h2 {
+    font: var(--h_2_desktop);
+}
+
+h3 {
+    font: var(--h_3_desktop);
+}
+
+h4 {
+    font: var(--h_4_desktop);
+}
+
+h5 {
+    font: var(--h_5_desktop);
+}
+
+h6 {
+    font: var(--h_6_desktop);
+}
+
+p {
+    font: var(--p_md_desktop);
+}
+
+a {
+    color: var(--link_color);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+@media all and (max-width: 1580px) {
+    body,
+    p {
+        font: var(--p_md_laptop);
+    }
+
+    h1 {
+        font: var(--h_1_laptop);
+    }
+
+    h2 {
+        font: var(--h_2_laptop);
+    }
+
+    h3 {
+        font: var(--h_3_laptop);
+    }
+
+    h4 {
+        font: var(--h_4_laptop);
+    }
+
+    h5 {
+        font: var(--h_5_laptop);
+    }
+
+    h6 {
+        font: var(--h_6_laptop);
+    }
+}
+
+@media all and (max-width: 1260px) {
+    body,
+    p {
+        font: var(--p_md_tablet);
+    }
+
+    h1 {
+        font: var(--h_1_tablet);
+    }
+
+    h2 {
+        font: var(--h_2_tablet);
+    }
+
+    h3 {
+        font: var(--h_3_tablet);
+    }
+
+    h4 {
+        font: var(--h_4_tablet);
+    }
+
+    h5 {
+        font: var(--h_5_tablet);
+    }
+
+    h6 {
+        font: var(--h_6_tablet);
+    }
+}
+
+@media all and (max-width: 767px) {
+    body,
+    p {
+        font: var(--p_md_mobile);
+    }
+
+    h1 {
+        font: var(--h_1_mobile);
+    }
+
+    h2 {
+        font: var(--h_2_mobile);
+    }
+
+    h3 {
+        font: var(--h_3_mobile);
+    }
+
+    h4 {
+        font: var(--h_4_mobile);
+    }
+
+    h5 {
+        font: var(--h_5_mobile);
+    }
+
+    h6 {
+        font: var(--h_6_mobile);
+    }
+}

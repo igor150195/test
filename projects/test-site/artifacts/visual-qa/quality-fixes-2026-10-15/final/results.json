@@ -1,0 +1,120 @@
+[
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "httpStatus": 200,
+    "technical": {
+      "pageHeight": 5732,
+      "overflow": false,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+        "readyState": 0,
+        "paused": true
+      },
+      "footerLogoColor": "rgb(255, 255, 255)",
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    },
+    "screenshots": {
+      "first": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\desktop-1920x1080\\first-screen.png",
+      "full": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\desktop-1920x1080\\full-page.png"
+    }
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "httpStatus": 200,
+    "technical": {
+      "pageHeight": 5386,
+      "overflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+        "readyState": 0,
+        "paused": true
+      },
+      "footerLogoColor": "rgb(255, 255, 255)",
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "https://hr.tutu.ru/f/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    },
+    "screenshots": {
+      "first": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\desktop-1440x900\\first-screen.png",
+      "full": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\desktop-1440x900\\full-page.png"
+    }
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "httpStatus": 200,
+    "technical": {
+      "pageHeight": 6310,
+      "overflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "",
+        "readyState": 0,
+        "paused": true
+      },
+      "footerLogoColor": "rgb(255, 255, 255)",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    },
+    "screenshots": {
+      "first": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\tablet-768x1024\\first-screen.png",
+      "full": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\tablet-768x1024\\full-page.png"
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "httpStatus": 200,
+    "technical": {
+      "pageHeight": 6917,
+      "overflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "brokenImages": [],
+      "video": {
+        "currentSrc": "",
+        "readyState": 0,
+        "paused": true
+      },
+      "footerLogoColor": "rgb(255, 255, 255)",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    },
+    "screenshots": {
+      "first": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\mobile-390x844\\first-screen.png",
+      "full": "projects\\test-site\\artifacts\\visual-qa\\quality-fixes-2026-10-15\\final\\mobile-390x844\\full-page.png"
+    }
+  }
+]

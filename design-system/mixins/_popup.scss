@@ -1,0 +1,247 @@
+@mixin popup(
+	$size: null,
+	$defaults: null,
+){
+	@if $size == 'xl' { // На всю ширину
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		max-width: none;
+		overflow: hidden;
+		overflow-y: auto;
+		border-radius: 0;
+		padding: var(--#{$size}_popup_pd_desktop);
+
+		@media all and (max-width: 1580px) { // laptop
+			padding: var(--#{$size}_popup_pd_laptop);
+		}
+		
+		@media all and (max-width: 1260px) { // tablet
+			padding: var(--#{$size}_popup_pd_tablet);
+		}
+		
+		@media all and (max-width: 767px) { // mobile
+			padding: var(--#{$size}_popup_pd_mobile);
+		}
+	} @else {
+		@if $size {
+			padding: var(--#{$size}_popup_pd_desktop);
+			max-width: var(--#{$size}_popup_mxw_desktop);
+			
+			@media all and (max-width: 1580px) { // laptop
+				padding: var(--#{$size}_popup_pd_laptop);
+				max-width: var(--#{$size}_popup_mxw_laptop);
+			}
+			
+			@media all and (max-width: 1260px) { // tablet
+				padding: var(--#{$size}_popup_pd_tablet);
+				max-width: var(--#{$size}_popup_mxw_tablet);
+			}
+			
+			@media all and (max-width: 767px) { // mobile
+				padding: var(--#{$size}_popup_pd_mobile);
+			}
+		}
+	
+		@if $defaults {
+			@media all and (max-width: 767px) {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: 0;
+				max-width: none !important;
+				overflow: hidden;
+				overflow-y: auto;
+				border-radius: 0;
+			}
+		}
+	}
+	
+	@if $size == 'xl' or $size == 'lg' or $size == 'md' {
+		.remodal-close-btn {
+			@include icon_button(
+				$defaults: true,
+				$size: 'lg',
+				$type: 'ghost',
+			);
+			
+			position: absolute;
+	        top: 0;
+	        right: 0;
+	        font-size: 0;
+			
+			@media all and (max-width: 767px) {
+				@include icon_button(
+					$size: 'md',
+				);
+			}
+			
+			.gr-mask-icon {
+				@include icon(
+					$size: 'lg',
+				);
+				
+				-webkit-mask-image: var(--icon_cross_lg);
+				mask-image: var(--icon_cross_lg);
+				
+				@media all and (max-width: 767px) {
+					@include icon(
+						$size: 'md',
+					);
+					
+					-webkit-mask-image: var(--icon_cross_md);
+					mask-image: var(--icon_cross_md);
+				}
+			}
+		}
+	} 
+	
+	@if $size == 'xl' {
+		.remodal__title {
+			@include popup_title(
+				$size: 'lg',
+				$defaults: 'true',
+			);
+			
+			@media all and (max-width: 1260px) { // tablet
+				@include popup_title(
+					$size: 'md',
+				);
+			}
+			
+			@media all and (max-width: 767px) { // mobile
+				@include popup_title(
+					$size: 'sm',
+				);
+			}
+		}
+		
+		.remodal--title-margin {
+			margin: var(--lg_popup_title_m);
+	
+			@media all and (max-width: 1260px) { // tablet
+				margin: var(--md_popup_title_m);
+			}
+			 
+			@media all and (max-width: 767px) {
+				margin: var(--sm_popup_title_m);
+			}
+		}
+	}
+	
+	@if $size == 'lg' {
+		.remodal__title {
+			@include popup_title(
+				$size: 'lg',
+				$defaults: 'true',
+			);
+			
+			@media all and (max-width: 1260px) { // tablet
+				@include popup_title(
+					$size: 'md',
+				);
+			}
+			
+			@media all and (max-width: 767px) { // mobile
+				@include popup_title(
+					$size: 'sm',
+				);
+			}
+		}
+		
+		.remodal--title-margin {
+			margin: var(--lg_popup_title_m);
+	
+			@media all and (max-width: 1260px) { // tablet
+				margin: var(--md_popup_title_m);
+			}
+			 
+			@media all and (max-width: 767px) { // mobile
+				margin: var(--sm_popup_title_m);
+			}
+		}
+	}
+	
+	@if $size == 'md' {
+		.remodal__title {
+			@include popup_title(
+				$size: 'lg',
+				$defaults: 'true',
+			);
+			
+			@media all and (max-width: 1580px) { // laptop
+				@include popup_title(
+					$size: 'md',
+				);
+			}
+			
+			@media all and (max-width: 767px) { // mobile
+				@include popup_title(
+					$size: 'sm',
+				);
+			}
+		}
+		
+		.remodal--title-margin {
+			margin: var(--lg_popup_title_m);
+			
+			@media all and (max-width: 1580px) { // laptop
+				margin: var(--md_popup_title_m);
+			}
+			
+			@media all and (max-width: 767px) { // mobile
+				margin: var(--sm_popup_title_m);
+			}
+		}
+	}
+	
+	@if $size == 'sm' {
+		.remodal-close-btn {
+			@include icon_button(
+				$defaults: true,
+				$size: 'md',
+				$type: 'ghost',
+			);
+			
+			position: absolute;
+	        top: 0;
+	        right: 0;
+	        font-size: 0;
+			
+			.gr-mask-icon {
+				@include icon(
+					$size: 'md',
+				);
+				
+				-webkit-mask-image: var(--icon_cross_md);
+				mask-image: var(--icon_cross_md);
+			}
+		}
+		
+		.remodal__title {
+			@include popup_title(
+				$size: 'md',
+				$defaults: 'true',
+			);
+			
+			@media all and (max-width: 1260px) { // tablet
+				@include popup_title(
+					$size: 'sm',
+				);
+			}
+		}
+		
+		.remodal--title-margin {
+			margin: var(--lg_popup_title_m);
+			
+			@media all and (max-width: 1580px) { // laptop
+				margin: var(--sm_popup_title_m);
+			}
+		}
+	} 
+}

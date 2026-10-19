@@ -1,0 +1,63 @@
+@mixin gifts(
+	$size: null,
+) {
+	@if $size {
+		gap: var(--#{$size}_gifts_gap);
+	
+		.gr-actions__item {
+			gap: var(--#{$size}_gifts_item_gap);
+			padding: var(--#{$size}_gifts_item_pd);
+			border-radius: var(--#{$size}_gifts_item_r);
+		}
+
+		.gr-actions__title {
+			font-size: var(--#{$size}_gifts_item_title_fz);
+			line-height: var(--#{$size}_gifts_item_title_lh);
+		}
+
+		.gr-actions__popup {
+			gap: var(--#{$size}_gifts_popup_gap);
+			padding: var(--#{$size}_gifts_popup_pd);
+			width: var(--#{$size}_gifts_popup_w);
+			border-radius: var(--#{$size}_gifts_popup_r);
+		}
+
+		.gr-actions__popup-title {
+			font-size: var(--#{$size}_gifts_popup_title_fz);
+			line-height: var(--#{$size}_gifts_popup_title_lh);
+		}
+
+		.gr-actions__popup-text {
+			font-size: var(--#{$size}_gifts_popup_text_fz);
+			line-height: var(--#{$size}_gifts_popup_text_lh);
+		}
+	}
+}
+
+@mixin product_gifts(
+	$size: null,
+) {
+	@if $size {
+		.promo-action__btn,
+		.gr-product-actions__item {
+			gap: var(--#{$size}_product_gifts_gap);
+		}
+		
+		.promo-action__body,
+		.gr-product-actions__body {
+			gap: var(--#{$size}_product_gifts_body_gap);
+		}
+		
+		.promo-action__title,
+		.gr-product-actions__title {
+			font-size: var(--#{$size}_product_gifts_title_fz);
+			line-height: var(--#{$size}_product_gifts_title_lh);
+		}
+
+		.promo-action__text,
+		.gr-product-actions__text {
+			font-size: var(--#{$size}_product_gifts_text_fz);
+			line-height: var(--#{$size}_product_gifts_text_lh);
+		}
+	}
+}

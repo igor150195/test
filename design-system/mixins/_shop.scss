@@ -1,0 +1,313 @@
+@mixin grid_columns (
+	$defaults: null,
+	$gap: null,
+	$columns: null,
+	$columns_margin: null,
+	$columns_total: 100% / $columns,
+	$columns_decrement: $columns - 1,
+) {
+	@if $defaults {
+		display: grid;
+	}
+	gap: $gap;
+	
+	@if $columns_margin {
+		grid-template-columns: repeat($columns, calc(#{$columns_total} - (#{$columns_margin} * #{$columns_decrement} / #{$columns})));
+	} @else {
+		grid-template-columns: repeat($columns, $columns_total);
+	}
+}
+
+
+
+@mixin card_type (
+	$type: null,
+	$hover: null,
+) {
+	@if $type {
+		border-radius: var(--gr_card_type_#{$type}_r);
+		background: var(--gr_card_type_#{$type}_bg);
+		border: var(--gr_card_type_#{$type}_bd);
+		box-shadow: var(--gr_card_type_#{$type}_shadow);
+	}
+	
+	@if $hover {
+		&:hover {
+			background: var(--gr_card_type_#{$type}_bg_h);
+			border: var(--gr_card_type_#{$type}_bd_h);
+			box-shadow: var(--gr_card_type_#{$type}_shadow_h);
+		}
+	}
+}
+
+
+@mixin product_name (
+	$size: null,
+) {
+	@if $size {
+    	font-size: var(--#{$size}_product_name_fz);
+    	line-height: var(--#{$size}_product_name_lh);
+    }
+}
+
+@mixin vendor_name (
+	$size: null,
+) {
+	@if $size {
+    	font-size: var(--#{$size}_vendor_name_fz);
+    	line-height: var(--#{$size}_vendor_name_lh);
+    }
+}
+
+@mixin annonce (
+	$size: null,
+) {
+	@if $size {
+    	font-size: var(--#{$size}_annonce_fz);
+    	line-height: var(--#{$size}_annonce_lh);
+    }
+}
+
+@mixin article (
+	$size: null,
+) {
+	@if $size {
+    	font-size: var(--#{$size}_article_fz);
+    	line-height: var(--#{$size}_article_lh);
+    }
+}
+
+@mixin bonus_flag(
+	$size: null,
+){
+	@if $size {
+		font-size: var(--#{$size}_bonus_flag_fz);
+		line-height: var(--#{$size}_bonus_flag_lh);
+		padding: var(--#{$size}_bonus_flag_pd);
+		border-radius: var(--#{$size}_bonus_flag_r);
+	}
+}
+
+@mixin option_image (
+	$size: null,
+) {
+	@if $size {
+		gap: var(--#{$size}_option_image_gap);
+		
+		.option-image,
+		li {
+			width: var(--#{$size}_option_image_w);
+			height: var(--#{$size}_option_image_h);
+			border-radius: var(--#{$size}_option_image_r);
+		}
+	}
+}
+@mixin option_image2 (
+	$size: null,
+) {
+	@if $size {
+		.gr-image-picker__items{
+			gap: var(--#{$size}_option_image_gap);
+		}
+		
+		.gr-image-picker__item {
+			width: var(--#{$size}_option_image_w);
+			height: var(--#{$size}_option_image_h);
+			border-radius: var(--#{$size}_option_image_r);
+		}
+	}
+}
+
+@mixin option_color (
+	$size: null,
+	$wrap: null,
+	$item: null,
+) {
+	@if $wrap {
+		@if $size {
+			gap: var(--#{$size}_option_color_gap);
+		}
+	}
+	
+	@if $item {
+		@if $size {
+			width: var(--#{$size}_option_color_w);
+			height: var(--#{$size}_option_color_h);
+			border-radius: var(--#{$size}_option_color_r);
+		}
+	}
+}
+
+@mixin option_color2 (
+	$size: null,
+) {
+	@if $size {
+		.gr-color-picker__items {
+			gap: var(--#{$size}_option_color_gap);
+		}
+		
+		.gr-color-picker__item {
+			gap: var(--#{$size}_option_color_item_gap);
+		}
+		
+		.gr-color-picker__image {
+			width: var(--#{$size}_option_color_w);
+			height: var(--#{$size}_option_color_h);
+			border-radius: var(--#{$size}_option_color_r);
+		}
+		
+		.gr-color-picker__name {
+			font-size: var(--#{$size}_option_color_item_fz);
+			line-height: var(--#{$size}_option_color_item_lh);
+		}
+	}
+}
+
+
+
+@mixin color_select (
+	$size: null,
+) {
+	@if $size {
+		.gr-color-select__items {
+			height: var(--#{$size}_color_select_h);
+			padding: var(--#{$size}_color_select_pd);
+			border-radius: var(--#{$size}_color_select_r);
+
+			&:before {
+				-webkit-mask-image: var(--#{$size}_color_select_icon);
+				mask-image: var(--#{$size}_color_select_icon);
+				right: var(--#{$size}_color_select_icon_right);
+				height: var(--#{$size}_color_select_icon_h);
+				width: var(--#{$size}_color_select_icon_w);
+				-webkit-mask-size: var(--#{$size}_color_select_icon_w) var(--#{$size}_color_select_icon_h);
+				mask-size: var(--#{$size}_color_select_icon_w) var(--#{$size}_color_select_icon_h);
+			}
+		}
+
+		.gr-color-select__item {
+			gap: var(--#{$size}_color_select_item_g);
+			font-size: var(--#{$size}_color_select_item_fz);
+			line-height: var(--#{$size}_color_select_item_lh);
+		}
+
+		.gr-color-select__color {
+			height: var(--#{$size}_color_select_color_h);
+			width: var(--#{$size}_color_select_color_w);
+        	border-radius: var(--#{$size}_color_select_color_r);
+        	
+        	&:before {
+        		border-radius: var(--#{$size}_color_select_color_r);
+        	}
+		}
+
+		.gr-color-select__popup {
+			margin: var(--#{$size}_color_select_popup_m);
+        	padding: var(--#{$size}_color_select_popup_pd);
+        	border-radius: var(--#{$size}_color_select_popup_r);
+        	
+        	.gr-color-select__item {
+        		padding: var(--#{$size}_color_select_popup_item_pd);
+        	}
+
+			.gr-color-select__text {
+				min-height: var(--#{$size}_color_select_color_h);
+			}
+		}
+	}
+}
+
+
+@mixin link_button(
+	$size: null,
+	$defaults: null,
+	$dashed: null,
+	$text: null,
+) {
+	@if $defaults {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: var(--transition);
+		text-decoration: none;
+		border: none;
+		
+		color: var(--link_btn_color);
+		
+		@if $text {
+			#{$text} {
+				@if $dashed {
+					border-bottom: var(--link_btn_dashed_bd);
+				} @else {
+					border-bottom: var(--link_btn_bd);
+				}
+			}
+		}
+	 	
+		.gr-mask-icon {
+			background: var(--link_btn_icon_color);
+		}
+		
+		&:hover {
+			color: var(--link_btn_color_h);
+			
+			@if $text {
+				#{$text} {
+					@if $dashed {
+						border-bottom: var(--link_btn_dashed_bd_h);
+					} @else {
+						border-bottom: var(--link_btn_bd_h);
+					}
+				}
+			}
+			 	
+			.gr-mask-icon {
+				background: var(--link_btn_icon_color_h);
+			}
+		}
+		
+		&:active {
+			color: var(--link_btn_color_a);
+			
+			@if $text {
+				#{$text} {
+					@if $dashed {
+						border-bottom: var(--link_btn_dashed_bd_a);
+					} @else {
+						border-bottom: var(--link_btn_bd_a);
+					}
+				}
+			}
+			
+			.gr-mask-icon {
+				background: var(--link_btn_icon_color_a);
+			}
+		}
+		
+		&.js-selected {
+			color: var(--link_btn_color_s);
+			
+			@if $text {
+				#{$text} {
+					@if $dashed {
+						border-bottom: var(--link_btn_dashed_bd_s);
+					} @else {
+						border-bottom: var(--link_btn_bd_s);
+					}
+				}
+			}
+			
+			.gr-mask-icon {
+				background: var(--link_btn_icon_color_s);
+			}
+		}
+	}
+	
+	@if $size {
+    	font-size: var(--#{$size}_link_btn_fz);
+    	line-height: var(--#{$size}_link_btn_lh);
+    	gap: var(--#{$size}_link_btn_gap);
+    }
+}

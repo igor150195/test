@@ -1,0 +1,126 @@
+[
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "status": 200,
+    "segments": 6,
+    "overlapPercent": 25,
+    "technical": {
+      "height": 4661,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "broken": [],
+      "video": [
+        {
+          "readyState": 4,
+          "paused": false,
+          "currentSrc": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "status": 200,
+    "segments": 7,
+    "overlapPercent": 25,
+    "technical": {
+      "height": 4569,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "broken": [],
+      "video": [
+        {
+          "readyState": 4,
+          "paused": false,
+          "currentSrc": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "status": 200,
+    "segments": 7,
+    "overlapPercent": 25,
+    "technical": {
+      "height": 5048,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "broken": [],
+      "video": [
+        {
+          "readyState": 4,
+          "paused": false,
+          "currentSrc": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "segments": 12,
+    "overlapPercent": 25,
+    "technical": {
+      "height": 7479,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "broken": [],
+      "video": [
+        {
+          "readyState": 4,
+          "paused": false,
+          "currentSrc": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4"
+        }
+      ],
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://127.0.0.1:4173/projects/test-site/assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "badResponses": []
+    }
+  }
+]

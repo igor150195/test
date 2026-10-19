@@ -1,0 +1,33 @@
+// Neutral icon primitive. The icon source is explicitly supplied through
+// --ds-icon so the component stays independent from legacy markup.
+
+.ds-icon {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: var(--md_icon_w);
+    height: var(--md_icon_h);
+    background: var(--ds-icon-color, currentColor);
+    -webkit-mask-image: var(--ds-icon, none);
+    mask-image: var(--ds-icon, none);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+
+    &--sm {
+        width: var(--sm_icon_w);
+        height: var(--sm_icon_h);
+    }
+
+    &--md {
+        width: var(--md_icon_w);
+        height: var(--md_icon_h);
+    }
+
+    &--lg {
+        width: var(--lg_icon_w);
+        height: var(--lg_icon_h);
+    }
+}

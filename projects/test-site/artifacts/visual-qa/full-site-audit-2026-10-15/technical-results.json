@@ -1,0 +1,378 @@
+[
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "httpStatus": 200,
+    "technical": {
+      "title": "Туту — место для вашей карьеры",
+      "pageHeight": 5944,
+      "documentWidth": 1920,
+      "viewportWidth": 1920,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "anchors": [
+        {
+          "href": "#main",
+          "text": "Перейти к содержанию",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": null
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Вакансии",
+          "external": true,
+          "targetExists": null
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    },
+    "capture": {
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\desktop-1920x1080\\full-page.png",
+      "segments": 7,
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\desktop-1920x1080"
+    },
+    "interactions": {
+      "anchorVacancies": {
+        "available": true,
+        "hash": "#vacancies",
+        "scrollY": 4864,
+        "targetTop": 5107.5
+      }
+    }
+  },
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "httpStatus": 200,
+    "technical": {
+      "title": "Туту — место для вашей карьеры",
+      "pageHeight": 5582,
+      "documentWidth": 1440,
+      "viewportWidth": 1440,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "anchors": [
+        {
+          "href": "#main",
+          "text": "Перейти к содержанию",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": null
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Вакансии",
+          "external": true,
+          "targetExists": null
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    },
+    "capture": {
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\desktop-1440x900\\full-page.png",
+      "segments": 8,
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\desktop-1440x900"
+    },
+    "interactions": {
+      "anchorVacancies": {
+        "available": true,
+        "hash": "#vacancies",
+        "scrollY": 4682,
+        "targetTop": 4861.96875
+      }
+    }
+  },
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "httpStatus": 200,
+    "technical": {
+      "title": "Туту — место для вашей карьеры",
+      "pageHeight": 6294,
+      "documentWidth": 768,
+      "viewportWidth": 768,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "anchors": [
+        {
+          "href": "#main",
+          "text": "Перейти к содержанию",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": null
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Вакансии",
+          "external": true,
+          "targetExists": null
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    },
+    "capture": {
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\tablet-768x1024\\full-page.png",
+      "segments": 8,
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\tablet-768x1024"
+    },
+    "interactions": {
+      "anchorVacancies": {
+        "available": true,
+        "hash": "#vacancies",
+        "scrollY": 5270,
+        "targetTop": 5787.03125
+      }
+    }
+  },
+  {
+    "route": "/projects/test-site/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "httpStatus": 200,
+    "technical": {
+      "title": "Туту — место для вашей карьеры",
+      "pageHeight": 6981,
+      "documentWidth": 390,
+      "viewportWidth": 390,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "anchors": [
+        {
+          "href": "#main",
+          "text": "Перейти к содержанию",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "#vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Смотреть вакансии",
+          "external": true,
+          "targetExists": null
+        },
+        {
+          "href": "#main",
+          "text": "tutu",
+          "external": true,
+          "targetExists": true
+        },
+        {
+          "href": "https://hr.tutu.ru/vacancies",
+          "text": "Вакансии",
+          "external": true,
+          "targetExists": null
+        }
+      ],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "badResponses": []
+    },
+    "capture": {
+      "fullPage": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\mobile-390x844\\full-page.png",
+      "segments": 11,
+      "segmentDirectory": "projects\\test-site\\artifacts\\visual-qa\\full-site-audit-2026-10-15\\mobile-390x844"
+    },
+    "interactions": {
+      "anchorVacancies": {
+        "available": true,
+        "hash": "#vacancies",
+        "scrollY": 6137,
+        "targetTop": 6456.3125
+      }
+    }
+  }
+]
