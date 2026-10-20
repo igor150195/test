@@ -123,7 +123,11 @@ export async function checkTheme(slug, {
   const manifestPath = join(projectDirectory, 'project.json');
   if (!existsSync(manifestPath)) throw new Error(`Missing project manifest: ${manifestPath}`);
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-  if (!manifest.theme) return { status: 'not-run', reason: 'Project manifest has no theme contract.', findings: [] };
+  if (!manifest.theme) {
+    return manifest.compliance === 'strict'
+      ? { status: 'error', reason: 'Strict project manifest has no theme contract.', findings: [] }
+      : { status: 'not-run', reason: 'Legacy project manifest has no theme contract.', findings: [] };
+  }
   const missingThemeKeys = themeKeys.filter((key) => !manifest.theme[key]);
   if (missingThemeKeys.length) return { status: 'error', reason: `Theme is missing keys: ${missingThemeKeys.join(', ')}`, findings: [] };
   const distDirectory = join(projectDirectory, 'dist');
@@ -154,6 +158,7 @@ export async function checkTheme(slug, {
       });
       try {
         await page.goto(`http://127.0.0.1:${port}/theme/${projectPage.output}`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+        await page.waitForFunction(() => document.styleSheets.length > 0, undefined, { timeout: 10_000 });
         const inspection = await inspectThemePage(page);
         result.pages.push({ id: projectPage.id, ds_element_count: inspection.ds_element_count });
         for (const [token, expectedValue] of Object.entries(expected)) {

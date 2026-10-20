@@ -1,3 +1,13 @@
 {
-  "issues": []
+  "issues": [
+    {
+      "slug": "fashion-store",
+      "code": "theme-contrast",
+      "selector": ":root",
+      "property": "--on_accent/--accent",
+      "reason": "палитра референса",
+      "added": "2026-10-20",
+      "review_after": "2027-01-18"
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { cpSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { checkTheme } from '../check-theme.mjs';
@@ -31,6 +31,15 @@ try {
   writeFixture();
   const valid = await checkTheme('fixture', { repositoryRoot: fixture });
   assert.equal(valid.status, 'passed', 'a complete root theme must pass');
+
+  const manifestPath = join(fixture, 'projects', 'fixture', 'project.json');
+  const noTheme = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  delete noTheme.theme;
+  writeFileSync(manifestPath, JSON.stringify(noTheme));
+  assert.equal((await checkTheme('fixture', { repositoryRoot: fixture })).status, 'error', 'a strict project without a theme must fail');
+  noTheme.compliance = 'legacy';
+  writeFileSync(manifestPath, JSON.stringify(noTheme));
+  assert.equal((await checkTheme('fixture', { repositoryRoot: fixture })).status, 'not-run', 'a legacy project without a theme must be reported as not-run');
 
   writeFixture({ themeCss: `.theme {${generateThemeCss(theme).match(/:root \{([\s\S]*)\}/)[1]}}` });
   const descendant = await checkTheme('fixture', { repositoryRoot: fixture });
