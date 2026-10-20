@@ -19,11 +19,12 @@
     "qa": "node scripts/qa.mjs",
     "check:compliance": "node scripts/check-compliance.mjs",
     "test:assets": "node scripts/tests/check-assets.test.mjs",
-    "test": "npm run build && node scripts/tests/project-styles.test.mjs && node scripts/tests/check-project-manifest.test.mjs && node scripts/tests/check-assets.test.mjs && node scripts/tests/site-build-utils.test.mjs && node scripts/tests/site-build.test.mjs && node scripts/tests/check-site-build.test.mjs && node scripts/tests/css-contracts.test.mjs && node scripts/tests/qa-results.test.mjs && node scripts/tests/check-tokens.test.mjs && node scripts/tests/qa-audit.test.mjs && node scripts/tests/qa.test.mjs && node scripts/tests/check-compliance.test.mjs",
+    "test": "npm run build && node scripts/tests/project-styles.test.mjs && node scripts/tests/check-project-manifest.test.mjs && node scripts/tests/check-assets.test.mjs && node scripts/tests/site-build-utils.test.mjs && node scripts/tests/site-build.test.mjs && node scripts/tests/check-site-build.test.mjs && node scripts/tests/css-contracts.test.mjs && node scripts/tests/qa-results.test.mjs && node scripts/tests/check-tokens.test.mjs && node scripts/tests/qa-audit.test.mjs && node scripts/tests/qa.test.mjs && node scripts/tests/check-compliance.test.mjs && node scripts/tests/known-issues.test.mjs",
     "visual:qa": "playwright test --config=playwright.visual-qa.config.mjs",
     "visual:qa:baseline": "playwright test --config=playwright.visual-qa.config.mjs --update-snapshots"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
     "playwright": "1.64.1",
     "sass": "1.105.1"
   }
