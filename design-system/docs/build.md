@@ -46,6 +46,11 @@ npm run project:styles -- build <slug>
 npm run test:project-styles
 npm run check:docs
 npm run check:tokens
+npm run check:project -- <slug>
+npm run check:assets -- <slug>
+npm run site:build -- <slug>
+npm run check:site -- <slug>
+npm run test:assets
 ```
 
 - `build`/`build:sass` компилирует все entrypoint-файлы из `design-system/scss/` в `dist/css/` с source maps.
@@ -62,6 +67,22 @@ npm run check:tokens
   `css/custom-overrides.css`, и подключите результат последним.
 - `test:project-styles` проверяет, что повторная инициализация не стирает
   ручной комментарий/правило и что скомпилированный CSS содержит это правило.
+- `check:project` проверяет `projects/<slug>/project.json` по локальной
+  JSON-схеме, включая полный Git SHA версий и явных владельцев файлов.
+- `check:assets` проверяет `assets.json`, ресурсы в HTML/CSS и внешние HTTP(S)
+  ссылки в существующей production-сборке. `data:` URI и XML namespace не
+  считаются внешними ресурсами. Подтверждённые долги выводятся предупреждениями
+  из `scripts/known-asset-issues.json`; новые нарушения завершают команду с
+  ненулевым кодом.
+- `site:build` требует собранный корневой `dist/css/`, строго обрабатывает
+  ожидаемые подключения таблиц стилей, создаёт изолированный
+  `projects/<slug>/dist/` и проверяет наличие объявленных локальных ресурсов.
+  Он переносит SVG-спрайт и меняет в итоговых CSS ровно 138 ссылок токенов с
+  `/design-system/sets/1/` на относительный путь. Повторные запуски с теми же
+  исходниками детерминированы.
+- `check:site` раздаёт проектный `dist/` из `/some/path/` и фиксирует HTTP
+  запросы к локальным HTML/CSS ресурсам с кодом 400 и выше. Это техническая
+  проверка путей, не визуальная QA.
 
 Каталог `dist/` является генерируемым и не смешивается с исходниками.
 
@@ -70,4 +91,8 @@ npm run check:tokens
 - `tokens.scss`, `core.scss` и `legacy-platform.scss` содержат runtime token layer; объявления миксинов сами по себе CSS не генерируют.
 - `check.scss` действительно разворачивает все миксины и тем самым проверяет вложенные `@include`, Sass-выражения и генерируемые селекторы.
 - Неопределённые CSS custom properties не являются ошибкой компилятора Sass. Они остаются отдельными runtime-блокерами, перечисленными в `tokens.md` и `icons.md`.
+- `site:build` и `check:site` не могут сделать поставку успешной при известном
+  дефекте общего токена, который указывает на отсутствующий файл, или при
+  отсутствующем проектном ресурсе. Такие ошибки следует исправлять в их
+  владельце либо отдельно согласовывать как известный долг.
 - Используется legacy `@import`, поскольку миграция на `@use` не входит в текущий этап. Dart Sass может выводить соответствующие deprecation warnings; это предупреждения, а не синтаксические ошибки текущих файлов.

@@ -12,6 +12,11 @@
     "test:project-styles": "node scripts/tests/project-styles.test.mjs",
     "check:docs": "node scripts/check-docs.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
+    "check:project": "node scripts/check-project-manifest.mjs",
+    "site:build": "node scripts/site-build.mjs",
+    "check:site": "node scripts/check-site-build.mjs",
+    "check:assets": "node scripts/check-assets.mjs",
+    "test:assets": "node scripts/tests/check-assets.test.mjs",
     "visual:qa": "playwright test --config=playwright.visual-qa.config.mjs",
     "visual:qa:baseline": "playwright test --config=playwright.visual-qa.config.mjs --update-snapshots"
   },
