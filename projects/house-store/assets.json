@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schemas/assets.schema.json",
+  "schema_version": 1,
+  "assets": [
+    { "id": "field-jacket", "source": "./images/field-jacket.png", "rights": "unknown", "local_path": "images/field-jacket.png", "role": "product-image", "ratio": "unknown" },
+    { "id": "long-line", "source": "./images/long-line.png", "rights": "unknown", "local_path": "images/long-line.png", "role": "product-image", "ratio": "unknown" },
+    { "id": "soft-wool", "source": "./images/soft-wool.png", "rights": "unknown", "local_path": "images/soft-wool.png", "role": "product-image", "ratio": "unknown" },
+    { "id": "wide-leg", "source": "./images/wide-leg.png", "rights": "unknown", "local_path": "images/wide-leg.png", "role": "product-image", "ratio": "unknown" }
+  ]
+}

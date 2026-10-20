@@ -1,0 +1,17 @@
+{
+  "fashion-store": {
+    "allow_unknown_rights": true,
+    "allow_external_resources": true,
+    "reason": "Учебная reference-копия использует изображения clothing-shop.oml.ru; права и локализация не подтверждены."
+  },
+  "test-site": {
+    "allow_unknown_rights": true,
+    "allow_external_resources": true,
+    "allow_missing_local_resources": true,
+    "reason": "Учебная reference-копия использует материалы hr.tutu.ru; локальный MP4 игнорируется Git и отсутствует."
+  },
+  "house-store": {
+    "allow_unknown_rights": true,
+    "reason": "Происхождение локальных изображений ожидает подтверждения владельцем проекта."
+  }
+}

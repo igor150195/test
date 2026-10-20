@@ -1,0 +1,7 @@
+{
+  "$schema": "../../schemas/assets.schema.json",
+  "schema_version": 1,
+  "assets": [
+    { "id": "clothing-shop-reference-images", "source": "https://clothing-shop.oml.ru/", "rights": "unknown", "local_path": null, "role": "reference-images", "ratio": "unknown" }
+  ]
+}

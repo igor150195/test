@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/schemas/assets.schema.json",
+  "title": "Codex project asset manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "assets"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "rights", "local_path", "role", "ratio"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "source": { "type": "string", "minLength": 1 },
+          "rights": { "enum": ["own", "licensed", "placeholder", "unknown"] },
+          "local_path": { "type": ["string", "null"] },
+          "role": { "type": "string", "minLength": 1 },
+          "ratio": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/assets.schema.json",
+  "schema_version": 1,
+  "assets": [
+    {
+      "id": "tutu-reference-media",
+      "source": "https://hr.tutu.ru/",
+      "rights": "unknown",
+      "local_path": null,
+      "role": "reference-media",
+      "ratio": "various"
+    },
+    {
+      "id": "tutu-hero-video",
+      "source": "assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+      "rights": "unknown",
+      "local_path": "assets/cdf2bc323a7d099862c187f22b6c6c33_1920.mp4",
+      "role": "hero-video",
+      "ratio": "16:9"
+    }
+  ]
+}
