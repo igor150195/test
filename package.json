@@ -16,7 +16,10 @@
     "site:build": "node scripts/site-build.mjs",
     "check:site": "node scripts/check-site-build.mjs",
     "check:assets": "node scripts/check-assets.mjs",
+    "qa": "node scripts/qa.mjs",
+    "check:compliance": "node scripts/check-compliance.mjs",
     "test:assets": "node scripts/tests/check-assets.test.mjs",
+    "test": "npm run build && node scripts/tests/project-styles.test.mjs && node scripts/tests/check-project-manifest.test.mjs && node scripts/tests/check-assets.test.mjs && node scripts/tests/site-build-utils.test.mjs && node scripts/tests/site-build.test.mjs && node scripts/tests/check-site-build.test.mjs && node scripts/tests/css-contracts.test.mjs && node scripts/tests/qa-results.test.mjs && node scripts/tests/check-tokens.test.mjs && node scripts/tests/qa-audit.test.mjs && node scripts/tests/qa.test.mjs && node scripts/tests/check-compliance.test.mjs",
     "visual:qa": "playwright test --config=playwright.visual-qa.config.mjs",
     "visual:qa:baseline": "playwright test --config=playwright.visual-qa.config.mjs --update-snapshots"
   },

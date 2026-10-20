@@ -24,7 +24,7 @@ function localCssReferences(css) {
     .filter(isLocalReference);
 }
 
-function createSubpathServer(distDirectory, basePath) {
+export function createSubpathServer(distDirectory, basePath) {
   const normalizedBase = `/${basePath.replace(/^\/+|\/+$/g, '')}/`;
   return createServer(async (request, response) => {
     const requestPath = decodeURIComponent(new URL(request.url ?? '/', 'http://127.0.0.1').pathname);

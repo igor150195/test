@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import { auditCssContracts, externalResourcesInBundle, inspectHtmlFixture } from '../qa-audit.mjs';
+
+const known = { dynamicTokenPrefixes: ['--gr_'], undefinedTokens: {}, undefinedClasses: {} };
+const findings = auditCssContracts({ html: '<button class="ds-missing" style="color:var(--missing)"></button>', css: ':root { --defined: 1; }', knownIssues: known });
+assert.equal(findings.filter((finding) => finding.severity === 'error').length, 2);
+assert.equal(findings.find((finding) => finding.code === 'undefined-token').message, 'Undefined CSS token: --missing');
+assert.deepEqual(externalResourcesInBundle('<img src="https://example.test/a.png">', '.x { background: url(https://example.test/b.png); }'), ['https://example.test/a.png', 'https://example.test/b.png']);
+const incomplete = inspectHtmlFixture('<html><body><img src="image.png"><input id="email"><button></button></body></html>');
+assert.equal(incomplete.hasLang, false);
+assert.equal(incomplete.imagesMissingAlt.length, 1);
+assert.equal(incomplete.unlabeledInputs.length, 1);
+assert.equal(incomplete.unnamedButtons.length, 1);
+assert.equal(incomplete.hasSkipLink, false);
+const complete = inspectHtmlFixture('<html lang="ru"><body><a class="skip-link" href="#main">Skip</a><img src="data:image/svg+xml,x" alt=""/><label for="email">Email</label><input id="email"><button aria-label="Close"></button></body></html>');
+assert.equal(complete.hasLang, true);
+assert.equal(complete.imagesWithoutDimensions.length, 0);
+assert.equal(complete.imagesWithoutLoading.length, 0);
+assert.equal(complete.unlabeledInputs.length, 0);
+assert.equal(complete.unnamedButtons.length, 0);
+assert.equal(complete.hasSkipLink, true);
+console.log('qa-audit tests passed.');

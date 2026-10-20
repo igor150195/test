@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { cssDefinesClass, customPropertyAssignments, dsClassesInHtml, shouldCheckVariableReference, variableReferences } from './css-contracts.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const knownIssues = JSON.parse(readFileSync(resolve(repositoryRoot, 'scripts/known-token-issues.json'), 'utf8'));
@@ -60,7 +61,7 @@ for (const tokenFile of walk(resolve(repositoryRoot, 'design-system/tokens'))) {
 }
 
 for (const root of ['design-system', 'projects']) {
-  for (const sourceFile of walk(resolve(repositoryRoot, root), (entry) => !['docs', 'artifacts'].includes(entry.name))) {
+  for (const sourceFile of walk(resolve(repositoryRoot, root), (entry) => !['docs', 'artifacts', 'dist'].includes(entry.name))) {
     if (!sourceExtensions.has(extname(sourceFile))) continue;
     sourceFiles.push(sourceFile);
     if (extname(sourceFile) === '.html') htmlFiles.push(sourceFile);
@@ -69,13 +70,12 @@ for (const root of ['design-system', 'projects']) {
 
 for (const sourceFile of sourceFiles) {
   const contents = readFileSync(sourceFile, 'utf8');
-  for (const match of contents.matchAll(/(--[a-zA-Z0-9_-]+)\s*:/g)) {
-    allDefinedTokens.add(match[1]);
+  for (const token of customPropertyAssignments(contents)) {
+    allDefinedTokens.add(token);
   }
-  for (const match of contents.matchAll(/var\(\s*(--[a-zA-Z0-9_-]+)([^)]*)\)/g)) {
-    const [, token, remainder] = match;
-    const hasFallback = remainder.trimStart().startsWith(',');
-    if (hasFallback || knownIssues.dynamicTokenPrefixes.some((prefix) => token.startsWith(prefix))) continue;
+  for (const reference of variableReferences(contents)) {
+    if (!shouldCheckVariableReference(reference, knownIssues.dynamicTokenPrefixes)) continue;
+    const { token } = reference;
     addRecord(tokenReferences, token, relativePath(sourceFile));
   }
 }
@@ -122,8 +122,8 @@ for (const [token, references] of tokenReferences) {
 const usedDsClasses = new Map();
 for (const htmlFile of htmlFiles) {
   const contents = readFileSync(htmlFile, 'utf8');
-  for (const match of contents.matchAll(/\b(ds-[a-zA-Z0-9_-]+)\b/g)) {
-    addRecord(usedDsClasses, match[1], relativePath(htmlFile));
+  for (const className of dsClassesInHtml(contents)) {
+    addRecord(usedDsClasses, className, relativePath(htmlFile));
   }
 }
 
@@ -132,7 +132,7 @@ const builtCss = walk(resolve(repositoryRoot, 'dist/css'))
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
 for (const [className, references] of usedDsClasses) {
-  if (new RegExp(`\\.${className}(?![a-zA-Z0-9_-])`).test(builtCss)) continue;
+  if (cssDefinesClass(builtCss, className)) continue;
   if (knownIssues.undefinedClasses[className]) {
     known.push(`known undefined CSS class: .${className}; ${knownIssues.undefinedClasses[className].reason} Used by: ${[...new Set(references)].join(', ')}`);
   } else {

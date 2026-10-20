@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -24,24 +24,6 @@ function findAsset(assets, resource, localPath, projectDirectory) {
     if (isExternal(resource)) return resource.startsWith(asset.source);
     return asset.local_path && resolve(projectDirectory, localPath) === resolve(projectDirectory, asset.local_path);
   });
-}
-
-function listFiles(directory) {
-  if (!existsSync(directory)) return [];
-  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    const path = join(directory, entry.name);
-    return entry.isDirectory() ? listFiles(path) : [path];
-  });
-}
-
-function productionResources(projectDirectory) {
-  const outputDirectory = join(projectDirectory, 'dist');
-  return listFiles(outputDirectory)
-    .filter((file) => /\.(?:css|html)$/i.test(file))
-    .flatMap((file) => resourcesInText(readFileSync(file, 'utf8')).map((resource) => ({
-      file: relative(projectDirectory, file),
-      resource
-    })));
 }
 
 export function checkAssets(slug) {
@@ -91,14 +73,7 @@ export function checkAssets(slug) {
       }
     }
   });
-  const productionExternal = productionResources(projectDirectory)
-    .filter(({ resource }) => isExternal(resource));
-  productionExternal.forEach(({ file, resource }) => {
-    const message = `external production resource: ${file} -> ${resource}`;
-    if (known.allow_external_resources) warnings.push(`known asset debt: ${message}; ${known.reason}`);
-    else errors.push(message);
-  });
-  return { errors, warnings, resources: [...seenResources].sort(), productionExternal };
+  return { errors, warnings, resources: [...seenResources].sort() };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

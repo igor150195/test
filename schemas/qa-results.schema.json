@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/schemas/qa-results.schema.json",
+  "title": "Codex project QA results",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "project", "generator_version", "ds_version", "chromium_version", "portable", "pages", "technical", "expert"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "project": { "type": "string", "minLength": 1 },
+    "generator_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "ds_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "chromium_version": { "type": ["string", "null"] },
+    "portable": { "type": "boolean" },
+    "pages": { "type": "array" },
+    "technical": {
+      "type": "object",
+      "required": ["status", "checks", "summary"],
+      "properties": {
+        "status": { "enum": ["pass", "fail", "not-run"] },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "status", "count", "evidence"],
+            "properties": {
+              "id": { "type": "string" },
+              "status": { "enum": ["passed", "warning", "error", "skipped", "not-run"] },
+              "count": { "type": "integer", "minimum": 0 },
+              "reason": { "type": "string" },
+              "evidence": { "type": "array" }
+            }
+          }
+        },
+        "summary": { "type": "object" }
+      }
+    },
+    "expert": {
+      "type": "object",
+      "required": ["status", "score", "findings"],
+      "properties": {
+        "status": { "const": "not-reviewed" },
+        "score": { "type": "null" },
+        "findings": { "type": "array", "maxItems": 0 }
+      }
+    }
+  }
+}
