@@ -10,21 +10,27 @@ const html = [
   '<link rel="stylesheet" href="../../dist/css/core.css">',
   '<link rel="stylesheet" href="../../dist/css/components.css">',
   '<link rel="stylesheet" href="../../dist/css/blocks.css">',
+  '<link rel="stylesheet" href="./css/theme.css">',
   '<link rel="stylesheet" href="./css/custom.css">',
   '<img src="./images/hero.png">',
   '<img src="data:image/svg+xml,test">',
   '<img src="https://example.com/remote.png">'
 ].join('\n');
 
-const output = rewriteStyleLinks(html, ['css/custom.css']);
+const output = rewriteStyleLinks(html, ['css/theme.css', 'css/custom.css'], { themePath: 'css/theme.css' });
 assert.match(output, /\.\/css\/site\.css/, 'combined stylesheet link must be emitted');
 assert.equal(output.includes('../../dist/css/'), false, 'repository stylesheet links must be removed');
 assert.deepEqual(collectLocalResourcePaths(html), ['./images/hero.png'], 'only relative local resources must be copied');
 assert.deepEqual(collectLocalCssResourcePaths('background: url("../images/hero.png"); mask: url(data:image/svg+xml,test);'), ['../images/hero.png'], 'only relative CSS resources must be copied');
 assert.throws(
-  () => rewriteStyleLinks(html.replace('../../dist/css/core.css', '../../dist/css/missing.css'), ['css/custom.css']),
+  () => rewriteStyleLinks(html.replace('../../dist/css/core.css', '../../dist/css/missing.css'), ['css/theme.css', 'css/custom.css'], { themePath: 'css/theme.css' }),
   /Expected exactly one stylesheet link/,
   'unexpected legacy markup must fail instead of being rewritten loosely'
+);
+assert.throws(
+  () => rewriteStyleLinks(html.replace('<link rel="stylesheet" href="./css/theme.css">\n', ''), ['css/theme.css', 'css/custom.css'], { themePath: 'css/theme.css' }),
+  /Expected exactly one theme stylesheet link/,
+  'a themed project must declare its theme link'
 );
 
 function write(path, contents) {
@@ -57,11 +63,17 @@ try {
     generator_version: 'git:0123456789abcdef0123456789abcdef01234567',
     ds_version: 'git:0123456789abcdef0123456789abcdef01234567',
     compliance: 'strict',
+    theme: {
+      primary: '#7042F4', primary_surface: '#4915B7', on_primary: '#FFFFFF',
+      accent: '#A1F2A0', accent_surface: '#7DDD7C', on_accent: '#000000',
+      bg_main: '#FFFFFF', bg_main_surface: '#F7F7F7', on_bg_main: '#000000', on_bg_main_accent: '#151037'
+    },
     pages: [{ id: 'home', source: 'index.html', output: 'index.html', route: '/' }],
-    files: [{ path: 'css/custom.css', owner: 'generated' }],
+    files: [{ path: 'css/theme.css', owner: 'generated' }, { path: 'css/custom.css', owner: 'generated' }],
     external_dependencies: []
   }, null, 2));
   write(join(projectDirectory, 'index.html'), `${html}\n`);
+  write(join(projectDirectory, 'css', 'theme.css'), ':root { --primary: #7042F4; }');
   write(join(projectDirectory, 'css', 'custom.css'), '.project {}');
   write(join(projectDirectory, 'images', 'hero.png'), 'fixture image');
   const first = buildSite('fixture', { repositoryRoot: temporaryRepository });
@@ -70,6 +82,9 @@ try {
   assert.deepEqual(hashes(second.projectDist), firstHashes, 'two site builds must have identical output hashes');
   assert.equal(first.iconUrlReplacements, 138, 'fixture must rewrite all icon URLs');
   assert.equal(first.warnings.length, 1, 'known missing token resource must be reported but not block the build');
+  const builtCss = readFileSync(join(first.projectDist, 'css', 'site.css'), 'utf8');
+  assert.ok(builtCss.indexOf('/* blocks.css */') < builtCss.indexOf('/* css/theme.css */'), 'theme CSS must follow all DS CSS in the portable bundle');
+  assert.ok(builtCss.indexOf('/* css/theme.css */') < builtCss.indexOf('/* css/custom.css */'), 'theme CSS must precede local project CSS in the portable bundle');
   write(join(projectDirectory, 'css', 'custom.css'), '.project { background-image: url("./new-missing.png"); }');
   assert.throws(
     () => buildSite('fixture', { repositoryRoot: temporaryRepository }),

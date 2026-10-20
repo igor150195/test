@@ -26,6 +26,34 @@
     "generator_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
     "ds_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
     "compliance": { "enum": ["legacy", "strict"] },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "primary_surface",
+        "on_primary",
+        "accent",
+        "accent_surface",
+        "on_accent",
+        "bg_main",
+        "bg_main_surface",
+        "on_bg_main",
+        "on_bg_main_accent"
+      ],
+      "properties": {
+        "primary": { "$ref": "#/$defs/hexColor" },
+        "primary_surface": { "$ref": "#/$defs/hexColor" },
+        "on_primary": { "$ref": "#/$defs/hexColor" },
+        "accent": { "$ref": "#/$defs/hexColor" },
+        "accent_surface": { "$ref": "#/$defs/hexColor" },
+        "on_accent": { "$ref": "#/$defs/hexColor" },
+        "bg_main": { "$ref": "#/$defs/hexColor" },
+        "bg_main_surface": { "$ref": "#/$defs/hexColor" },
+        "on_bg_main": { "$ref": "#/$defs/hexColor" },
+        "on_bg_main_accent": { "$ref": "#/$defs/hexColor" }
+      }
+    },
     "pages": {
       "type": "array",
       "minItems": 1,
@@ -66,5 +94,8 @@
         }
       }
     }
+  },
+  "$defs": {
+    "hexColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
   }
 }

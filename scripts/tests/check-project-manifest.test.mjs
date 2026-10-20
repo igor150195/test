@@ -26,6 +26,24 @@ try {
   const invalid = { ...valid, files: [{ path: 'css/custom.css', owner: 'legacy' }] };
   assert.match(validateProjectManifest(invalid, fixture).join('\n'), /owner generated\|owner/, 'invalid owner must fail');
   assert.match(validateProjectManifest(({ ...valid, compliance: 'unknown' }), fixture).join('\n'), /compliance must be legacy or strict/, 'invalid compliance mode must fail');
+  const theme = {
+    primary: '#7042F4', primary_surface: '#4915B7', on_primary: '#FFFFFF',
+    accent: '#A1F2A0', accent_surface: '#7DDD7C', on_accent: '#000000',
+    bg_main: '#FFFFFF', bg_main_surface: '#F7F7F7', on_bg_main: '#000000', on_bg_main_accent: '#151037'
+  };
+  const themed = { ...valid, theme, files: [...valid.files, { path: 'css/theme.css', owner: 'generated' }] };
+  writeFileSync(join(fixture, 'index.html'), [
+    '<link rel="stylesheet" href="../../dist/css/tokens.css">',
+    '<link rel="stylesheet" href="../../dist/css/core.css">',
+    '<link rel="stylesheet" href="../../dist/css/components.css">',
+    '<link rel="stylesheet" href="../../dist/css/blocks.css">',
+    '<link rel="stylesheet" href="./css/theme.css">'
+  ].join('\n'), 'utf8');
+  assert.deepEqual(validateProjectManifest(themed, fixture), [], 'a complete hex theme with generated output must pass');
+  writeFileSync(join(fixture, 'index.html'), '<link rel="stylesheet" href="../../dist/css/tokens.css">\n<link rel="stylesheet" href="./css/theme.css">', 'utf8');
+  assert.match(validateProjectManifest(themed, fixture).join('\n'), /must link tokens\.css, core\.css, components\.css, blocks\.css, then css\/theme\.css/, 'a theme before core CSS must fail the manifest contract');
+  assert.match(validateProjectManifest({ ...themed, theme: { ...theme, primary: '#fff' } }, fixture).join('\n'), /theme.primary must use #RRGGBB syntax/, 'short hex values must fail');
+  assert.match(validateProjectManifest({ ...themed, files: valid.files }, fixture).join('\n'), /theme requires files to declare generated css\/theme\.css/, 'theme output ownership must be explicit');
   console.log('check-project-manifest: schema contract passed');
 } finally {
   rmSync(fixture, { recursive: true, force: true });

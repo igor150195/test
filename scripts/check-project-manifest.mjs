@@ -5,6 +5,30 @@ import { fileURLToPath } from 'node:url';
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const shaPattern = /^git:[0-9a-f]{40}$/;
 const slugPattern = /^[a-z0-9][a-z0-9-]*$/;
+const hexColorPattern = /^#[\da-f]{6}$/i;
+const themeKeys = [
+  'primary', 'primary_surface', 'on_primary',
+  'accent', 'accent_surface', 'on_accent',
+  'bg_main', 'bg_main_surface', 'on_bg_main', 'on_bg_main_accent'
+];
+const dsStylesheetLinks = [
+  '../../dist/css/tokens.css',
+  '../../dist/css/core.css',
+  '../../dist/css/components.css',
+  '../../dist/css/blocks.css',
+  './css/theme.css'
+];
+
+function themeLinkOrderIsValid(html) {
+  let cursor = 0;
+  return dsStylesheetLinks.every((href) => {
+    const link = `<link rel="stylesheet" href="${href}">`;
+    const index = html.indexOf(link, cursor);
+    if (index === -1) return false;
+    cursor = index + link.length;
+    return true;
+  });
+}
 
 export function validateProjectManifest(manifest, projectDirectory) {
   const errors = [];
@@ -20,6 +44,18 @@ export function validateProjectManifest(manifest, projectDirectory) {
     if (!shaPattern.test(manifest[key] ?? '')) errors.push(`${key} must be a full git SHA prefixed with git:`);
   });
   if (!['legacy', 'strict'].includes(manifest.compliance)) errors.push('compliance must be legacy or strict');
+  if ('theme' in manifest) {
+    if (!manifest.theme || typeof manifest.theme !== 'object' || Array.isArray(manifest.theme)) {
+      errors.push('theme must be an object when declared');
+    } else {
+      themeKeys.forEach((key) => {
+        if (!hexColorPattern.test(manifest.theme[key] ?? '')) errors.push(`theme.${key} must use #RRGGBB syntax`);
+      });
+      Object.keys(manifest.theme).forEach((key) => {
+        if (!themeKeys.includes(key)) errors.push(`theme contains unsupported property: ${key}`);
+      });
+    }
+  }
   if (!Array.isArray(manifest.pages) || !manifest.pages.length) {
     errors.push('pages must contain at least one page');
   } else {
@@ -28,8 +64,16 @@ export function validateProjectManifest(manifest, projectDirectory) {
         errors.push(`pages[${index}] must define id, source, output and route`);
         return;
       }
-      if (!existsSync(join(projectDirectory, page.source))) errors.push(`pages[${index}].source does not exist: ${page.source}`);
+      const sourcePath = join(projectDirectory, page.source);
+      if (!existsSync(sourcePath)) {
+        errors.push(`pages[${index}].source does not exist: ${page.source}`);
+      } else if (manifest.theme && !themeLinkOrderIsValid(readFileSync(sourcePath, 'utf8'))) {
+        errors.push(`pages[${index}] must link tokens.css, core.css, components.css, blocks.css, then css/theme.css in that order`);
+      }
     });
+  }
+  if (manifest.theme && !manifest.files?.some((file) => file.path === 'css/theme.css' && file.owner === 'generated')) {
+    errors.push('theme requires files to declare generated css/theme.css');
   }
   if (!Array.isArray(manifest.files)) {
     errors.push('files must be an array');

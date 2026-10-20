@@ -10,6 +10,7 @@ const defaultRepositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.ur
 const dsCssFiles = ['tokens.css', 'core.css', 'components.css', 'blocks.css'];
 const dsLinkPrefix = '../../dist/css/';
 const generatedStyleLink = '<link rel="stylesheet" href="./css/site.css">';
+const themeStylePath = 'css/theme.css';
 const knownResourceIssues = JSON.parse(readFileSync(join(defaultRepositoryRoot, 'scripts', 'known-resource-issues.json'), 'utf8'));
 
 function sha256(contents) {
@@ -33,7 +34,7 @@ export function knownMissingResource(cssFile, resource) {
   return knownResourceIssues.missing.find((issue) => issue.resource === resource && issue.css_files.includes(cssFile));
 }
 
-export function rewriteStyleLinks(html, localStylePaths) {
+export function rewriteStyleLinks(html, localStylePaths, { themePath } = {}) {
   let output = html;
   const expectedDsLinks = dsCssFiles.map((file) => `<link rel="stylesheet" href="${dsLinkPrefix}${file}">`);
   expectedDsLinks.forEach((link) => {
@@ -42,6 +43,16 @@ export function rewriteStyleLinks(html, localStylePaths) {
       throw new Error(`Expected exactly one stylesheet link: ${link}`);
     }
   });
+
+  if (themePath) {
+    const themeLink = `<link rel="stylesheet" href="./${themePath}">`;
+    const themeMatches = output.split(themeLink).length - 1;
+    if (themeMatches !== 1) throw new Error(`Expected exactly one theme stylesheet link: ${themeLink}`);
+    const blocksThenTheme = new RegExp(`${escapeRegExp(expectedDsLinks[3])}\\s*${escapeRegExp(themeLink)}`);
+    if (!blocksThenTheme.test(output)) {
+      throw new Error(`Theme stylesheet must be connected immediately after blocks.css: ${themeLink}`);
+    }
+  }
 
   output = output.replace(expectedDsLinks[0], generatedStyleLink);
   expectedDsLinks.slice(1).forEach((link) => {
@@ -61,6 +72,10 @@ export function rewriteStyleLinks(html, localStylePaths) {
     throw new Error('Output HTML retains a repository CSS path.');
   }
   return output;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 export function collectLocalResourcePaths(html) {
@@ -112,6 +127,8 @@ function declaredProjectStyles(manifest, projectDirectory) {
     .filter((file) => file.path.startsWith('css/') && file.path.endsWith('.css'))
     .map((file) => file.path)
     .sort((left, right) => {
+      if (left === themeStylePath) return -1;
+      if (right === themeStylePath) return 1;
       if (left === 'css/custom.css') return -1;
       if (right === 'css/custom.css') return 1;
       return left.localeCompare(right);
@@ -136,7 +153,13 @@ export function buildSite(slug, { repositoryRoot = defaultRepositoryRoot } = {})
     const sourcePath = join(projectDirectory, page.source);
     const html = readFileSync(sourcePath, 'utf8');
     inputHashes[page.source] = sha256(html);
-    return { page, html, output: rewriteStyleLinks(html, projectStyles.map((style) => style.path)) };
+    return {
+      page,
+      html,
+      output: rewriteStyleLinks(html, projectStyles.map((style) => style.path), {
+        themePath: manifest.theme ? themeStylePath : undefined
+      })
+    };
   });
 
   projectStyles.forEach((style) => { inputHashes[style.path] = sha256(style.css); });
@@ -147,12 +170,19 @@ export function buildSite(slug, { repositoryRoot = defaultRepositoryRoot } = {})
     rewrite: style.css.includes(iconPrefix) ? rewriteIconSpriteUrls(style.css, '../assets/') : null
   }));
   const rewrittenTokens = rewrittenRootCss.find((style) => style.file === 'tokens.css').rewrite;
-  const cssParts = rewrittenRootCss.map((style) => ({
+  const themeStyle = projectStyles.find((style) => style.path === themeStylePath);
+  const otherProjectStyles = projectStyles.filter((style) => style !== themeStyle);
+  const rootParts = rewrittenRootCss.map((style) => ({
     name: style.file,
     css: style.rewrite ? style.rewrite.css : style.css,
     resourceCss: style.css,
     sourcePath: style.path
-  })).concat(projectStyles.map((style) => ({ name: style.path, css: style.css, resourceCss: style.css, sourcePath: style.absolutePath })));
+  }));
+  const cssParts = [
+    ...rootParts,
+    ...(themeStyle ? [{ name: themeStyle.path, css: themeStyle.css, resourceCss: themeStyle.css, sourcePath: themeStyle.absolutePath }] : []),
+    ...otherProjectStyles.map((style) => ({ name: style.path, css: style.css, resourceCss: style.css, sourcePath: style.absolutePath }))
+  ];
 
   const cssResourceCopies = [];
   cssParts.forEach((part) => {
