@@ -26,3 +26,53 @@
 
 Новые глобальные токены, иконки, миксины и компоненты не добавлялись.
 
+## Ретроспективные статусы секций
+
+Статусы ниже следуют только из `reference-analysis.md`, `page-blueprint.md` и
+фактических классов проекта. Остальные секции отмечены как не определённые.
+
+```ds-section
+{
+    "id": "site-header",
+    "status": "REUSE",
+    "html_selector": ".fashion-header",
+    "local_selectors": [".fashion-header"],
+    "local_files": ["css/custom.css"],
+    "ds_sources": ["design-system/blocks/header/index.md"],
+    "knowledge_ids": []
+}
+```
+
+```ds-section
+{
+    "id": "product-new-arrivals",
+    "status": "COMPOSE",
+    "html_selector": ".fashion-products",
+    "local_selectors": [".fashion-products"],
+    "local_files": ["css/custom.css"],
+    "ds_sources": [
+        "design-system/blocks/product-card/index.md",
+        "design-system/components/price/index.md",
+        "design-system/components/rating/index.md",
+        "design-system/components/badge/index.md"
+    ],
+    "knowledge_ids": ["KBP-0002"]
+}
+```
+
+```ds-section
+{
+    "id": "site-footer",
+    "status": "REUSE",
+    "html_selector": ".fashion-footer",
+    "local_selectors": [".fashion-footer"],
+    "local_files": ["css/custom.css"],
+    "ds_sources": ["design-system/blocks/footer/index.md"],
+    "knowledge_ids": []
+}
+```
+
+Hero, полоса брендов, категория, редакционный блок и точная адаптивная
+композиция не определены ретроспективно: имеющиеся документы не доказывают
+для них `REUSE` или `COMPOSE` без дополнительного анализа.
+

@@ -23,9 +23,20 @@ export function createQaResults({ slug, generatorVersion, dsVersion, chromiumVer
     technical: {
       status: 'not-run',
       checks: mandatoryTechnicalCheckIds.map(initialCheck),
-      summary: { errors: 0, warnings: 0, passed: 0, skipped: 0, not_run: mandatoryTechnicalCheckIds.length }
+      summary: { errors: 0, warnings: 0, passed: 0, skipped: 0, not_run: mandatoryTechnicalCheckIds.length },
+      a11y: { status: 'not-run', violations: [], incomplete: { count: 0, findings: [] }, reason: 'QA has not started.' }
     },
     expert: { status: 'not-reviewed', score: null, findings: [] }
+  };
+}
+
+export function recordA11yReport(result, { status, violations = [], incomplete = { count: 0, findings: [] }, reason } = {}) {
+  if (!['passed', 'warning', 'error', 'incomplete', 'not-run'].includes(status)) throw new Error(`Unsupported a11y status: ${status}`);
+  result.technical.a11y = {
+    status,
+    violations,
+    incomplete,
+    ...(['incomplete', 'not-run'].includes(status) ? { reason: reason ?? 'No reason recorded.' } : {})
   };
 }
 
@@ -103,6 +114,14 @@ export function validateQaResults(result) {
     if (result.technical.status === 'pass' && result.technical.checks.some((check) => !['passed', 'warning'].includes(check.status))) {
       errors.push('technical.status pass requires every mandatory check to be passed or warning');
     }
+  }
+  const a11y = result?.technical?.a11y;
+  if (!a11y || !['passed', 'warning', 'error', 'incomplete', 'not-run'].includes(a11y.status) || !Array.isArray(a11y.violations) || !Number.isInteger(a11y.incomplete?.count) || !Array.isArray(a11y.incomplete?.findings)) {
+    errors.push('technical.a11y must contain status, violations and incomplete findings');
+  } else if (['incomplete', 'not-run'].includes(a11y.status) && !a11y.reason) {
+    errors.push('technical.a11y must contain a reason when incomplete or not-run');
+  } else if (a11y.status === 'passed' && a11y.incomplete.count > 0) {
+    errors.push('technical.a11y cannot pass with incomplete findings');
   }
   if (!result?.expert || result.expert.status !== 'not-reviewed' || result.expert.score !== null || !Array.isArray(result.expert.findings)) {
     errors.push('expert must remain an empty not-reviewed assessment until human or agent review');

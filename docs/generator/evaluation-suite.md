@@ -61,6 +61,43 @@
 Найденные проблемы и доказательства: `projects/fashion-store/docs/generator-review.md`.
 Технический результат и artifacts: `projects/fashion-store/docs/visual-qa-pipeline-report.md`.
 
+### Case D — house-store: brief-driven premium commerce
+
+| Поле | Зафиксированное значение |
+|---|---|
+| Статус | `technical-qa-captured; expert-not-reviewed` |
+| Генерируемый проект | `projects/house-store/` |
+| Reference | `not-applicable` — владелец подтвердил режим `brief` в `project.json`. |
+| Тип | минималистичный магазин одежды с фильтрами и каталогом. |
+| Настройки генерации | режим `brief`; существующие Header, Footer, Product Card, Form, Price, Rating и Badge; локальный `css/custom.css`. |
+| Viewports | 1920 × 1080, 1440 × 900, 768 × 1024, 390 × 844. |
+| Финальные screenshots | `projects/house-store/artifacts/qa/latest/screenshots/`; фактический состав фиксирует `results.json`. |
+| Технический результат | программная часть зафиксирована в `projects/house-store/artifacts/qa/latest/results.json`; экспертная часть имеет статус `not-reviewed`. |
+| История влияющих правок | первый контрольный прогон универсального `npm run qa -- house-store`; не является доказательством сходства с внешним референсом. |
+
+Назначение case: проверять переносимую production-сборку, каталог с фильтрами
+и общие DS-контракты в проекте без URL-референса. Повторный запуск начинается
+с `npm run site:build -- house-store`, затем `npm run qa -- house-store` и
+`npm run check:compliance -- house-store`.
+
+### Case E — test-site: long-form employer promotion
+
+| Поле | Зафиксированное значение |
+|---|---|
+| Статус | `legacy-prerequisite-fail` |
+| Генерируемый проект | `projects/test-site/` |
+| Reference | `https://hr.tutu.ru/` (источник указан в проектной документации). |
+| Тип | промо-страница работодателя с длинной последовательностью секций. |
+| Настройки генерации | legacy проект с локальным `css/custom.css`; в карте есть pending `EXTEND` для вкладок. |
+| Viewports | при готовой portable-сборке: 1920 × 1080, 1440 × 900, 768 × 1024, 390 × 844. |
+| Финальные screenshots | `not-run`: `site:build` не может собрать проект без заявленного локального ресурса. |
+| Технический результат | `prerequisite-fail`; QA намеренно не переходит к исходникам. |
+| История влияющих правок | formal DS-first карта фиксирует известный legacy `EXTEND` в `css/custom.css` как долг, а не как утверждённый API. |
+
+Назначение case: проверить многоэкранную промо-композицию после устранения
+ресурсной предпосылки. До этого case не используется для экспертной оценки
+генератора и не должен подменяться результатами другого проекта.
+
 ### Case B — govuk-service: public-service information architecture
 
 | Поле | Зафиксированное значение |
@@ -111,7 +148,10 @@
 3. Добавить аналогичный Playwright spec или обобщить runner только после того,
    как второй case подтвердит общий контракт. До этого не выдавать один
    fashion-store spec за поддержку всех проектов.
-4. Запустить `npm run build`, `npm run check:sass`, затем first capture.
+4. Запустить `npm run build`, `npm run check:sass`, `npm run site:build -- <slug>`,
+   `npm run qa -- <slug>` и `npm run check:compliance -- <slug>`, затем first
+   capture. Для legacy prerequisite-fail зафиксировать причину и не запускать
+   QA по исходникам.
    Сначала оценить local/reference pair по семи критериям ниже, и только после
    осознанного принятия запустить baseline update.
 5. Сохранить results JSON, local/reference screenshots и список проблем в

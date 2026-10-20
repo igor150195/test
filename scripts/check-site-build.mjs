@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { debtReviewWarning } from './known-issues.mjs';
 
 const defaultRepositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const mimeTypes = { '.css': 'text/css', '.html': 'text/html', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.mp4': 'video/mp4' };
@@ -96,6 +97,8 @@ export async function checkSiteBuild(slug, basePath = 'some/path', { repositoryR
     const known = knownMissingResponse(response);
     if (!known) return true;
     warnings.push(`known missing resource: ${response.status} ${response.url}; ${known.reason}`);
+    const reviewWarning = debtReviewWarning(known, `known missing resource ${known.output_path}`);
+    if (reviewWarning) warnings.push(`known-debt review: ${reviewWarning}`);
     return false;
   });
   if (failures.length) throw new Error(`Transfer check found ${failures.length} request(s) with status >=400:\n${failures.map((failure) => `- ${failure.status} ${failure.url}`).join('\n')}`);

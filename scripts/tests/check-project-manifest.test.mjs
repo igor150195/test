@@ -17,6 +17,7 @@ try {
     platform: 'static-html',
     generator_version: sha,
     ds_version: sha,
+    compliance: 'strict',
     pages: [{ id: 'home', source: 'index.html', output: 'index.html', route: '/' }],
     files: [{ path: 'css/custom.css', owner: 'generated' }],
     external_dependencies: []
@@ -24,6 +25,7 @@ try {
   assert.deepEqual(validateProjectManifest(valid, fixture), [], 'valid manifest must pass');
   const invalid = { ...valid, files: [{ path: 'css/custom.css', owner: 'legacy' }] };
   assert.match(validateProjectManifest(invalid, fixture).join('\n'), /owner generated\|owner/, 'invalid owner must fail');
+  assert.match(validateProjectManifest(({ ...valid, compliance: 'unknown' }), fixture).join('\n'), /compliance must be legacy or strict/, 'invalid compliance mode must fail');
   console.log('check-project-manifest: schema contract passed');
 } finally {
   rmSync(fixture, { recursive: true, force: true });

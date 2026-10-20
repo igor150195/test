@@ -51,6 +51,8 @@ npm run check:assets -- <slug>
 npm run site:build -- <slug>
 npm run check:site -- <slug>
 npm run test:assets
+npm run qa -- <slug>
+npm run check:compliance -- <slug>
 ```
 
 - `build`/`build:sass` компилирует все entrypoint-файлы из `design-system/scss/` в `dist/css/` с source maps.
@@ -83,6 +85,27 @@ npm run test:assets
 - `check:site` раздаёт проектный `dist/` из `/some/path/` и фиксирует HTTP
   запросы к локальным HTML/CSS ресурсам с кодом 400 и выше. Это техническая
   проверка путей, не визуальная QA.
+- `qa` требует уже собранный `projects/<slug>/dist/`. Он запускает матрицу
+  viewport 1920×1080, 1440×900, 768×1024 и 390×844 для страниц из
+  `project.json`, сохраняет снимки и программные результаты в
+  `projects/<slug>/artifacts/qa/latest/`. Флаг `--run-id <id>` сохраняет
+  отдельный архивный прогон. Проверка не заменяет экспертное сравнение с
+  референсом; результаты содержат отдельные `technical` и `expert` части.
+  При отсутствии Chromium команда завершает работу контролируемым
+  `not-run` с причиной. Проверенная ревизия Playwright Chromium —
+  `chromium-1248`; фактическая версия фиксируется в `results.json`.
+  Если Chromium доступен, QA также сохраняет результат `@axe-core/playwright`
+  в `technical.a11y`, включая `incomplete`: такие проверки не считаются
+  пройденными. Это отдельный отчёт о нарушениях доступности и пока не меняет
+  итоговый технический статус. В `strict` critical/serious findings — ошибки
+  внутри отчёта, в `legacy` — предупреждения; moderate/minor — предупреждения
+  в обоих режимах. Известный дефект общего `.ds-*` контракта фиксируется в
+  `scripts/known-a11y-issues.json`, а не исправляется автоматически.
+- `check:compliance` проверяет обязательные документы проекта и записи
+  `ds-section` из `docs/token-map.md`: существование указанных файлов,
+  уникальность ID, связи с базой знаний, покрытие top-level секций и
+  неутверждённые `EXTEND`/`BLOCKED`. Известные legacy-долги выводятся как
+  предупреждения, новые нарушения завершают команду с ненулевым кодом.
 
 Каталог `dist/` является генерируемым и не смешивается с исходниками.
 

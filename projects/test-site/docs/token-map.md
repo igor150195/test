@@ -21,3 +21,45 @@
 - `.visually-hidden` для доступных подписей.
 
 Новых SCSS-миксинов, глобальных иконок, CSS-токенов и изменений существующих компонентов нет.
+
+## Ретроспективные статусы секций
+
+Статусы опираются на `reference-analysis.md`, `page-blueprint.md` и
+`design-system-gap-report.md`; непроверенные секции не получают искусственный
+статус.
+
+```ds-section
+{
+    "id": "career-directions-tabs",
+    "status": "EXTEND",
+    "decision": "pending",
+    "html_selector": ".tutu-directions__switcher",
+    "local_selectors": [".tutu-direction-tabs"],
+    "local_files": ["css/custom.css"],
+    "ds_sources": [
+        "design-system/components/button/index.md",
+        "design-system/components/form/index.md"
+    ],
+    "knowledge_ids": []
+}
+```
+
+`html_selector` подтверждён в `index.html`. Это pending `EXTEND`: tabs/media
+локально реализованы до политики, поэтому compliance должен фиксировать
+известное нарушение, а не считать секцию переиспользуемым API.
+
+```ds-section
+{
+    "id": "site-footer",
+    "status": "REUSE",
+    "html_selector": ".tutu-footer",
+    "local_selectors": [".tutu-footer"],
+    "local_files": ["css/custom.css"],
+    "ds_sources": ["design-system/blocks/footer/index.md"],
+    "knowledge_ids": []
+}
+```
+
+Hero, показатели, форматы работы, преимущества, ценности, карточки людей и
+вакансии остаются «не определено»: существующие документы описывают их
+композицию, но не доказывают применимость системного контракта.

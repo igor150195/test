@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { debtReviewWarning } from './known-issues.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const knownIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-asset-issues.json'), 'utf8'));
@@ -34,6 +35,8 @@ export function checkAssets(slug) {
   const errors = [];
   const warnings = [];
   const known = knownIssues[slug] ?? {};
+  const reviewWarning = debtReviewWarning(known, `known asset debt for ${slug}`);
+  if (reviewWarning) warnings.push(`known-debt review: ${reviewWarning}`);
   if (manifest.schema_version !== 1 || !Array.isArray(manifest.assets)) errors.push('assets.json must contain schema_version: 1 and an assets array');
   const assets = manifest.assets ?? [];
   assets.forEach((asset, index) => {

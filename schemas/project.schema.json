@@ -12,6 +12,7 @@
     "platform",
     "generator_version",
     "ds_version",
+    "compliance",
     "pages",
     "files",
     "external_dependencies"
@@ -24,6 +25,7 @@
     "platform": { "const": "static-html" },
     "generator_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
     "ds_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "compliance": { "enum": ["legacy", "strict"] },
     "pages": {
       "type": "array",
       "minItems": 1,

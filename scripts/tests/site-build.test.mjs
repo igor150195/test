@@ -56,6 +56,7 @@ try {
     platform: 'static-html',
     generator_version: 'git:0123456789abcdef0123456789abcdef01234567',
     ds_version: 'git:0123456789abcdef0123456789abcdef01234567',
+    compliance: 'strict',
     pages: [{ id: 'home', source: 'index.html', output: 'index.html', route: '/' }],
     files: [{ path: 'css/custom.css', owner: 'generated' }],
     external_dependencies: []

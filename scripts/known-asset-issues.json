@@ -2,16 +2,22 @@
   "fashion-store": {
     "allow_unknown_rights": true,
     "allow_external_resources": true,
-    "reason": "Учебная reference-копия использует изображения clothing-shop.oml.ru; права и локализация не подтверждены."
+    "reason": "Учебная reference-копия использует изображения clothing-shop.oml.ru; права и локализация не подтверждены.",
+    "added": "2026-10-20",
+    "review_after": "2027-01-18"
   },
   "test-site": {
     "allow_unknown_rights": true,
     "allow_external_resources": true,
     "allow_missing_local_resources": true,
-    "reason": "Учебная reference-копия использует материалы hr.tutu.ru; локальный MP4 игнорируется Git и отсутствует."
+    "reason": "Учебная reference-копия использует материалы hr.tutu.ru; локальный MP4 игнорируется Git и отсутствует.",
+    "added": "2026-10-20",
+    "review_after": "2027-01-18"
   },
   "house-store": {
     "allow_unknown_rights": true,
-    "reason": "Происхождение локальных изображений ожидает подтверждения владельцем проекта."
+    "reason": "Происхождение локальных изображений ожидает подтверждения владельцем проекта.",
+    "added": "2026-10-20",
+    "review_after": "2027-01-18"
   }
 }

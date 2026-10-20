@@ -1,17 +1,53 @@
 {
   "projects": {
     "fashion-store": {
-      "missing-token-map-statuses": "Проект создан до обязательных статусов карты токенов; ретроспективная классификация выполняется отдельным шагом.",
-      "unverifiable-local-css": "В старой token-map нет устойчивых ID секций и списка локальных селекторов; автоматическая проверка EXTEND невозможна до миграции формата."
+      "missing-token-map-statuses": {
+        "reason": "Проект создан до обязательных статусов карты токенов; ретроспективная классификация выполняется отдельным шагом.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      },
+      "unverifiable-local-css": {
+        "reason": "В старой token-map нет устойчивых ID секций и списка локальных селекторов; автоматическая проверка EXTEND невозможна до миграции формата.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      }
     },
     "house-store": {
-      "missing-token-map": "Проект создан до политики Design System First; ретроспективные документы будут добавлены отдельным шагом.",
-      "missing-page-blueprint": "Проект создан до политики Design System First; ретроспективные документы будут добавлены отдельным шагом.",
-      "missing-qa-report": "Проект создан до политики Design System First; ретроспективные документы будут добавлены отдельным шагом."
+      "missing-token-map": {
+        "reason": "Проект создан до политики Design System First; ретроспективные документы будут добавлены отдельным шагом.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      },
+      "missing-page-blueprint": {
+        "reason": "Проект создан до политики Design System First; ретроспективные документы будут добавлены отдельным шагом.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      },
+      "missing-qa-report": {
+        "reason": "Проект создан до политики Design System First; ретроспективные документы будут добавлены отдельным шагом.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      }
     },
     "test-site": {
-      "missing-token-map-statuses": "В существующей token-map нет статусов по секциям; определяемые статусы будут добавлены отдельным шагом.",
-      "unverifiable-local-css": "В старой token-map нет устойчивых ID секций и списка локальных селекторов; автоматическая проверка EXTEND невозможна до миграции формата."
+      "missing-token-map-statuses": {
+        "reason": "В существующей token-map нет статусов по секциям; определяемые статусы будут добавлены отдельным шагом.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      },
+      "legacy-extend-local-css": {
+        "reason": "docs/design-system-gap-report.md фиксирует EXTEND для tabs-media; legacy-секция реализована локально в css/custom.css и не является допустимым переиспользуемым контрактом.",
+        "gap_report": "docs/design-system-gap-report.md",
+        "local_files": ["css/custom.css"],
+        "local_selectors": [".tutu-direction-tabs"],
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      },
+      "unverifiable-local-css": {
+        "reason": "В старой token-map нет устойчивых ID секций и списка локальных селекторов; автоматическая проверка EXTEND невозможна до миграции формата.",
+        "added": "2026-10-20",
+        "review_after": "2027-01-18"
+      }
     }
   }
 }

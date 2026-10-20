@@ -26,14 +26,25 @@ export function getProjectDirectory(slug) {
 
 export function ensureCustomScss(projectDirectory) {
   const customScss = join(projectDirectory, 'styles', 'custom.scss');
+  const manifestPath = join(projectDirectory, 'project.json');
+  let complianceCreated = false;
+
+  if (existsSync(manifestPath)) {
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    if (!('compliance' in manifest)) {
+      manifest.compliance = 'strict';
+      writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+      complianceCreated = true;
+    }
+  }
 
   if (existsSync(customScss)) {
-    return { path: customScss, created: false };
+    return { path: customScss, created: false, complianceCreated };
   }
 
   mkdirSync(dirname(customScss), { recursive: true });
   writeFileSync(customScss, starter, 'utf8');
-  return { path: customScss, created: true };
+  return { path: customScss, created: true, complianceCreated };
 }
 
 function isCommentOnlyCss(css) {

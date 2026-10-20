@@ -4,6 +4,7 @@ import { basename, dirname, join, normalize, relative, resolve } from 'node:path
 import { fileURLToPath } from 'node:url';
 import { validateProjectManifest } from './check-project-manifest.mjs';
 import { iconPrefix, rewriteIconSpriteUrls } from './site-build-utils.mjs';
+import { debtReviewWarning } from './known-issues.mjs';
 
 const defaultRepositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const dsCssFiles = ['tokens.css', 'core.css', 'components.css', 'blocks.css'];
@@ -161,6 +162,8 @@ export function buildSite(slug, { repositoryRoot = defaultRepositoryRoot } = {})
         const known = knownMissingResource(part.name, resource);
         if (known) {
           warnings.push(`known missing resource: ${part.name} -> ${resource}; ${known.reason}`);
+          const reviewWarning = debtReviewWarning(known, `known missing resource ${resource}`);
+          if (reviewWarning) warnings.push(`known-debt review: ${reviewWarning}`);
           return;
         }
         throw new Error(`Referenced local CSS resource does not exist: ${part.name} -> ${resource}`);

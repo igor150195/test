@@ -7,6 +7,7 @@
   "platform": "static-html",
   "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
   "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "compliance": "legacy",
   "pages": [
     { "id": "home", "source": "index.html", "output": "index.html", "route": "/" }
   ],

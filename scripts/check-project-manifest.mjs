@@ -8,7 +8,7 @@ const slugPattern = /^[a-z0-9][a-z0-9-]*$/;
 
 export function validateProjectManifest(manifest, projectDirectory) {
   const errors = [];
-  const required = ['schema_version', 'slug', 'type', 'mode', 'platform', 'generator_version', 'ds_version', 'pages', 'files', 'external_dependencies'];
+  const required = ['schema_version', 'slug', 'type', 'mode', 'platform', 'generator_version', 'ds_version', 'compliance', 'pages', 'files', 'external_dependencies'];
   required.forEach((key) => {
     if (!(key in manifest)) errors.push(`missing required property: ${key}`);
   });
@@ -19,6 +19,7 @@ export function validateProjectManifest(manifest, projectDirectory) {
   ['generator_version', 'ds_version'].forEach((key) => {
     if (!shaPattern.test(manifest[key] ?? '')) errors.push(`${key} must be a full git SHA prefixed with git:`);
   });
+  if (!['legacy', 'strict'].includes(manifest.compliance)) errors.push('compliance must be legacy or strict');
   if (!Array.isArray(manifest.pages) || !manifest.pages.length) {
     errors.push('pages must contain at least one page');
   } else {

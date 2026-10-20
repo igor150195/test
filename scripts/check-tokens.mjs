@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { cssDefinesClass, customPropertyAssignments, dsClassesInHtml, shouldCheckVariableReference, variableReferences } from './css-contracts.mjs';
+import { debtReviewWarning } from './known-issues.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const knownIssues = JSON.parse(readFileSync(resolve(repositoryRoot, 'scripts/known-token-issues.json'), 'utf8'));
@@ -83,6 +84,12 @@ for (const sourceFile of sourceFiles) {
 const warnings = [];
 const errors = [];
 const known = [];
+const debtWarnings = new Set();
+
+function recordKnownDebt(label, debt) {
+  const warning = debtReviewWarning(debt, label);
+  if (warning) debtWarnings.add(warning);
+}
 
 for (const [token, definitions] of tokenDefinitions) {
   const definitionsByScope = new Map();
@@ -97,6 +104,7 @@ for (const [token, definitions] of tokenDefinitions) {
     const values = [...new Set(scopedDefinitions.map((definition) => definition.value))];
     if (knownIssues.tokenConflicts[token]) {
       known.push(`known token conflict: ${token}; ${knownIssues.tokenConflicts[token].reason}`);
+      recordKnownDebt(`known token conflict ${token}`, knownIssues.tokenConflicts[token]);
     } else {
       errors.push(`conflicting token values: ${token} -> ${values.join(' | ')} in ${scope} (${scopedDefinitions.map((definition) => definition.path).join(', ')})`);
     }
@@ -114,6 +122,7 @@ for (const [token, references] of tokenReferences) {
   if (allDefinedTokens.has(token)) continue;
   if (knownIssues.undefinedTokens[token]) {
     known.push(`known undefined token: ${token}; ${knownIssues.undefinedTokens[token].reason} Referenced by: ${[...new Set(references)].join(', ')}`);
+    recordKnownDebt(`known undefined token ${token}`, knownIssues.undefinedTokens[token]);
   } else {
     errors.push(`undefined token: ${token}; referenced by ${[...new Set(references)].join(', ')}`);
   }
@@ -135,10 +144,13 @@ for (const [className, references] of usedDsClasses) {
   if (cssDefinesClass(builtCss, className)) continue;
   if (knownIssues.undefinedClasses[className]) {
     known.push(`known undefined CSS class: .${className}; ${knownIssues.undefinedClasses[className].reason} Used by: ${[...new Set(references)].join(', ')}`);
+    recordKnownDebt(`known undefined CSS class .${className}`, knownIssues.undefinedClasses[className]);
   } else {
     errors.push(`undefined CSS class: .${className}; used by ${[...new Set(references)].join(', ')}`);
   }
 }
+
+debtWarnings.forEach((warning) => warnings.push(`known-debt review: ${warning}`));
 
 if (known.length) {
   console.warn(`Known token/CSS issues (${known.length}):`);

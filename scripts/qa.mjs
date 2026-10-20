@@ -2,14 +2,17 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { createSubpathServer } from './check-site-build.mjs';
 import { validateProjectManifest } from './check-project-manifest.mjs';
-import { createQaResults, finaliseTechnical, mandatoryTechnicalCheckIds, markChecksNotRun, recordTechnicalCheck, validateQaResults } from './qa-results.mjs';
+import { createQaResults, finaliseTechnical, mandatoryTechnicalCheckIds, markChecksNotRun, recordA11yReport, recordTechnicalCheck, validateQaResults } from './qa-results.mjs';
 import { auditCssContracts, externalResourcesInBundle } from './qa-audit.mjs';
+import { debtReviewWarning } from './known-issues.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const knownTokenIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-token-issues.json'), 'utf8'));
 const knownResourceIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-resource-issues.json'), 'utf8'));
+const knownA11yIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-a11y-issues.json'), 'utf8'));
 const viewports = [
   { id: 'desktop-full-hd', width: 1920, height: 1080 },
   { id: 'desktop', width: 1440, height: 900 },
@@ -54,6 +57,68 @@ export function applyObservations(result, observations, { notRunReason, notRunId
     const status = entries.some((entry) => entry.status === 'error') ? 'error' : entries.some((entry) => entry.status === 'warning') ? 'warning' : 'passed';
     recordTechnicalCheck(result, id, { status, evidence: entries.map((entry) => entry.evidence) });
   }
+}
+
+function contrastEvidence(failureSummary = '') {
+  const contrast = failureSummary.match(/contrast of ([\d.]+) \(foreground color: ([^,]+), background color: ([^,]+)/i);
+  return contrast ? { contrast: Number(contrast[1]), foreground: contrast[2], background: contrast[3] } : {};
+}
+
+function knownA11yIssue(violation, target, issues) {
+  return issues.issues?.find((issue) => issue.rule === violation.id && issue.selector === target);
+}
+
+function a11yFindingStatus(impact, compliance, known) {
+  if (known) return 'warning';
+  if (['critical', 'serious'].includes(impact) && compliance === 'strict') return 'error';
+  return 'warning';
+}
+
+export function summariseA11yViolations(observations, { compliance = 'strict', issues = knownA11yIssues } = {}) {
+  const grouped = new Map();
+  for (const { page, viewport, violation } of observations) {
+    for (const node of violation.nodes ?? []) {
+      const target = (node.target ?? []).join(', ');
+      const key = JSON.stringify([violation.id, violation.impact ?? null, target, node.failureSummary ?? '']);
+      const known = knownA11yIssue(violation, target, issues);
+      const status = a11yFindingStatus(violation.impact, compliance, known);
+      const reviewWarning = known ? debtReviewWarning(known, `known a11y debt ${violation.id}/${target}`) : null;
+      const current = grouped.get(key) ?? {
+        id: violation.id,
+        impact: violation.impact ?? null,
+        status,
+        known: Boolean(known),
+        ...(known ? { reason: known.reason } : {}),
+        ...(reviewWarning ? { review_warning: reviewWarning } : {}),
+        help: violation.help,
+        help_url: violation.helpUrl,
+        target,
+        node_count: 1,
+        failure_summary: node.failureSummary ?? '',
+        pages: [],
+        viewports: [],
+        viewport_details: []
+      };
+      if (!current.pages.includes(page)) current.pages.push(page);
+      if (!current.viewports.includes(viewport)) current.viewports.push(viewport);
+      if (!current.viewport_details.some((detail) => detail.page === page && detail.viewport === viewport)) {
+        current.viewport_details.push({ page, viewport, ...contrastEvidence(node.failureSummary) });
+      }
+      grouped.set(key, current);
+    }
+  }
+  return [...grouped.values()].sort((left, right) => `${left.id}:${left.target}`.localeCompare(`${right.id}:${right.target}`));
+}
+
+export function summariseA11yIncomplete(observations) {
+  const findings = [];
+  for (const { page, viewport, incomplete } of observations) {
+    for (const node of incomplete.nodes ?? []) {
+      findings.push({ id: incomplete.id, impact: incomplete.impact ?? null, help: incomplete.help, help_url: incomplete.helpUrl, target: (node.target ?? []).join(', '), failure_summary: node.failureSummary ?? '', page, viewport });
+    }
+  }
+  findings.sort((left, right) => JSON.stringify(left).localeCompare(JSON.stringify(right)));
+  return { count: findings.length, findings };
 }
 
 function writeResults(path, result) {
@@ -164,6 +229,8 @@ export async function runQa(slug, { runId } = {}) {
   const artifactDirectory = outputDirectory(projectDirectory, runId);
   const result = createQaResults({ slug, generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, portable: false });
   const observations = createObservations();
+  const a11yObservations = [];
+  const a11yIncompleteObservations = [];
   const distDirectory = join(projectDirectory, 'dist');
   const prerequisites = evaluateQaPrerequisites({ projectDirectory, distDirectory, manifest });
   for (const prerequisite of prerequisites) {
@@ -172,6 +239,7 @@ export async function runQa(slug, { runId } = {}) {
   if (prerequisites.length) {
     applyObservations(result, observations, { notRunReason: `Prerequisite failed: ${prerequisites.map((entry) => entry.code).join(', ')}.`, notRunIds: mandatoryTechnicalCheckIds.filter((id) => id !== 'external-hosts') });
     finaliseTechnical(result);
+    recordA11yReport(result, { status: 'not-run', reason: 'Axe analysis requires a portable build and browser run.' });
     writeResults(join(artifactDirectory, 'results.json'), result);
     return { result, resultsPath: join(artifactDirectory, 'results.json'), exitCode: 1 };
   }
@@ -188,6 +256,7 @@ export async function runQa(slug, { runId } = {}) {
   if (externalResources.length) {
     applyObservations(result, observations, { notRunReason: 'Portable-build prerequisite failed: external HTTP(S) resources.', notRunIds: [...runtimeChecks] });
     finaliseTechnical(result);
+    recordA11yReport(result, { status: 'not-run', reason: 'Axe analysis requires a production bundle without external HTTP(S) resources.' });
     writeResults(join(artifactDirectory, 'results.json'), result);
     return { result, resultsPath: join(artifactDirectory, 'results.json'), exitCode: 1 };
   }
@@ -199,6 +268,7 @@ export async function runQa(slug, { runId } = {}) {
   } catch (error) {
     applyObservations(result, observations, { notRunReason: `Chromium is unavailable: ${error.message}`, notRunIds: [...runtimeChecks] });
     finaliseTechnical(result);
+    recordA11yReport(result, { status: 'not-run', reason: `Axe analysis could not start because Chromium is unavailable: ${error.message}` });
     writeResults(join(artifactDirectory, 'results.json'), result);
     return { result, resultsPath: join(artifactDirectory, 'results.json'), exitCode: 0 };
   }
@@ -222,6 +292,17 @@ export async function runQa(slug, { runId } = {}) {
         mkdirSync(viewportDirectory, { recursive: true });
         try {
           await page.goto(`http://127.0.0.1:${port}/qa/${projectPage.output}`, { waitUntil: 'networkidle', timeout: 30_000 });
+          await page.evaluate(async () => { if (document.fonts) await document.fonts.ready; });
+          await page.waitForTimeout(250);
+          try {
+            const axe = await new AxeBuilder({ page }).analyze();
+            axe.violations.forEach((violation) => a11yObservations.push({ page: projectPage.id, viewport: viewport.id, violation }));
+            axe.incomplete.forEach((incomplete) => a11yIncompleteObservations.push({ page: projectPage.id, viewport: viewport.id, incomplete }));
+          } catch (error) {
+            a11yIncompleteObservations.push({ page: projectPage.id, viewport: viewport.id, incomplete: {
+              id: 'axe-analysis-error', impact: null, help: 'Axe analysis failed', helpUrl: '', nodes: [{ target: [], failureSummary: error.message }]
+            } });
+          }
           const firstScreen = join(viewportDirectory, 'first-screen.png');
           await page.screenshot({ path: firstScreen, animations: 'disabled', caret: 'hide' });
           await warmPage(page);
@@ -252,6 +333,11 @@ export async function runQa(slug, { runId } = {}) {
   }
   applyObservations(result, observations);
   finaliseTechnical(result);
+  const a11yViolations = summariseA11yViolations(a11yObservations, { compliance: manifest.compliance });
+  const a11yIncomplete = summariseA11yIncomplete(a11yIncompleteObservations);
+  const a11yStatus = a11yViolations.some((finding) => finding.status === 'error') ? 'error' : a11yIncomplete.count ? 'incomplete' : a11yViolations.length ? 'warning' : 'passed';
+  const a11yReason = a11yIncomplete.count ? 'Axe could not determine every requested check; inspect technical.a11y.incomplete.' : undefined;
+  recordA11yReport(result, { status: a11yStatus, violations: a11yViolations, incomplete: a11yIncomplete, reason: a11yReason });
   writeResults(join(artifactDirectory, 'results.json'), result);
   return { result, resultsPath: join(artifactDirectory, 'results.json'), exitCode: result.technical.status === 'pass' ? 0 : 1 };
 }

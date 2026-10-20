@@ -13,4 +13,7 @@ assert.equal(result.technical.status, 'not-run');
 assert.equal(result.technical.checks.find((check) => check.id === 'skip-link').count, 2);
 result.expert.score = 90;
 assert.match(validateQaResults(result).join('\n'), /expert must remain/);
+result.expert.score = null;
+result.technical.a11y = { status: 'passed', violations: [], incomplete: { count: 1, findings: [] } };
+assert.match(validateQaResults(result).join('\n'), /cannot pass with incomplete/);
 console.log('qa-results tests passed.');

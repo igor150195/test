@@ -15,7 +15,7 @@
     "pages": { "type": "array" },
     "technical": {
       "type": "object",
-      "required": ["status", "checks", "summary"],
+      "required": ["status", "checks", "summary", "a11y"],
       "properties": {
         "status": { "enum": ["pass", "fail", "not-run"] },
         "checks": {
@@ -32,7 +32,24 @@
             }
           }
         },
-        "summary": { "type": "object" }
+        "summary": { "type": "object" },
+        "a11y": {
+          "type": "object",
+          "required": ["status", "violations"],
+          "properties": {
+            "status": { "enum": ["passed", "warning", "error", "incomplete", "not-run"] },
+            "reason": { "type": "string" },
+            "violations": { "type": "array" },
+            "incomplete": {
+              "type": "object",
+              "required": ["count", "findings"],
+              "properties": {
+                "count": { "type": "integer", "minimum": 0 },
+                "findings": { "type": "array" }
+              }
+            }
+          }
+        }
       }
     },
     "expert": {

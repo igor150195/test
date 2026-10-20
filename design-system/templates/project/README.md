@@ -13,12 +13,44 @@ projects/<slug>/
 ```
 
 Рядом с исходниками проекта хранятся два обязательных манифеста:
-`project.json` описывает страницы, владельцев файлов, режим референса и Git
-SHA генератора/дизайн-системы; `assets.json` фиксирует источник, права,
+`project.json` описывает страницы, владельцев файлов, режим референса, Git
+SHA генератора/дизайн-системы и `"compliance": "strict"` для нового проекта;
+`assets.json` фиксирует источник, права,
 локальный путь, роль и соотношение сторон каждого ресурса. Проверяйте их
 командами `npm run check:project -- <slug>` и
 `npm run check:assets -- <slug>`. Не объявляйте права на ресурс без
 подтверждения владельца: используйте `unknown` и согласованное исключение.
+
+## Карта Design System First
+
+`docs/token-map.md` содержит отдельный fenced-блок `ds-section` для каждой
+существенной секции. Это машиночитаемый контракт для
+`npm run check:compliance -- <slug>`; JSON внутри блока отступается четырьмя
+пробелами. Полная структура описана в `schemas/ds-section.schema.json`.
+
+````md
+```ds-section
+{
+    "id": "catalog-grid",
+    "status": "COMPOSE",
+    "html_selector": ".project-catalog",
+    "local_selectors": [".project-catalog"],
+    "local_files": ["css/project.css"],
+    "ds_sources": [
+        "design-system/blocks/product-card/index.md",
+        "design-system/components/badge/index.md"
+    ],
+    "knowledge_ids": ["KBP-0002"]
+}
+```
+````
+
+`id` уникален в пределах карты. `html_selector` должен быть простым CSS
+селектором одного HTML-элемента: `tag`, `.class`, `#id` или их комбинация.
+Если его нет, проверка честно сообщает `not-verifiable`. Для `EXTEND` и
+`BLOCKED` обязательны `decision` (`pending`, `approved-partial` или
+`approved-extension`) и `docs/design-system-gap-report.md`. При `pending`
+секция и её локальные селекторы не должны быть реализованы в проекте.
 
 В HTML подключайте файлы в порядке: `tokens.css`, `core.css`,
 `components.css`, `blocks.css`, затем `css/project.css`, затем `css/custom.css`.
@@ -31,6 +63,11 @@ SHA генератора/дизайн-системы; `assets.json` фиксир
 node scripts/project-styles.mjs init <slug>
 node scripts/project-styles.mjs build <slug>
 ```
+
+Если у нового `project.json` ещё нет поля `compliance`, `init` записывает
+`"strict"`. Для старого проекта укажите `"legacy"` явно только при
+согласованной миграции; новые непривязанные HTML-секции в строгом режиме
+являются ошибкой `check:compliance`.
 
 `build` компилирует `styles/project.scss` в `css/project.css`, если исходник
 существует, и компилирует `styles/custom.scss` в `css/custom.css` (либо в
