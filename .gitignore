@@ -9,3 +9,4 @@ projects/*/artifacts/**/*.png
 !projects/fashion-store/artifacts/visual-qa/baseline/*.png
 # временные результаты прогонов
 projects/*/artifacts/**/test-results/
+projects/*/artifacts/visual-qa/latest/*.json
