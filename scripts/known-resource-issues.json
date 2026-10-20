@@ -1,0 +1,10 @@
+{
+  "missing": [
+    {
+      "css_files": ["tokens.css", "core.css"],
+      "resource": "../empty_color.svg",
+      "output_path": "empty_color.svg",
+      "reason": "Общий токен --option_color_item_empty ссылается на отсутствующий design-system/empty_color.svg; исправляется отдельным этапом в владельце токена."
+    }
+  ]
+}
