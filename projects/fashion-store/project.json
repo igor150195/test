@@ -8,11 +8,24 @@
   "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
   "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
   "compliance": "legacy",
+  "theme": {
+    "primary": "#392625",
+    "primary_surface": "#1f1514",
+    "on_primary": "#ffffff",
+    "accent": "#c99075",
+    "accent_surface": "#b8795d",
+    "on_accent": "#ffffff",
+    "bg_main": "#ffffff",
+    "bg_main_surface": "#f7f5f3",
+    "on_bg_main": "#332e2b",
+    "on_bg_main_accent": "#342524"
+  },
   "pages": [
     { "id": "home", "source": "index.html", "output": "index.html", "route": "/" }
   ],
   "files": [
     { "path": "index.html", "owner": "generated" },
+    { "path": "css/theme.css", "owner": "generated" },
     { "path": "css/custom.css", "owner": "generated" }
   ],
   "external_dependencies": [

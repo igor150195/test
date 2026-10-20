@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "project": "fashion-store",
+  "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "chromium_version": null,
+  "portable": false,
+  "pages": [],
+  "technical": {
+    "status": "fail",
+    "checks": [
+      {
+        "id": "console-errors",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "failed-requests",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "http-errors",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "broken-images",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "horizontal-overflow",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "external-hosts",
+        "status": "error",
+        "count": 1,
+        "evidence": [
+          {
+            "resources": [
+              "/"
+            ],
+            "viewports": []
+          }
+        ]
+      },
+      {
+        "id": "undefined-tokens",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "undefined-icons",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "undefined-ds-classes",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "img-alt",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "img-dimensions",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "img-loading",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "html-lang",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "meta-description",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "skip-link",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "input-label",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      },
+      {
+        "id": "button-accessible-name",
+        "status": "not-run",
+        "count": 0,
+        "reason": "Prerequisite failed: external-production-assets.",
+        "evidence": []
+      }
+    ],
+    "summary": {
+      "errors": 1,
+      "warnings": 0,
+      "passed": 0,
+      "skipped": 0,
+      "not_run": 16
+    },
+    "a11y": {
+      "status": "not-run",
+      "violations": [],
+      "incomplete": {
+        "count": 0,
+        "findings": []
+      },
+      "reason": "Axe analysis requires a portable build and browser run."
+    }
+  },
+  "expert": {
+    "status": "not-reviewed",
+    "score": null,
+    "findings": []
+  }
+}

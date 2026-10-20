@@ -1,18 +1,5 @@
-/* Project-only theme and composition for fashion-store. */
+/* Project-only composition for fashion-store. */
 .fashion-store {
-    --primary: #392625;
-    --primary_surface: #1f1514;
-    --primary_4: rgba(57, 38, 37, .4);
-    --primary_3: rgba(57, 38, 37, .3);
-    --primary_2: rgba(57, 38, 37, .2);
-    --primary_1: rgba(57, 38, 37, .1);
-    --on_primary: #ffffff;
-    --accent: #c99075;
-    --accent_surface: #b8795d;
-    --on_accent: #ffffff;
-    --on_bg_main: #332e2b;
-    --on_bg_main_accent: #342524;
-    --bg_main_surface: #f7f5f3;
     --ds-container-max: 1312px;
     --site_width: 1312px;
     --base_radius: 0;
