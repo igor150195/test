@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { generateThemeCss } from '../project-styles.mjs';
+import { ensurePlaywrightBrowser } from '../check-playwright-browser.mjs';
+
+if (!ensurePlaywrightBrowser()) process.exit(1);
 
 const defaultTheme = {
   primary: '#7042F4', primary_surface: '#4915B7', on_primary: '#FFFFFF',

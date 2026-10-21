@@ -4,6 +4,9 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { checkTheme } from '../check-theme.mjs';
 import { generateThemeCss } from '../project-styles.mjs';
+import { ensurePlaywrightBrowser } from '../check-playwright-browser.mjs';
+
+if (!ensurePlaywrightBrowser()) process.exit(1);
 
 const fixture = mkdtempSync(join(tmpdir(), 'check-theme-'));
 const theme = {

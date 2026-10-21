@@ -14,6 +14,12 @@
 Playwright, а не обещание наличия браузера в каждой среде: его присутствие
 нужно проверять перед запуском visual QA через `npx playwright install --list`.
 
+Если Chromium отсутствует, установите только требуемый браузер:
+
+```sh
+npx playwright install chromium
+```
+
 ```sh
 npm ci
 ```

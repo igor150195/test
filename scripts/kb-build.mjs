@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { knowledgeRoot, knowledgeTrust, repositoryRoot, validateKnowledge, yamlScalar } from './kb-utils.mjs';
 
 const checkOnly = process.argv.slice(2).includes('--check');
+const normalizeLineEndings = (value) => value.replaceAll('\r\n', '\n');
 const registryPath = resolve(knowledgeRoot, 'registry.yml');
 const indexPath = resolve(knowledgeRoot, 'index.json');
 const { entries, errors } = validateKnowledge();
@@ -45,7 +46,7 @@ if (errors.length) {
   const index = `${JSON.stringify({ schema_version: 1, generated_from: 'patterns frontmatter', entries: records }, null, 2)}\n`;
   const outputs = [[registryPath, registry], [indexPath, index]];
   const stale = outputs.filter(([path, output]) => {
-    try { return readFileSync(path, 'utf8') !== output; } catch { return true; }
+    try { return normalizeLineEndings(readFileSync(path, 'utf8')) !== output; } catch { return true; }
   });
   if (checkOnly) {
     if (stale.length) {

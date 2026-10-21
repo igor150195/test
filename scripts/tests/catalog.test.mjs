@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { repositoryRoot, searchCatalog, validateCatalog } from '../catalog-utils.mjs';
+import { noMatchingEntriesMessage } from '../catalog-search.mjs';
 
 const schema = JSON.parse(readFileSync(resolve(repositoryRoot, 'schemas/catalog-entry.schema.json'), 'utf8'));
 const base = {
@@ -35,4 +37,11 @@ assert.match(result.errors.join('\n'), /public_tokens --primary is not used/);
 const found = searchCatalog([{ ...base, source: 'fixture/index.md', uses_tokens: ['--primary'] }], { kind: ['component'], maturity: [], platform: [], className: ['.ds-button'], purpose: ['button'], token: ['--primary'], a11y: ['native-button'] });
 assert.equal(found.length, 1);
 assert.equal(schema.$defs.a11yValue.enum.includes('focus-visible'), true);
+assert.match(noMatchingEntriesMessage, /^No matching entries\. Retry by purpose\/kind\/token\/a11y filters;/);
+
+for (const script of ['scripts/catalog-build.mjs', 'scripts/kb-build.mjs']) {
+  const run = spawnSync(process.execPath, [script, '--check'], { cwd: repositoryRoot, encoding: 'utf8' });
+  assert.equal(run.status, 0, `${script} --check must pass`);
+  assert.doesNotMatch(`${run.stdout}\n${run.stderr}`, /known (catalog )?gap/i, `${script} --check must not list known gaps`);
+}
 console.log('catalog tests passed.');
