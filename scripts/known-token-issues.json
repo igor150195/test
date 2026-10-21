@@ -1,26 +1,20 @@
 {
-  "tokenConflicts": {
-    "--toggle_title_icon_h": {
-      "reason": "Объявлен как высота 32px и затем как URL-переменная иконки; требуется отдельное согласованное исправление в общих токенах.",
-      "added": "2026-10-20",
-      "review_after": "2027-01-18"
-    }
-  },
+  "tokenConflicts": {},
   "undefinedTokens": {
     "--icon_rating_star_lg": {
-      "reason": "Используется размером рейтинга lg; соответствующий токен и ID спрайта пока отсутствуют.",
+      "reason": "legacy-варианты Rating lg и Checkbox, потребителей в трёх проектах нет; нужен реальный проект либо новые иконки в спрайте",
       "added": "2026-10-20",
-      "review_after": "2027-01-18"
+      "review_after": "2027-04-20"
     },
     "--icon_site_checkbox": {
-      "reason": "Используется checkbox lg; соответствующий токен и ID спрайта пока отсутствуют.",
+      "reason": "legacy-варианты Rating lg и Checkbox, потребителей в трёх проектах нет; нужен реальный проект либо новые иконки в спрайте",
       "added": "2026-10-20",
-      "review_after": "2027-01-18"
+      "review_after": "2027-04-20"
     },
     "--icon_site_checkbox_small": {
-      "reason": "Используется checkbox sm/md; соответствующий токен и ID спрайта пока отсутствуют.",
+      "reason": "legacy-варианты Rating lg и Checkbox, потребителей в трёх проектах нет; нужен реальный проект либо новые иконки в спрайте",
       "added": "2026-10-20",
-      "review_after": "2027-01-18"
+      "review_after": "2027-04-20"
     }
   },
   "undefinedClasses": {},

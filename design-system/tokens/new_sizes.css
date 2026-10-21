@@ -326,7 +326,7 @@
 	--md_toggle_title: var(--fw_content_sb) var(--fz_md)/1.1 var(--font_content);
 	--lg_toggle_title: var(--fw_content_sb) var(--fz_lg)/1.1 var(--font_content);
 	
-	--toggle_title_icon_h: 32px;
+	--toggle_title_icon_height: 32px;
 	--toggle_title_icon_w: 32px;
 	--toggle_title_icon_r: var(--iconbtn_radius);
 	

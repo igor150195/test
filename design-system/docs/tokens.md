@@ -133,7 +133,7 @@ discounts there must override `--price_sale_text_color` after `tokens.css`.
 |---|---|---|
 | `--sm_option_color_item_gap` | строки 1613 и 1617, оба `8px` | точный дубль |
 | `--lg_option_color_item_gap` | строки 1632 и 1636, оба `12px` | точный дубль |
-| `--toggle_title_icon_h` | `32px`, затем `var(--icon_arrow_bot_md)` | второе объявление перезаписывает высоту значением URL-переменной |
+| `--toggle_title_icon_height` / `--toggle_title_icon_h` | `32px` / `var(--icon_arrow_bot_md)` | размер и hover-иконка теперь имеют разные имена |
 
 Другие неоднозначные имена:
 
@@ -148,7 +148,6 @@ discounts there must override `--price_sale_text_color` after `tokens.css`.
 Этот раздел фиксирует дефекты, но не изменяет API.
 
 - Разрешить отсутствующие rating/checkbox icons и `empty_color.svg`.
-- Исправить конфликт `--toggle_title_icon_h` без неявной смены публичного контракта.
 - Рассмотреть точные дубли и `--aritcle_color` через стратегию обратной совместимости.
 - Для обычного текста скидки используйте `--price_sale_text_color`, а не
   `--sale`: `--sale` остаётся токеном заливки. На тёмных поверхностях проект
