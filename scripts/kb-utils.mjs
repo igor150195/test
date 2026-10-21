@@ -93,10 +93,10 @@ function walk(directory) {
   });
 }
 
-export function loadKnowledgeEntries({ root = knowledgeRoot } = {}) {
-  const patternsRoot = resolve(root, 'patterns');
-  return walk(patternsRoot)
-    .filter((file) => extname(file) === '.md')
+export function loadKnowledgeEntries({ root = knowledgeRoot, collection = 'patterns' } = {}) {
+  const entriesRoot = resolve(root, collection);
+  return walk(entriesRoot)
+    .filter((file) => extname(file) === '.md' && /^kbp-\d{4}.*\.md$/i.test(file.split(/[\\/]/).pop()))
     .sort()
     .map((file) => ({
       file,
@@ -158,8 +158,8 @@ export function normalizeDuplicateKey(entry) {
   return [entry.kind, normalized(entry.tags), normalized(entry.requires.components), normalized(entry.requires.tokens), normalized(entry.requires.optional_tokens)].join('::');
 }
 
-export function validateKnowledge({ root = knowledgeRoot, repoRoot = repositoryRoot, css = null } = {}) {
-  const entries = loadKnowledgeEntries({ root });
+export function validateKnowledge({ root = knowledgeRoot, repoRoot = repositoryRoot, css = null, collection = 'patterns', inbox = false } = {}) {
+  const entries = loadKnowledgeEntries({ root, collection });
   const errors = [];
   const definedTokens = new Set();
   const builtCss = css ?? walk(resolve(repoRoot, 'dist/css')).filter((file) => extname(file) === '.css').map((file) => readFileSync(file, 'utf8')).join('\n');
@@ -170,6 +170,7 @@ export function validateKnowledge({ root = knowledgeRoot, repoRoot = repositoryR
   for (const { entry, file, path } of entries) {
     const label = relative(repoRoot, file).replaceAll('\\', '/');
     errors.push(...validateEntryShape(entry, label));
+    if (inbox && entry.status !== 'candidate') errors.push(`${label}: inbox entries must have status candidate`);
     if (entry.id) {
       if (ids.has(entry.id)) errors.push(`${label}: duplicate id ${entry.id}; first declared by ${ids.get(entry.id)}`);
       else ids.set(entry.id, label);
