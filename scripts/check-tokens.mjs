@@ -1,11 +1,12 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { cssDefinesClass, customPropertyAssignments, dsClassesInHtml, shouldCheckVariableReference, variableReferences } from './css-contracts.mjs';
+import { cssDefinesClass, customPropertyAssignments, dsClassesInHtml, shouldCheckVariableReference, structuralClassParentViolations, variableReferences } from './css-contracts.mjs';
 import { debtReviewWarning } from './known-issues.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const knownIssues = JSON.parse(readFileSync(resolve(repositoryRoot, 'scripts/known-token-issues.json'), 'utf8'));
+const structuralClassContracts = JSON.parse(readFileSync(resolve(repositoryRoot, 'scripts/documented-structural-classes.json'), 'utf8'));
 const sourceExtensions = new Set(['.css', '.scss', '.html']);
 const tokenDefinitions = new Map();
 const allDefinedTokens = new Set();
@@ -142,6 +143,20 @@ const builtCss = walk(resolve(repositoryRoot, 'dist/css'))
   .join('\n');
 for (const [className, references] of usedDsClasses) {
   if (cssDefinesClass(builtCss, className)) continue;
+  const structuralContract = structuralClassContracts[className];
+  if (structuralContract?.relationship === 'direct-child') {
+    const invalidParents = [];
+    for (const htmlFile of htmlFiles) {
+      const contents = readFileSync(htmlFile, 'utf8');
+      const violations = structuralClassParentViolations(contents, className, structuralContract.parentClass);
+      if (violations.length) {
+        invalidParents.push(`${relativePath(htmlFile)} (${violations.length} occurrence${violations.length === 1 ? '' : 's'} without direct .${structuralContract.parentClass} parent)`);
+      }
+    }
+    if (invalidParents.length === 0) continue;
+    errors.push(`structural CSS class: .${className} requires direct parent .${structuralContract.parentClass}; ${invalidParents.join(', ')}`);
+    continue;
+  }
   if (knownIssues.undefinedClasses[className]) {
     known.push(`known undefined CSS class: .${className}; ${knownIssues.undefinedClasses[className].reason} Used by: ${[...new Set(references)].join(', ')}`);
     recordKnownDebt(`known undefined CSS class .${className}`, knownIssues.undefinedClasses[className]);

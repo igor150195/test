@@ -1,0 +1,7 @@
+{
+  "ds-footer__column": {
+    "parentClass": "ds-footer__columns",
+    "relationship": "direct-child",
+    "reason": "Footer documents ds-footer__column as a structural grid item. Its layout is supplied by the ds-footer__columns parent, so no independent CSS selector is required."
+  }
+}
