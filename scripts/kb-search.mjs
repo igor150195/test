@@ -21,6 +21,11 @@ export function appendInboxEntries(entries, { includeInbox = false, root = knowl
   ];
 }
 
+export function formatKnowledgeResult(entry) {
+  const status = entry.inbox ? 'inbox candidate — evidence only' : entry.status === 'candidate' ? 'candidate — investigation only' : entry.status;
+  return `${entry.id}\t${status}\t${entry.title}\t${entry.path}`;
+}
+
 export function valuesFor(argv, argument) {
   const values = [];
   for (let index = 0; index < argv.length; index += 1) {
@@ -42,6 +47,6 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href &
   if (!matches.length) {
     console.log('kb:search: no matching knowledge entries. Continue without knowledge-base entries; do not invent entries or open patterns directly instead of search.');
   } else {
-    matches.forEach((entry) => console.log(`${entry.id}\t${entry.inbox ? 'inbox candidate — evidence only' : entry.status === 'candidate' ? 'candidate — investigation only' : entry.status}\t${entry.title}\t${entry.path}`));
+    matches.forEach((entry) => console.log(formatKnowledgeResult(entry)));
   }
 }

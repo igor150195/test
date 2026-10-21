@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { parseKnowledgeFrontmatter, repositoryRoot, validateKnowledge } from '../kb-utils.mjs';
-import { appendInboxEntries, searchKnowledgeEntries, valuesFor } from '../kb-search.mjs';
+import { parseKnowledgeFrontmatter, repositoryRoot, supplementEvidenceProjects, validateKnowledge } from '../kb-utils.mjs';
+import { appendInboxEntries, formatKnowledgeResult, searchKnowledgeEntries, valuesFor } from '../kb-search.mjs';
 
 const valid = `---\nid: KBP-9999\ntitle: Test\nkind: technical\nstatus: candidate\nscope: universal\nplatform: neutral\nindustry: []\npage_types: [home]\ntags: [test]\nrequires:\n  components: [.ds-button]\n  tokens: [--primary]\n  optional_tokens: [--focus_ring_color]\nvariants: []\ndata_needed: []\nviewports_checked: [390x844]\nevidence:\n  implementation: scripts/kb-utils.mjs\n  technical_check: scripts/kb-utils.mjs\n  visual_check: scripts/kb-utils.mjs\n  projects: [test]\n  limitations: [fixture]\nreview_after: 2027-01-01\nsupersedes: []\napplies_when: [test]\nnot_when: [never]\n---\n`;
 
@@ -40,6 +40,7 @@ try {
   assert.equal(appendInboxEntries(activeIndex, { root }).some((candidate) => candidate.id === 'KBP-9998'), false, 'inbox must be excluded unless explicitly requested');
   const inboxSearch = appendInboxEntries(activeIndex, { root, includeInbox: true }).find((candidate) => candidate.id === 'KBP-9998');
   assert.equal(inboxSearch.inbox, true, 'explicit inbox search must mark inbox candidates');
+  assert.match(formatKnowledgeResult({ ...inboxSearch, title: 'Inbox fixture' }), /inbox candidate — evidence only/, 'inbox output must be visibly marked');
   writeFileSync(resolve(inbox, 'kbp-9998-inbox.md'), entry.replace('KBP-9999', 'KBP-9998').replace('status: candidate', 'status: approved'));
   assert.match(validateKnowledge({ root, repoRoot: repo, collection: 'inbox', inbox: true }).errors.join('\n'), /inbox entries must have status candidate/);
   writeFileSync(resolve(inbox, 'kbp-9998-inbox.md'), entry.replace('KBP-9999', 'KBP-9998').replaceAll('scripts/evidence.mjs', 'scripts/missing-evidence.mjs'));
@@ -69,5 +70,9 @@ const cases = [
 ];
 for (const [filters, expected] of cases) assert.equal(searchKnowledgeEntries(entries, filters).length, expected);
 assert.deepEqual(valuesFor(['node', 'kb-search.mjs', '--status', 'verified,approved,candidate'], '--status'), ['verified', 'approved', 'candidate'], 'comma-separated status values must be parsed for CLI search');
+const evidenceEntry = { evidence: { projects: ['first-project'] } };
+supplementEvidenceProjects(evidenceEntry, 'second-project');
+supplementEvidenceProjects(evidenceEntry, 'second-project');
+assert.deepEqual(evidenceEntry.evidence.projects, ['first-project', 'second-project'], 'matching knowledge must gain a project once instead of becoming a duplicate');
 assert.equal(repositoryRoot.endsWith('codex\\test') || repositoryRoot.endsWith('codex/test'), true);
 console.log('kb tests passed.');

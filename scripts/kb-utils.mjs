@@ -158,6 +158,15 @@ export function normalizeDuplicateKey(entry) {
   return [entry.kind, normalized(entry.tags), normalized(entry.requires.components), normalized(entry.requires.tokens), normalized(entry.requires.optional_tokens)].join('::');
 }
 
+/** Add a project once when existing knowledge gains evidence from a later project. */
+export function supplementEvidenceProjects(entry, project) {
+  const projects = entry.evidence?.projects ?? [];
+  if (!projects.includes(project)) projects.push(project);
+  entry.evidence ??= {};
+  entry.evidence.projects = projects;
+  return entry;
+}
+
 export function validateKnowledge({ root = knowledgeRoot, repoRoot = repositoryRoot, css = null, collection = 'patterns', inbox = false } = {}) {
   const entries = loadKnowledgeEntries({ root, collection });
   const errors = [];
