@@ -22,7 +22,7 @@ export default defineConfig({
     },
     webServer: {
         command: 'node scripts/visual-qa/static-server.mjs',
-        url: 'http://127.0.0.1:4173',
+        url: 'http://127.0.0.1:4173/projects/fashion-store/',
         reuseExistingServer: true,
         timeout: 15_000,
     },
