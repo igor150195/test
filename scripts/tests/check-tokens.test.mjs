@@ -29,6 +29,7 @@ try {
 
 const validFooter = '<nav class="ds-footer__columns"><section class="ds-footer__column"></section></nav>';
 const orphanFooterColumn = '<section class="ds-footer__column"></section>';
+const nestedFooterColumn = '<nav class="ds-footer__columns"><div><section class="ds-footer__column"></section></div></nav>';
 assert.deepEqual(
   structuralClassParentViolations(validFooter, 'ds-footer__column', 'ds-footer__columns'),
   [],
@@ -39,4 +40,9 @@ assert.equal(
   1,
   'ds-footer__column without ds-footer__columns parent must be reported as an error by check:tokens'
 );
-console.log('check-tokens: structural Footer contract accepts its documented parent and rejects an orphan column.');
+assert.equal(
+  structuralClassParentViolations(nestedFooterColumn, 'ds-footer__column', 'ds-footer__columns').length,
+  1,
+  'ds-footer__column separated from ds-footer__columns by another element must be reported as an error by check:tokens'
+);
+console.log('check-tokens: structural Footer contract accepts its documented direct parent and rejects orphaned or nested columns.');

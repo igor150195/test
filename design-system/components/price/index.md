@@ -36,5 +36,9 @@
 | `.ds-price--xl` | `--xl_current_price_*`, `--xl_old_price_*` |
 
 Цвета берутся из `--price_color`, `--old_price_color`, `--old_price_line` и
-`--price_sale_color`. Отдельные popup, on-request и platform-specific
+`--price_sale_color`. Последний является alias для публичного
+`--price_sale_text_color`, а не для `--sale`: `--sale` зарезервирован для
+заливок sale-флагов и бейджей. Дефолтный цвет рассчитан на светлые поверхности;
+на тёмном фоне проект переопределяет `--price_sale_text_color` после
+`tokens.css` и проверяет контраст. Отдельные popup, on-request и platform-specific
 сценарии не входят в первый контракт компонента.

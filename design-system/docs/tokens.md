@@ -35,6 +35,14 @@
 - success: `--success*`, `--on_success`;
 - error: `--error*`, `--on_error`.
 
+`--sale` is a semantic fill token: it is used by sale flags and badges with
+`--on_sale` text. Price discount text uses the separate public
+`--price_sale_text_color` through `--price_sale_color`. Its default `#AD431F`
+has contrast 5.12:1 on `#F2F0E9`, 5.83:1 on `#FFFFFF`, and 5.45:1 on
+`#F7F7F7`. It is not suitable unchanged on the default dark surface `#151037`
+(3.10:1) or House dark surface `#20211F` (2.77:1); projects that place price
+discounts there must override `--price_sale_text_color` after `tokens.css`.
+
 ### Neutral, effects and service values
 
 - `--black`, `--white` и их alpha-варианты, включая `_05` и `_02`;
@@ -142,7 +150,9 @@
 - Разрешить отсутствующие rating/checkbox icons и `empty_color.svg`.
 - Исправить конфликт `--toggle_title_icon_h` без неявной смены публичного контракта.
 - Рассмотреть точные дубли и `--aritcle_color` через стратегию обратной совместимости.
-- Проверить контраст семантических пар. По фактическим значениям: `--on_success` на `--success` ≈ 2.24:1, `--on_sale` на `--sale` ≈ 2.98:1, `--on_error` на `--error` ≈ 3.40:1.
+- Для обычного текста скидки используйте `--price_sale_text_color`, а не
+  `--sale`: `--sale` остаётся токеном заливки. На тёмных поверхностях проект
+  обязан переопределить text token и проверить контраст конкретной пары.
 - Зафиксировать, какие размеры и варианты каждого component family считаются поддерживаемыми публично.
 
 ## Неподтверждённые вопросы

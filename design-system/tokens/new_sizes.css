@@ -1354,7 +1354,9 @@
 	--price_color: var(--on_bg_main_8);
 	--price_currency_color: var(--on_bg_main_8);
 	
-	--price_sale_color: var(--sale);
+	/* Sale text is distinct from the --sale fill used by flags and badges. */
+	--price_sale_text_color: #AD431F;
+	--price_sale_color: var(--price_sale_text_color);
 	--price_onrequest_color: var(--on_bg_main_8);
 
 	--old_price_line: var(--on_bg_main);
