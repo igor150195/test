@@ -1,3 +1,21 @@
+---
+id: DSB-header
+kind: block
+maturity: stable
+platform: neutral
+purpose: site header search and user actions
+classes: [.ds-header, .ds-header__inner, .ds-header__logo, .ds-header__search, .ds-header__actions]
+structural_classes: []
+variants: []
+requires:
+  components: [.ds-input, .ds-icon, .ds-icon-button, .ds-counter]
+public_tokens: []
+optional_tokens: []
+a11y: [semantic-landmark, form-label, accessible-name, decorative-icon-hidden]
+viewports_verified: []
+examples: [design-system/templates/home.html, design-system/templates/shop.html]
+---
+
 # Header
 
 `.ds-header` — нейтральная шапка сайта с логотипом, поиском и пользовательскими

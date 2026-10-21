@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "generated_from": "patterns frontmatter",
+  "entries": [
+    {
+      "id": "KBP-0001",
+      "title": "Full-site screenshot matrix with overlapping segments",
+      "kind": "quality-workflow",
+      "status": "candidate",
+      "scope": "universal",
+      "platform": "neutral",
+      "tags": [
+        "visual-qa",
+        "responsive",
+        "full-page",
+        "regression"
+      ],
+      "page_types": [
+        "home",
+        "landing"
+      ],
+      "path": "patterns/kbp-0001-full-site-capture-matrix.md",
+      "trust": "low"
+    },
+    {
+      "id": "KBP-0002",
+      "title": "Product-card composition using neutral commerce contracts",
+      "kind": "composition",
+      "status": "candidate",
+      "scope": "industry",
+      "platform": "neutral",
+      "tags": [
+        "commerce",
+        "product-card",
+        "price",
+        "rating",
+        "badge",
+        "responsive"
+      ],
+      "page_types": [
+        "home",
+        "catalog"
+      ],
+      "path": "patterns/kbp-0002-product-card-composition.md",
+      "trust": "low"
+    }
+  ]
+}

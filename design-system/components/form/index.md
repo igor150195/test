@@ -1,3 +1,21 @@
+---
+id: DSC-form
+kind: component
+maturity: stable
+platform: neutral
+purpose: text fields select checkbox and radio controls
+classes: [.ds-input, .ds-select, .ds-textarea, .ds-checkbox, .ds-checkbox__input, .ds-checkbox__control, .ds-checkbox__label, .ds-checkbox--error, .ds-radio, .ds-radio__input, .ds-radio__control, .ds-radio__label, .ds-radio--error]
+structural_classes: []
+variants: [sm, md, lg, error]
+requires:
+  components: []
+public_tokens: []
+optional_tokens: [--focus_ring_color]
+a11y: [form-label, focus-visible, native-disabled]
+viewports_verified: []
+examples: [design-system/templates/shop.html]
+---
+
 # Form controls
 
 Независимые form-компоненты не используют Shop2, Remodal, `gr-*`,

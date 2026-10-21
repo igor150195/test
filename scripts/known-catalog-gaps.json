@@ -1,0 +1,27 @@
+{
+  "classes": {
+    "ds-badge--attention": { "reason": "Badge modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-badge--lg": { "reason": "Badge size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-badge--md": { "reason": "Badge size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-badge--sale": { "reason": "Badge modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-badge--sm": { "reason": "Badge size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-badge--xs": { "reason": "Badge size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-flag--lg": { "reason": "Flag size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-flag--md": { "reason": "Flag size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-flag--sm": { "reason": "Flag size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-flag--xs": { "reason": "Flag size modifier has CSS but no literal HTML contract in the current Badge documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-checkbox--lg": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-checkbox--sm": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-input--error": { "reason": "Form error modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-input--lg": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-input--sm": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-radio--lg": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-radio--sm": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-select--error": { "reason": "Form error modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-select--lg": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-select--sm": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-textarea--error": { "reason": "Form error modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-textarea--lg": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" },
+    "ds-textarea--sm": { "reason": "Form size modifier has CSS but no literal HTML contract in the current Form documentation.", "added": "2026-10-21", "review_after": "2027-01-19" }
+  }
+}

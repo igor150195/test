@@ -1,3 +1,21 @@
+---
+id: DSC-icon
+kind: component
+maturity: stable
+platform: neutral
+purpose: masked sprite icons
+classes: [.ds-icon, .ds-icon--sm, .ds-icon--md, .ds-icon--lg]
+structural_classes: []
+variants: [sm, md, lg]
+requires:
+  components: []
+public_tokens: []
+optional_tokens: [--ds-icon, --ds-icon-color]
+a11y: [decorative-icon-hidden]
+viewports_verified: []
+examples: [design-system/templates/home.html]
+---
+
 # Icon
 
 Нейтральный компонент иконки. Он использует CSS mask и не зависит от Shop2,

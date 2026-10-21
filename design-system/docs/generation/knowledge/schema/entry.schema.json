@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/design-system/knowledge/entry.schema.json",
+  "title": "Generator knowledge-base entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "kind", "status", "scope", "platform", "industry", "page_types", "tags", "requires", "variants", "data_needed", "viewports_checked", "evidence", "review_after", "supersedes", "applies_when", "not_when"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^KBP-[0-9]{4}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["composition", "interaction", "technical", "pitfall", "token-rule", "quality-workflow"] },
+    "status": { "enum": ["candidate", "verified", "approved", "deprecated"] },
+    "scope": { "enum": ["universal", "platform", "industry", "project-only"] },
+    "platform": { "enum": ["neutral", "shop2", "legacy"] },
+    "industry": { "$ref": "#/$defs/stringArray" },
+    "page_types": { "$ref": "#/$defs/stringArray" },
+    "tags": { "$ref": "#/$defs/stringArray" },
+    "requires": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["components", "tokens", "optional_tokens"],
+      "properties": {
+        "components": { "$ref": "#/$defs/stringArray" },
+        "tokens": { "$ref": "#/$defs/stringArray" },
+        "optional_tokens": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "variants": { "$ref": "#/$defs/stringArray" },
+    "data_needed": { "$ref": "#/$defs/stringArray" },
+    "viewports_checked": { "$ref": "#/$defs/viewportArray" },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementation", "technical_check", "visual_check", "projects", "limitations"],
+      "properties": {
+        "implementation": { "$ref": "#/$defs/repositoryPath" },
+        "technical_check": { "$ref": "#/$defs/repositoryPath" },
+        "visual_check": { "$ref": "#/$defs/repositoryPath" },
+        "projects": { "$ref": "#/$defs/stringArray" },
+        "limitations": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "review_after": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "supersedes": { "$ref": "#/$defs/stringArray" },
+    "applies_when": { "$ref": "#/$defs/stringArray" },
+    "not_when": { "$ref": "#/$defs/stringArray" }
+  },
+  "$defs": {
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "viewportArray": { "type": "array", "items": { "type": "string", "pattern": "^\\d+x\\d+$" } },
+    "repositoryPath": { "type": "string", "minLength": 1 }
+  }
+}

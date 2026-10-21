@@ -1,3 +1,21 @@
+---
+id: DSC-icon-button
+kind: component
+maturity: stable
+platform: neutral
+purpose: icon-only actions
+classes: [.ds-icon-button, .ds-icon-button--sm, .ds-icon-button--md, .ds-icon-button--lg]
+structural_classes: []
+variants: [sm, md, lg]
+requires:
+  components: [.ds-icon]
+public_tokens: []
+optional_tokens: [--focus_ring_color]
+a11y: [accessible-name, native-button, native-disabled, aria-disabled-visual-state, focus-visible]
+viewports_verified: []
+examples: [design-system/templates/home.html]
+---
+
 # Icon Button
 
 Нейтральная кнопка с одной иконкой. Публичный класс — `.ds-icon-button`.

@@ -1,3 +1,21 @@
+---
+id: DSC-badge
+kind: component
+maturity: stable
+platform: neutral
+purpose: status and product flags
+classes: [.ds-badge, .ds-badge--error, .ds-badge--success, .ds-flag, .ds-flag--new, .ds-flag--sale, .ds-flag--special]
+structural_classes: []
+variants: [success, attention, error, sale, new, special, xs, sm, md, lg]
+requires:
+  components: []
+public_tokens: []
+optional_tokens: []
+a11y: [status-text]
+viewports_verified: []
+examples: [design-system/templates/home.html]
+---
+
 # Badge and Flag
 
 `.ds-badge` — нейтральная плашка статуса. `.ds-flag` — плашка товарного

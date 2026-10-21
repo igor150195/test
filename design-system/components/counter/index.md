@@ -1,3 +1,21 @@
+---
+id: DSC-counter
+kind: component
+maturity: stable
+platform: neutral
+purpose: quantities and counts
+classes: [.ds-counter, .ds-counter--sm, .ds-counter--md, .ds-counter--lg]
+structural_classes: []
+variants: [sm, md, lg]
+requires:
+  components: []
+public_tokens: []
+optional_tokens: []
+a11y: [status-text]
+viewports_verified: []
+examples: [design-system/blocks/header/index.md]
+---
+
 # Counter
 
 `.ds-counter` — нейтральный display-only счётчик для небольшого числа: новых

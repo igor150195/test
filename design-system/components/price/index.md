@@ -1,3 +1,21 @@
+---
+id: DSC-price
+kind: component
+maturity: stable
+platform: neutral
+purpose: current old and discount prices
+classes: [.ds-price, .ds-price__current, .ds-price__old, .ds-price__discount, .ds-price--sm, .ds-price--md, .ds-price--lg, .ds-price--xl]
+structural_classes: []
+variants: [sm, md, lg, xl]
+requires:
+  components: []
+public_tokens: []
+optional_tokens: []
+a11y: []
+viewports_verified: []
+examples: [design-system/templates/home.html, design-system/templates/shop.html]
+---
+
 # Price
 
 Нейтральный блок цены. Публичные классы `.ds-price`, `.ds-price__current`,

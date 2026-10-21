@@ -1,0 +1,763 @@
+{
+  "schema_version": 1,
+  "generated_from": "component and block index frontmatter",
+  "entries": [
+    {
+      "id": "DSB-footer",
+      "kind": "block",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "site footer navigation and legal information",
+      "classes": [
+        ".ds-footer",
+        ".ds-footer__inner",
+        ".ds-footer__columns",
+        ".ds-footer__title",
+        ".ds-footer__list",
+        ".ds-footer__link",
+        ".ds-footer__bottom",
+        ".ds-footer__copyright",
+        ".ds-footer__socials"
+      ],
+      "structural_classes": [
+        ".ds-footer__column"
+      ],
+      "variants": [],
+      "requires": {
+        "components": [
+          ".ds-icon",
+          ".ds-icon-button"
+        ]
+      },
+      "public_tokens": [],
+      "optional_tokens": [],
+      "a11y": [
+        "semantic-landmark",
+        "accessible-name",
+        "decorative-icon-hidden"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html",
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/blocks/footer/index.md",
+      "uses_tokens": [
+        "--font_content",
+        "--fw_content_sb",
+        "--fz_md",
+        "--fz_sm",
+        "--on_bg_main_accent",
+        "--on_primary",
+        "--on_primary_1",
+        "--on_primary_2",
+        "--on_primary_8",
+        "--section_pd_desktop",
+        "--section_pd_laptop",
+        "--section_pd_mobile",
+        "--section_pd_tablet",
+        "--site_width"
+      ]
+    },
+    {
+      "id": "DSB-header",
+      "kind": "block",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "site header search and user actions",
+      "classes": [
+        ".ds-header",
+        ".ds-header__inner",
+        ".ds-header__logo",
+        ".ds-header__search",
+        ".ds-header__actions"
+      ],
+      "structural_classes": [],
+      "variants": [],
+      "requires": {
+        "components": [
+          ".ds-input",
+          ".ds-icon",
+          ".ds-icon-button",
+          ".ds-counter"
+        ]
+      },
+      "public_tokens": [],
+      "optional_tokens": [],
+      "a11y": [
+        "semantic-landmark",
+        "form-label",
+        "accessible-name",
+        "decorative-icon-hidden"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html",
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/blocks/header/index.md",
+      "uses_tokens": [
+        "--bd_bg_main_2",
+        "--bg_main",
+        "--font_accent",
+        "--fw_accent_b",
+        "--heading_fz_9",
+        "--on_bg_main",
+        "--section_pd_desktop",
+        "--section_pd_laptop",
+        "--section_pd_mobile",
+        "--section_pd_tablet",
+        "--site_width"
+      ]
+    },
+    {
+      "id": "DSB-product-card",
+      "kind": "block",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "commerce product cards",
+      "classes": [
+        ".ds-product-card",
+        ".ds-product-card__media",
+        ".ds-product-card__image-link",
+        ".ds-product-card__image",
+        ".ds-product-card__flags",
+        ".ds-product-card__favorite",
+        ".ds-product-card__body",
+        ".ds-product-card__title",
+        ".ds-product-card__title-link",
+        ".ds-product-card__meta",
+        ".ds-product-card__actions",
+        ".ds-product-card__add",
+        ".ds-product-card__grid"
+      ],
+      "structural_classes": [],
+      "variants": [],
+      "requires": {
+        "components": [
+          ".ds-button",
+          ".ds-icon-button",
+          ".ds-price",
+          ".ds-rating",
+          ".ds-badge",
+          ".ds-flag"
+        ]
+      },
+      "public_tokens": [
+        "--ds-container-max",
+        "--ds-grid-gap",
+        "--ds-content-gap"
+      ],
+      "optional_tokens": [],
+      "a11y": [
+        "alternative-text",
+        "accessible-name",
+        "decorative-icon-hidden",
+        "interactive-nesting",
+        "semantic-heading"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html",
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/blocks/product-card/index.md",
+      "uses_tokens": [
+        "--base_radius",
+        "--bd_bg_main_2",
+        "--bg_main",
+        "--bg_main_surface",
+        "--ds-container-max",
+        "--ds-content-gap",
+        "--ds-grid-gap",
+        "--font_content",
+        "--fw_content_sb",
+        "--md_product_name_fz",
+        "--md_product_name_lh",
+        "--primary",
+        "--product_name_color",
+        "--shadow_md",
+        "--shadow_sm",
+        "--transition"
+      ]
+    },
+    {
+      "id": "DSC-badge",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "status and product flags",
+      "classes": [
+        ".ds-badge",
+        ".ds-badge--error",
+        ".ds-badge--success",
+        ".ds-flag",
+        ".ds-flag--new",
+        ".ds-flag--sale",
+        ".ds-flag--special"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "success",
+        "attention",
+        "error",
+        "sale",
+        "new",
+        "special",
+        "xs",
+        "sm",
+        "md",
+        "lg"
+      ],
+      "requires": {
+        "components": []
+      },
+      "public_tokens": [],
+      "optional_tokens": [],
+      "a11y": [
+        "status-text"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html"
+      ],
+      "source": "design-system/components/badge/index.md",
+      "uses_tokens": [
+        "--attention",
+        "--error",
+        "--flags_action_bg",
+        "--flags_action_color",
+        "--flags_new_bg",
+        "--flags_new_color",
+        "--flags_spec_bg",
+        "--flags_spec_color",
+        "--font_content",
+        "--fw_content_sb",
+        "--lg_flags_fz",
+        "--lg_flags_lh",
+        "--lg_flags_pd",
+        "--lg_flags_r",
+        "--md_flags_fz",
+        "--md_flags_lh",
+        "--md_flags_pd",
+        "--md_flags_r",
+        "--on_attention",
+        "--on_error",
+        "--on_primary",
+        "--on_sale",
+        "--on_success",
+        "--primary",
+        "--sale",
+        "--sm_flags_fz",
+        "--sm_flags_lh",
+        "--sm_flags_pd",
+        "--sm_flags_r",
+        "--success",
+        "--xs_flags_fz",
+        "--xs_flags_lh",
+        "--xs_flags_pd",
+        "--xs_flags_r"
+      ]
+    },
+    {
+      "id": "DSC-button",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "actions and navigation",
+      "classes": [
+        ".ds-button",
+        ".ds-button--primary",
+        ".ds-button--secondary",
+        ".ds-button--ghost",
+        ".ds-button--accent",
+        ".ds-button--white"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "accent",
+        "white"
+      ],
+      "requires": {
+        "components": []
+      },
+      "public_tokens": [
+        "--primary",
+        "--primary_surface",
+        "--on_primary",
+        "--accent",
+        "--accent_surface",
+        "--on_accent",
+        "--on_bg_main"
+      ],
+      "optional_tokens": [
+        "--focus_ring_color"
+      ],
+      "a11y": [
+        "native-button",
+        "native-disabled",
+        "aria-disabled-visual-state",
+        "focus-visible"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html",
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/components/button/index.md",
+      "uses_tokens": [
+        "--accent",
+        "--accent_surface",
+        "--bd_bg_main_2",
+        "--disable",
+        "--focus_ring_color",
+        "--font_content",
+        "--fw_content_sb",
+        "--md_btn_fz",
+        "--md_btn_gap",
+        "--md_btn_lh",
+        "--md_btn_mnh",
+        "--md_btn_pd",
+        "--md_btn_r",
+        "--on_accent",
+        "--on_accent_8",
+        "--on_bg_main",
+        "--on_bg_main_8",
+        "--on_disable",
+        "--on_primary",
+        "--on_primary_8",
+        "--primary",
+        "--primary_2",
+        "--primary_3",
+        "--primary_4",
+        "--primary_surface",
+        "--transition",
+        "--white"
+      ]
+    },
+    {
+      "id": "DSC-counter",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "quantities and counts",
+      "classes": [
+        ".ds-counter",
+        ".ds-counter--sm",
+        ".ds-counter--md",
+        ".ds-counter--lg"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "requires": {
+        "components": []
+      },
+      "public_tokens": [],
+      "optional_tokens": [],
+      "a11y": [
+        "status-text"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/blocks/header/index.md"
+      ],
+      "source": "design-system/components/counter/index.md",
+      "uses_tokens": [
+        "--counter_bd",
+        "--counter_bg",
+        "--counter_color",
+        "--counter_shadow",
+        "--lg_counter_h",
+        "--lg_counter_mw",
+        "--lg_counter_p",
+        "--lg_counter_r",
+        "--lg_counter_text",
+        "--md_counter_h",
+        "--md_counter_mw",
+        "--md_counter_p",
+        "--md_counter_r",
+        "--md_counter_text",
+        "--sm_counter_h",
+        "--sm_counter_mw",
+        "--sm_counter_p",
+        "--sm_counter_r",
+        "--sm_counter_text"
+      ]
+    },
+    {
+      "id": "DSC-form",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "text fields select checkbox and radio controls",
+      "classes": [
+        ".ds-input",
+        ".ds-select",
+        ".ds-textarea",
+        ".ds-checkbox",
+        ".ds-checkbox__input",
+        ".ds-checkbox__control",
+        ".ds-checkbox__label",
+        ".ds-checkbox--error",
+        ".ds-radio",
+        ".ds-radio__input",
+        ".ds-radio__control",
+        ".ds-radio__label",
+        ".ds-radio--error"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "sm",
+        "md",
+        "lg",
+        "error"
+      ],
+      "requires": {
+        "components": []
+      },
+      "public_tokens": [],
+      "optional_tokens": [
+        "--focus_ring_color"
+      ],
+      "a11y": [
+        "form-label",
+        "focus-visible",
+        "native-disabled"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/components/form/index.md",
+      "uses_tokens": [
+        "--bd_bg_main_3",
+        "--bg_main",
+        "--bg_main_surface",
+        "--checkbox_radius",
+        "--disable",
+        "--error",
+        "--focus_ring_color",
+        "--font_content",
+        "--form_radius",
+        "--fw_content_r",
+        "--lg_checkbox_fz",
+        "--lg_checkbox_gap",
+        "--lg_checkbox_h",
+        "--lg_checkbox_lh",
+        "--lg_checkbox_w",
+        "--lg_input_fz",
+        "--lg_input_h",
+        "--lg_input_lh",
+        "--lg_input_pd",
+        "--lg_input_r",
+        "--lg_radio_fz",
+        "--lg_radio_gap",
+        "--lg_radio_h",
+        "--lg_radio_lh",
+        "--lg_radio_w",
+        "--lg_select_h",
+        "--lg_select_lh",
+        "--lg_select_pd",
+        "--lg_select_r",
+        "--lg_textarea_lh",
+        "--lg_textarea_mh",
+        "--lg_textarea_pd",
+        "--lg_textarea_r",
+        "--md_checkbox_fz",
+        "--md_checkbox_gap",
+        "--md_checkbox_h",
+        "--md_checkbox_lh",
+        "--md_checkbox_w",
+        "--md_input_fz",
+        "--md_input_h",
+        "--md_input_lh",
+        "--md_input_pd",
+        "--md_input_r",
+        "--md_radio_gap",
+        "--md_radio_h",
+        "--md_radio_r",
+        "--md_radio_w",
+        "--md_select_fz",
+        "--md_select_h",
+        "--md_select_lh",
+        "--md_select_pd",
+        "--md_select_r",
+        "--md_textarea_fz",
+        "--md_textarea_lh",
+        "--md_textarea_mh",
+        "--md_textarea_pd",
+        "--md_textarea_r",
+        "--on_bg_main_5",
+        "--on_bg_main_8",
+        "--on_disable",
+        "--on_primary",
+        "--primary",
+        "--sm_checkbox_fz",
+        "--sm_checkbox_gap",
+        "--sm_checkbox_h",
+        "--sm_checkbox_lh",
+        "--sm_checkbox_w",
+        "--sm_input_fz",
+        "--sm_input_h",
+        "--sm_input_lh",
+        "--sm_input_pd",
+        "--sm_input_r",
+        "--sm_radio_fz",
+        "--sm_radio_gap",
+        "--sm_radio_h",
+        "--sm_radio_lh",
+        "--sm_radio_w",
+        "--sm_select_h",
+        "--sm_select_lh",
+        "--sm_select_pd",
+        "--sm_select_r",
+        "--sm_textarea_lh",
+        "--sm_textarea_mh",
+        "--sm_textarea_pd",
+        "--sm_textarea_r",
+        "--transition"
+      ]
+    },
+    {
+      "id": "DSC-icon",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "masked sprite icons",
+      "classes": [
+        ".ds-icon",
+        ".ds-icon--sm",
+        ".ds-icon--md",
+        ".ds-icon--lg"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "requires": {
+        "components": []
+      },
+      "public_tokens": [],
+      "optional_tokens": [
+        "--ds-icon",
+        "--ds-icon-color"
+      ],
+      "a11y": [
+        "decorative-icon-hidden"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html"
+      ],
+      "source": "design-system/components/icon/index.md",
+      "uses_tokens": [
+        "--ds-icon",
+        "--ds-icon-color",
+        "--lg_icon_h",
+        "--lg_icon_w",
+        "--md_icon_h",
+        "--md_icon_w",
+        "--sm_icon_h",
+        "--sm_icon_w"
+      ]
+    },
+    {
+      "id": "DSC-icon-button",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "icon-only actions",
+      "classes": [
+        ".ds-icon-button",
+        ".ds-icon-button--sm",
+        ".ds-icon-button--md",
+        ".ds-icon-button--lg"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "requires": {
+        "components": [
+          ".ds-icon"
+        ]
+      },
+      "public_tokens": [],
+      "optional_tokens": [
+        "--focus_ring_color"
+      ],
+      "a11y": [
+        "accessible-name",
+        "native-button",
+        "native-disabled",
+        "aria-disabled-visual-state",
+        "focus-visible"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html"
+      ],
+      "source": "design-system/components/icon-button/index.md",
+      "uses_tokens": [
+        "--disable",
+        "--focus_ring_color",
+        "--lg_icon_btn_h",
+        "--lg_icon_btn_r",
+        "--lg_icon_btn_w",
+        "--lg_icon_h",
+        "--lg_icon_w",
+        "--md_icon_btn_h",
+        "--md_icon_btn_r",
+        "--md_icon_btn_w",
+        "--md_icon_h",
+        "--md_icon_w",
+        "--on_bg_main",
+        "--on_bg_main_8",
+        "--on_disable",
+        "--primary_1",
+        "--primary_2",
+        "--primary_3",
+        "--sm_icon_btn_h",
+        "--sm_icon_btn_r",
+        "--sm_icon_btn_w",
+        "--sm_icon_h",
+        "--sm_icon_w",
+        "--transition"
+      ]
+    },
+    {
+      "id": "DSC-price",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "current old and discount prices",
+      "classes": [
+        ".ds-price",
+        ".ds-price__current",
+        ".ds-price__old",
+        ".ds-price__discount",
+        ".ds-price--sm",
+        ".ds-price--md",
+        ".ds-price--lg",
+        ".ds-price--xl"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "requires": {
+        "components": []
+      },
+      "public_tokens": [],
+      "optional_tokens": [],
+      "a11y": [],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html",
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/components/price/index.md",
+      "uses_tokens": [
+        "--ds-price-current-fz",
+        "--ds-price-current-lh",
+        "--ds-price-old-fz",
+        "--ds-price-old-lh",
+        "--font_content",
+        "--fw_content_sb",
+        "--fz_sm",
+        "--lg_current_price_fz",
+        "--lg_current_price_lh",
+        "--lg_old_price_fz",
+        "--lg_old_price_lh",
+        "--md_current_price_fz",
+        "--md_current_price_lh",
+        "--md_old_price_fz",
+        "--md_old_price_lh",
+        "--old_price_color",
+        "--old_price_line",
+        "--price_color",
+        "--price_sale_color",
+        "--sm_current_price_fz",
+        "--sm_current_price_lh",
+        "--sm_old_price_fz",
+        "--sm_old_price_lh",
+        "--xl_current_price_fz",
+        "--xl_current_price_lh",
+        "--xl_old_price_fz",
+        "--xl_old_price_lh"
+      ]
+    },
+    {
+      "id": "DSC-rating",
+      "kind": "component",
+      "maturity": "stable",
+      "platform": "neutral",
+      "purpose": "ratings with stars and optional value",
+      "classes": [
+        ".ds-rating",
+        ".ds-rating__stars",
+        ".ds-rating__fill",
+        ".ds-rating__value",
+        ".ds-rating--sm",
+        ".ds-rating--md"
+      ],
+      "structural_classes": [],
+      "variants": [
+        "sm",
+        "md"
+      ],
+      "requires": {
+        "components": [
+          ".ds-icon"
+        ]
+      },
+      "public_tokens": [],
+      "optional_tokens": [],
+      "a11y": [
+        "status-text"
+      ],
+      "viewports_verified": [],
+      "examples": [
+        "design-system/templates/home.html",
+        "design-system/templates/shop.html"
+      ],
+      "source": "design-system/components/rating/index.md",
+      "uses_tokens": [
+        "--ds-rating-height",
+        "--ds-rating-icon",
+        "--ds-rating-star-height",
+        "--ds-rating-star-width",
+        "--ds-rating-width",
+        "--font_content",
+        "--fz_sm",
+        "--md_rating_h",
+        "--md_rating_icon",
+        "--md_rating_icon_h",
+        "--md_rating_icon_w",
+        "--md_rating_w",
+        "--on_bg_main_7",
+        "--rating_active",
+        "--rating_disabled",
+        "--sm_rating_h",
+        "--sm_rating_icon",
+        "--sm_rating_icon_h",
+        "--sm_rating_icon_w",
+        "--sm_rating_w"
+      ]
+    }
+  ]
+}

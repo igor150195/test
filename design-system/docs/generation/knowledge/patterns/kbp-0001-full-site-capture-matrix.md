@@ -1,18 +1,30 @@
 ---
 id: KBP-0001
 title: Full-site screenshot matrix with overlapping segments
-category: quality-workflow
-tags: [visual-qa, responsive, full-page, regression]
+kind: quality-workflow
 status: candidate
-implementation: .agents/skills/visual-qa/SKILL.md
-examples:
-  - projects/test-site/artifacts/visual-qa/reference-restoration-2026-10-16/final-matrix/project-pass-3
-  - projects/test-site/docs/qa-report.md
-tokens: []
-components: []
-viewports: [1920x1080, 1440x900, 768x1024, 390x844]
-technical_check: projects/test-site/artifacts/visual-qa/reference-restoration-2026-10-16/final-matrix/project-pass-3/results.json
-visual_check: projects/test-site/docs/qa-report.md
+scope: universal
+platform: neutral
+industry: []
+page_types: [home, landing]
+tags: [visual-qa, responsive, full-page, regression]
+requires:
+  components: []
+  tokens: []
+  optional_tokens: []
+variants: [first-screen, full-page, overlapping-segments]
+data_needed: [page-url, viewport-matrix]
+viewports_checked: [1920x1080, 1440x900, 768x1024, 390x844]
+evidence:
+  implementation: .agents/skills/visual-qa/SKILL.md
+  technical_check: projects/test-site/artifacts/visual-qa/reference-restoration-2026-10-16/final-matrix/project-pass-3/results.json
+  visual_check: projects/test-site/docs/qa-report.md
+  projects: [test-site]
+  limitations: [one project, technical evidence contains MP4 net::ERR_ABORTED despite readyState 4]
+review_after: 2027-01-16
+supersedes: []
+applies_when: [страница длиннее одного viewport, доступен Chromium]
+not_when: [нет доступа к браузеру]
 ---
 
 ## Назначение

@@ -1,3 +1,21 @@
+---
+id: DSB-footer
+kind: block
+maturity: stable
+platform: neutral
+purpose: site footer navigation and legal information
+classes: [.ds-footer, .ds-footer__inner, .ds-footer__columns, .ds-footer__title, .ds-footer__list, .ds-footer__link, .ds-footer__bottom, .ds-footer__copyright, .ds-footer__socials]
+structural_classes: [.ds-footer__column]
+variants: []
+requires:
+  components: [.ds-icon, .ds-icon-button]
+public_tokens: []
+optional_tokens: []
+a11y: [semantic-landmark, accessible-name, decorative-icon-hidden]
+viewports_verified: []
+examples: [design-system/templates/home.html, design-system/templates/shop.html]
+---
+
 # Footer
 
 `.ds-footer` — нейтральный подвал сайта с навигационными колонками, копирайтом

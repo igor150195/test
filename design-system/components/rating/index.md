@@ -1,3 +1,21 @@
+---
+id: DSC-rating
+kind: component
+maturity: stable
+platform: neutral
+purpose: ratings with stars and optional value
+classes: [.ds-rating, .ds-rating__stars, .ds-rating__fill, .ds-rating__value, .ds-rating--sm, .ds-rating--md]
+structural_classes: []
+variants: [sm, md]
+requires:
+  components: [.ds-icon]
+public_tokens: []
+optional_tokens: []
+a11y: [status-text]
+viewports_verified: []
+examples: [design-system/templates/home.html, design-system/templates/shop.html]
+---
+
 # Rating
 
 Нейтральный read-only компонент рейтинга. Он не использует legacy mixin

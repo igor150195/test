@@ -1,18 +1,30 @@
 ---
 id: KBP-0002
 title: Product-card composition using neutral commerce contracts
-category: component-composition
+kind: composition
+status: candidate
+scope: industry
+platform: neutral
+industry: [fashion]
+page_types: [home, catalog]
 tags: [commerce, product-card, price, rating, badge, responsive]
-status: verified
-implementation: design-system/blocks/product-card/index.md
-examples:
-  - projects/fashion-store/index.html
-  - design-system/templates/shop.html
-tokens: [--ds-container-max, --ds-grid-gap, --ds-content-gap]
-components: [.ds-product-card, .ds-price, .ds-rating, .ds-badge, .ds-flag, .ds-button, .ds-icon-button]
-viewports: [1440x900, 390x844]
-technical_check: projects/fashion-store/docs/qa-report.md
-visual_check: projects/fashion-store/docs/qa-report.md
+requires:
+  components: [.ds-product-card, .ds-price, .ds-rating, .ds-badge, .ds-flag, .ds-button, .ds-icon-button]
+  tokens: [--ds-container-max, --ds-grid-gap, --ds-content-gap]
+  optional_tokens: []
+variants: [catalog-grid]
+data_needed: [product-image, title, price, rating, action]
+viewports_checked: [1440x900, 390x844]
+evidence:
+  implementation: design-system/blocks/product-card/index.md
+  technical_check: projects/fashion-store/docs/qa-report.md
+  visual_check: projects/fashion-store/docs/qa-report.md
+  projects: [fashion-store]
+  limitations: [one project, two viewports, expert score 70 of 100]
+review_after: 2027-01-16
+supersedes: []
+applies_when: [товарная карточка с ценой рейтингом флагом и действием]
+not_when: [editorial-карточка, карьерная вакансия, media-плитка]
 ---
 
 ## Назначение
@@ -25,8 +37,9 @@ visual_check: projects/fashion-store/docs/qa-report.md
 `fashion-store` прошёл документированные сборку и Sass-check; QA зафиксировал
 10/10 загруженных изображений, отсутствие console errors и mobile overflow,
 а также проверил одноколоночный каталог на 390px. Поэтому решение отмечено
-`verified`, но не `approved`: его повторное применение зависит от того, нужна
-ли именно товарная карточка и подходят ли её HTML-контракт и viewport.
+`candidate`: свидетельство относится только к одному проекту, двум viewport и
+честной оценке 70/100. Повышение до `verified` требует нового подтверждённого
+проекта и проверки по актуальному lifecycle.
 
 ## Ограничения и условия отказа
 

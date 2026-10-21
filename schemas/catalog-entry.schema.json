@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/schemas/catalog-entry.schema.json",
+  "title": "Design-system component and block catalog entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "maturity", "platform", "purpose", "classes", "structural_classes", "variants", "requires", "public_tokens", "optional_tokens", "a11y", "viewports_verified", "examples"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^DS[CB]-[a-z0-9-]+$" },
+    "kind": { "enum": ["component", "block"] },
+    "maturity": { "enum": ["stable", "experimental", "deprecated"] },
+    "platform": { "enum": ["neutral", "shop2", "legacy"] },
+    "purpose": { "type": "string", "minLength": 1 },
+    "classes": { "$ref": "#/$defs/classArray" },
+    "structural_classes": { "$ref": "#/$defs/classArray" },
+    "variants": { "$ref": "#/$defs/stringArray" },
+    "requires": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["components"],
+      "properties": { "components": { "$ref": "#/$defs/classArray" } }
+    },
+    "public_tokens": { "$ref": "#/$defs/tokenArray" },
+    "optional_tokens": { "$ref": "#/$defs/tokenArray" },
+    "a11y": { "type": "array", "items": { "$ref": "#/$defs/a11yValue" } },
+    "viewports_verified": { "type": "array", "items": { "type": "string", "pattern": "^\\d+x\\d+$" } },
+    "examples": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  },
+  "$defs": {
+    "classArray": { "type": "array", "items": { "type": "string", "pattern": "^\\.ds-[a-z0-9_-]+$" } },
+    "tokenArray": { "type": "array", "items": { "type": "string", "pattern": "^--[a-z0-9_-]+$" } },
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "a11yValue": {
+      "enum": ["accessible-name", "alternative-text", "aria-disabled-visual-state", "decorative-icon-hidden", "focus-visible", "form-label", "interactive-nesting", "native-disabled", "native-button", "semantic-heading", "semantic-landmark", "status-text"]
+    }
+  },
+  "x-a11y-vocabulary": {
+    "accessible-name": { "definition": "Interactive control exposes a programmatic name.", "verification": "Inspect accessible name in browser accessibility tree or run qa button-accessible-name." },
+    "alternative-text": { "definition": "Meaningful image exposes alternative text.", "verification": "Run qa img-alt and inspect image intent." },
+    "aria-disabled-visual-state": { "definition": "aria-disabled state has a visible non-active presentation.", "verification": "Inspect the aria-disabled state in browser." },
+    "decorative-icon-hidden": { "definition": "Decorative icon is excluded from the accessibility tree.", "verification": "Inspect aria-hidden in markup and accessibility tree." },
+    "focus-visible": { "definition": "Keyboard focus has a visible indicator without forcing mouse focus styling.", "verification": "Tab through the control in browser." },
+    "form-label": { "definition": "Form control has an associated visible or accessible label.", "verification": "Run qa input-label and inspect for/id or accessible name." },
+    "interactive-nesting": { "definition": "Interactive controls are not nested within one another.", "verification": "Inspect rendered HTML contract." },
+    "native-disabled": { "definition": "Native disabled controls preserve their semantic disabled state.", "verification": "Inspect disabled attribute and keyboard behavior." },
+    "native-button": { "definition": "Action is represented by a native button when navigation is not intended.", "verification": "Inspect tag name and type attribute." },
+    "semantic-heading": { "definition": "Section title uses an appropriate heading element.", "verification": "Inspect heading outline in browser accessibility tools." },
+    "semantic-landmark": { "definition": "Major page region uses an appropriate landmark element.", "verification": "Inspect landmark tree in browser accessibility tools." },
+    "status-text": { "definition": "Dynamic status can be announced when product behavior requires it.", "verification": "Inspect role=status or aria-live only where the status changes dynamically." }
+  }
+}

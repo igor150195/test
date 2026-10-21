@@ -1,3 +1,21 @@
+---
+id: DSC-button
+kind: component
+maturity: stable
+platform: neutral
+purpose: actions and navigation
+classes: [.ds-button, .ds-button--primary, .ds-button--secondary, .ds-button--ghost, .ds-button--accent, .ds-button--white]
+structural_classes: []
+variants: [primary, secondary, ghost, accent, white]
+requires:
+  components: []
+public_tokens: [--primary, --primary_surface, --on_primary, --accent, --accent_surface, --on_accent, --on_bg_main]
+optional_tokens: [--focus_ring_color]
+a11y: [native-button, native-disabled, aria-disabled-visual-state, focus-visible]
+viewports_verified: []
+examples: [design-system/templates/home.html, design-system/templates/shop.html]
+---
+
 # Button
 
 Нейтральный компонент кнопки. Его публичный класс — `.ds-button`; он не

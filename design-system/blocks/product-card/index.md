@@ -1,3 +1,21 @@
+---
+id: DSB-product-card
+kind: block
+maturity: stable
+platform: neutral
+purpose: commerce product cards
+classes: [.ds-product-card, .ds-product-card__media, .ds-product-card__image-link, .ds-product-card__image, .ds-product-card__flags, .ds-product-card__favorite, .ds-product-card__body, .ds-product-card__title, .ds-product-card__title-link, .ds-product-card__meta, .ds-product-card__actions, .ds-product-card__add, .ds-product-card__grid]
+structural_classes: []
+variants: []
+requires:
+  components: [.ds-button, .ds-icon-button, .ds-price, .ds-rating, .ds-badge, .ds-flag]
+public_tokens: [--ds-container-max, --ds-grid-gap, --ds-content-gap]
+optional_tokens: []
+a11y: [alternative-text, accessible-name, decorative-icon-hidden, interactive-nesting, semantic-heading]
+viewports_verified: []
+examples: [design-system/templates/home.html, design-system/templates/shop.html]
+---
+
 # Product Card
 
 `.ds-product-card` — нейтральный составной блок товара. Он использует

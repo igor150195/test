@@ -20,7 +20,18 @@ Do not use it for a small change to an existing page or for a design-system-only
 
 1. Inspect the root `AGENTS.md`, current project layout, `../../../design-system/docs/generator-guide.md`, [Design System First](../../../design-system/docs/generation/design-system-first.md), [generator knowledge base](../../../design-system/docs/generation/knowledge/README.md), relevant component/block contracts, token documentation, icon registry and confirmed-neutral mixins. Read implementations and contracts, not names alone.
 2. Analyze the reference before implementing. Use `../../../design-system/docs/generation/reference-analysis-template.md` as a checklist and create `projects/<slug>/docs/reference-analysis.md`. Record which observations are measured, which are inferred, and which cannot be verified. Map header zones separately (utility, primary navigation, contextual navigation, search and actions); do not move a navigation level merely because the same links exist elsewhere.
-3. Search `../../../design-system/docs/generation/knowledge/registry.yml` by category and tags. Open every candidate match, inspect its real implementation, examples, viewport coverage and limitations. A matching name or tag never proves applicability.
+3. Run `npm run kb:search --` with the reference's category/tags and relevant
+   `status`, `scope`, `platform` or `page-type` filters.
+   - Open every returned pattern and inspect its real implementation, examples,
+     viewport coverage and limitations.
+   - Record every returned entry in the `knowledge_ids` of the matching
+     `ds-section` block in `token-map.md`; record a rejected entry next to that
+     block with its rejection reason.
+   - If search returns no entries, continue without knowledge-base entries: do
+     not invent entries or read patterns directly instead of search.
+   - A matching name or tag never proves applicability; a `candidate` remains
+     investigation material and must not be copied as a ready solution.
+   - Generated `registry.yml` is an index, not a hand-edited search source.
 4. Create `projects/<slug>/docs/token-map.md`. For every substantial section, use a fenced `ds-section` JSON block matching `../../../schemas/ds-section.schema.json`: stable `id`, `REUSE`/`COMPOSE`/`EXTEND`/`BLOCKED` status, `html_selector`, local selectors/files, checked `ds_sources`, and applicable `knowledge_ids`. `EXTEND`/`BLOCKED` also require a decision. Add short human-readable rationale below each block. Record both the checked system files/contracts and relevant knowledge IDs with the result of applicability review. Prefer applicable `verified` and `approved` entries; a `candidate` is evidence for investigation, not code to copy. Use this exact shape (four-space JSON indentation):
 
    ```ds-section
@@ -37,6 +48,10 @@ Do not use it for a small change to an existing page or for a design-system-only
        "knowledge_ids": ["KBP-0002"]
    }
    ```
+   For every component, block or section need, first run `npm run catalog:search --`
+   by class or purpose and record the matching entry id in the `ds_sources` of
+   the `ds-section` block. A fitting entry means `REUSE` or `COMPOSE`; no fitting
+   entry means `EXTEND` (or `BLOCKED`). Never invent a local API instead.
 5. If a substantial need is `EXTEND` or `BLOCKED`, stop before creating project HTML, CSS, SCSS or JavaScript for the affected section. Create `projects/<slug>/docs/design-system-gap-report.md` using the documented format and request explicit approval. Do not use local overrides, arbitrary values, copied components, decorative substitutes or placeholders to make the gap appear solved. Continue only with explicit approval for an intentionally partial `REUSE`/`COMPOSE` scope.
 6. Only when the map contains no unapproved gaps, create the empty `projects/<slug>` directory, initialise its style contract with `node scripts/project-styles.mjs init <slug>`, and create `project.json` and `assets.json` from the documented schemas. Preserve an existing `styles/custom.scss` byte-for-byte on repeat runs. `build` writes only its own marked output, or an empty/comment-only placeholder; it refuses any other existing CSS unless an explicitly approved `--force` is supplied. Record every source asset and leave its rights `unknown` until the owner confirms them. For a legacy project whose `css/custom.css` is already generated project CSS, mark it `generated`, use an explicitly named output such as `css/custom-overrides.css` for owner overrides, link it last, and do not migrate the existing file without approval.
 7. Create the project scaffold and page blueprint. Use the existing `home.html` or `shop.html` as an API/structure example, not as the visual style to copy blindly. For every planned section, mark it as observed, inferred, or project-specific. Do not present unobservable portions of a reference as an exact reconstruction. Implement shared header/footer and reusable sections, then page-specific composition.
