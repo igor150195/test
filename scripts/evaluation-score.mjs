@@ -8,6 +8,7 @@ import { checkCompliance } from './check-compliance.mjs';
 export const scorerVersion = '1';
 export const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 export const evaluationRoot = resolve(repositoryRoot, 'docs/generator/evaluation-results');
+const knownTokenIssues = JSON.parse(readFileSync(resolve(repositoryRoot, 'scripts/known-token-issues.json'), 'utf8'));
 
 const cases = {
   C1: { slug: 'test-site', status: 'prerequisite-fail', reason: 'Declared local hero MP4 is absent; the project also declares external production resources.' },
@@ -24,13 +25,30 @@ function gitSha(root) {
 }
 
 function workingTreeClean(root) {
-  return execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all'], { cwd: root, encoding: 'utf8' }).trim() === '';
+  const ignoredOutputPaths = [/^projects\/[^/]+\/artifacts\//, /^docs\/generator\/evaluation-results\//, /(^|\/)dist\//];
+  const changedPaths = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all'], { cwd: root, encoding: 'utf8' })
+    .trim().split(/\r?\n/).filter(Boolean)
+    .map((line) => line.slice(3).replaceAll('\\', '/').replace(/^"|"$/g, ''));
+  return changedPaths.every((path) => ignoredOutputPaths.some((pattern) => pattern.test(path)));
 }
 
-function scoreStatus(status, { warningsAreFull = false } = {}) {
+function todayUtc() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function scoreStatus(status) {
   if (status === 'passed') return 1;
-  if (status === 'warning') return warningsAreFull ? 1 : 0.5;
+  if (status === 'warning') return 0.5;
   return 0;
+}
+
+function knownIssueExempt(check, knownIssues, today) {
+  if (check?.status !== 'warning' || !check.evidence?.length) return false;
+  return check.evidence.every((entry) => {
+    const token = entry.message?.match(/^(--[a-zA-Z0-9_-]+):/)?.[1];
+    const debt = token && knownIssues.undefinedTokens?.[token];
+    return Boolean(debt?.review_after && debt.review_after > today);
+  });
 }
 
 function checkMap(results) {
@@ -45,10 +63,15 @@ function metric(name, max, score, details) {
   return { name, max, score: rounded(score), ...details };
 }
 
-export function scoreQaArtifact({ qa, compliance, reviewerFlags = { local_extend: null, custom_styles_lost: null } }) {
+export function scoreQaArtifact({ qa, compliance, reviewerFlags = { local_extend: null, custom_styles_lost: null }, knownIssues = knownTokenIssues, today = todayUtc() }) {
   const checks = checkMap(qa);
   const technicalIds = ['console-errors', 'failed-requests', 'http-errors', 'broken-images', 'external-hosts', 'undefined-tokens', 'undefined-icons', 'undefined-ds-classes'];
-  const technicalScore = technicalIds.reduce((total, id) => total + scoreStatus(checks.get(id)?.status, { warningsAreFull: true }), 0) / technicalIds.length * 15;
+  const technicalBreakdown = technicalIds.map((id) => {
+    const check = checks.get(id);
+    const exempt = knownIssueExempt(check, knownIssues, today);
+    return { id, status: check?.status ?? 'not-run', factor: exempt ? 1 : scoreStatus(check?.status), known_issue_exempt: exempt };
+  });
+  const technicalScore = technicalBreakdown.reduce((total, check) => total + check.factor, 0) / technicalIds.length * 15;
   const overflow = checks.get('horizontal-overflow')?.status === 'passed' ? 5 : 0;
   const staticIds = ['html-lang', 'img-alt', 'input-label', 'button-accessible-name', 'skip-link'];
   const staticScore = staticIds.reduce((total, id) => total + scoreStatus(checks.get(id)?.status), 0) / staticIds.length * 5;
@@ -61,7 +84,7 @@ export function scoreQaArtifact({ qa, compliance, reviewerFlags = { local_extend
   const portability = qa.technical.portability;
   const portabilityScore = (portability.site_build.status === 'passed' ? 4 : 0) + (portability.check_site.status === 'passed' ? 3 : 0) + (portability.external_resources.status === 'passed' ? 3 : 0);
   const metrics = [
-    metric('technical-correctness', 15, technicalScore, { checks: technicalIds, warning_count_ignored: true }),
+    metric('technical-correctness', 15, technicalScore, { checks: technicalBreakdown, known_issue_rule: 'warning with only non-overdue known debts = passed; other warnings = 0.5' }),
     metric('adaptivity-and-accessibility', 15, overflow + staticScore + axeScore, { overflow, static: rounded(staticScore), axe: axeScore, axe_incomplete: qa.technical.a11y.incomplete.count }),
     metric('design-system-reuse', 10, sectionScore + dsScore, { section_mapping: rounded(sectionScore), ds_class_ratio: rounded(dsScore), top_level_sections: topLevel, ds_class_uses: dsUsage.ds_class_uses, all_class_uses: dsUsage.all_class_uses }),
     metric('portability', 10, portabilityScore, { ...portability })
@@ -98,6 +121,8 @@ export function validateEvaluationResult(result) {
   if (!['pass', 'fail', 'prerequisite-fail', 'not-run'].includes(result.status)) errors.push('invalid status');
   if (!/^git:[0-9a-f]{40}$/.test(result.evaluated_at_commit ?? '')) errors.push('invalid evaluated_at_commit');
   if (typeof result.working_tree_clean !== 'boolean') errors.push('working_tree_clean must be boolean');
+  if (!result.working_tree_clean && result.status_reproducible !== false) errors.push('dirty working tree requires status_reproducible false');
+  if (typeof result.status_reproducible !== 'boolean') errors.push('status_reproducible must be boolean');
   if (result.run_kind === 'generation' && !result.evidence.brief) errors.push('generation requires brief evidence');
   if (!Array.isArray(result.measured_metrics) || !result.objective || !result.expert || result.expert.status !== 'not-reviewed') errors.push('missing objective or expert fields');
   if (!result.versions || !['generator', 'design_system', 'project'].every((key) => typeof result.versions[key]?.recorded_in_project === 'boolean')) errors.push('missing version provenance');
@@ -117,7 +142,7 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   if (definition.status === 'prerequisite-fail') return {
     schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: 'artifact-baseline',
     generator_version: manifest.generator_version, ds_version: manifest.ds_version, project_version: projectVersion,
-    versions: versionProvenance({ generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: null, evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean,
+    versions: versionProvenance({ generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: null, evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, status_reproducible: isWorkingTreeClean,
     status: 'prerequisite-fail', measured_metrics: [], hashes: { project_manifest: hashFile(manifestPath) },
     objective: { score: null, score_out_of: null, percentage: null, metrics: [], not_measured: ['all'] }, expert: { status: 'not-reviewed', score: null },
     reviewer_flags: { local_extend: null, custom_styles_lost: null }, evidence: { reason: definition.reason }
@@ -133,7 +158,7 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   return {
     schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: 'artifact-baseline',
     generator_version: qa.generator_version, ds_version: qa.ds_version, project_version: projectVersion,
-    versions: versionProvenance({ generatorVersion: qa.generator_version, dsVersion: qa.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: statSync(qaPath).mtime.toISOString(), evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean,
+    versions: versionProvenance({ generatorVersion: qa.generator_version, dsVersion: qa.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: statSync(qaPath).mtime.toISOString(), evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, status_reproducible: isWorkingTreeClean,
     status: scored.status, measured_metrics: scored.objective.metrics.map((entry) => entry.name), hashes,
     objective: scored.objective, expert: { status: 'not-reviewed', score: null }, reviewer_flags: { local_extend: null, custom_styles_lost: null },
     evidence: { qa_results: relative(root, qaPath).replaceAll('\\', '/'), compliance: compliance.metrics, hard_failures: scored.hard_failures }

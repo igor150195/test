@@ -4,7 +4,7 @@
   "title": "Generator evaluation result",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "case_id", "run", "run_kind", "generator_version", "ds_version", "project_version", "versions", "scorer_version", "evaluated_at", "evaluated_at_commit", "working_tree_clean", "status", "measured_metrics", "hashes", "objective", "expert", "reviewer_flags", "evidence"],
+  "required": ["schema_version", "case_id", "run", "run_kind", "generator_version", "ds_version", "project_version", "versions", "scorer_version", "evaluated_at", "evaluated_at_commit", "working_tree_clean", "status_reproducible", "status", "measured_metrics", "hashes", "objective", "expert", "reviewer_flags", "evidence"],
   "properties": {
     "schema_version": { "const": 1 },
     "case_id": { "pattern": "^C[0-9]+$" },
@@ -26,10 +26,35 @@
     "evaluated_at": { "type": ["string", "null"], "format": "date-time" },
     "evaluated_at_commit": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
     "working_tree_clean": { "type": "boolean" },
+    "status_reproducible": { "type": "boolean", "description": "False whenever working_tree_clean is false." },
     "status": { "enum": ["pass", "fail", "prerequisite-fail", "not-run"] },
     "measured_metrics": { "type": "array" },
     "hashes": { "type": "object" },
-    "objective": { "type": "object" },
+    "objective": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "status": { "type": "string" },
+                    "factor": { "type": "number" },
+                    "known_issue_exempt": { "type": "boolean", "description": "True only when all findings are known debts with review_after in the future; it scores as passed." }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "expert": { "type": "object" },
     "reviewer_flags": {
       "type": "object",
