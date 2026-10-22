@@ -5,7 +5,7 @@
   "run_kind": "artifact-baseline",
   "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
   "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
-  "project_version": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "project_version": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
   "versions": {
     "generator": {
       "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
@@ -16,14 +16,15 @@
       "recorded_in_project": true
     },
     "project": {
-      "value": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+      "value": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
       "recorded_in_project": false
     }
   },
   "scorer_version": "1",
   "evaluated_at": null,
-  "evaluated_at_commit": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "evaluated_at_commit": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
   "working_tree_clean": false,
+  "status_reproducible": false,
   "status": "prerequisite-fail",
   "measured_metrics": [],
   "hashes": {

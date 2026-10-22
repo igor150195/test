@@ -5,7 +5,7 @@
   "run_kind": "artifact-baseline",
   "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
   "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
-  "project_version": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "project_version": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
   "versions": {
     "generator": {
       "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
@@ -16,14 +16,15 @@
       "recorded_in_project": true
     },
     "project": {
-      "value": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+      "value": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
       "recorded_in_project": false
     }
   },
   "scorer_version": "1",
   "evaluated_at": "2026-10-22T04:35:38.081Z",
-  "evaluated_at_commit": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "evaluated_at_commit": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
   "working_tree_clean": false,
+  "status_reproducible": false,
   "status": "pass",
   "measured_metrics": [
     "technical-correctness",
@@ -46,16 +47,56 @@
         "max": 15,
         "score": 15,
         "checks": [
-          "console-errors",
-          "failed-requests",
-          "http-errors",
-          "broken-images",
-          "external-hosts",
-          "undefined-tokens",
-          "undefined-icons",
-          "undefined-ds-classes"
+          {
+            "id": "console-errors",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "failed-requests",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "http-errors",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "broken-images",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "external-hosts",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "undefined-tokens",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "undefined-icons",
+            "status": "warning",
+            "factor": 1,
+            "known_issue_exempt": true
+          },
+          {
+            "id": "undefined-ds-classes",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          }
         ],
-        "warning_count_ignored": true
+        "known_issue_rule": "warning with only non-overdue known debts = passed; other warnings = 0.5"
       },
       {
         "name": "adaptivity-and-accessibility",
