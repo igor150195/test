@@ -13,7 +13,8 @@ const knownTokenIssues = JSON.parse(readFileSync(resolve(repositoryRoot, 'script
 const cases = {
   C1: { slug: 'test-site', status: 'prerequisite-fail', reason: 'Declared local hero MP4 is absent; the project also declares external production resources.' },
   C2: { slug: 'house-store', status: 'artifact-baseline' },
-  C3: { slug: 'fashion-store', status: 'prerequisite-fail', reason: 'Production assets remain external and their rights/local copies are not confirmed.' }
+  C3: { slug: 'fashion-store', status: 'prerequisite-fail', reason: 'Production assets remain external and their rights/local copies are not confirmed.' },
+  C4: { slug: 'pilot-1', status: 'generation', brief: 'docs/generator/evaluation/cases/C4/brief.md' }
 };
 
 function hashFile(path) {
@@ -161,8 +162,11 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   const evaluationCommit = gitSha(root);
   const workingTree = workingTreeState(root, definition.slug);
   const isWorkingTreeClean = workingTree.clean;
+  const runKind = definition.status === 'generation' ? 'generation' : 'artifact-baseline';
+  const briefPath = definition.brief && resolve(root, definition.brief);
+  if (runKind === 'generation' && !existsSync(briefPath)) throw new Error(`Missing generation brief: ${definition.brief}`);
   if (definition.status === 'prerequisite-fail') return {
-    schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: 'artifact-baseline',
+    schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: runKind,
     generator_version: manifest.generator_version, ds_version: manifest.ds_version, project_version: projectVersion,
     versions: versionProvenance({ generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: null, evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, inputs_dirty_paths: workingTree.inputsDirtyPaths, status_reproducible: isWorkingTreeClean,
     status: 'prerequisite-fail', measured_metrics: [], hashes: { project_manifest: hashFile(manifestPath) },
@@ -178,16 +182,21 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   const hashes = { project_manifest: hashFile(manifestPath), qa_results: hashFile(qaPath) };
   if (existsSync(tokenMapPath)) hashes.token_map = hashFile(tokenMapPath);
   return {
-    schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: 'artifact-baseline',
+    schema_version: 1, case_id: caseId, run: runKind === 'generation' ? 'generation-1' : 'artifact-baseline-1', run_kind: runKind,
     generator_version: qa.generator_version, ds_version: qa.ds_version, project_version: projectVersion,
     versions: versionProvenance({ generatorVersion: qa.generator_version, dsVersion: qa.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: statSync(qaPath).mtime.toISOString(), evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, inputs_dirty_paths: workingTree.inputsDirtyPaths, status_reproducible: isWorkingTreeClean,
     status: scored.status, measured_metrics: scored.objective.metrics.map((entry) => entry.name), hashes,
     objective: scored.objective, expert: { status: 'not-reviewed', score: null }, reviewer_flags: { local_extend: null, custom_styles_lost: null },
-    evidence: { qa_results: relative(root, qaPath).replaceAll('\\', '/'), compliance: compliance.metrics, hard_failures: scored.hard_failures }
+    evidence: {
+      qa_results: relative(root, qaPath).replaceAll('\\', '/'),
+      ...(briefPath ? { brief: relative(root, briefPath).replaceAll('\\', '/') } : {}),
+      compliance: compliance.metrics,
+      hard_failures: scored.hard_failures
+    }
   };
 }
 
-function usage() { console.error('Usage: node scripts/evaluation-score.mjs <C1|C2|C3> [--write]'); }
+function usage() { console.error('Usage: node scripts/evaluation-score.mjs <C1|C2|C3|C4> [--write]'); }
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const caseId = process.argv[2];
   if (!caseId) { usage(); process.exitCode = 1; }

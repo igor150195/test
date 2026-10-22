@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "project": "pilot-1",
+  "generator_version": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+  "ds_version": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+  "chromium_version": "156.0.8078.4",
+  "portable": true,
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "output": "index.html",
+      "viewports": [
+        {
+          "id": "desktop-full-hd",
+          "width": 1920,
+          "height": 1080,
+          "first_screen": "artifacts/qa/latest/home/desktop-full-hd/first-screen.png",
+          "full_page": "artifacts/qa/latest/home/desktop-full-hd/full-page.png",
+          "segments": [
+            "artifacts/qa/latest/home/desktop-full-hd/segments/0000-0.png",
+            "artifacts/qa/latest/home/desktop-full-hd/segments/0001-832.png",
+            "artifacts/qa/latest/home/desktop-full-hd/segments/0002-1012.png"
+          ],
+          "audit": {
+            "documentWidth": 1920,
+            "viewportWidth": 1920,
+            "documentHeight": 2092
+          }
+        },
+        {
+          "id": "desktop",
+          "width": 1440,
+          "height": 900,
+          "first_screen": "artifacts/qa/latest/home/desktop/first-screen.png",
+          "full_page": "artifacts/qa/latest/home/desktop/full-page.png",
+          "segments": [
+            "artifacts/qa/latest/home/desktop/segments/0000-0.png",
+            "artifacts/qa/latest/home/desktop/segments/0001-693.png",
+            "artifacts/qa/latest/home/desktop/segments/0002-1192.png"
+          ],
+          "audit": {
+            "documentWidth": 1440,
+            "viewportWidth": 1440,
+            "documentHeight": 2092
+          }
+        },
+        {
+          "id": "tablet",
+          "width": 768,
+          "height": 1024,
+          "first_screen": "artifacts/qa/latest/home/tablet/first-screen.png",
+          "full_page": "artifacts/qa/latest/home/tablet/full-page.png",
+          "segments": [
+            "artifacts/qa/latest/home/tablet/segments/0000-0.png",
+            "artifacts/qa/latest/home/tablet/segments/0001-788.png",
+            "artifacts/qa/latest/home/tablet/segments/0002-1576.png",
+            "artifacts/qa/latest/home/tablet/segments/0003-1590.png"
+          ],
+          "audit": {
+            "documentWidth": 768,
+            "viewportWidth": 768,
+            "documentHeight": 2614
+          }
+        },
+        {
+          "id": "mobile",
+          "width": 390,
+          "height": 844,
+          "first_screen": "artifacts/qa/latest/home/mobile/first-screen.png",
+          "full_page": "artifacts/qa/latest/home/mobile/full-page.png",
+          "segments": [
+            "artifacts/qa/latest/home/mobile/segments/0000-0.png",
+            "artifacts/qa/latest/home/mobile/segments/0001-650.png",
+            "artifacts/qa/latest/home/mobile/segments/0002-1300.png",
+            "artifacts/qa/latest/home/mobile/segments/0003-1950.png",
+            "artifacts/qa/latest/home/mobile/segments/0004-2600.png",
+            "artifacts/qa/latest/home/mobile/segments/0005-3165.png"
+          ],
+          "audit": {
+            "documentWidth": 390,
+            "viewportWidth": 390,
+            "documentHeight": 4009
+          }
+        }
+      ]
+    }
+  ],
+  "technical": {
+    "status": "pass",
+    "checks": [
+      {
+        "id": "console-errors",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "failed-requests",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "http-errors",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "broken-images",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "horizontal-overflow",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "external-hosts",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "undefined-tokens",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "undefined-icons",
+        "status": "warning",
+        "count": 3,
+        "evidence": [
+          {
+            "message": "--icon_rating_star_lg: legacy-варианты Rating lg и Checkbox, потребителей в трёх проектах нет; нужен реальный проект либо новые иконки в спрайте",
+            "viewports": []
+          },
+          {
+            "message": "--icon_site_checkbox_small: legacy-варианты Rating lg и Checkbox, потребителей в трёх проектах нет; нужен реальный проект либо новые иконки в спрайте",
+            "viewports": []
+          },
+          {
+            "message": "--icon_site_checkbox: legacy-варианты Rating lg и Checkbox, потребителей в трёх проектах нет; нужен реальный проект либо новые иконки в спрайте",
+            "viewports": []
+          }
+        ]
+      },
+      {
+        "id": "undefined-ds-classes",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "img-alt",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "img-dimensions",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "img-loading",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "html-lang",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "meta-description",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "skip-link",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "input-label",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      },
+      {
+        "id": "button-accessible-name",
+        "status": "passed",
+        "count": 0,
+        "evidence": []
+      }
+    ],
+    "summary": {
+      "errors": 0,
+      "warnings": 1,
+      "passed": 16,
+      "skipped": 0,
+      "not_run": 0
+    },
+    "ds_usage": {
+      "status": "passed",
+      "all_class_uses": 122,
+      "ds_class_uses": 99
+    },
+    "portability": {
+      "site_build": {
+        "status": "passed"
+      },
+      "check_site": {
+        "status": "passed",
+        "response_count": 285
+      },
+      "external_resources": {
+        "status": "passed"
+      }
+    },
+    "a11y": {
+      "status": "incomplete",
+      "violations": [],
+      "incomplete": {
+        "count": 4,
+        "findings": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+            "target": ".ds-counter",
+            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
+            "page": "home",
+            "viewport": "desktop-full-hd"
+          },
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+            "target": ".ds-counter",
+            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
+            "page": "home",
+            "viewport": "desktop"
+          },
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+            "target": ".ds-counter",
+            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
+            "page": "home",
+            "viewport": "mobile"
+          },
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+            "target": ".ds-counter",
+            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
+            "page": "home",
+            "viewport": "tablet"
+          }
+        ]
+      },
+      "reason": "Axe could not determine every requested check; inspect technical.a11y.incomplete."
+    }
+  },
+  "expert": {
+    "status": "not-reviewed",
+    "score": null,
+    "findings": []
+  }
+}

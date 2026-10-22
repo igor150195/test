@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "slug": "pilot-1",
+  "type": "static fashion-commerce demo",
+  "mode": "reference",
+  "platform": "static-html",
+  "generator_version": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+  "ds_version": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+  "compliance": "strict",
+  "theme": {
+    "primary": "#202020",
+    "primary_surface": "#202020",
+    "on_primary": "#FFFFFF",
+    "accent": "#C62828",
+    "accent_surface": "#8E1B1B",
+    "on_accent": "#FFFFFF",
+    "bg_main": "#FFFFFF",
+    "bg_main_surface": "#F7F7F7",
+    "on_bg_main": "#202020",
+    "on_bg_main_accent": "#5F5F5F"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "source": "index.html",
+      "output": "index.html",
+      "route": "/"
+    }
+  ],
+  "files": [
+    { "path": "css/theme.css", "owner": "generated" },
+    { "path": "css/project.css", "owner": "generated" },
+    { "path": "css/custom.css", "owner": "owner" },
+    { "path": "styles/project.scss", "owner": "generated" },
+    { "path": "styles/custom.scss", "owner": "owner" }
+  ],
+  "external_dependencies": [
+    {
+      "kind": "reference",
+      "url": "https://ochaka.presslayouts.com/",
+      "required": false
+    }
+  ]
+}

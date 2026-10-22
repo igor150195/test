@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Demo fashion storefront assembled from the shared design system.">
+    <title>Studio Demo — New arrivals</title>
+    <link rel="stylesheet" href="../../dist/css/tokens.css">
+    <link rel="stylesheet" href="../../dist/css/core.css">
+    <link rel="stylesheet" href="../../dist/css/components.css">
+    <link rel="stylesheet" href="../../dist/css/blocks.css">
+    <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="./css/project.css">
+    <link rel="stylesheet" href="./css/custom.css">
+</head>
+<body class="pilot-page">
+    <a class="skip-link pilot-skip-link" href="#main-content">Skip to content</a>
+
+    <header class="ds-header pilot-site-header">
+        <div class="ds-header__inner">
+            <a class="ds-header__logo" href="#main-content" aria-label="Studio Demo home">STUDIO DEMO</a>
+            <form class="ds-header__search" role="search" data-demo="true">
+                <label class="visually-hidden" for="pilot-search">Search the demo collection</label>
+                <input class="ds-input" id="pilot-search" name="q" type="search" placeholder="Search demo collection">
+            </form>
+            <nav class="ds-header__actions" aria-label="Demo account actions">
+                <button class="ds-icon-button ds-icon-button--sm" type="button" data-demo="true" aria-label="Demo account control">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_user_sm)" aria-hidden="true"></span>
+                </button>
+                <button class="ds-icon-button ds-icon-button--sm" type="button" data-demo="true" aria-label="Demo favourites control">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_favorite_add_sm)" aria-hidden="true"></span>
+                </button>
+                <button class="ds-icon-button ds-icon-button--sm" type="button" data-demo="true" aria-label="Demo cart control, zero items">
+                    <span class="ds-icon" style="--ds-icon: var(--icon_cart_sm)" aria-hidden="true"></span>
+                    <span class="ds-counter" aria-hidden="true">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="pilot-hero" aria-labelledby="pilot-hero-title">
+            <div class="pilot-hero__copy">
+                <p class="pilot-hero__eyebrow">Demo collection</p>
+                <h1 class="pilot-hero__title" id="pilot-hero-title">A quieter way to dress</h1>
+                <p class="pilot-demo-note">Demo content and image placeholder. This static control does not open a collection.</p>
+                <button class="ds-button ds-button--primary" type="button" data-demo="true">View demo collection</button>
+            </div>
+            <div class="pilot-hero__media">
+                <img class="pilot-hero__image" src="images/demo-fashion.svg" alt="Neutral demo fashion image placeholder" width="800" height="1000" loading="eager">
+            </div>
+        </section>
+
+        <section class="pilot-new-arrivals" aria-labelledby="new-arrivals-title">
+            <div class="pilot-new-arrivals__heading">
+                <div>
+                    <p class="pilot-new-arrivals__eyebrow">Demo edit</p>
+                    <h2 class="pilot-new-arrivals__title" id="new-arrivals-title">New arrivals</h2>
+                </div>
+                <p class="pilot-demo-note">Static demo grid — no tabs or shopping actions.</p>
+            </div>
+            <div class="ds-product-card__grid pilot-new-arrivals-grid">
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media">
+                        <a class="ds-product-card__image-link" href="#" data-demo="true" aria-label="Demo item one">
+                            <img class="ds-product-card__image" src="images/demo-fashion.svg" alt="Demo tailored jacket placeholder" width="800" height="1000" loading="lazy">
+                        </a>
+                        <div class="ds-product-card__flags"><span class="ds-flag ds-flag--new">Demo new</span></div>
+                    </div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#" data-demo="true">Demo tailored jacket</a></h3>
+                        <div class="ds-product-card__meta"><span class="ds-rating ds-rating--sm" role="img" aria-label="Demo rating: 4 out of 5"><span class="ds-rating__stars" aria-hidden="true"><span class="ds-rating__fill" style="width: 80%"></span></span></span></div>
+                        <div class="ds-price"><data class="ds-price__current" value="120">$120 demo</data></div>
+                        <div class="ds-product-card__actions"><button class="ds-button ds-button--secondary ds-product-card__add" type="button" data-demo="true">Demo only</button></div>
+                    </div>
+                </article>
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media">
+                        <a class="ds-product-card__image-link" href="#" data-demo="true" aria-label="Demo item two"><img class="ds-product-card__image" src="images/demo-fashion.svg" alt="Demo pleated skirt placeholder" width="800" height="1000" loading="lazy"></a>
+                        <div class="ds-product-card__flags"><span class="ds-flag ds-flag--sale">Demo sale</span></div>
+                    </div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#" data-demo="true">Demo pleated skirt</a></h3>
+                        <div class="ds-price"><data class="ds-price__current" value="84">$84 demo</data></div>
+                        <div class="ds-product-card__actions"><button class="ds-button ds-button--secondary ds-product-card__add" type="button" data-demo="true">Demo only</button></div>
+                    </div>
+                </article>
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media"><a class="ds-product-card__image-link" href="#" data-demo="true" aria-label="Demo item three"><img class="ds-product-card__image" src="images/demo-fashion.svg" alt="Demo knitwear placeholder" width="800" height="1000" loading="lazy"></a></div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#" data-demo="true">Demo soft knit</a></h3>
+                        <div class="ds-price"><data class="ds-price__current" value="96">$96 demo</data></div>
+                        <div class="ds-product-card__actions"><button class="ds-button ds-button--secondary ds-product-card__add" type="button" data-demo="true">Demo only</button></div>
+                    </div>
+                </article>
+                <article class="ds-product-card">
+                    <div class="ds-product-card__media"><a class="ds-product-card__image-link" href="#" data-demo="true" aria-label="Demo item four"><img class="ds-product-card__image" src="images/demo-fashion.svg" alt="Demo leather bag placeholder" width="800" height="1000" loading="lazy"></a></div>
+                    <div class="ds-product-card__body">
+                        <h3 class="ds-product-card__title"><a class="ds-product-card__title-link" href="#" data-demo="true">Demo structured bag</a></h3>
+                        <div class="ds-price"><data class="ds-price__current" value="145">$145 demo</data></div>
+                        <div class="ds-product-card__actions"><button class="ds-button ds-button--secondary ds-product-card__add" type="button" data-demo="true">Demo only</button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="ds-footer pilot-site-footer">
+        <div class="ds-footer__inner">
+            <nav class="ds-footer__columns" aria-label="Demo footer navigation">
+                <section class="ds-footer__column" aria-labelledby="pilot-footer-shop"><h2 class="ds-footer__title" id="pilot-footer-shop">Demo shop</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="#" data-demo="true">Demo collection</a></li></ul></section>
+                <section class="ds-footer__column" aria-labelledby="pilot-footer-help"><h2 class="ds-footer__title" id="pilot-footer-help">Demo help</h2><ul class="ds-footer__list"><li><a class="ds-footer__link" href="#" data-demo="true">Demo information</a></li></ul></section>
+            </nav>
+            <section class="pilot-newsletter" aria-labelledby="pilot-newsletter-title">
+                <h2 class="ds-footer__title" id="pilot-newsletter-title">Demo newsletter</h2>
+                <p class="pilot-demo-note">Demo form — submitting is unavailable.</p>
+                <form class="pilot-newsletter__form" data-demo="true">
+                    <label class="visually-hidden" for="pilot-newsletter-email">Demo email address</label>
+                    <input class="ds-input" id="pilot-newsletter-email" type="email" placeholder="demo@example.com">
+                    <button class="ds-button ds-button--primary" type="button" data-demo="true">Demo subscribe</button>
+                </form>
+            </section>
+            <div class="ds-footer__bottom"><small class="ds-footer__copyright">© 2026 Studio Demo</small></div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "id": "demo-fashion-image",
+      "source": "generated locally as a neutral SVG placeholder; no third-party material",
+      "rights": "placeholder",
+      "local_path": "images/demo-fashion.svg",
+      "role": "hero and product-image placeholder",
+      "ratio": "4:5"
+    }
+  ]
+}
