@@ -5,7 +5,7 @@
       "code": "theme-contrast",
       "selector": ":root",
       "property": "--on_accent/--accent",
-      "reason": "палитра референса",
+      "reason": "палитра референса; пара также задаёт foreground компонента Counter, хотя fashion-store не использует .ds-counter",
       "added": "2026-10-20",
       "review_after": "2027-01-18"
     }

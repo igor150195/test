@@ -178,7 +178,7 @@
     
     
     /* Счётчик */
-   --counter_color: 	var(--on_bg_main_accent);
+   --counter_color: 	var(--on_accent);
    --counter_bg: 		var(--accent);
    --counter_bd: 		none; 
    --counter_shadow: 	none;
