@@ -15,7 +15,7 @@
     "pages": { "type": "array" },
     "technical": {
       "type": "object",
-      "required": ["status", "checks", "summary", "a11y"],
+      "required": ["status", "checks", "summary", "ds_usage", "portability", "a11y"],
       "properties": {
         "status": { "enum": ["pass", "fail", "not-run"] },
         "checks": {
@@ -33,6 +33,25 @@
           }
         },
         "summary": { "type": "object" },
+        "ds_usage": {
+          "type": "object",
+          "required": ["status", "all_class_uses", "ds_class_uses"],
+          "properties": {
+            "status": { "enum": ["passed", "error", "not-run"] },
+            "all_class_uses": { "type": "integer", "minimum": 0 },
+            "ds_class_uses": { "type": "integer", "minimum": 0 },
+            "reason": { "type": "string" }
+          }
+        },
+        "portability": {
+          "type": "object",
+          "required": ["site_build", "check_site", "external_resources"],
+          "properties": {
+            "site_build": { "$ref": "#/$defs/portableCheck" },
+            "check_site": { "$ref": "#/$defs/portableCheck" },
+            "external_resources": { "$ref": "#/$defs/portableCheck" }
+          }
+        },
         "a11y": {
           "type": "object",
           "required": ["status", "violations"],
@@ -59,6 +78,18 @@
         "status": { "const": "not-reviewed" },
         "score": { "type": "null" },
         "findings": { "type": "array", "maxItems": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "portableCheck": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["passed", "error", "not-run"] },
+        "reason": { "type": "string" },
+        "response_count": { "type": "integer", "minimum": 0 },
+        "resources": { "type": "array" }
       }
     }
   }

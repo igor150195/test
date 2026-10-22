@@ -5,6 +5,9 @@ const known = { dynamicTokenPrefixes: ['--gr_'], undefinedTokens: {}, undefinedC
 const findings = auditCssContracts({ html: '<button class="ds-missing" style="color:var(--missing)"></button>', css: ':root { --defined: 1; }', knownIssues: known });
 assert.equal(findings.filter((finding) => finding.severity === 'error').length, 2);
 assert.equal(findings.find((finding) => finding.code === 'undefined-token').message, 'Undefined CSS token: --missing');
+const structuralContracts = { 'ds-footer__column': { parentClass: 'ds-footer__columns', relationship: 'direct-child' } };
+assert.equal(auditCssContracts({ html: '<div class="ds-footer__columns"><section class="ds-footer__column"></section></div>', css: '.ds-footer__columns {}', knownIssues: known, structuralClassContracts: structuralContracts }).some((finding) => finding.code === 'undefined-ds-class'), false);
+assert.equal(auditCssContracts({ html: '<div class="ds-footer__columns"><div><section class="ds-footer__column"></section></div></div>', css: '.ds-footer__columns {}', knownIssues: known, structuralClassContracts: structuralContracts }).some((finding) => finding.code === 'undefined-ds-class'), true);
 assert.deepEqual(externalResourcesInBundle('<img src="https://example.test/a.png">', '.x { background: url(https://example.test/b.png); }'), ['https://example.test/a.png', 'https://example.test/b.png']);
 const incomplete = inspectHtmlFixture('<html><body><img src="image.png"><input id="email"><button></button></body></html>');
 assert.equal(incomplete.hasLang, false);

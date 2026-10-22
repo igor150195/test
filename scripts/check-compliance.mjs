@@ -150,6 +150,19 @@ function knownKnowledgeIds() {
   return new Set([...registry.matchAll(/^\s*- id:\s*(KBP-\d{4})\s*$/gm)].map((match) => match[1]));
 }
 
+function complianceMetrics(pages, sections, errors) {
+  const topLevel = topLevelSections(pages);
+  const covered = topLevel.filter(({ element }) => sections.some((section) => section.html_selector && simpleSelectorMatches(section.html_selector, element) === true));
+  const reusable = sections.filter((section) => ['REUSE', 'COMPOSE'].includes(section.status) && section.html_selector);
+  return {
+    top_level_sections: topLevel.length,
+    mapped_sections: covered.length,
+    reuse_compose_sections: reusable.length,
+    compliant_reuse_compose_sections: errors.length ? 0 : reusable.length,
+    compliance_errors: errors.length
+  };
+}
+
 export function checkCompliance(slug, { projectDirectory = join(repositoryRoot, 'projects', slug), knownIssuesOverride = knownIssues } = {}) {
   const findings = [];
   const compliance = projectComplianceMode(projectDirectory);
@@ -161,7 +174,10 @@ export function checkCompliance(slug, { projectDirectory = join(repositoryRoot, 
   for (const [code, path] of [['missing-token-map', tokenMapPath], ['missing-page-blueprint', blueprintPath], ['missing-qa-report', qaReportPath]]) {
     if (!existsSync(path)) addFinding(findings, knownIssuesOverride, slug, code, `Missing required project document: ${relative(projectDirectory, path).replaceAll('\\', '/')}`, {}, strict ? 'error' : 'warning');
   }
-  if (!existsSync(tokenMapPath)) return { errors: findings.filter((finding) => finding.status === 'error'), warnings: findings.filter((finding) => finding.status === 'warning'), sections: [] };
+  if (!existsSync(tokenMapPath)) {
+    const errors = findings.filter((finding) => finding.status === 'error');
+    return { errors, warnings: findings.filter((finding) => finding.status === 'warning'), sections: [], metrics: complianceMetrics([], [], errors) };
+  }
 
   const tokenMap = readFileSync(tokenMapPath, 'utf8');
   const parsed = parseTokenMap(tokenMap);
@@ -178,7 +194,8 @@ export function checkCompliance(slug, { projectDirectory = join(repositoryRoot, 
   }
   if (!parsed.entries.length) {
     addFinding(findings, knownIssuesOverride, slug, 'missing-token-map-statuses', 'token-map.md has no valid ds-section records.');
-    return { errors: findings.filter((finding) => finding.status === 'error'), warnings: findings.filter((finding) => finding.status === 'warning'), sections: [] };
+    const errors = findings.filter((finding) => finding.status === 'error');
+    return { errors, warnings: findings.filter((finding) => finding.status === 'warning'), sections: [], metrics: complianceMetrics([], [], errors) };
   }
   const ids = new Set();
   const pages = pageHtml(projectDirectory);
@@ -228,7 +245,8 @@ export function checkCompliance(slug, { projectDirectory = join(repositoryRoot, 
     if (!covered) addFinding(findings, knownIssuesOverride, slug, 'unmapped-html-section', `Unmapped HTML section: ${describeElement(source, html, element)}.`, {}, strict ? 'error' : 'warning');
   }
 
-  return { errors: findings.filter((finding) => finding.status === 'error'), warnings: findings.filter((finding) => finding.status === 'warning'), sections: parsed.entries };
+  const errors = findings.filter((finding) => finding.status === 'error');
+  return { errors, warnings: findings.filter((finding) => finding.status === 'warning'), sections: parsed.entries, metrics: complianceMetrics(pages, parsed.entries, errors) };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
@@ -240,7 +258,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     const result = checkCompliance(slug);
     result.warnings.forEach((finding) => console.warn(`check:compliance warning: ${finding.code}: ${finding.message}${finding.reason ? `; ${finding.reason}` : ''}`));
     result.errors.forEach((finding) => console.error(`check:compliance error: ${finding.code}: ${finding.message}`));
-    if (!result.errors.length) console.log(`check:compliance passed for ${slug} (${result.warnings.length} warning(s)).`);
+    if (process.argv.includes('--json')) console.log(JSON.stringify({ slug, errors: result.errors, warnings: result.warnings, metrics: result.metrics }, null, 2));
+    else if (!result.errors.length) console.log(`check:compliance passed for ${slug} (${result.warnings.length} warning(s)).`);
     process.exitCode = result.errors.length ? 1 : 0;
   }
 }

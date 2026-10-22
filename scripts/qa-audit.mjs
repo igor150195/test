@@ -1,4 +1,4 @@
-import { cssDefinesClass, customPropertyAssignments, dsClassesInHtml, shouldCheckVariableReference, variableReferences } from './css-contracts.mjs';
+import { cssDefinesClass, customPropertyAssignments, documentedStructuralClassViolations, dsClassesInHtml, shouldCheckVariableReference, variableReferences } from './css-contracts.mjs';
 
 function issue(code, severity, message, evidence = {}) {
   return { code, severity, message, evidence };
@@ -15,7 +15,13 @@ export function externalResourcesInBundle(html, css) {
   return [...external].sort();
 }
 
-export function auditCssContracts({ html, css, knownIssues }) {
+export function htmlClassUsage(html) {
+  const classes = [...html.matchAll(/\bclass\s*=\s*(["'])(.*?)\1/gi)]
+    .flatMap((match) => match[2].trim().split(/\s+/).filter(Boolean));
+  return { all_class_uses: classes.length, ds_class_uses: classes.filter((className) => className.startsWith('ds-')).length };
+}
+
+export function auditCssContracts({ html, css, knownIssues, structuralClassContracts = {} }) {
   const defined = new Set(customPropertyAssignments(css));
   const findings = [];
   for (const reference of [...variableReferences(css), ...variableReferences(html)]) {
@@ -29,6 +35,12 @@ export function auditCssContracts({ html, css, knownIssues }) {
   }
   for (const className of dsClassesInHtml(html)) {
     if (cssDefinesClass(css, className)) continue;
+    const structuralViolations = documentedStructuralClassViolations(html, className, structuralClassContracts);
+    if (structuralViolations?.length === 0) continue;
+    if (structuralViolations?.length) {
+      findings.push(issue('undefined-ds-class', 'error', `Structural CSS class .${className} requires its documented direct parent.`));
+      continue;
+    }
     const known = knownIssues.undefinedClasses[className];
     findings.push(known
       ? issue('known-undefined-ds-class', 'warning', `.${className}: ${known.reason}`)

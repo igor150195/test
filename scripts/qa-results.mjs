@@ -24,10 +24,20 @@ export function createQaResults({ slug, generatorVersion, dsVersion, chromiumVer
       status: 'not-run',
       checks: mandatoryTechnicalCheckIds.map(initialCheck),
       summary: { errors: 0, warnings: 0, passed: 0, skipped: 0, not_run: mandatoryTechnicalCheckIds.length },
+      ds_usage: { status: 'not-run', all_class_uses: 0, ds_class_uses: 0 },
+      portability: { site_build: { status: 'not-run' }, check_site: { status: 'not-run' }, external_resources: { status: 'not-run' } },
       a11y: { status: 'not-run', violations: [], incomplete: { count: 0, findings: [] }, reason: 'QA has not started.' }
     },
     expert: { status: 'not-reviewed', score: null, findings: [] }
   };
+}
+
+export function recordDsUsage(result, { status = 'passed', allClassUses = 0, dsClassUses = 0, reason } = {}) {
+  result.technical.ds_usage = { status, all_class_uses: allClassUses, ds_class_uses: dsClassUses, ...(['not-run', 'error'].includes(status) ? { reason: reason ?? 'No reason recorded.' } : {}) };
+}
+
+export function recordPortability(result, portability) {
+  result.technical.portability = portability;
 }
 
 export function recordA11yReport(result, { status, violations = [], incomplete = { count: 0, findings: [] }, reason } = {}) {
@@ -101,6 +111,10 @@ export function validateQaResults(result) {
   if (typeof result?.portable !== 'boolean') errors.push('portable must be boolean');
   if (!Array.isArray(result?.pages)) errors.push('pages must be an array');
   if (!result?.technical || !['pass', 'fail', 'not-run'].includes(result.technical.status)) errors.push('technical.status must be pass, fail or not-run');
+  const dsUsage = result?.technical?.ds_usage;
+  if (!dsUsage || !['passed', 'error', 'not-run'].includes(dsUsage.status) || !Number.isInteger(dsUsage.all_class_uses) || !Number.isInteger(dsUsage.ds_class_uses) || dsUsage.all_class_uses < dsUsage.ds_class_uses) errors.push('technical.ds_usage must contain valid class-use counts');
+  const portability = result?.technical?.portability;
+  if (!portability || !['site_build', 'check_site', 'external_resources'].every((key) => ['passed', 'error', 'not-run'].includes(portability[key]?.status))) errors.push('technical.portability must contain valid statuses');
   if (!Array.isArray(result?.technical?.checks)) errors.push('technical.checks must be an array');
   else {
     const ids = result.technical.checks.map((check) => check.id);

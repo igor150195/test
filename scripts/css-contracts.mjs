@@ -65,3 +65,13 @@ export function structuralClassParentViolations(html, className, parentClass) {
 
   return violations;
 }
+
+/**
+ * Returns violations for a documented structural class, or null when the
+ * registry has no machine-checkable contract for the class.
+ */
+export function documentedStructuralClassViolations(html, className, contracts = {}) {
+  const contract = contracts[className];
+  if (contract?.relationship !== 'direct-child') return null;
+  return structuralClassParentViolations(html, className, contract.parentClass);
+}

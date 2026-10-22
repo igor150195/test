@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "case_id": "C3",
+  "run": "artifact-baseline-1",
+  "run_kind": "artifact-baseline",
+  "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "project_version": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "versions": {
+    "generator": {
+      "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+      "recorded_in_project": true
+    },
+    "design_system": {
+      "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+      "recorded_in_project": true
+    },
+    "project": {
+      "value": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+      "recorded_in_project": false
+    }
+  },
+  "scorer_version": "1",
+  "evaluated_at": null,
+  "evaluated_at_commit": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "working_tree_clean": false,
+  "status": "prerequisite-fail",
+  "measured_metrics": [],
+  "hashes": {
+    "project_manifest": "ac1d234c414b48629251151243b50a3ff39502d8025843ea64e0db01ebea74dd"
+  },
+  "objective": {
+    "score": null,
+    "score_out_of": null,
+    "percentage": null,
+    "metrics": [],
+    "not_measured": [
+      "all"
+    ]
+  },
+  "expert": {
+    "status": "not-reviewed",
+    "score": null
+  },
+  "reviewer_flags": {
+    "local_extend": null,
+    "custom_styles_lost": null
+  },
+  "evidence": {
+    "reason": "Production assets remain external and their rights/local copies are not confirmed."
+  }
+}

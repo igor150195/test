@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "case_id": "C2",
+  "run": "artifact-baseline-1",
+  "run_kind": "artifact-baseline",
+  "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+  "project_version": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "versions": {
+    "generator": {
+      "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+      "recorded_in_project": true
+    },
+    "design_system": {
+      "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
+      "recorded_in_project": true
+    },
+    "project": {
+      "value": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+      "recorded_in_project": false
+    }
+  },
+  "scorer_version": "1",
+  "evaluated_at": "2026-10-22T04:35:38.081Z",
+  "evaluated_at_commit": "git:3301ce045b81de6b50ec7bd954db32472fc93660",
+  "working_tree_clean": false,
+  "status": "pass",
+  "measured_metrics": [
+    "technical-correctness",
+    "adaptivity-and-accessibility",
+    "design-system-reuse",
+    "portability"
+  ],
+  "hashes": {
+    "project_manifest": "e12d24ac635f646ced703079b351dbe52f255b98b9f1a44f207b1c609fab31e5",
+    "qa_results": "712b00840c3d73e8450ff2ab95ea5de6d089f660406545b518e0db7ed44d05ef",
+    "token_map": "b4e7098ad494a5d628c7ed6a98e64ef363a5676ab2f41f87e0adcbf4619427bc"
+  },
+  "objective": {
+    "score": 38.73,
+    "score_out_of": 50,
+    "percentage": 77.46,
+    "metrics": [
+      {
+        "name": "technical-correctness",
+        "max": 15,
+        "score": 15,
+        "checks": [
+          "console-errors",
+          "failed-requests",
+          "http-errors",
+          "broken-images",
+          "external-hosts",
+          "undefined-tokens",
+          "undefined-icons",
+          "undefined-ds-classes"
+        ],
+        "warning_count_ignored": true
+      },
+      {
+        "name": "adaptivity-and-accessibility",
+        "max": 15,
+        "score": 9.5,
+        "overflow": 5,
+        "static": 4.5,
+        "axe": 0,
+        "axe_incomplete": 57
+      },
+      {
+        "name": "design-system-reuse",
+        "max": 10,
+        "score": 4.23,
+        "section_mapping": 1.36,
+        "ds_class_ratio": 2.86,
+        "top_level_sections": 11,
+        "ds_class_uses": 154,
+        "all_class_uses": 269
+      },
+      {
+        "name": "portability",
+        "max": 10,
+        "score": 10,
+        "site_build": {
+          "status": "passed"
+        },
+        "check_site": {
+          "status": "passed",
+          "response_count": 288
+        },
+        "external_resources": {
+          "status": "passed"
+        }
+      }
+    ],
+    "not_measured": [
+      "process-reliability",
+      "speed-and-cost"
+    ]
+  },
+  "expert": {
+    "status": "not-reviewed",
+    "score": null
+  },
+  "reviewer_flags": {
+    "local_extend": null,
+    "custom_styles_lost": null
+  },
+  "evidence": {
+    "qa_results": "projects/house-store/artifacts/qa/latest/results.json",
+    "compliance": {
+      "top_level_sections": 11,
+      "mapped_sections": 3,
+      "reuse_compose_sections": 3,
+      "compliant_reuse_compose_sections": 3,
+      "compliance_errors": 0
+    },
+    "hard_failures": []
+  }
+}

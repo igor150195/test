@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/schemas/evaluation-result.schema.json",
+  "title": "Generator evaluation result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "run", "run_kind", "generator_version", "ds_version", "project_version", "versions", "scorer_version", "evaluated_at", "evaluated_at_commit", "working_tree_clean", "status", "measured_metrics", "hashes", "objective", "expert", "reviewer_flags", "evidence"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "case_id": { "pattern": "^C[0-9]+$" },
+    "run": { "type": "string", "minLength": 1 },
+    "run_kind": { "enum": ["artifact-baseline", "generation"] },
+    "generator_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "ds_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "project_version": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "versions": {
+      "type": "object",
+      "required": ["generator", "design_system", "project"],
+      "properties": {
+        "generator": { "$ref": "#/$defs/versionProvenance" },
+        "design_system": { "$ref": "#/$defs/versionProvenance" },
+        "project": { "$ref": "#/$defs/versionProvenance" }
+      }
+    },
+    "scorer_version": { "const": "1" },
+    "evaluated_at": { "type": ["string", "null"], "format": "date-time" },
+    "evaluated_at_commit": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+    "working_tree_clean": { "type": "boolean" },
+    "status": { "enum": ["pass", "fail", "prerequisite-fail", "not-run"] },
+    "measured_metrics": { "type": "array" },
+    "hashes": { "type": "object" },
+    "objective": { "type": "object" },
+    "expert": { "type": "object" },
+    "reviewer_flags": {
+      "type": "object",
+      "required": ["local_extend", "custom_styles_lost"],
+      "properties": {
+        "local_extend": { "type": ["boolean", "null"] },
+        "custom_styles_lost": { "type": ["boolean", "null"] }
+      }
+    },
+    "evidence": { "type": "object" }
+  },
+  "$defs": {
+    "versionProvenance": {
+      "type": "object",
+      "required": ["value", "recorded_in_project"],
+      "properties": {
+        "value": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
+        "recorded_in_project": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -3,16 +3,17 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
-import { createSubpathServer } from './check-site-build.mjs';
+import { checkSiteBuild, createSubpathServer } from './check-site-build.mjs';
 import { validateProjectManifest } from './check-project-manifest.mjs';
-import { createQaResults, finaliseTechnical, mandatoryTechnicalCheckIds, markChecksNotRun, recordA11yReport, recordTechnicalCheck, validateQaResults } from './qa-results.mjs';
-import { auditCssContracts, externalResourcesInBundle } from './qa-audit.mjs';
+import { createQaResults, finaliseTechnical, mandatoryTechnicalCheckIds, markChecksNotRun, recordA11yReport, recordDsUsage, recordPortability, recordTechnicalCheck, validateQaResults } from './qa-results.mjs';
+import { auditCssContracts, externalResourcesInBundle, htmlClassUsage } from './qa-audit.mjs';
 import { debtReviewWarning } from './known-issues.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const knownTokenIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-token-issues.json'), 'utf8'));
 const knownResourceIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-resource-issues.json'), 'utf8'));
 const knownA11yIssues = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'known-a11y-issues.json'), 'utf8'));
+const structuralClassContracts = JSON.parse(readFileSync(join(repositoryRoot, 'scripts', 'documented-structural-classes.json'), 'utf8'));
 const viewports = [
   { id: 'desktop-full-hd', width: 1920, height: 1080 },
   { id: 'desktop', width: 1440, height: 900 },
@@ -240,6 +241,11 @@ export async function runQa(slug, { runId } = {}) {
     applyObservations(result, observations, { notRunReason: `Prerequisite failed: ${prerequisites.map((entry) => entry.code).join(', ')}.`, notRunIds: mandatoryTechnicalCheckIds.filter((id) => id !== 'external-hosts') });
     finaliseTechnical(result);
     recordA11yReport(result, { status: 'not-run', reason: 'Axe analysis requires a portable build and browser run.' });
+    recordPortability(result, {
+      site_build: { status: existsSync(join(distDirectory, 'build.json')) ? 'passed' : 'error' },
+      check_site: { status: 'not-run' },
+      external_resources: { status: prerequisites.some((entry) => entry.code === 'external-production-assets') ? 'error' : 'not-run' }
+    });
     writeResults(join(artifactDirectory, 'results.json'), result);
     return { result, resultsPath: join(artifactDirectory, 'results.json'), exitCode: 1 };
   }
@@ -248,8 +254,10 @@ export async function runQa(slug, { runId } = {}) {
   const bundleCss = listFiles(join(distDirectory, 'css')).filter((file) => file.endsWith('.css')).map((file) => readFileSync(file, 'utf8')).join('\n');
   const bundleHtml = htmlFiles.map(({ source }) => readFileSync(source, 'utf8')).join('\n');
   const externalResources = externalResourcesInBundle(bundleHtml, bundleCss);
+  const classUsage = htmlClassUsage(bundleHtml);
+  recordDsUsage(result, { allClassUses: classUsage.all_class_uses, dsClassUses: classUsage.ds_class_uses });
   if (externalResources.length) observe(observations, 'external-hosts', 'error', { resources: externalResources.map(portableResource) });
-  for (const finding of auditCssContracts({ html: bundleHtml, css: bundleCss, knownIssues: knownTokenIssues })) {
+  for (const finding of auditCssContracts({ html: bundleHtml, css: bundleCss, knownIssues: knownTokenIssues, structuralClassContracts })) {
     const id = finding.code.includes('ds-class') ? 'undefined-ds-classes' : finding.code.includes('icon') ? 'undefined-icons' : 'undefined-tokens';
     observe(observations, id, finding.severity, { message: finding.message });
   }
@@ -257,10 +265,17 @@ export async function runQa(slug, { runId } = {}) {
     applyObservations(result, observations, { notRunReason: 'Portable-build prerequisite failed: external HTTP(S) resources.', notRunIds: [...runtimeChecks] });
     finaliseTechnical(result);
     recordA11yReport(result, { status: 'not-run', reason: 'Axe analysis requires a production bundle without external HTTP(S) resources.' });
+    recordPortability(result, { site_build: { status: 'passed' }, check_site: { status: 'not-run' }, external_resources: { status: 'error', resources: externalResources.map(portableResource) } });
     writeResults(join(artifactDirectory, 'results.json'), result);
     return { result, resultsPath: join(artifactDirectory, 'results.json'), exitCode: 1 };
   }
   result.portable = true;
+  try {
+    const transfer = await checkSiteBuild(slug, 'qa-transfer');
+    recordPortability(result, { site_build: { status: 'passed' }, check_site: { status: 'passed', response_count: transfer.responses.length }, external_resources: { status: 'passed' } });
+  } catch (error) {
+    recordPortability(result, { site_build: { status: 'passed' }, check_site: { status: 'error', reason: error.message }, external_resources: { status: 'passed' } });
+  }
 
   let browser;
   try {
