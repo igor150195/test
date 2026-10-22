@@ -5,7 +5,7 @@
   "run_kind": "artifact-baseline",
   "generator_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
   "ds_version": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
-  "project_version": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
+  "project_version": "git:99b43b1444c2b58c5bd9856ef6775e4de74dae69",
   "versions": {
     "generator": {
       "value": "git:2aa53c6efd3d14eaf27f4827e2fbf7f084512796",
@@ -16,15 +16,16 @@
       "recorded_in_project": true
     },
     "project": {
-      "value": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
+      "value": "git:99b43b1444c2b58c5bd9856ef6775e4de74dae69",
       "recorded_in_project": false
     }
   },
   "scorer_version": "1",
   "evaluated_at": "2026-10-22T04:35:38.081Z",
-  "evaluated_at_commit": "git:b11c70fb96dc2ff5fd900e9540f82c41ae859499",
-  "working_tree_clean": false,
-  "status_reproducible": false,
+  "evaluated_at_commit": "git:99b43b1444c2b58c5bd9856ef6775e4de74dae69",
+  "working_tree_clean": true,
+  "inputs_dirty_paths": [],
+  "status_reproducible": true,
   "status": "pass",
   "measured_metrics": [
     "technical-correctness",
