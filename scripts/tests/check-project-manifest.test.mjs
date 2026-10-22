@@ -40,6 +40,8 @@ try {
     '<link rel="stylesheet" href="./css/theme.css">'
   ].join('\n'), 'utf8');
   assert.deepEqual(validateProjectManifest(themed, fixture), [], 'a complete hex theme with generated output must pass');
+  assert.deepEqual(validateProjectManifest({ ...themed, theme: { ...theme, footer_bg: '#202020' } }, fixture), [], 'an explicit optional footer background must pass');
+  assert.match(validateProjectManifest({ ...themed, theme: { ...theme, footer_bg: '#fff' } }, fixture).join('\n'), /theme.footer_bg must use #RRGGBB syntax when declared/, 'an explicit footer background must use long hex');
   writeFileSync(join(fixture, 'index.html'), '<link rel="stylesheet" href="../../dist/css/tokens.css">\n<link rel="stylesheet" href="./css/theme.css">', 'utf8');
   assert.match(validateProjectManifest(themed, fixture).join('\n'), /must link tokens\.css, core\.css, components\.css, blocks\.css, then css\/theme\.css/, 'a theme before core CSS must fail the manifest contract');
   assert.match(validateProjectManifest({ ...themed, theme: { ...theme, primary: '#fff' } }, fixture).join('\n'), /theme.primary must use #RRGGBB syntax/, 'short hex values must fail');

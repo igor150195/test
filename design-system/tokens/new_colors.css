@@ -122,6 +122,9 @@
     --on_bg_main_accent_3:   rgba(21, 16, 55, .3);
     --on_bg_main_accent_2:   rgba(21, 16, 55, .2);
     --on_bg_main_accent_1:   rgba(21, 16, 55, .1);
+
+    /* Footer surface falls back to the existing main text accent. */
+    --footer_bg:             var(--on_bg_main_accent);
      /*----------Main----------*/
     
     

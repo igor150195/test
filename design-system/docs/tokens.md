@@ -26,6 +26,11 @@
 
 `--bg_main`, `--bg_main_surface`; `--on_bg_main*`; `--icon_bg_main*`; `--bd_bg_main*`; дополнительная шкала `--on_bg_main_accent*`.
 
+`--footer_bg` — публичный surface token Footer. По умолчанию он ссылается на
+текстовый `--on_bg_main_accent`, чтобы сохранить текущий вид. Поэтому
+средне-серое значение `--on_bg_main_accent` также сделает фон подвала серым;
+в теме проекта явно задавайте `--footer_bg`, если фон Footer должен отличаться.
+
 ### Semantic colors
 
 - ссылки: `--link_color`, `--link_bd`;

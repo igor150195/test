@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { createSubpathServer } from './check-site-build.mjs';
 import { debtReviewWarning } from './known-issues.mjs';
-import { themeKeys } from './project-styles.mjs';
+import { requiredThemeKeys } from './project-styles.mjs';
 
 const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const defaultPrimary = '#7042f4';
@@ -34,6 +34,7 @@ function themedTokenValues(theme) {
   values['--accent_surface'] = rgba(theme.accent_surface, 10);
   values['--bg_main'] = rgba(theme.bg_main, 10);
   values['--bg_main_surface'] = rgba(theme.bg_main_surface, 10);
+  values['--footer_bg'] = rgba(theme.footer_bg ?? theme.on_bg_main_accent, 10);
   return values;
 }
 
@@ -80,7 +81,8 @@ async function inspectThemePage(page) {
       '--accent', ...Array.from({ length: 9 }, (_, index) => `--accent_${9 - index}`), '--accent_surface',
       '--on_accent', ...Array.from({ length: 9 }, (_, index) => `--on_accent_${9 - index}`),
       '--bg_main', '--bg_main_surface', '--on_bg_main', ...Array.from({ length: 9 }, (_, index) => `--on_bg_main_${9 - index}`),
-      '--on_bg_main_accent', ...Array.from({ length: 9 }, (_, index) => `--on_bg_main_accent_${9 - index}`)
+      '--on_bg_main_accent', ...Array.from({ length: 9 }, (_, index) => `--on_bg_main_accent_${9 - index}`),
+      '--footer_bg'
     ];
     const tokens = Object.fromEntries(allThemeTokens.map((name) => [name, resolveColor(`var(${name})`)]));
     const describe = (element) => {
@@ -128,7 +130,7 @@ export async function checkTheme(slug, {
       ? { status: 'error', reason: 'Strict project manifest has no theme contract.', findings: [] }
       : { status: 'not-run', reason: 'Legacy project manifest has no theme contract.', findings: [] };
   }
-  const missingThemeKeys = themeKeys.filter((key) => !manifest.theme[key]);
+  const missingThemeKeys = requiredThemeKeys.filter((key) => !manifest.theme[key]);
   if (missingThemeKeys.length) return { status: 'error', reason: `Theme is missing keys: ${missingThemeKeys.join(', ')}`, findings: [] };
   const distDirectory = join(projectDirectory, 'dist');
   if (!existsSync(distDirectory) || !existsSync(join(distDirectory, 'build.json'))) {

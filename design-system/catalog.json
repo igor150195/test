@@ -29,7 +29,9 @@
           ".ds-icon-button"
         ]
       },
-      "public_tokens": [],
+      "public_tokens": [
+        "--footer_bg"
+      ],
       "optional_tokens": [],
       "a11y": [
         "semantic-landmark",
@@ -44,10 +46,10 @@
       "source": "design-system/blocks/footer/index.md",
       "uses_tokens": [
         "--font_content",
+        "--footer_bg",
         "--fw_content_sb",
         "--fz_md",
         "--fz_sm",
-        "--on_bg_main_accent",
         "--on_primary",
         "--on_primary_1",
         "--on_primary_2",

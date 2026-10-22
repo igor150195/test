@@ -51,7 +51,8 @@
         "bg_main": { "$ref": "#/$defs/hexColor" },
         "bg_main_surface": { "$ref": "#/$defs/hexColor" },
         "on_bg_main": { "$ref": "#/$defs/hexColor" },
-        "on_bg_main_accent": { "$ref": "#/$defs/hexColor" }
+        "on_bg_main_accent": { "$ref": "#/$defs/hexColor" },
+        "footer_bg": { "$ref": "#/$defs/hexColor" }
       }
     },
     "pages": {

@@ -6,11 +6,13 @@ const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const shaPattern = /^git:[0-9a-f]{40}$/;
 const slugPattern = /^[a-z0-9][a-z0-9-]*$/;
 const hexColorPattern = /^#[\da-f]{6}$/i;
-const themeKeys = [
+const requiredThemeKeys = [
   'primary', 'primary_surface', 'on_primary',
   'accent', 'accent_surface', 'on_accent',
   'bg_main', 'bg_main_surface', 'on_bg_main', 'on_bg_main_accent'
 ];
+const optionalThemeKeys = ['footer_bg'];
+const themeKeys = [...requiredThemeKeys, ...optionalThemeKeys];
 const dsStylesheetLinks = [
   '../../dist/css/tokens.css',
   '../../dist/css/core.css',
@@ -48,8 +50,11 @@ export function validateProjectManifest(manifest, projectDirectory) {
     if (!manifest.theme || typeof manifest.theme !== 'object' || Array.isArray(manifest.theme)) {
       errors.push('theme must be an object when declared');
     } else {
-      themeKeys.forEach((key) => {
+      requiredThemeKeys.forEach((key) => {
         if (!hexColorPattern.test(manifest.theme[key] ?? '')) errors.push(`theme.${key} must use #RRGGBB syntax`);
+      });
+      optionalThemeKeys.forEach((key) => {
+        if (key in manifest.theme && !hexColorPattern.test(manifest.theme[key] ?? '')) errors.push(`theme.${key} must use #RRGGBB syntax when declared`);
       });
       Object.keys(manifest.theme).forEach((key) => {
         if (!themeKeys.includes(key)) errors.push(`theme contains unsupported property: ${key}`);

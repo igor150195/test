@@ -9,7 +9,7 @@ structural_classes: [.ds-footer__column]
 variants: []
 requires:
   components: [.ds-icon, .ds-icon-button]
-public_tokens: []
+public_tokens: [--footer_bg]
 optional_tokens: []
 a11y: [semantic-landmark, accessible-name, decorative-icon-hidden]
 viewports_verified: []
@@ -59,6 +59,13 @@ examples: [design-system/templates/home.html, design-system/templates/shop.html]
 Колонки и социальные ссылки необязательны. Ссылки должны вести на реальные
 адреса; подменять отсутствующую иконку текстовым символом или эмодзи не следует.
 `aria-label` необходим для social link, если внутри него только иконка.
+
+## Theme token
+
+`--footer_bg` — публичный фон подвала. По умолчанию он берётся из текстового
+токена `--on_bg_main_accent`, чтобы не изменить существующие проекты. Если
+`--on_bg_main_accent` имеет средне-серое значение, подвал тоже станет серым;
+задавайте `--footer_bg` явно в теме проекта, когда нужен иной фон.
 
 `__columns` строится на CSS Grid и самостоятельно перестраивается под доступную
 ширину; список не должен содержать интерактивные элементы внутри ссылки.
