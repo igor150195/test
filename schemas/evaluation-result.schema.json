@@ -4,7 +4,7 @@
   "title": "Generator evaluation result",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "case_id", "run", "run_kind", "generator_version", "ds_version", "project_version", "versions", "scorer_version", "evaluated_at", "evaluated_at_commit", "working_tree_clean", "status_reproducible", "status", "measured_metrics", "hashes", "objective", "expert", "reviewer_flags", "evidence"],
+  "required": ["schema_version", "case_id", "run", "run_kind", "generator_version", "ds_version", "project_version", "versions", "scorer_version", "evaluated_at", "evaluated_at_commit", "working_tree_clean", "inputs_dirty_paths", "status_reproducible", "status", "measured_metrics", "hashes", "objective", "expert", "reviewer_flags", "evidence"],
   "properties": {
     "schema_version": { "const": 1 },
     "case_id": { "pattern": "^C[0-9]+$" },
@@ -26,6 +26,7 @@
     "evaluated_at": { "type": ["string", "null"], "format": "date-time" },
     "evaluated_at_commit": { "type": "string", "pattern": "^git:[0-9a-f]{40}$" },
     "working_tree_clean": { "type": "boolean" },
+    "inputs_dirty_paths": { "type": "array", "items": { "type": "string" }, "description": "Changed evaluation-input paths that make working_tree_clean false." },
     "status_reproducible": { "type": "boolean", "description": "False whenever working_tree_clean is false." },
     "status": { "enum": ["pass", "fail", "prerequisite-fail", "not-run"] },
     "measured_metrics": { "type": "array" },

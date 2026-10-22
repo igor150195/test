@@ -24,12 +24,31 @@ function gitSha(root) {
   return `git:${execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()}`;
 }
 
-function workingTreeClean(root) {
-  const ignoredOutputPaths = [/^projects\/[^/]+\/artifacts\//, /^docs\/generator\/evaluation-results\//, /(^|\/)dist\//];
+function normalizeStatusPath(path) {
+  return path.replaceAll('\\', '/').replace(/^"|"$/g, '');
+}
+
+export function evaluationInputDirtyPaths(slug, changedPaths) {
+  const projectPrefix = `projects/${slug}/`;
+  const isIgnoredProjectOutput = (path) =>
+    path.startsWith(`${projectPrefix}artifacts/`) || path === `${projectPrefix}artifacts` || path === `${projectPrefix}artifacts/` ||
+    path.startsWith(`${projectPrefix}dist/`) || path === `${projectPrefix}dist` || path === `${projectPrefix}dist/`;
+  const isGeneratorInput = (path) =>
+    path === 'AGENTS.md' || path === 'package.json' || path === 'package-lock.json' ||
+    ['scripts', 'schemas', 'design-system', '.agents'].some((directory) => path === directory || path === `${directory}/` || path.startsWith(`${directory}/`)) ||
+    (path.startsWith('docs/generator/') && !path.startsWith('docs/generator/evaluation-results/')) || path === 'docs/generator';
+  return changedPaths
+    .map(normalizeStatusPath)
+    .filter((path) => !isIgnoredProjectOutput(path))
+    .filter((path) => isGeneratorInput(path) || path.startsWith(projectPrefix));
+}
+
+function workingTreeState(root, slug) {
   const changedPaths = execFileSync('git', ['status', '--porcelain=v1', '--untracked-files=all'], { cwd: root, encoding: 'utf8' })
     .trim().split(/\r?\n/).filter(Boolean)
-    .map((line) => line.slice(3).replaceAll('\\', '/').replace(/^"|"$/g, ''));
-  return changedPaths.every((path) => ignoredOutputPaths.some((pattern) => pattern.test(path)));
+    .map((line) => line.slice(3));
+  const inputsDirtyPaths = evaluationInputDirtyPaths(slug, changedPaths);
+  return { clean: inputsDirtyPaths.length === 0, inputsDirtyPaths };
 }
 
 function todayUtc() {
@@ -121,6 +140,8 @@ export function validateEvaluationResult(result) {
   if (!['pass', 'fail', 'prerequisite-fail', 'not-run'].includes(result.status)) errors.push('invalid status');
   if (!/^git:[0-9a-f]{40}$/.test(result.evaluated_at_commit ?? '')) errors.push('invalid evaluated_at_commit');
   if (typeof result.working_tree_clean !== 'boolean') errors.push('working_tree_clean must be boolean');
+  if (!Array.isArray(result.inputs_dirty_paths)) errors.push('inputs_dirty_paths must be an array');
+  if (result.working_tree_clean && result.inputs_dirty_paths?.length) errors.push('clean working tree requires no dirty input paths');
   if (!result.working_tree_clean && result.status_reproducible !== false) errors.push('dirty working tree requires status_reproducible false');
   if (typeof result.status_reproducible !== 'boolean') errors.push('status_reproducible must be boolean');
   if (result.run_kind === 'generation' && !result.evidence.brief) errors.push('generation requires brief evidence');
@@ -138,11 +159,12 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
   const projectVersion = gitSha(root);
   const evaluationCommit = gitSha(root);
-  const isWorkingTreeClean = workingTreeClean(root);
+  const workingTree = workingTreeState(root, definition.slug);
+  const isWorkingTreeClean = workingTree.clean;
   if (definition.status === 'prerequisite-fail') return {
     schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: 'artifact-baseline',
     generator_version: manifest.generator_version, ds_version: manifest.ds_version, project_version: projectVersion,
-    versions: versionProvenance({ generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: null, evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, status_reproducible: isWorkingTreeClean,
+    versions: versionProvenance({ generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: null, evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, inputs_dirty_paths: workingTree.inputsDirtyPaths, status_reproducible: isWorkingTreeClean,
     status: 'prerequisite-fail', measured_metrics: [], hashes: { project_manifest: hashFile(manifestPath) },
     objective: { score: null, score_out_of: null, percentage: null, metrics: [], not_measured: ['all'] }, expert: { status: 'not-reviewed', score: null },
     reviewer_flags: { local_extend: null, custom_styles_lost: null }, evidence: { reason: definition.reason }
@@ -158,7 +180,7 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   return {
     schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: 'artifact-baseline',
     generator_version: qa.generator_version, ds_version: qa.ds_version, project_version: projectVersion,
-    versions: versionProvenance({ generatorVersion: qa.generator_version, dsVersion: qa.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: statSync(qaPath).mtime.toISOString(), evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, status_reproducible: isWorkingTreeClean,
+    versions: versionProvenance({ generatorVersion: qa.generator_version, dsVersion: qa.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: statSync(qaPath).mtime.toISOString(), evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, inputs_dirty_paths: workingTree.inputsDirtyPaths, status_reproducible: isWorkingTreeClean,
     status: scored.status, measured_metrics: scored.objective.metrics.map((entry) => entry.name), hashes,
     objective: scored.objective, expert: { status: 'not-reviewed', score: null }, reviewer_flags: { local_extend: null, custom_styles_lost: null },
     evidence: { qa_results: relative(root, qaPath).replaceAll('\\', '/'), compliance: compliance.metrics, hard_failures: scored.hard_failures }
