@@ -75,9 +75,9 @@
       "type": "object",
       "required": ["status", "score", "findings"],
       "properties": {
-        "status": { "const": "not-reviewed" },
+        "status": { "enum": ["not-reviewed", "agent-reviewed"] },
         "score": { "type": "null" },
-        "findings": { "type": "array", "maxItems": 0 }
+        "findings": { "type": "array" }
       }
     }
   },

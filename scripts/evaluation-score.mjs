@@ -145,14 +145,23 @@ export function validateEvaluationResult(result) {
   if (result.working_tree_clean && result.inputs_dirty_paths?.length) errors.push('clean working tree requires no dirty input paths');
   if (!result.working_tree_clean && result.status_reproducible !== false) errors.push('dirty working tree requires status_reproducible false');
   if (typeof result.status_reproducible !== 'boolean') errors.push('status_reproducible must be boolean');
+  if (result.previous_run !== undefined && (typeof result.previous_run !== 'string' || !result.previous_run.trim())) errors.push('previous_run must be a non-empty string when provided');
+  if (result.change_note !== undefined && (typeof result.change_note !== 'string' || !result.change_note.trim())) errors.push('change_note must be a non-empty string when provided');
   if (result.run_kind === 'generation' && !result.evidence.brief) errors.push('generation requires brief evidence');
-  if (!Array.isArray(result.measured_metrics) || !result.objective || !result.expert || result.expert.status !== 'not-reviewed') errors.push('missing objective or expert fields');
+  if (!Array.isArray(result.measured_metrics) || !result.objective || !result.expert || !['not-reviewed', 'agent-reviewed'].includes(result.expert.status) || result.expert.score !== null) errors.push('missing objective or expert fields');
   if (!result.versions || !['generator', 'design_system', 'project'].every((key) => typeof result.versions[key]?.recorded_in_project === 'boolean')) errors.push('missing version provenance');
   if (!Object.values(result.reviewer_flags ?? {}).every((value) => value === null || typeof value === 'boolean')) errors.push('reviewer flags must be null or boolean');
   return errors;
 }
 
-export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
+export function evaluateCase(caseId, {
+  root = repositoryRoot,
+  runKind: requestedRunKind,
+  run: requestedRun,
+  previousRun,
+  changeNote,
+  expertStatus = 'not-reviewed'
+} = {}) {
   const definition = cases[caseId];
   if (!definition) throw new Error(`Unknown evaluation case: ${caseId}`);
   const projectDirectory = resolve(root, 'projects', definition.slug);
@@ -162,16 +171,19 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   const evaluationCommit = gitSha(root);
   const workingTree = workingTreeState(root, definition.slug);
   const isWorkingTreeClean = workingTree.clean;
-  const runKind = definition.status === 'generation' ? 'generation' : 'artifact-baseline';
+  const runKind = requestedRunKind ?? (definition.status === 'generation' ? 'generation' : 'artifact-baseline');
+  if (!['artifact-baseline', 'generation'].includes(runKind)) throw new Error(`Unsupported run kind: ${runKind}`);
+  if (!['not-reviewed', 'agent-reviewed'].includes(expertStatus)) throw new Error(`Unsupported expert status: ${expertStatus}`);
   const briefPath = definition.brief && resolve(root, definition.brief);
   if (runKind === 'generation' && !existsSync(briefPath)) throw new Error(`Missing generation brief: ${definition.brief}`);
   if (definition.status === 'prerequisite-fail') return {
-    schema_version: 1, case_id: caseId, run: 'artifact-baseline-1', run_kind: runKind,
+    schema_version: 1, case_id: caseId, run: requestedRun ?? 'artifact-baseline-1', run_kind: runKind,
     generator_version: manifest.generator_version, ds_version: manifest.ds_version, project_version: projectVersion,
     versions: versionProvenance({ generatorVersion: manifest.generator_version, dsVersion: manifest.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: null, evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, inputs_dirty_paths: workingTree.inputsDirtyPaths, status_reproducible: isWorkingTreeClean,
     status: 'prerequisite-fail', measured_metrics: [], hashes: { project_manifest: hashFile(manifestPath) },
-    objective: { score: null, score_out_of: null, percentage: null, metrics: [], not_measured: ['all'] }, expert: { status: 'not-reviewed', score: null },
-    reviewer_flags: { local_extend: null, custom_styles_lost: null }, evidence: { reason: definition.reason }
+    objective: { score: null, score_out_of: null, percentage: null, metrics: [], not_measured: ['all'] }, expert: { status: expertStatus, score: null },
+    reviewer_flags: { local_extend: null, custom_styles_lost: null }, evidence: { reason: definition.reason },
+    ...(previousRun ? { previous_run: previousRun } : {}), ...(changeNote ? { change_note: changeNote } : {})
   };
   const qaPath = resolve(projectDirectory, 'artifacts/qa/latest/results.json');
   if (!existsSync(qaPath)) throw new Error(`Missing QA artifact: ${relative(root, qaPath)}`);
@@ -182,32 +194,52 @@ export function evaluateCase(caseId, { root = repositoryRoot } = {}) {
   const hashes = { project_manifest: hashFile(manifestPath), qa_results: hashFile(qaPath) };
   if (existsSync(tokenMapPath)) hashes.token_map = hashFile(tokenMapPath);
   return {
-    schema_version: 1, case_id: caseId, run: runKind === 'generation' ? 'generation-1' : 'artifact-baseline-1', run_kind: runKind,
+    schema_version: 1, case_id: caseId, run: requestedRun ?? (runKind === 'generation' ? 'generation-1' : 'artifact-baseline-1'), run_kind: runKind,
     generator_version: qa.generator_version, ds_version: qa.ds_version, project_version: projectVersion,
     versions: versionProvenance({ generatorVersion: qa.generator_version, dsVersion: qa.ds_version, projectVersion, manifest }), scorer_version: scorerVersion, evaluated_at: statSync(qaPath).mtime.toISOString(), evaluated_at_commit: evaluationCommit, working_tree_clean: isWorkingTreeClean, inputs_dirty_paths: workingTree.inputsDirtyPaths, status_reproducible: isWorkingTreeClean,
     status: scored.status, measured_metrics: scored.objective.metrics.map((entry) => entry.name), hashes,
-    objective: scored.objective, expert: { status: 'not-reviewed', score: null }, reviewer_flags: { local_extend: null, custom_styles_lost: null },
+    objective: scored.objective, expert: { status: expertStatus, score: null }, reviewer_flags: { local_extend: null, custom_styles_lost: null },
     evidence: {
       qa_results: relative(root, qaPath).replaceAll('\\', '/'),
       ...(briefPath ? { brief: relative(root, briefPath).replaceAll('\\', '/') } : {}),
       compliance: compliance.metrics,
       hard_failures: scored.hard_failures
-    }
+    },
+    ...(previousRun ? { previous_run: previousRun } : {}),
+    ...(changeNote ? { change_note: changeNote } : {})
   };
 }
 
-function usage() { console.error('Usage: node scripts/evaluation-score.mjs <C1|C2|C3|C4> [--write]'); }
+function usage() { console.error('Usage: node scripts/evaluation-score.mjs <C1|C2|C3|C4> [--run-kind artifact-baseline|generation] [--run <name>] [--previous-run <path>] [--change-note <text>] [--expert-status not-reviewed|agent-reviewed] [--output <path>] [--write]'); }
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const caseId = process.argv[2];
   if (!caseId) { usage(); process.exitCode = 1; }
   else {
     try {
-      const result = evaluateCase(caseId);
+      const argumentsAfterCase = process.argv.slice(3);
+      const valueAfter = (flag) => {
+        const index = argumentsAfterCase.indexOf(flag);
+        if (index === -1) return undefined;
+        if (!argumentsAfterCase[index + 1] || argumentsAfterCase[index + 1].startsWith('--')) throw new Error(`Missing value after ${flag}`);
+        return argumentsAfterCase[index + 1];
+      };
+      const allowed = new Set(['--write', '--run-kind', '--run', '--previous-run', '--change-note', '--expert-status', '--output']);
+      for (let index = 0; index < argumentsAfterCase.length; index += 1) {
+        const argument = argumentsAfterCase[index];
+        if (!allowed.has(argument)) throw new Error(`Unknown argument: ${argument}`);
+        if (argument !== '--write') index += 1;
+      }
+      const output = valueAfter('--output');
+      const result = evaluateCase(caseId, {
+        runKind: valueAfter('--run-kind'), run: valueAfter('--run'),
+        previousRun: valueAfter('--previous-run'), changeNote: valueAfter('--change-note'), expertStatus: valueAfter('--expert-status')
+      });
       const errors = validateEvaluationResult(result);
       if (errors.length) throw new Error(errors.join('; '));
       if (process.argv.includes('--write')) {
-        mkdirSync(evaluationRoot, { recursive: true });
-        writeFileSync(resolve(evaluationRoot, `${caseId.toLowerCase()}.json`), `${JSON.stringify(result, null, 2)}\n`, 'utf8');
+        const destination = output ? resolve(repositoryRoot, output) : resolve(evaluationRoot, `${caseId.toLowerCase()}.json`);
+        mkdirSync(dirname(destination), { recursive: true });
+        writeFileSync(destination, `${JSON.stringify(result, null, 2)}\n`, 'utf8');
       }
       console.log(JSON.stringify(result, null, 2));
       process.exitCode = result.status === 'prerequisite-fail' ? 1 : 0;

@@ -26,6 +26,10 @@ assert.deepEqual(evaluationInputDirtyPaths('house-store', ['projects/house-store
 assert.deepEqual(evaluationInputDirtyPaths('house-store', ['scripts/evaluation-score.mjs', 'projects/house-store/css/custom.css']), ['scripts/evaluation-score.mjs', 'projects/house-store/css/custom.css'], 'generator and evaluated-project files must dirty C2 inputs');
 const record = { schema_version: 1, case_id: 'C2', run: 'artifact-baseline-1', run_kind: 'artifact-baseline', generator_version: sha, ds_version: sha, project_version: sha, versions: { generator: { value: sha, recorded_in_project: true }, design_system: { value: sha, recorded_in_project: true }, project: { value: sha, recorded_in_project: false } }, scorer_version: '1', evaluated_at: '2026-10-22T04:25:07.173Z', evaluated_at_commit: sha, working_tree_clean: false, inputs_dirty_paths: ['scripts/evaluation-score.mjs'], status_reproducible: false, status: 'pass', measured_metrics: [], hashes: {}, objective: first.objective, expert: { status: 'not-reviewed', score: null }, reviewer_flags: { local_extend: null, custom_styles_lost: null }, evidence: {} };
 assert.deepEqual(validateEvaluationResult(record), []);
+assert.deepEqual(validateEvaluationResult({ ...record, expert: { status: 'agent-reviewed', score: null } }), []);
+assert.deepEqual(validateEvaluationResult({ ...record, previous_run: 'docs/generator/evaluation-results/c2.json', change_note: 'DS fixes' }), []);
+assert.match(validateEvaluationResult({ ...record, previous_run: '' }).join(','), /previous_run/);
+assert.match(validateEvaluationResult({ ...record, change_note: '' }).join(','), /change_note/);
 assert.match(validateEvaluationResult({ ...record, working_tree_clean: true }).join(','), /clean working tree/);
 assert.match(validateEvaluationResult({ ...record, reviewer_flags: { local_extend: 'unknown', custom_styles_lost: null } }).join(','), /reviewer flags/);
 console.log('evaluation-score tests passed.');

@@ -28,6 +28,8 @@
     "working_tree_clean": { "type": "boolean" },
     "inputs_dirty_paths": { "type": "array", "items": { "type": "string" }, "description": "Changed evaluation-input paths that make working_tree_clean false." },
     "status_reproducible": { "type": "boolean", "description": "False whenever working_tree_clean is false." },
+    "previous_run": { "type": "string", "minLength": 1, "description": "Optional path or identifier for the earlier record used for comparison." },
+    "change_note": { "type": "string", "minLength": 1, "description": "Optional concise description of the change being measured." },
     "status": { "enum": ["pass", "fail", "prerequisite-fail", "not-run"] },
     "measured_metrics": { "type": "array" },
     "hashes": { "type": "object" },
@@ -56,7 +58,14 @@
         }
       }
     },
-    "expert": { "type": "object" },
+    "expert": {
+      "type": "object",
+      "required": ["status", "score"],
+      "properties": {
+        "status": { "enum": ["not-reviewed", "agent-reviewed"] },
+        "score": { "type": "null" }
+      }
+    },
     "reviewer_flags": {
       "type": "object",
       "required": ["local_extend", "custom_styles_lost"],

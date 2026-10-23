@@ -137,8 +137,8 @@ export function validateQaResults(result) {
   } else if (a11y.status === 'passed' && a11y.incomplete.count > 0) {
     errors.push('technical.a11y cannot pass with incomplete findings');
   }
-  if (!result?.expert || result.expert.status !== 'not-reviewed' || result.expert.score !== null || !Array.isArray(result.expert.findings)) {
-    errors.push('expert must remain an empty not-reviewed assessment until human or agent review');
+  if (!result?.expert || !['not-reviewed', 'agent-reviewed'].includes(result.expert.status) || result.expert.score !== null || !Array.isArray(result.expert.findings)) {
+    errors.push('expert must be an unscored not-reviewed or agent-reviewed assessment');
   }
   return errors;
 }
