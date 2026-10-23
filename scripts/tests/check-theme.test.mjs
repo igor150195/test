@@ -16,18 +16,18 @@ const theme = {
 };
 const sha = 'git:0123456789abcdef0123456789abcdef01234567';
 
-function writeFixture({ themeCss = generateThemeCss(theme), body = '<button class="ds-button">Button</button>' } = {}) {
+function writeFixture({ fixtureTheme = theme, themeCss = generateThemeCss(fixtureTheme), body = '<button class="ds-button">Button</button><span class="ds-counter">1</span><footer class="ds-footer"><a class="ds-footer__link" href="#demo">Footer link</a></footer>' } = {}) {
   const project = join(fixture, 'projects', 'fixture');
   mkdirSync(join(project, 'dist', 'css'), { recursive: true });
   writeFileSync(join(project, 'project.json'), JSON.stringify({
     schema_version: 1, slug: 'fixture', type: 'fixture', mode: 'brief', platform: 'static-html',
-    generator_version: sha, ds_version: sha, compliance: 'strict', theme,
+    generator_version: sha, ds_version: sha, compliance: 'strict', theme: fixtureTheme,
     pages: [{ id: 'home', source: 'index.html', output: 'index.html', route: '/' }],
     files: [{ path: 'css/theme.css', owner: 'generated' }], external_dependencies: []
   }), 'utf8');
   writeFileSync(join(project, 'dist', 'build.json'), '{}');
   writeFileSync(join(project, 'dist', 'index.html'), `<!doctype html><html><body>${body}<link rel="stylesheet" href="./css/site.css"></body></html>`);
-  writeFileSync(join(project, 'dist', 'css', 'site.css'), `:root { --primary: #7042F4; --primary_4: rgba(112, 66, 244, .4); }\n${themeCss}\n.ds-button { color: var(--on_primary); background: var(--primary); border: 1px solid var(--primary); }`);
+  writeFileSync(join(project, 'dist', 'css', 'site.css'), `:root { --primary: #7042F4; --primary_4: rgba(112, 66, 244, .4); }\n${themeCss}\n.ds-button { color: var(--on_primary); background: var(--primary); border: 1px solid var(--primary); } .ds-counter { color: var(--on_accent); background-color: var(--accent); } .ds-footer { background-color: var(--footer_bg); } .ds-footer__link { color: var(--on_primary_8); }`);
 }
 
 try {
@@ -52,6 +52,23 @@ try {
   const incomplete = await checkTheme('fixture', { repositoryRoot: fixture });
   assert.equal(incomplete.status, 'error', 'an incomplete primary scale must fail');
 
+  writeFixture({ fixtureTheme: { ...theme, on_accent: '#FFFFFF', accent: '#FFFFFF' } });
+  const badAccent = await checkTheme('fixture', { repositoryRoot: fixture });
+  assert.equal(badAccent.status, 'warning', 'Counter contrast must be a warning even for strict projects');
+  assert.equal(badAccent.findings.some((finding) => finding.selector === '.ds-counter'), true, 'Counter contrast warning must identify the component');
+
+  writeFixture({ fixtureTheme: { ...theme, footer_bg: '#888888' } });
+  const badFooter = await checkTheme('fixture', { repositoryRoot: fixture });
+  assert.equal(badFooter.status, 'warning', 'footer link contrast must be a warning');
+  assert.equal(badFooter.findings.some((finding) => finding.selector === '.ds-footer__link'), true, 'footer link warning must identify the component');
+
+  const fallbackTheme = { ...theme };
+  writeFixture({ fixtureTheme: fallbackTheme });
+  assert.equal((await checkTheme('fixture', { repositoryRoot: fixture })).status, 'passed', 'the fallback footer background must pass the root theme contract');
+
+  writeFixture({ fixtureTheme: { ...theme, footer_bg: '#202020' } });
+  assert.equal((await checkTheme('fixture', { repositoryRoot: fixture })).status, 'passed', 'an optional explicit footer background must pass the root theme contract');
+
   writeFixture({ body: '<button class="ds-button">Button</button><div class="ds-exception">Exception</div>' });
   const css = generateThemeCss(theme) + '\n.ds-button { color: var(--on_primary); background: var(--primary); } .ds-exception { color: #7042F4; }';
   writeFileSync(join(fixture, 'projects', 'fixture', 'dist', 'css', 'site.css'), css);
@@ -59,7 +76,7 @@ try {
   const exception = await checkTheme('fixture', { repositoryRoot: fixture, knownIssuesOverride: known });
   assert.equal(exception.status, 'warning', 'an allowed default-primary exception must be a warning, not an error');
   assert.equal(exception.findings[0].status, 'warning');
-  console.log('check-theme: root contract, descendant theme, scale, and known exception passed');
+  console.log('check-theme: root contract, contrast warnings, scale, and known exception passed');
 } finally {
   rmSync(fixture, { recursive: true, force: true });
 }

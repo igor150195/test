@@ -46,6 +46,7 @@ npm run build
 npm run build:sass:core
 npm run build:sass:legacy
 npm run check:sass
+npm run check:sass-compat
 npm run dev
 npm run project:styles -- init <slug>
 npm run project:styles -- build <slug>
@@ -59,11 +60,15 @@ npm run check:site -- <slug>
 npm run test:assets
 npm run qa -- <slug>
 npm run check:compliance -- <slug>
+npm run check:theme -- <slug>
 ```
 
 - `build`/`build:sass` компилирует все entrypoint-файлы из `design-system/scss/` в `dist/css/` с source maps.
 - `build:sass:core` и `build:sass:legacy` позволяют проверить слои отдельно.
 - `check:sass` компилирует smoke fixture в `dist/check/check.css` без source map.
+- `check:sass-compat` проверяет только `projects/*/styles/*.scss` и SCSS
+  шаблона проекта: S3/scssphp допускает там `@import`, но не `@use`,
+  `@forward` и `sass:*`.
 - `dev` следит за `design-system/scss/` и автоматически пересобирает `dist/css/`.
 - `project:styles -- init <slug>` создаёт `projects/<slug>/styles/custom.scss`
   только при отсутствии. Повторный запуск сохраняет файл владельца без
@@ -112,6 +117,10 @@ npm run check:compliance -- <slug>
   уникальность ID, связи с базой знаний, покрытие top-level секций и
   неутверждённые `EXTEND`/`BLOCKED`. Известные legacy-долги выводятся как
   предупреждения, новые нарушения завершают команду с ненулевым кодом.
+- `check:theme` сверяет root-тему portable-сборки и проверяет контраст
+  `.ds-counter` и `.ds-footer__link` с учётом alpha compositing. Контраст
+  ниже 4.5:1 пока фиксируется предупреждением даже для `strict` проекта;
+  это диагностическое решение, которое не подменяет проверку токенов ошибкой.
 
 Каталог `dist/` является генерируемым и не смешивается с исходниками.
 

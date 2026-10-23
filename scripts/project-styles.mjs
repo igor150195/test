@@ -95,7 +95,7 @@ function rgba(hex, opacity) {
   return `rgba(${red}, ${green}, ${blue}, .${opacity})`;
 }
 
-function contrastRatio(first, second) {
+export function contrastRatio(first, second) {
   const luminance = (hex) => {
     const channel = hexToRgb(hex).map((value) => {
       const normalized = value / 255;
@@ -109,6 +109,16 @@ function contrastRatio(first, second) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
+function rgbToHex([red, green, blue]) {
+  return `#${[red, green, blue].map((value) => Math.round(value).toString(16).padStart(2, '0')).join('')}`;
+}
+
+export function compositeHex(foreground, background, alpha) {
+  const foregroundRgb = hexToRgb(foreground);
+  const backgroundRgb = hexToRgb(background);
+  return rgbToHex(foregroundRgb.map((value, index) => value * alpha + backgroundRgb[index] * (1 - alpha)));
+}
+
 function themedScale(name, hex) {
   return Array.from({ length: 9 }, (_, index) => {
     const opacity = 9 - index;
@@ -117,7 +127,9 @@ function themedScale(name, hex) {
 }
 
 export function themeContrastWarnings(theme) {
-  return [
+  const footerBackground = theme.footer_bg ?? theme.on_bg_main_accent;
+  const footerLink = compositeHex(theme.on_primary, footerBackground, 0.8);
+  const warnings = [
     ['on_primary', 'primary'],
     ['on_accent', 'accent']
   ].flatMap(([foreground, background]) => {
@@ -126,6 +138,13 @@ export function themeContrastWarnings(theme) {
       ? [`Theme contrast warning: --${foreground}/--${background} is ${ratio.toFixed(2)}:1; expected at least 4.50:1.`]
       : [];
   });
+  const footerRatio = contrastRatio(footerLink, footerBackground);
+  if (footerRatio < 4.5) {
+    warnings.push(
+      `Theme contrast warning: --on_primary_8/--footer_bg is ${footerRatio.toFixed(2)}:1 after alpha compositing; expected at least 4.50:1.`
+    );
+  }
+  return warnings;
 }
 
 export function generateThemeCss(theme) {

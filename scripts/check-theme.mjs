@@ -24,6 +24,40 @@ function normalizeColor(value) {
   return String(value).replaceAll(/\s+/g, '').toLowerCase();
 }
 
+function rgbaChannels(value) {
+  const match = /^rgba?\(([^)]+)\)$/i.exec(normalizeColor(value));
+  if (!match) return null;
+  const channels = match[1].split(',').map(Number);
+  if (channels.length < 3 || channels.slice(0, 3).some(Number.isNaN)) return null;
+  return { red: channels[0], green: channels[1], blue: channels[2], alpha: channels.length === 4 ? channels[3] : 1 };
+}
+
+function compositeRgba(foreground, background) {
+  const top = rgbaChannels(foreground);
+  const bottom = rgbaChannels(background);
+  if (!top || !bottom) return null;
+  const alpha = top.alpha + bottom.alpha * (1 - top.alpha);
+  if (alpha === 0) return null;
+  const channel = (name) => (top[name] * top.alpha + bottom[name] * bottom.alpha * (1 - top.alpha)) / alpha;
+  return `rgb(${Math.round(channel('red'))}, ${Math.round(channel('green'))}, ${Math.round(channel('blue'))})`;
+}
+
+function contrastRatio(first, second) {
+  const luminance = (value) => {
+    const color = rgbaChannels(value);
+    if (!color) return null;
+    const channels = [color.red, color.green, color.blue].map((channel) => {
+      const normalized = channel / 255;
+      return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+  };
+  const firstLuminance = luminance(first);
+  const secondLuminance = luminance(second);
+  if (firstLuminance === null || secondLuminance === null) return null;
+  return (Math.max(firstLuminance, secondLuminance) + 0.05) / (Math.min(firstLuminance, secondLuminance) + 0.05);
+}
+
 function themedTokenValues(theme) {
   const values = {};
   for (const name of ['primary', 'on_primary', 'accent', 'on_accent', 'on_bg_main', 'on_bg_main_accent']) {
@@ -60,6 +94,10 @@ function addFinding(result, slug, finding, issues) {
     if (reviewWarning) entry.review_warning = reviewWarning;
   }
   result.findings.push(entry);
+}
+
+function addContrastWarning(result, finding) {
+  result.findings.push({ ...finding, status: 'warning' });
 }
 
 async function inspectThemePage(page) {
@@ -104,6 +142,36 @@ async function inspectThemePage(page) {
       if (computed.outlineStyle !== 'none' && computed.outlineWidth !== '0px') values.push(['outline-color', computed.outlineColor]);
       return values.map(([property, value]) => ({ selector: describe(element), property, value, state }));
     };
+    const nearestOpaqueBackground = (element) => {
+      for (let current = element; current; current = current.parentElement) {
+        const background = getComputedStyle(current).backgroundColor;
+        const match = /^rgba?\(([^)]+)\)$/i.exec(background.replaceAll(/\s+/g, ''));
+        if (!match) continue;
+        const channels = match[1].split(',').map(Number);
+        if (channels.length === 3 || channels[3] >= 1) return background;
+      }
+      return 'rgb(255, 255, 255)';
+    };
+    const composite = (foreground, background) => {
+      const parse = (value) => {
+        const match = /^rgba?\(([^)]+)\)$/i.exec(value.replaceAll(/\s+/g, ''));
+        if (!match) return null;
+        const channels = match[1].split(',').map(Number);
+        if (channels.length < 3) return null;
+        return { red: channels[0], green: channels[1], blue: channels[2], alpha: channels[3] ?? 1 };
+      };
+      const top = parse(foreground);
+      const bottom = parse(background);
+      if (!top || !bottom) return foreground;
+      return `rgb(${Math.round(top.red * top.alpha + bottom.red * (1 - top.alpha))}, ${Math.round(top.green * top.alpha + bottom.green * (1 - top.alpha))}, ${Math.round(top.blue * top.alpha + bottom.blue * (1 - top.alpha))})`;
+    };
+    const contrastTargets = ['.ds-counter', '.ds-footer__link'].flatMap((selector) =>
+      [...document.querySelectorAll(selector)].map((element) => {
+        const foreground = getComputedStyle(element).color;
+        const background = nearestOpaqueBackground(element);
+        return { selector, foreground, background, effective_foreground: composite(foreground, background) };
+      })
+    );
     const elements = [...document.querySelectorAll('[class]')].filter((element) => [...element.classList].some((name) => name.startsWith('ds-')));
     const appearances = elements.flatMap((element) => styles(element, 'default'));
     for (const element of elements) {
@@ -112,7 +180,7 @@ async function inspectThemePage(page) {
       if (element.matches(':focus-visible')) appearances.push(...styles(element, 'focus-visible'));
     }
     probe.remove();
-    return { tokens, appearances, ds_element_count: elements.length, declared_theme_token_count: tokenNames.length };
+    return { tokens, appearances, contrastTargets, ds_element_count: elements.length, declared_theme_token_count: tokenNames.length };
   });
 }
 
@@ -172,6 +240,21 @@ export async function checkTheme(slug, {
           for (const appearance of inspection.appearances) {
             if (!defaultValues.has(normalizeColor(appearance.value)) && !/rgba?\(\s*112\s*,\s*66\s*,\s*244\s*[,)\s]/i.test(appearance.value)) continue;
             addFinding(result, slug, { code: 'default-primary-leak', page: projectPage.id, ...appearance }, knownIssuesOverride);
+          }
+        }
+        for (const target of inspection.contrastTargets) {
+          const ratio = contrastRatio(target.effective_foreground, target.background);
+          if (ratio !== null && ratio < 4.5) {
+            addContrastWarning(result, {
+              code: 'theme-contrast',
+              page: projectPage.id,
+              selector: target.selector,
+              property: 'color/background-color',
+              value: target.effective_foreground,
+              background: target.background,
+              contrast: Number(ratio.toFixed(2)),
+              expected: '4.50:1'
+            });
           }
         }
       } finally {
