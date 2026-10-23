@@ -20,6 +20,15 @@ export function isExternal(resource) {
   return /^https?:\/\//i.test(resource);
 }
 
+export function validateKnownAssetDebt(debt, label, today) {
+  if (!debt) return null;
+  if (typeof debt.reason !== 'string' || !debt.reason.trim()) return `${label} is missing a non-empty reason.`;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(debt.added ?? '') || !/^\d{4}-\d{2}-\d{2}$/.test(debt.review_after ?? '')) {
+    return `${label} is missing valid added/review_after dates.`;
+  }
+  return null;
+}
+
 function findAsset(assets, resource, localPath, projectDirectory) {
   return assets.find((asset) => {
     if (isExternal(resource)) return resource.startsWith(asset.source);
@@ -27,16 +36,20 @@ function findAsset(assets, resource, localPath, projectDirectory) {
   });
 }
 
-export function checkAssets(slug) {
-  const projectDirectory = join(repositoryRoot, 'projects', slug);
+export function checkAssets(slug, { root = repositoryRoot, knownIssuesOverride = knownIssues, today } = {}) {
+  const projectDirectory = join(root, 'projects', slug);
   const assetsPath = join(projectDirectory, 'assets.json');
   if (!existsSync(assetsPath)) throw new Error(`Missing assets manifest: ${assetsPath}`);
   const manifest = JSON.parse(readFileSync(assetsPath, 'utf8'));
   const errors = [];
   const warnings = [];
-  const known = knownIssues[slug] ?? {};
-  const reviewWarning = debtReviewWarning(known, `known asset debt for ${slug}`);
-  if (reviewWarning) warnings.push(`known-debt review: ${reviewWarning}`);
+  const known = knownIssuesOverride[slug];
+  const debtProblem = validateKnownAssetDebt(known, `known asset debt for ${slug}`, today);
+  if (debtProblem) errors.push(`known asset debt is invalid: ${debtProblem}`);
+  else if (known) {
+    const reviewWarning = debtReviewWarning(known, `known asset debt for ${slug}`, today);
+    if (reviewWarning) warnings.push(`known-debt review: ${reviewWarning}`);
+  }
   if (manifest.schema_version !== 1 || !Array.isArray(manifest.assets)) errors.push('assets.json must contain schema_version: 1 and an assets array');
   const assets = manifest.assets ?? [];
   assets.forEach((asset, index) => {
