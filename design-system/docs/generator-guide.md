@@ -102,6 +102,10 @@ styles/custom.scss   → css/custom.css
 `npm run project:styles -- build <slug> css/custom-overrides.css`, и подключите
 его последним. Полный шаблон: [templates/project](../templates/project/README.md).
 
+Для S3 используйте в проектных SCSS только `@import`: `@use`, `@forward` и
+`sass:*` несовместимы со scssphp; предупреждения Dart Sass об `@import` и
+`slash-div` не исправляются.
+
 ## Контракт проекта и ресурсы
 
 Каждый проект получает `project.json` по

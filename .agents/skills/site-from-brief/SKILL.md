@@ -29,6 +29,10 @@ JSON block in `token-map.md` matching
 Use [Design System First](../../../design-system/docs/generation/design-system-first.md)
 as the authority for statuses and stop conditions.
 
+For S3 project SCSS use `@import` only: `@use`, `@forward`, and `sass:*` are
+incompatible with scssphp; do not “fix” Dart Sass `@import` or `slash-div`
+warnings.
+
 ## State and stop conditions
 
 Record the current state and blockers in `brief.md`; do not add undocumented

@@ -67,6 +67,7 @@ Do not use it for a small change to an existing page or for a design-system-only
 - Project-local layout rules may compose existing contracts and tokens; they cannot introduce a parallel token scale, self-made component API, or arbitrary visual values in place of an absent design-system capability.
 - Project-specific overrides belong to the project, not to shared source tokens. They are not an exception to the gap-report requirement.
 - `styles/custom.scss` is reserved for owner-maintained changes and is loaded after generated project styles. Never put primary generated implementation there, overwrite it, clear its comments, move its declarations or copy it into the design system automatically. If generated styles conflict with it, report the conflict and preserve the file.
+- For S3 project SCSS use `@import` only: `@use`, `@forward`, and `sass:*` are incompatible with scssphp; do not “fix” Dart Sass `@import` or `slash-div` warnings.
 - Before introducing a new global token or changing a public mixin/component contract, document the gap and compatibility impact, obtain approval, then extend and validate the design system before using it.
 - Never claim that a build, browser render, or screenshot comparison succeeded unless it was actually run and inspected.
 - If the reference URL cannot be inspected in the available environment, work from supplied screenshots and state the limitation in the report.
