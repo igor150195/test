@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "case_id": "C4",
+  "run": "artifact-baseline-3",
+  "run_kind": "artifact-baseline",
+  "generator_version": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+  "ds_version": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+  "project_version": "git:f93b6a7f22128cac4b45bc63c92d69e2cf6fd429",
+  "versions": {
+    "generator": {
+      "value": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+      "recorded_in_project": true
+    },
+    "design_system": {
+      "value": "git:a526db8ef4dd0e5809c9dc58c8b9701d088dbe91",
+      "recorded_in_project": true
+    },
+    "project": {
+      "value": "git:f93b6a7f22128cac4b45bc63c92d69e2cf6fd429",
+      "recorded_in_project": false
+    }
+  },
+  "scorer_version": "1",
+  "evaluated_at": "2026-10-23T04:31:28.027Z",
+  "evaluated_at_commit": "git:f93b6a7f22128cac4b45bc63c92d69e2cf6fd429",
+  "working_tree_clean": false,
+  "inputs_dirty_paths": [
+    "docs/generator/pilot-1-report.md",
+    "projects/pilot-1/css/project.css",
+    "projects/pilot-1/css/theme.css",
+    "projects/pilot-1/docs/qa-report.md",
+    "projects/pilot-1/docs/token-map.md",
+    "projects/pilot-1/images/demo-fashion.svg",
+    "projects/pilot-1/index.html",
+    "projects/pilot-1/project.json",
+    "projects/pilot-1/styles/project.scss",
+    "schemas/evaluation-result.schema.json",
+    "schemas/qa-results.schema.json",
+    "scripts/check-assets.mjs",
+    "scripts/evaluation-score.mjs",
+    "scripts/qa-results.mjs",
+    "scripts/tests/check-assets.test.mjs",
+    "scripts/tests/evaluation-score.test.mjs",
+    "scripts/tests/qa-results.test.mjs"
+  ],
+  "status_reproducible": false,
+  "status": "pass",
+  "measured_metrics": [
+    "technical-correctness",
+    "adaptivity-and-accessibility",
+    "design-system-reuse",
+    "portability"
+  ],
+  "hashes": {
+    "project_manifest": "2ba19ec11eeec6a62c2414dfff83e7d15688e9499fa2f1e8617da07d3f824444",
+    "qa_results": "6e811a398bee58d9c93da253e838750fe26fc5f5c90ee54a6d4ed900d51be1ab",
+    "token_map": "f66b2901ee374bd2ae558385299d4688665bf28546f30a61769b3fd2899f2faa"
+  },
+  "objective": {
+    "score": 46.65,
+    "score_out_of": 50,
+    "percentage": 93.3,
+    "metrics": [
+      {
+        "name": "technical-correctness",
+        "max": 15,
+        "score": 15,
+        "checks": [
+          {
+            "id": "console-errors",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "failed-requests",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "http-errors",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "broken-images",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "external-hosts",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "undefined-tokens",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          },
+          {
+            "id": "undefined-icons",
+            "status": "warning",
+            "factor": 1,
+            "known_issue_exempt": true
+          },
+          {
+            "id": "undefined-ds-classes",
+            "status": "passed",
+            "factor": 1,
+            "known_issue_exempt": false
+          }
+        ],
+        "known_issue_rule": "warning with only non-overdue known debts = passed; other warnings = 0.5"
+      },
+      {
+        "name": "adaptivity-and-accessibility",
+        "max": 15,
+        "score": 15,
+        "overflow": 5,
+        "static": 5,
+        "axe": 5,
+        "axe_incomplete": 0
+      },
+      {
+        "name": "design-system-reuse",
+        "max": 10,
+        "score": 6.65,
+        "section_mapping": 2.5,
+        "ds_class_ratio": 4.15,
+        "top_level_sections": 4,
+        "ds_class_uses": 112,
+        "all_class_uses": 135
+      },
+      {
+        "name": "portability",
+        "max": 10,
+        "score": 10,
+        "site_build": {
+          "status": "passed"
+        },
+        "check_site": {
+          "status": "passed",
+          "response_count": 286
+        },
+        "external_resources": {
+          "status": "passed"
+        }
+      }
+    ],
+    "not_measured": [
+      "process-reliability",
+      "speed-and-cost"
+    ]
+  },
+  "expert": {
+    "status": "agent-reviewed",
+    "score": null
+  },
+  "reviewer_flags": {
+    "local_extend": null,
+    "custom_styles_lost": null
+  },
+  "evidence": {
+    "qa_results": "projects/pilot-1/artifacts/qa/latest/results.json",
+    "brief": "docs/generator/evaluation/cases/C4/brief.md",
+    "compliance": {
+      "top_level_sections": 4,
+      "mapped_sections": 4,
+      "reuse_compose_sections": 2,
+      "compliant_reuse_compose_sections": 2,
+      "compliance_errors": 0
+    },
+    "local_css": {
+      "source": "projects/pilot-1/styles/project.scss",
+      "lines_before": 146,
+      "lines_after": 172,
+      "lines_added": 26,
+      "pilot_selectors_before": 17,
+      "pilot_selectors_after": 18,
+      "pilot_selectors_added": 1
+    },
+    "ds_class_usage": {
+      "ds_class_uses": 112,
+      "all_class_uses": 135,
+      "ratio_percent": 82.96
+    },
+    "iterations": {
+      "local_fix_pass": 1,
+      "total_visual_correction_passes": 2
+    },
+    "screenshots": {
+      "desktop_full_hd": "projects/pilot-1/artifacts/qa/latest/home/desktop-full-hd/",
+      "desktop": "projects/pilot-1/artifacts/qa/latest/home/desktop/",
+      "tablet": "projects/pilot-1/artifacts/qa/latest/home/tablet/",
+      "mobile": "projects/pilot-1/artifacts/qa/latest/home/mobile/"
+    },
+    "agent_review": {
+      "status": "reviewed",
+      "scope": "first-screen, full-page, and every final sequential segment at all four QA viewports",
+      "segments_reviewed": {
+        "1920x1080": ["0000-0.png", "0001-832.png", "0002-844.png"],
+        "1440x900": ["0000-0.png", "0001-693.png", "0002-1024.png"],
+        "768x1024": ["0000-0.png", "0001-788.png", "0002-1576.png", "0003-1986.png"],
+        "390x844": ["0000-0.png", "0001-650.png", "0002-1300.png", "0003-1950.png", "0004-2600.png", "0005-3122.png"]
+      }
+    },
+    "hard_failures": []
+  },
+  "previous_run": "docs/generator/evaluation-results/c4-run-2.json",
+  "change_note": "local fixes + agent review"
+}

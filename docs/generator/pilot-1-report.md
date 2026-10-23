@@ -150,3 +150,37 @@ simulated with project JavaScript.
    fifth approved card or a documented grid variant.
 4. Obtain allowed images and a font licence before attempting a visual-quality
    claim against the reference.
+
+## Экспертный просмотр (предварительный, агентом)
+
+This is an agent-reviewed comparison of the original capture set and the
+second local correction pass. It is not a human expert score and does not
+claim reference-level similarity. The machine-readable QA result uses
+`expert.status: "agent-reviewed"` and `score: null`.
+
+| Viewport | Reviewed files | Before → after |
+| --- | --- | --- |
+| 1920×1080 | `desktop-full-hd/{first-screen,full-page}.png`; `segments/0000-0.png`, `0001-832.png`, `0002-844.png` | Hero media reduced from 1000px to 832px; five populated product tracks replace four cards plus an empty track; footer changed from #5F5F5F to #202020. |
+| 1440×900 | `desktop/{first-screen,full-page}.png`; `segments/0000-0.png`, `0001-693.png`, `0002-1024.png` | Hero changes from equal columns to .85fr/1.15fr; cart Counter is contained within its 32px button; product row has five demo cards. |
+| 768×1024 | `tablet/{first-screen,full-page}.png`; `segments/0000-0.png`, `0001-788.png`, `0002-1576.png`, `0003-1986.png` | Hero image changes from 348×1000px to 400×500px; final product card spans both tablet columns rather than leaving a blank adjacent cell. |
+| 390×844 | `mobile/{first-screen,full-page}.png`; `segments/0000-0.png`, `0001-650.png`, `0002-1300.png`, `0003-1950.png`, `0004-2600.png`, `0005-3122.png` | Hero image changes from 358×1000px to 358×447.5px; badge remains inside the cart button; lower footer is visibly darker with readable links. |
+
+### Five highest-impact findings after the pass
+
+1. **Placeholder repetition remains high** — every Hero and product card uses
+   the same permitted neutral SVG. This is a scope limitation, not a CSS
+   failure.
+2. **Hero is still an approved static interpretation** — it has no carousel,
+   editorial photography, utility navigation or reference-specific typeface.
+3. **Tablet fifth card is wider than its siblings** — intentional local grid
+   occupancy correction; a reusable DS variant would need separate approval.
+4. **Cart badge anchoring is project-local** — it is contained and readable,
+   but `Header: badge positioning` remains a documented DS extension demand.
+5. **Newsletter remains a light inset panel** — it is now a deliberate,
+   legible contrast against the dark footer rather than an accidental pale
+   surface; whether it matches a future brand treatment requires owner input.
+
+The pass reviewed each first screen, full page and sequential segment set. No
+new horizontal overflow, external production resource or technical error was
+observed. The local correction pass is iteration 2 overall (one prior QA
+correction pass plus this pass).

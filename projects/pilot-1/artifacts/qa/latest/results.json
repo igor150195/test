@@ -20,12 +20,12 @@
           "segments": [
             "artifacts/qa/latest/home/desktop-full-hd/segments/0000-0.png",
             "artifacts/qa/latest/home/desktop-full-hd/segments/0001-832.png",
-            "artifacts/qa/latest/home/desktop-full-hd/segments/0002-1012.png"
+            "artifacts/qa/latest/home/desktop-full-hd/segments/0002-844.png"
           ],
           "audit": {
             "documentWidth": 1920,
             "viewportWidth": 1920,
-            "documentHeight": 2092
+            "documentHeight": 1924
           }
         },
         {
@@ -37,12 +37,12 @@
           "segments": [
             "artifacts/qa/latest/home/desktop/segments/0000-0.png",
             "artifacts/qa/latest/home/desktop/segments/0001-693.png",
-            "artifacts/qa/latest/home/desktop/segments/0002-1192.png"
+            "artifacts/qa/latest/home/desktop/segments/0002-1024.png"
           ],
           "audit": {
             "documentWidth": 1440,
             "viewportWidth": 1440,
-            "documentHeight": 2092
+            "documentHeight": 1924
           }
         },
         {
@@ -55,12 +55,12 @@
             "artifacts/qa/latest/home/tablet/segments/0000-0.png",
             "artifacts/qa/latest/home/tablet/segments/0001-788.png",
             "artifacts/qa/latest/home/tablet/segments/0002-1576.png",
-            "artifacts/qa/latest/home/tablet/segments/0003-1590.png"
+            "artifacts/qa/latest/home/tablet/segments/0003-1986.png"
           ],
           "audit": {
             "documentWidth": 768,
             "viewportWidth": 768,
-            "documentHeight": 2614
+            "documentHeight": 3010
           }
         },
         {
@@ -75,12 +75,12 @@
             "artifacts/qa/latest/home/mobile/segments/0002-1300.png",
             "artifacts/qa/latest/home/mobile/segments/0003-1950.png",
             "artifacts/qa/latest/home/mobile/segments/0004-2600.png",
-            "artifacts/qa/latest/home/mobile/segments/0005-3165.png"
+            "artifacts/qa/latest/home/mobile/segments/0005-3122.png"
           ],
           "audit": {
             "documentWidth": 390,
             "viewportWidth": 390,
-            "documentHeight": 4009
+            "documentHeight": 3966
           }
         }
       ]
@@ -214,8 +214,8 @@
     },
     "ds_usage": {
       "status": "passed",
-      "all_class_uses": 122,
-      "ds_class_uses": 99
+      "all_class_uses": 135,
+      "ds_class_uses": 112
     },
     "portability": {
       "site_build": {
@@ -223,66 +223,31 @@
       },
       "check_site": {
         "status": "passed",
-        "response_count": 285
+        "response_count": 286
       },
       "external_resources": {
         "status": "passed"
       }
     },
     "a11y": {
-      "status": "incomplete",
+      "status": "passed",
       "violations": [],
       "incomplete": {
-        "count": 4,
-        "findings": [
-          {
-            "id": "color-contrast",
-            "impact": "serious",
-            "help": "Elements must meet minimum color contrast ratio thresholds",
-            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
-            "target": ".ds-counter",
-            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
-            "page": "home",
-            "viewport": "desktop-full-hd"
-          },
-          {
-            "id": "color-contrast",
-            "impact": "serious",
-            "help": "Elements must meet minimum color contrast ratio thresholds",
-            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
-            "target": ".ds-counter",
-            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
-            "page": "home",
-            "viewport": "desktop"
-          },
-          {
-            "id": "color-contrast",
-            "impact": "serious",
-            "help": "Elements must meet minimum color contrast ratio thresholds",
-            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
-            "target": ".ds-counter",
-            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
-            "page": "home",
-            "viewport": "mobile"
-          },
-          {
-            "id": "color-contrast",
-            "impact": "serious",
-            "help": "Elements must meet minimum color contrast ratio thresholds",
-            "help_url": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
-            "target": ".ds-counter",
-            "failure_summary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content",
-            "page": "home",
-            "viewport": "tablet"
-          }
-        ]
-      },
-      "reason": "Axe could not determine every requested check; inspect technical.a11y.incomplete."
+        "count": 0,
+        "findings": []
+      }
     }
   },
   "expert": {
-    "status": "not-reviewed",
+    "status": "agent-reviewed",
     "score": null,
-    "findings": []
+    "findings": [
+      {
+        "scope": "preliminary visual review",
+        "status": "agent-reviewed",
+        "score": null,
+        "summary": "After the local correction pass, the reviewer inspected first-screen and full-page captures plus all segments: 1920×1080 (3), 1440×900 (3), 768×1024 (4), and 390×844 (6). No numerical expert score is assigned."
+      }
+    ]
   }
 }

@@ -28,6 +28,10 @@ HTML/CSS/SCSS. Каждый `EXTEND`/`BLOCKED` имеет `decision: "pending"` 
 `DSB-header` покрывает логотип, поиск и actions, но не документирует promo
 strip, primary navigation layout или responsive mobile drawer.
 
+Demand: **Header: badge positioning**. Локальная привязка display-only Counter
+к cart icon-button допустима только для этого approved-partial пилота и не
+создаёт общий API.
+
 ## Hero carousel
 
 ```ds-section

@@ -17,7 +17,8 @@
     "bg_main": "#FFFFFF",
     "bg_main_surface": "#F7F7F7",
     "on_bg_main": "#202020",
-    "on_bg_main_accent": "#5F5F5F"
+    "on_bg_main_accent": "#5F5F5F",
+    "footer_bg": "#202020"
   },
   "pages": [
     {

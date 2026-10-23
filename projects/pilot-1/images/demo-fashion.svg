@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title description">
   <title id="title">Demo fashion image placeholder</title>
   <desc id="description">A neutral monochrome geometric placeholder for a fashion image.</desc>
-  <rect width="800" height="1000" fill="#e8e8e8"/>
-  <rect x="80" y="80" width="640" height="840" fill="#d1d1d1"/>
-  <circle cx="400" cy="345" r="125" fill="#b4b4b4"/>
-  <path d="M220 860 400 480l180 380Z" fill="#9a9a9a"/>
-  <text x="400" y="950" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#202020">DEMO IMAGE</text>
+  <rect width="800" height="1000" fill="#d8d8d8"/>
+  <path d="M235 780V420c0-92 74-166 165-166s165 74 165 166v360H235Zm87-360a78 78 0 1 1 156 0 78 78 0 0 1-156 0Z" fill="#9a9a9a"/>
+  <text x="400" y="850" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="5" fill="#202020">DEMO</text>
 </svg>
